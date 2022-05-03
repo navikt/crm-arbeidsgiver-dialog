@@ -1,71 +1,42 @@
-Template repository for CRM packages. Necessary steps after using template:
+# crm-arbeidsgiver-dialog
 
-1. Add secrets (see [description](https://github.com/navikt/crm-workflows-base))
-    - PROD_SFDX_URL `[REQUIRED]` (contact #crm-platform-team on Slack)
-    - PREPROD_SFDX_URL `[REQUIRED]` (contact #crm-platform-team on Slack)
-    - INTEGRATION_SANDBOX_SFDX_URL `[REQUIRED]` (contact #crm-platform-team on Slack)
-    - PACKAGE_KEY `[REQUIRED]`
-    - DEPLOYMENT_PAT `[REQUIRED]` ([documentation](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token), give repo access)
-    - UAT_SFDX_URL `[OPTIONAL]`
-    - DEV_SFDX_URL `[OPTIONAL]`
-    - DEPLOY_TO_DEV_AFTER_PACKAGE_CREATION `[OPTIONAL]`
-    - DEPLOY_TO_UAT_AFTER_PACKAGE_CREATION `[OPTIONAL]`
-2. Create an init release in GitHub (not pre-release)
-    - Important! Release creation will fail if an init release has not been made!
-3. Create file `.sfdx/sfdx-config.json` (to create package)
-    - Add `{"defaultdevhubusername": "[your_devhub_user]","defaultusername": "" }` to it and change the DevHub username
-4. Create a package in SFDX
-    - `sfdx force:package:create -n YourPackageName -t Unlocked -r force-app`
-    - If you receive an error, contact #crm-platform-team on Slack to create the package
-5. Create an test metadata file in `force-app` folder to initiate init package creation (can be just a CustomLabel file)
-6. Push changes made to `force-app` and `sfdx-project.json` (remember to fetch Package ID if #crm-platform-team creates the package)
+[![Build](https://github.com/navikt/crm-arbeidsgiver-dialog/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-dialog/actions?query=workflow%3ABuild)
+[![GitHub version](https://badgen.net/github/release/navikt/crm-arbeidsgiver-dialog/stable)](https://github.com/navikt/crm-arbeidsgiver-dialog)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-arbeidsgiver-dialog/blob/master/LICENSE)
+[![codecov](https://codecov.io/gh/navikt/crm-arbeidsgiver-dialog/branch/master/graph/badge.svg)](https://codecov.io/gh/navikt/crm-arbeidsgiver-dialog)
 
-Navn på prosjekt
-================
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-shared-template/blob/master/LICENSE)
-
-
-Kort beskrivelse av hva prosjektet dreier seg om.
-
-# Komme i gang
-
-Hvordan bygge, teste og kjøre koden viss aktuelt.
+Dette repo brukes for funksjonalitet knyttet til asynkron dialog mellom nav ansatte og arbeidsgivere.
 
 ---
 
-## Dependencies
+## Avhengigheter
 
-This package is dependant on the following packages
+Pakken har flere avhengiheter. Sjekk [sfdx-project.json](https://github.com/navikt/crm-arbeidsgiver-dialog/blob/master/sfdx-project.json) filen for å se en oversikt av alle avhengigheter.
 
--   [XXXXXXXXXXXXX](https://github.com/navikt/XXXXXXXXXXXXX)
--   [XXXXXXXXXXXXX](https://github.com/navikt/XXXXXXXXXXXXX)
+## Komme i gang
 
-## Installation
+1. Salesforce DX-bruker. Kontakt #crm-plattform-team på Slack om du ikke har dette
+2. Installer Salesforce DX CLI (SFDX)
+    - Last ned fra [Salesforce.com](https://developer.salesforce.com/tools/sfdxcli)
+    - Eller benytt npm: `npm install sfdx-cli --global`
+3. Klon dette repoet ([GitHub Desktop](https://desktop.github.com) anbefales for ikke-utviklere)
+4. Installer [SSDX](https://github.com/navikt/ssdx)
+    - Med SSDX kan du lage scratch orger og gjøre deklarative endringer (gjøre endringer i nettleseren på Salesforce, altså ikke-utvikling)
+    - **Trenger du ikke verktøy utvikling kan du stoppe her**
+5. Installer [VS Code](https://code.visualstudio.com) (anbefalt)
+6. Installer [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
+7. Installer [AdoptOpenJDK](https://adoptopenjdk.net) (kun versjon 8 eller 11)
+8. Åpne VS Code Settings og søk etter `salesforcedx-vscode-apex`
+9. Under `Java Home`, legg inn følgende:
+    - macOS: `/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home`
+    - Windows: `C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.3.7-hotspot` (merk at versjonsnummer kan endre seg)
 
-1. Install [npm](https://nodejs.org/en/download/)
-1. Install [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli)
-    - Alternative: `npm install sfdx-cli --global`
-1. Clone this repository ([GitHub Desktop](https://desktop.github.com) is recommended for non-developers)
-1. Run `npm install` from the project root folder
-1. Install [SSDX](https://github.com/navikt/ssdx)
-    - **Non-developers may stop after this step**
-1. Install [VS Code](https://code.visualstudio.com) (recommended)
-    - Install [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
-    - **Install recommended plugins!** A notification should appear when opening VS Code. It will prompt you to install recommended plugins.
-1. Install [AdoptOpenJDK](https://adoptopenjdk.net) (only version 8 or 11)
-1. Open VS Code settings and search for `salesforcedx-vscode-apex`
-1. Under `Java Home`, add the following:
-    - macOS: `/Library/Java/JavaVirtualMachines/adoptopenjdk-[VERSION_NUMBER].jdk/Contents/Home`
-    - Windows: `C:\\Program Files\\AdoptOpenJDK\\jdk-[VERSION_NUMBER]-hotspot`
+## Bygg
 
-## Build
+For å bygge lokalt uten SSDX, bruk føglende
 
-To build locally without using SSDX, do the following:
-
-1. If you haven't authenticated a DX user to production / DevHub, run `sfdx auth:web:login -d -a production` and log in
-    - Ask `#crm-platform-team` on Slack if you don't have a user
-    - If you change from one repo to another, you can change the default DevHub username in `.sfdx/sfdx-config.json`, but you can also just run the command above
-1. Create a scratch org, install dependencies and push metadata:
+1. Hvis du ikke har autentisert en DevHub, kjør `sfdx auth:web:login -d -a production` og så logge inn.
+2. Opprette scratch org, installer avhengigheter og så push metadata:
 
 ```bash
 sfdx force:org:create -f ./config/project-scratch-def.json --setalias scratch_org --durationdays 1 --setdefaultusername
@@ -78,12 +49,4 @@ sfdx force:org:open
 
 # Henvendelser
 
-Enten:
-Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub
-
-Eller:
-Spørsmål knyttet til koden eller prosjektet kan stilles til teamalias@nav.no
-
-## For NAV-ansatte
-
-Interne henvendelser kan sendes via Slack i kanalen #teamkanal.
+For spørsmål om denne applikasjonen, bruk #arbeidsgiver-crm på Slack.
