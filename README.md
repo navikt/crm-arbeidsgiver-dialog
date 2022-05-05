@@ -36,15 +36,21 @@ Pakken har flere avhengiheter. Sjekk [sfdx-project.json](https://github.com/navi
 For å bygge lokalt uten SSDX, bruk føglende
 
 1. Hvis du ikke har autentisert en DevHub, kjør `sfdx auth:web:login -d -a production` og så logge inn.
-2. Opprette scratch org, installer avhengigheter og så push metadata:
+2. Installer sfdx plugin `echo y | sfdx plugins:install sfpowerkit@2.0.1`
+3. Opprette fil prosjekets root directory med navn `env.json`
 
-```bash
-sfdx force:org:create -f ./config/project-scratch-def.json --setalias scratch_org --durationdays 1 --setdefaultusername
-echo y | sfdx plugins:install sfpowerkit@2.0.1
-keys="" && for p in $(sfdx force:package:list --json | jq '.result | .[].Name' -r); do keys+=$p":navcrm "; done
-sfdx sfpowerkit:package:dependencies:install -u scratch_org -r -a -w 60 -k ${keys}
-sfdx force:source:push
-sfdx force:org:open
+```
+{
+    "PACKAGE_KEY": "Your Package Key"
+}
+
+```
+
+4. Opprette scratch org, installer avhengigheter og så pushe metadata:
+
+```
+npm install
+npm run build
 ```
 
 # Henvendelser
