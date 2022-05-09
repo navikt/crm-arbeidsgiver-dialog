@@ -13,7 +13,8 @@
         "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "postinstall": "node bin/check-version.js",
         "activateMock": "sfdx force:apex:execute -f scripts/apex/activateMock.cls",
-        "build": "node scripts/buildScratchOrg.mjs"
+        "build": "bin/install-scratch.bat",
+        "mac:build": "bash bin/install-scratch.sh"
     },
     "engines": {
         "node": ">= 10.13.0",
