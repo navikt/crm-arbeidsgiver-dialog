@@ -18,8 +18,8 @@ call :checkForError
 @echo:
 
 echo Installing dependencies...
-set secret=$(jq '.PACKAGE_KEY' env.json -r)
-keys="" && for /l %%p in $(jq '.packageAliases | keys[]' sfdx-project.json -r); do keys+=%%p":"%secret%" "; done 
+set secret=(jq '.PACKAGE_KEY' env.json -r)
+keys="" && for /l %%p in (jq '.packageAliases | keys[]' sfdx-project.json -r); do keys+=%%p":"%secret%" "; done 
 cmd.exe /c sfdx sfpowerkit:package:dependencies:install -u %ORG_ALIAS% -r -a -w 60 -k "%{keys}%"
 call :checkForError
 @echo:
