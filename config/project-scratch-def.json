@@ -63,6 +63,10 @@
         },
         "omniChannelSettings": {
             "enableOmniChannel": true
+        },
+        "accountSettings": {
+            "enableAccountHistoryTracking": true,
+            "enableAccountTeams": true
         }
     }
 }

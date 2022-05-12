@@ -36,10 +36,6 @@
                     "versionNumber": "0.55.0.LATEST"
                 },
                 {
-                    "package": "crm-arbeidsgiver-base",
-                    "versionNumber": "1.234.0.LATEST"
-                },
-                {
                     "package": "crm-shared-base",
                     "versionNumber": "1.1.0.LATEST"
                 },
@@ -50,6 +46,10 @@
                 {
                     "package": "crm-platform-integration",
                     "versionNumber": "0.79.0.LATEST"
+                },
+                {
+                    "package": "crm-arbeidsgiver-base",
+                    "versionNumber": "1.234.0.LATEST"
                 }
             ]
         }
@@ -68,7 +68,7 @@
         "crm-arbiedsgiver-dialog": "0Ho7U000000000VSAQ",
         "crm-shared-timeline": "0Ho2o000000fxXBCAY",
         "crm-shared-base": "0Ho2o000000fxXLCAY",
-        "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
-        "crm-platform-integration": "0Ho2o0000008ORrCAM"
+        "crm-platform-integration": "0Ho2o0000008ORrCAM",
+        "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM"
     }
 }
