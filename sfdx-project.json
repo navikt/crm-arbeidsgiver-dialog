@@ -34,6 +34,10 @@
                 {
                     "package": "crm-henvendelse",
                     "versionNumber": "0.55.0.LATEST"
+                },
+                {
+                    "package": "crm-platform-integration",
+                    "versionNumber": "0.79.0.LATEST"
                 }
             ]
         }
@@ -42,6 +46,7 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "54.0",
     "packageAliases": {
+        "crm-arbiedsgiver-dialog": "0Ho7U000000000VSAQ",
         "crm-platform-base": "0Ho2o0000008ORmCAM",
         "crm-journal-utilities": "0Ho2o000000fxXkCAI",
         "crm-shared-user-notification": "0Ho2o000000fxY4CAI",
@@ -49,6 +54,6 @@
         "crm-platform-access-control": "0Ho2o0000008OR3CAM",
         "crm-community-base": "0Ho2o0000008OSzCAM",
         "crm-henvendelse": "0Ho2o000000fxXfCAI",
-        "crm-arbiedsgiver-dialog": "0Ho7U000000000VSAQ"
+        "crm-platform-integration": "0Ho2o0000008ORrCAM"
     }
 }
