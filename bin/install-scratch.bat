@@ -29,6 +29,11 @@ cmd.exe /c sfdx force:source:push
 call :checkForError
 @echo:
 
+echo Publishing arbeidsgiver-dialog site...
+cmd.exe /c sfdx force:community:publish -n "arbeidsgiver-dialog" 
+call :checkForError
+@echo:
+
 echo Assigning permissions...
 cmd.exe /c sfdx force:user:permset:assign -n Messaging_Read_and_Write_Messages_and_Threads
 call :checkForError

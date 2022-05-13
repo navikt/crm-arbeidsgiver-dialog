@@ -27,6 +27,10 @@ echo "Pushing metadata..."
 sfdx force:source:push
 echo ""
 
+echo "Publishing arbeidsgiver-dialog site..."
+sfdx force:community:publish -n "arbeidsgiver-dialog" 
+echo ""
+
 echo "Assigning permissions..."
 sfdx force:user:permset:assign -n Messaging_Read_and_Write_Messages_and_Threads
 echo ""
