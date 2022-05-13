@@ -1,7 +1,0 @@
-{
-    "ALIAS": "ArbeidsgiverDialog",
-    "DURATIONDAYS": "1",
-    "ASSIGNABLE_PERMISSIONS": ["Messaging_Read_and_Write_Messages_and_Threads"],
-    "INSERT_TEST_DATA": true,
-    "POST_INSTALL_SCRIPTS": [{ "prompt": "Setting mocks...", "path": "scripts/apex/activateMock.cls" }]
-}

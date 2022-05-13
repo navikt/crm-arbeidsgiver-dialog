@@ -17,12 +17,13 @@ cmd.exe /c sfdx force:org:create -s -f config/project-scratch-def.json -d 7 -a %
 call :checkForError
 @echo:
 
-echo Installing dependencies...
-set secret=(jq '.PACKAGE_KEY' env.json -r)
-keys="" && for /l %%p in (jq '.packageAliases | keys[]' sfdx-project.json -r); do keys+=%%p":"%secret%" "; done 
-cmd.exe /c sfdx sfpowerkit:package:dependencies:install -u %ORG_ALIAS% -r -a -w 60 -k "%{keys}%"
-call :checkForError
-@echo:
+
+rem echo Installing dependencies...
+rem set secret=(jq '.PACKAGE_KEY' env.json -r)
+rem keys="" && for /l %%p in (jq '.packageAliases | keys[]' sfdx-project.json -r); do keys+=%%p":"%secret%" "; done 
+rem cmd.exe /c sfdx sfpowerkit:package:dependencies:install -u %ORG_ALIAS% -r -a -w 60 -k "%{keys}%"
+rem call :checkForError
+rem @echo:
 
 echo Pushing metadata...
 cmd.exe /c sfdx force:source:push
