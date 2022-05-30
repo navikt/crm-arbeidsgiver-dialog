@@ -236,3 +236,4 @@ public with sharing class EmployerThreadSharingServiceTest {
         }
     }
 }
+
