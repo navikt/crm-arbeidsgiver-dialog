@@ -1,81 +1,68 @@
 public without sharing class EmployerThreadSharingService {
-    private static final Map<String, String> THREAD_TOPIC_SERVICE_CODE = new Map<String, String>{
-        '5719' => 'TILTAK',
-        '1234' => 'TRENING'
+    private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
+        'AG_MLØNN' => new EmployerAltinnRight('5516', '1')
     };
-    private String organizationNumber;
-    private String personIdent;
+    private static final LoggerUtility logger = new LoggerUtility();
 
-    public EmployerThreadSharingService(String organizationNumber, String personIdent) {
-        this.organizationNumber = organizationNumber;
-        this.personIdent = personIdent;
+    public void calculateSharing(String organizationNumber, String personIdent) {
+        try {
+            List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
+            List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
+            User user = getUserFromPersonIdent(personIdent);
+            deleteOutdatedThreadShares(user);
+            createThreadShares(threadsToShare, user);
+        } catch (Exception e) {
+            logger.logMessage(
+                LoggerUtility.LogLevel.Error,
+                '',
+                null,
+                e.getMessage(),
+                null,
+                null,
+                CRM_ApplicationDomain.Domain.POAB
+            );
+            logger.publish();
+            throw new EmployerThreadSharingException('Failed to calculate employer thread share', e);
+        }
     }
 
-    public void calculateSharing() {
-        // Check service codes user has access to
-        List<String> usersTopics = getUsersTopics();
-        // Get threads related to organization number and topics
-        List<Thread__c> threadsToShare = getShareableThreads(usersTopics);
-        // Loop over threads if user has service code for thread topic then create share.
-        List<Thread__Share> threadShares = createThreadShares(threadsToShare);
-        // Get thread shares for topic that user no longer should have access to then delete shares.
-        deleteOutdatedThreadShares(threadShares);
-    }
-
-    private List<String> getUsersTopics() {
+    private List<String> getUsersAccessibleTopics(String organizationNumber, String personIdent) {
         List<String> usersTopics = new List<String>();
 
         for (String code : THREAD_TOPIC_SERVICE_CODE.keySet()) {
-            if (checkAccessToServiceCode(code) == true) {
-                usersTopics.add(THREAD_TOPIC_SERVICE_CODE.get(code));
+            if (
+                checkAccessToServiceCode(THREAD_TOPIC_SERVICE_CODE.get(code), organizationNumber, personIdent) == true
+            ) {
+                usersTopics.add(code);
             }
         }
+
         return usersTopics;
     }
 
-    public Boolean checkAccessToServiceCode(String serviceCode) {
-        AltinnCalloutService altinn = new AltinnCalloutService();
-        AltinnCalloutService.AltinnRightsResponse response = altinn.getRights(
-            personIdent,
-            organizationNumber,
-            serviceCode
-        );
+    private Boolean checkAccessToServiceCode(
+        EmployerAltinnRight altinnRight,
+        String organizationNumber,
+        String personIdent
+    ) {
+        AltinnCalloutService.AltinnRightsResponse response = new AltinnCalloutService()
+            .getRights(personIdent, organizationNumber, altinnRight.serviceCode);
 
-        if (response.success == true && response.rights.size() >= 1) {
-            return true;
+        if (response.success == true) {
+            for (AltinnCalloutService.Right right : response.rights) {
+                if (
+                    right.ServiceCode == altinnRight.serviceCode &&
+                    right.ServiceEditionCode == String.valueOf(altinnRight.serviceEditionCode)
+                ) {
+                    return true;
+                }
+            }
         }
 
         return false;
     }
 
-    private List<Thread__c> getShareableThreads(List<String> threadTopics) {
-        List<Thread__c> threads = new List<Thread__c>();
-
-        threads = [
-            SELECT Id
-            FROM Thread__c
-            WHERE
-                CRM_Account__c IN (SELECT Id FROM Account WHERE INT_OrganizationNumber__c = :organizationNumber)
-                AND CRM_Thread_Type__c IN :threadTopics
-        ];
-
-        return threads;
-    }
-
-    private User getUsersFromPersonIdent() {
-        return [
-            SELECT Id
-            FROM User
-            WHERE AccountId IN (SELECT Id FROM Account WHERE INT_PersonIdent__c = :personIdent)
-        ];
-    }
-
-    /**
-     * If has rights for service code share all threads where CRM_Thread_Type__c AG_Tiltaksavtale
-     *
-     */
-    public List<Thread__Share> createThreadShares(List<Thread__c> threads) {
-        User user = getUsersFromPersonIdent();
+    private List<Thread__Share> createThreadShares(List<Thread__c> threads, User user) {
         List<Thread__Share> threadShares = new List<Thread__Share>();
 
         for (Thread__c t : threads) {
@@ -88,21 +75,8 @@ public without sharing class EmployerThreadSharingService {
         return threadShares;
     }
 
-    public void deleteOutdatedThreadShares(List<Thread__Share> threadShares) {
-        Map<Id, Thread__Share> threadSharesById = new Map<Id, Thread__Share>();
-        User user = getUsersFromPersonIdent();
-        for (Thread__Share ts : threadShares) {
-            threadSharesById.put(ts.Id, ts);
-        }
-
-        List<Thread__Share> outdatedThreadShares = new List<Thread__Share>();
-
-        /*
-
-    select thread shares where UserOrGroupId is current user Id and ParentId = (SELECT Id FROM Account WHERE INT_OrganizationNumber__c = :organizationNumber)
-                    AND CRM_Thread_Type__c IN :threadTopics and share id not in threadSharesById.keySet();
-*/
-        outdatedThreadShares = [
+    private void deleteOutdatedThreadShares(User user) {
+        delete [
             SELECT Id, ParentId, UserOrGroupId
             FROM Thread__Share
             WHERE
@@ -110,13 +84,27 @@ public without sharing class EmployerThreadSharingService {
                 AND ParentId IN (
                     SELECT Id
                     FROM Thread__c
-                    WHERE
-                        CRM_Account__r.INT_OrganizationNumber__c = :organizationNumber
-                        AND CRM_Thread_Type__c IN :THREAD_TOPIC_SERVICE_CODE.keySet()
+                    WHERE CRM_isActive__c = TRUE AND CRM_Thread_Type__c IN :THREAD_TOPIC_SERVICE_CODE.keySet()
                 )
-                AND id NOT IN :threadSharesById.keySet()
         ];
+    }
 
-        delete outdatedThreadShares;
+    private List<Thread__c> getThreadsToShare(List<String> threadTopics, String organizationNumber) {
+        return [
+            SELECT Id
+            FROM Thread__c
+            WHERE
+                CRM_Account__c IN (SELECT Id FROM Account WHERE INT_OrganizationNumber__c = :organizationNumber)
+                AND CRM_Thread_Type__c IN :threadTopics
+        ];
+    }
+
+    private User getUserFromPersonIdent(String personIdent) {
+        return [
+            SELECT Id
+            FROM User
+            WHERE AccountId IN (SELECT Id FROM Account WHERE INT_PersonIdent__c = :personIdent)
+        ];
     }
 }
+

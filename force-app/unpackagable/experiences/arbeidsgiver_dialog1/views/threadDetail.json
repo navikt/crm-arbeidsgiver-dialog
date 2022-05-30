@@ -1,0 +1,64 @@
+{
+  "appPageId" : "fa353a30-4b13-4e42-8489-45608036c376",
+  "componentName" : "community_layout:sldsFlexibleLayout",
+  "id" : "0c48cab8-7433-4697-943c-6865857c01a7",
+  "label" : "Thread Detail",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "backgroundImageConfig" : "",
+        "backgroundImageOverlay" : "rgba(0,0,0,0)",
+        "sectionConfig" : "{\"UUID\":\"ba5871ed-e768-43e7-b885-ab62a88f9422\",\"columns\":[{\"UUID\":\"b7bba46a-600b-43bf-945b-5501ca91ad26\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+      },
+      "componentName" : "community_layout:section",
+      "id" : "ba5871ed-e768-43e7-b885-ab62a88f9422",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "alertopen" : "",
+            "alerttext" : "Dialogen er lukket",
+            "maxLength" : 0,
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "c:crmMessagingCommunityThreadViewer",
+          "id" : "61ef9d11-51fa-42af-90db-7f33fe999953",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "b7bba46a-600b-43bf-945b-5501ca91ad26",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "scopedBrandingSetId" : null,
+      "type" : "component"
+    } ],
+    "id" : "72e5dca9-aaaa-47ec-aef8-90dd97ff129c",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "pageTitle" : "{!Record._Object}: {!Record._Title}",
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "community_builder:seoAssistant",
+      "id" : "7b4f9da7-4328-4b3a-9dd7-f92f0ec15936",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "55e31af4-202d-4a5c-96ed-772851067671",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-a0P"
+}
