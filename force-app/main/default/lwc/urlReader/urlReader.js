@@ -12,7 +12,7 @@ export default class UrlReader extends LightningElement {
     }
 
     @api
-    getUrlParemeter(paramName) {
+    getUrlParameter(paramName) {
         return this.currentPageReference[paramName];
     }
 }
