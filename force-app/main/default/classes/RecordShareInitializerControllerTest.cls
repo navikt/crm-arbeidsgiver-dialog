@@ -21,59 +21,59 @@ public class RecordShareInitializerControllerTest {
         communityUser.ProfileId = communityProfile.Id;
 
         insert communityUser;
-
-        UserRole userrole = [SELECT Id, DeveloperName FROM UserRole WHERE DeveloperName = 'Default' Limit 1];
-        User user = [SELECT Id, UserRoleId FROM USER WHERE FirstName = 'Community User' LIMIT 1];
-        user.UserRoleId = userrole.Id;
-
-        update user;
     }
 
     @isTest
     static void testingThreadSharesCreated() {
         Account businessAccount = [SELECT Id FROM Account WHERE isPersonAccount = FALSE LIMIT 1];
-        User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
-        String strId = Id.valueOf(user.Id);
+        User user = [SELECT Id, UserRoleId FROM USER WHERE FirstName = 'Community User' LIMIT 1];
 
-        Thread__c newThread = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
+        Thread__c thread = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
+        insert thread;
+
+        List<Thread__Share> recordAccessBefore = [
+            SELECT Id
+            FROM Thread__Share
+            WHERE UserOrGroupId = :user.Id AND ParentId = :thread.Id AND AccessLevel = 'Edit'
+        ];
+
+        System.assert(recordAccessBefore.size() == 0, 'No pre-existing record share');
+
+        ApiMock.setTestMock('GET_ALTINN_RIGHTS', 200, 'OK');
 
         System.runAs(user) {
             Test.startTest();
-            RecordShareInitializerController.calculateSharingForUser(strId, '910825585');
+            RecordShareInitializerController.calculateSharingForUser(user.Id, '910825585');
             Test.stopTest();
-        
-        List<Thread__Share> threadShare = [
-            SELECT ParentId, UserOrGroupId, AccessLevel
-            FROM Thread__Share
-            WHERE UserOrGroupId =:strId LIMIT 1
-        ];
 
-        List<Thread__c> thread = [
-            SELECT Id
-            FROM Thread__c
-            WHERE CRM_Account__c IN (SELECT Id FROM Account WHERE INT_OrganizationNumber__c = '910825585')
-        ];
-        
-        System.assertEquals(threadShare[0].ParentId, thread[0].Id, 'No records shares created');
+            List<Thread__Share> recordAccessAfter = [
+                SELECT Id
+                FROM Thread__Share
+                WHERE UserOrGroupId = :user.Id AND ParentId = :thread.Id AND AccessLevel = 'Edit'
+            ];
+
+            System.assertEquals(1, recordAccessAfter.size(), 'Record share created');
         }
     }
 
     @isTest
     static void testErrorHandling() {
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
-        String strId = Id.valueOf(user.Id);
+        Boolean exceptionOccured = false;
+
+        ApiMock.setTestMock('GET_ALTINN_RIGHTS', 200, 'OK');
 
         System.runAs(user) {
             Test.startTest();
             try {
-                RecordShareInitializerController.calculateSharingForUser(strId, '910825586');
-                System.assert(false, 'Expected an exception.');
+                RecordShareInitializerController.calculateSharingForUser('1234', '910825586');
             } catch(AuraHandledException e) {
                 System.debug('AuraHandledException: ' +e.getMessage());
-                System.assert(false, e.getMessage());
+                exceptionOccured = true;
             }
                 Test.stopTest();
                 
+                System.assert(exceptionOccured, 'An exception was not thrown');
         }
     }
 }
