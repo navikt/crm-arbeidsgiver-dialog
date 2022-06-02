@@ -4,7 +4,9 @@ public without sharing class RecordShareInitializerController {
         try {
             System.debug('Calculating Sharing for...' + ' ' + userId + ' ' + orgNumber);
 
-            // calculate sharing
+            List<User> personIdent = [SELECT Contact.Account.INT_PersonIdent__c FROM User WHERE Id = :userId];
+            EmployerThreadSharingService EmpThreadSharingService = new EmployerThreadSharingService();
+            EmpThreadSharingService.calculateSharing(orgNumber, personIdent[0].Contact.Account.INT_PersonIdent__c);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
