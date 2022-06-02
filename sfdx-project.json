@@ -13,7 +13,7 @@
                 },
                 {
                     "package": "crm-journal-utilities",
-                    "versionNumber": "0.14.0.LATEST"
+                    "versionNumber": "0.15.0.LATEST"
                 },
                 {
                     "package": "crm-shared-user-notification",
@@ -29,7 +29,11 @@
                 },
                 {
                     "package": "crm-community-base",
-                    "versionNumber": "0.63.0.LATEST"
+                    "versionNumber": "0.64.0.LATEST"
+                },
+                {
+                    "package": "crm-henvendelse-base",
+                    "versionNumber": "0.3.0.LATEST"
                 },
                 {
                     "package": "crm-henvendelse-base",
@@ -37,6 +41,8 @@
                 },
                 {
                     "package": "crm-henvendelse",
+                },
+                {
                     "versionNumber": "0.64.0.LATEST"
                 },
                 {
