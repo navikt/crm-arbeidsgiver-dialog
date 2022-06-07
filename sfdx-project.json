@@ -36,10 +36,6 @@
                     "versionNumber": "0.3.0.LATEST"
                 },
                 {
-                    "package": "crm-henvendelse-base",
-                    "versionNumber": "0.3.0.LATEST"
-                },
-                {
                     "package": "crm-henvendelse",
                     "versionNumber": "0.65.0.LATEST"
                 },

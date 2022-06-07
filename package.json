@@ -12,7 +12,9 @@
         "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "postinstall": "node bin/check-version.js",
-        "activateMock": "sfdx force:apex:execute -f scripts/apex/activateMock.cls",
+        "mock:active": "sfdx force:apex:execute -f scripts/apex/activateMock.cls",
+        "mock:inactive": "sfdx force:apex:execute -f scripts/apex/deactivateMock.cls",
+        "create:portal:user": "sfdx force:apex:execute -f ./scripts/apex/createPortalUser.cls",
         "build": "C:bin/install-scratch.bat",
         "mac:build": "bash bin/install-scratch.sh"
     },

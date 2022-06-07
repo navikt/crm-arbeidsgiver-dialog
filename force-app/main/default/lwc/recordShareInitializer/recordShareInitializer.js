@@ -14,6 +14,8 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
             this.isRendered = true;
             this.organizationNumber = this.getUrlParam('orgNummer');
             this.agreementNumber = this.getUrlParam('avtaleNummer');
+            console.log('Org Number', this.organizationNumber);
+            console.log('Avtale Number ', this.agreementNumber);
             if (!this.organizationNumber || !this.agreementNumber) {
                 this.navigateToErrorPage();
                 return;
@@ -40,6 +42,7 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
     redirectToAgreementThread(agreementNumber) {
         getAgreementThreadId({ agreementNumber: agreementNumber })
             .then((result) => {
+                console.log('Thread Id ', result);
                 this.navigateToThreadDetailPage(result);
             })
             .catch((error) => {

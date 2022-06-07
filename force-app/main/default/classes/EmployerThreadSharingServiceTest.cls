@@ -200,7 +200,7 @@ public with sharing class EmployerThreadSharingServiceTest {
             System.assertEquals(
                 true,
                 expectedException instanceof EmployerThreadSharingException,
-                'Correct exception thrown'
+                'Invalid personIdent. Correct exception thrown'
             );
         }
     }

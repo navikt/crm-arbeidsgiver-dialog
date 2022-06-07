@@ -1,0 +1,13 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Thread__c",
+                "referenceId": "Thread__cRef1"
+            },
+            "TAG_RelatedObjectExternalId__c": "1234",
+            "CRM_Thread_Type__c": "AG_MLØNN",
+            "CRM_Account__c": "@AccountRef1"
+        }
+    ]
+}

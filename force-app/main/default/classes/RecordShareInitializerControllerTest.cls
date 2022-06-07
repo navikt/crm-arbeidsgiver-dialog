@@ -67,13 +67,12 @@ public class RecordShareInitializerControllerTest {
             Test.startTest();
             try {
                 RecordShareInitializerController.calculateSharingForUser('1234', '910825586');
-            } catch(AuraHandledException e) {
-                System.debug('AuraHandledException: ' +e.getMessage());
+            } catch (AuraHandledException e) {
                 exceptionOccured = true;
             }
-                Test.stopTest();
-                
-                System.assert(exceptionOccured, 'An exception was not thrown');
+            Test.stopTest();
+
+            System.assertEquals(true, exceptionOccured, 'Invalid userId, an exception was thrown');
         }
     }
 }
