@@ -14,9 +14,9 @@ public with sharing class RecordShareInitializerController {
     @AuraEnabled
     public static String getAgreementThreadId(String agreementNumber) {
         try {
-            return [SELECT Id FROM Thread__c WHERE TAG_RelatedObjectExternalId__c = :agreementNumber]?.Id;
+            return [SELECT Id FROM Thread__c WHERE TAG_RelatedObjectExternalId__c = :agreementNumber].Id;
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            throw new AuraHandledException('Thread not found for agreement ' + agreementNumber);
         }
     }
 }

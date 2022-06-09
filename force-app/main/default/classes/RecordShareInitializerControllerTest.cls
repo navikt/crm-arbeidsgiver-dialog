@@ -88,9 +88,15 @@ public class RecordShareInitializerControllerTest {
 
     @isTest
     static void getAgreementThreadId_NotFound() {
-        String threadId = RecordShareInitializerController.getAgreementThreadId('1234');
+        Exception expectedException;
 
-        System.assertEquals(null, threadId, 'Thread not found');
+        try {
+            String threadId = RecordShareInitializerController.getAgreementThreadId('1234');
+        } catch (Exception e) {
+            expectedException = e;
+        }
+
+        System.assertEquals(true, expectedException instanceof AuraHandledException, 'Thread not found');
     }
 }
 
