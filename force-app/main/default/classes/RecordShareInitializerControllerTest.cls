@@ -93,3 +93,4 @@ public class RecordShareInitializerControllerTest {
         System.assertEquals(null, threadId, 'Thread not found');
     }
 }
+
