@@ -43,6 +43,12 @@
         "renditionMap" : { },
         "scopedBrandingSetId" : null,
         "type" : "component"
+      }, {
+        "componentAttributes" : { },
+        "componentName" : "c:recordShareInitializer",
+        "id" : "181abdd4-109f-49da-b365-bb0157574733",
+        "renditionMap" : { },
+        "type" : "component"
       } ],
       "id" : "fa002163-c644-4db0-abe8-7a83d7d1adbf",
       "regionName" : "header",

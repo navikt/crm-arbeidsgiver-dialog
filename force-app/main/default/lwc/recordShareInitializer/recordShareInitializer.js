@@ -10,18 +10,32 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
     isRendered = false;
 
     renderedCallback() {
-        if (!this.isRendered) {
+        if (!this.isRendered && !this.isBuilderMode()) {
             this.isRendered = true;
-            this.organizationNumber = this.getUrlParam('orgNummer');
-            this.agreementNumber = this.getUrlParam('avtaleNummer');
-            console.log('Org Number', this.organizationNumber);
-            console.log('Avtale Number ', this.agreementNumber);
+            this.organizationNumber = this.getUrlParam('organisasjonsnummer');
+            this.agreementNumber = this.getUrlParam('avtalenummer');
             if (!this.organizationNumber || !this.agreementNumber) {
                 this.navigateToErrorPage();
                 return;
             }
             this.calculateSharing();
         }
+    }
+
+    isBuilderMode() {
+        const viewParam = this.getUrlParam('view');
+        return viewParam === 'editor';
+    }
+
+    isThreadDetailPage() {
+        const urlReader = this.template.querySelector('c-url-reader');
+        if (
+            urlReader.getPageType() === 'standard__recordPage' &&
+            urlReader.getAttribute('objectApiName') === 'Thread__c'
+        ) {
+            return true;
+        }
+        return false;
     }
 
     getUrlParam(urlParam) {
@@ -31,7 +45,9 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
     calculateSharing() {
         calculateSharingForUser({ userId: this.currentUserId, orgNumber: this.organizationNumber })
             .then(() => {
-                this.redirectToAgreementThread(this.agreementNumber);
+                if (!this.isThreadDetailPage()) {
+                    this.redirectToAgreementThread(this.agreementNumber);
+                }
             })
             .catch((error) => {
                 console.error('Sharing calculation error', error);
@@ -42,7 +58,6 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
     redirectToAgreementThread(agreementNumber) {
         getAgreementThreadId({ agreementNumber: agreementNumber })
             .then((result) => {
-                console.log('Thread Id ', result);
                 this.navigateToThreadDetailPage(result);
             })
             .catch((error) => {
@@ -58,6 +73,10 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
                 objectApiName: 'Thread__c',
                 recordId: threadId,
                 actionName: 'view'
+            },
+            state: {
+                organisasjonsnummer: this.organizationNumber,
+                avtalenummer: this.agreementNumber
             }
         });
     }

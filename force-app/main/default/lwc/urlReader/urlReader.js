@@ -7,12 +7,22 @@ export default class UrlReader extends LightningElement {
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         if (currentPageReference) {
-            this.currentPageReference = currentPageReference.state;
+            this.currentPageReference = currentPageReference;
         }
     }
 
     @api
     getUrlParameter(paramName) {
-        return this.currentPageReference[paramName];
+        return this.currentPageReference.state[paramName];
+    }
+
+    @api
+    getPageType() {
+        return this.currentPageReference.type;
+    }
+
+    @api
+    getAttribute(attributeName) {
+        return this.currentPageReference.attributes[attributeName];
     }
 }

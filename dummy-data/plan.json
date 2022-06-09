@@ -8,7 +8,7 @@
     {
         "sobject": "Contract__c",
         "saveRefs": true,
-        "resolveRefs": false,
+        "resolveRefs": true,
         "files": ["Contract__c.json"]
     },
     {

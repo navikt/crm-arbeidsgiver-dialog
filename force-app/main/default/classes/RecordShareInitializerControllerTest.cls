@@ -75,4 +75,21 @@ public class RecordShareInitializerControllerTest {
             System.assertEquals(true, exceptionOccured, 'Invalid userId, an exception was thrown');
         }
     }
+
+    @isTest
+    static void getAgreementThreadId_Success() {
+        Thread__c thread = new Thread__c(name = 'Test thread', TAG_RelatedObjectExternalId__c = '1234');
+        insert thread;
+
+        String threadId = RecordShareInitializerController.getAgreementThreadId('1234');
+
+        System.assertEquals(thread.Id, threadId, 'Correct thread retrieved');
+    }
+
+    @isTest
+    static void getAgreementThreadId_NotFound() {
+        String threadId = RecordShareInitializerController.getAgreementThreadId('1234');
+
+        System.assertEquals(null, threadId, 'Thread not found');
+    }
 }

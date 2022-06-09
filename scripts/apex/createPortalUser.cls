@@ -5,8 +5,9 @@ update usr;
 
 //Create community user
 Account personAccount = [SELECT FirstName, LastName, PersonContactId FROM Account WHERE INT_PersonIdent__c = '16120102137'];
-String experienceProfileId = [SELECT Id FROM Profile WHERE Name='AG Community Scratch Profile' Limit 1]?.Id;
+String experienceProfileId = [SELECT Id FROM Profile WHERE Name='Customer Community Plus Login User' Limit 1]?.Id;
 String experienceUserEmail  = personAccount.FirstName + '.' +personAccount.LastName + '@' + URL.getSalesforceBaseUrl().getHost();
+
 User experienceUser = new User(
     UserName = experienceUserEmail,
     FirstName = personAccount.FirstName,
@@ -14,7 +15,7 @@ User experienceUser = new User(
     Alias = 'expusr',
     email = experienceUserEmail,
     ContactId = personAccount.PersonContactId,
-    ProfileId = experienceProfileId ,
+    ProfileId = experienceProfileId,
     EmailEncodingKey = 'UTF-8',
     CommunityNickname = 'expusr1234',
     TimeZoneSidKey = 'America/Los_Angeles',
@@ -22,6 +23,12 @@ User experienceUser = new User(
     LanguageLocaleKey = 'en_US'
 );
 insert experienceUser;
+
+//Assign correct permission set to the user.
+String permissionSetId = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Dialog_Eksterne'].Id;
+
+PermissionSetAssignment permSetAssignment = new PermissionSetAssignment(PermissionSetId = permissionSetId, AssigneeId = experienceUser.Id);
+insert permSetAssignment;
 
 
 

@@ -13,6 +13,14 @@
       "componentName" : "community_layout:section",
       "id" : "4cae3ff2-8621-4695-889d-92a412465dba",
       "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:recordShareInitializer",
+          "id" : "b6cbcbf1-ae06-48a8-8e2e-2c665b94ac88",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
         "id" : "112d2399-2f40-47c6-97ce-99f167db44c3",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
