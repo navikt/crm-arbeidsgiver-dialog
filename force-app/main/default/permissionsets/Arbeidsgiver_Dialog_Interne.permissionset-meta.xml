@@ -7,4 +7,8 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver- Dialog(Interne)</label>
+    <recordTypeVisibilities>
+        <recordType>Contract__c.TiltakAgreement</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
 </PermissionSet>
