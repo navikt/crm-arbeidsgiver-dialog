@@ -67,13 +67,36 @@ public class RecordShareInitializerControllerTest {
             Test.startTest();
             try {
                 RecordShareInitializerController.calculateSharingForUser('1234', '910825586');
-            } catch(AuraHandledException e) {
-                System.debug('AuraHandledException: ' +e.getMessage());
+            } catch (AuraHandledException e) {
                 exceptionOccured = true;
             }
-                Test.stopTest();
-                
-                System.assert(exceptionOccured, 'An exception was not thrown');
+            Test.stopTest();
+
+            System.assertEquals(true, exceptionOccured, 'Invalid userId, an exception was thrown');
         }
     }
+
+    @isTest
+    static void getAgreementThreadId_Success() {
+        Thread__c thread = new Thread__c(name = 'Test thread', TAG_RelatedObjectExternalId__c = '1234');
+        insert thread;
+
+        String threadId = RecordShareInitializerController.getAgreementThreadId('1234');
+
+        System.assertEquals(thread.Id, threadId, 'Correct thread retrieved');
+    }
+
+    @isTest
+    static void getAgreementThreadId_NotFound() {
+        Exception expectedException;
+
+        try {
+            String threadId = RecordShareInitializerController.getAgreementThreadId('1234');
+        } catch (Exception e) {
+            expectedException = e;
+        }
+
+        System.assertEquals(true, expectedException instanceof AuraHandledException, 'Thread not found');
+    }
 }
+

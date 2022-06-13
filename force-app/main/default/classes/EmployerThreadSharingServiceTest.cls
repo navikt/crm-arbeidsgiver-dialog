@@ -2,6 +2,10 @@
 public with sharing class EmployerThreadSharingServiceTest {
     @TestSetup
     static void makeData() {
+        User user = [SELECT Id, UserRoleId FROM User WHERE Id = :UserInfo.getUserId()];
+        user.UserRoleId = [SELECT Id FROM UserRole WHERE Name = 'PO Arbeidsgiver' LIMIT 1]?.Id;
+        update user;
+
         Account businessAccount = TestDataFactory.getAccounts(1, false)[0];
         businessAccount.INT_OrganizationNumber__c = '910825585';
         insert businessAccount;
@@ -200,7 +204,7 @@ public with sharing class EmployerThreadSharingServiceTest {
             System.assertEquals(
                 true,
                 expectedException instanceof EmployerThreadSharingException,
-                'Correct exception thrown'
+                'Invalid personIdent. Correct exception thrown'
             );
         }
     }
@@ -236,4 +240,3 @@ public with sharing class EmployerThreadSharingServiceTest {
         }
     }
 }
-

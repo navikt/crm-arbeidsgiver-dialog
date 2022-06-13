@@ -33,14 +33,16 @@ echo ""
 
 echo "Assigning permissions..."
 sfdx force:user:permset:assign -n Messaging_Read_and_Write_Messages_and_Threads
+sfdx force:user:permset:assign -n Arbeidsgiver_Dialog_Interne
 echo ""
 
 echo "Inserting test data..."
 sfdx force:data:tree:import -p  dummy-data/plan.json
 echo ""
 
-echo "Activating Mocks..."
+echo "Running post install scripts..."
 sfdx force:apex:execute -f ./scripts/apex/activateMock.cls
+sfdx force:apex:execute -f ./scripts/apex/createPortalUser.cls
 echo ""
 
 echo "Opening org..." && \
