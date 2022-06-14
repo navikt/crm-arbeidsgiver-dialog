@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <description>Create a thread for the contract when inserted.</description>
+    <interviewLabel>Contract- Insert Create Thread {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract- Insert Create Thread</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Thread to create</description>
+        <name>Thread_To_Create</name>
+        <label>Thread To Create</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <inputAssignments>
+            <field>CRM_Account__c</field>
+            <value>
+                <elementReference>$Record.TAG_Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Related_Object__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Thread_Type__c</field>
+            <value>
+                <stringValue>AG_MLØNN</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_RelatedObjectExternalId__c</field>
+            <value>
+                <elementReference>$Record.ExternalId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Thread__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Thread_To_Create</targetReference>
+        </connector>
+        <object>Contract__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
