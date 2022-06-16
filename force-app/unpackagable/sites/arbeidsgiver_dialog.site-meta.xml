@@ -22,7 +22,6 @@
     <redirectToCustomDomain>false</redirectToCustomDomain>
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <serverIsDown>SNA_arbeidsgiver_dialog1_sf_default_cdn_XDklX</serverIsDown>
     <siteAdmin>test-nrmbkewymd7e@example.com</siteAdmin>
     <siteGuestRecordDefaultOwner>test-nrmbkewymd7e@example.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
