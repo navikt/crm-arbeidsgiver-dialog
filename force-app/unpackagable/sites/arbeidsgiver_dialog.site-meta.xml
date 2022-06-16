@@ -22,8 +22,8 @@
     <redirectToCustomDomain>false</redirectToCustomDomain>
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>test-xzluxbiwwp1g@example.com</siteAdmin>
-    <siteGuestRecordDefaultOwner>test-xzluxbiwwp1g@example.com</siteGuestRecordDefaultOwner>
+    <serverIsDown>SNA_arbeidsgiver_dialog1_sf_default_cdn_XDklX</serverIsDown>
+    <siteAdmin>test-nrmbkewymd7e@example.com</siteAdmin>
+    <siteGuestRecordDefaultOwner>test-nrmbkewymd7e@example.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>enterprise-saas-4142-180b8dafd68</subdomain>
 </CustomSite>

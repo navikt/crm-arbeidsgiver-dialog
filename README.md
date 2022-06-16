@@ -50,7 +50,7 @@ For å bygge lokalt uten SSDX, bruk føglende
 
 ```
 npm install
-npm run build
+npm run mac:build
 ```
 
 # Henvendelser
