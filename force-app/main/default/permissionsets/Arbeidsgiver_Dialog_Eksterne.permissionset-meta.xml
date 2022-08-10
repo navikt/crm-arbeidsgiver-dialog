@@ -4,6 +4,11 @@
         <apexClass>RecordShareInitializerController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Thread__c.TAG_RelatedObjectExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver- Dialog(Eksterne)</label>
     <license>Customer Community Plus Login</license>

@@ -26,11 +26,11 @@
         "regions" : [ {
           "components" : [ {
             "componentAttributes" : {
-              "NAVarea" : "",
-              "navareapicklist" : "Arbeidsgiver"
+              "NAVarea" : "Privatperson",
+              "navareapicklist" : "Privatperson"
             },
             "componentName" : "c:globalCommunityHeader",
-            "id" : "1931e7eb-2eb8-450f-9b60-ed93fda9b7d0",
+            "id" : "56126c23-5f4e-4d5f-986c-1c51933cef1e",
             "renditionMap" : { },
             "type" : "component"
           } ],
@@ -79,6 +79,10 @@
       } ],
       "id" : "bce5a8c4-1bb1-47af-83c8-3e5d4dbb2716",
       "regionName" : "footer",
+      "type" : "region"
+    }, {
+      "id" : "747b0de9-5b5c-4425-b46e-562daff35c15",
+      "regionName" : "default",
       "type" : "region"
     } ],
     "type" : "view"

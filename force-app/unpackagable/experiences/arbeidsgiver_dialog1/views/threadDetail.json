@@ -8,15 +8,22 @@
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"ba5871ed-e768-43e7-b885-ab62a88f9422\",\"columns\":[{\"UUID\":\"b7bba46a-600b-43bf-945b-5501ca91ad26\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+        "sectionConfig" : "{\"UUID\":\"ba5871ed-e768-43e7-b885-ab62a88f9422\",\"columns\":[{\"UUID\":\"b7bba46a-600b-43bf-945b-5501ca91ad26\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"3\",\"seedComponents\":[]},{\"UUID\":\"dbf1c15d-61e0-41c2-b7a1-b93beb25aeaa\",\"columnName\":\"Column 2\",\"columnKey\":\"03486\",\"columnWidth\":\"6\",\"seedComponents\":[]},{\"UUID\":\"5834f42a-93ec-46ea-b72c-04d0df036c56\",\"columnName\":\"Column 3\",\"columnKey\":\"e35ba\",\"columnWidth\":\"3\",\"seedComponents\":[]}]}"
       },
       "componentName" : "community_layout:section",
       "id" : "ba5871ed-e768-43e7-b885-ab62a88f9422",
       "regions" : [ {
+        "id" : "b7bba46a-600b-43bf-945b-5501ca91ad26",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
         "components" : [ {
           "componentAttributes" : {
             "alertopen" : "",
             "alerttext" : "Dialogen er lukket",
+            "header" : "",
             "maxLength" : 0,
             "recordId" : "{!recordId}"
           },
@@ -26,9 +33,15 @@
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "b7bba46a-600b-43bf-945b-5501ca91ad26",
-        "regionLabel" : "Column 1",
-        "regionName" : "col1",
+        "id" : "dbf1c15d-61e0-41c2-b7a1-b93beb25aeaa",
+        "regionLabel" : "Column 2",
+        "regionName" : "03486",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "id" : "5834f42a-93ec-46ea-b72c-04d0df036c56",
+        "regionLabel" : "Column 3",
+        "regionName" : "e35ba",
         "renditionMap" : { },
         "type" : "region"
       } ],

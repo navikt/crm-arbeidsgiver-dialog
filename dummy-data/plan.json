@@ -10,11 +10,5 @@
         "saveRefs": true,
         "resolveRefs": true,
         "files": ["Contract__c.json"]
-    },
-    {
-        "sobject": "Thread__c",
-        "saveRefs": true,
-        "resolveRefs": true,
-        "files": ["Thread__c.json"]
     }
 ]

@@ -34,6 +34,8 @@ echo ""
 echo "Assigning permissions..."
 sfdx force:user:permset:assign -n Messaging_Read_and_Write_Messages_and_Threads
 sfdx force:user:permset:assign -n Arbeidsgiver_Dialog_Interne
+sfdx force:user:permset:assign -n Arbeidsgiver_base
+sfdx force:user:permset:assign -n Arbeidsgiver_contract
 echo ""
 
 echo "Inserting test data..."

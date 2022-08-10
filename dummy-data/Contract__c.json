@@ -3,6 +3,8 @@
         {
             "attributes": {
                 "type": "Contract__c",
+                "ExternalId__c": "1234",
+                "TAG_Account__c": "@AccountRef1",
                 "referenceId": "Contract__cRef1"
             }
         }
