@@ -10,6 +10,16 @@
         <field>Thread__c.TAG_RelatedObjectExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.AG_LastRepresentedOrganization__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.AG_LastSharingCalculation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver- Dialog(Interne)</label>
     <recordTypeVisibilities>

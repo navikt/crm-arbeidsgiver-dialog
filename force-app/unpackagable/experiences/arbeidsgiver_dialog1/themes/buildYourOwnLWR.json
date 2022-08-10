@@ -43,6 +43,31 @@
         "renditionMap" : { },
         "scopedBrandingSetId" : null,
         "type" : "component"
+      }, {
+        "componentAttributes" : {
+          "backgroundImageConfig" : "",
+          "backgroundImageOverlay" : "rgba(0,0,0,0)",
+          "sectionConfig" : "{\"UUID\":\"26a8eb9c-e167-4faa-9155-a1b8779a0cc3\",\"columns\":[{\"UUID\":\"8af7b037-f2dc-45d3-bfb9-0be06e0f06d3\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+        },
+        "componentName" : "community_layout:section",
+        "id" : "26a8eb9c-e167-4faa-9155-a1b8779a0cc3",
+        "regions" : [ {
+          "components" : [ {
+            "componentAttributes" : { },
+            "componentName" : "c:organizationBanner",
+            "id" : "21f239cb-127f-4d29-92ba-e3008fe29839",
+            "renditionMap" : { },
+            "type" : "component"
+          } ],
+          "id" : "8af7b037-f2dc-45d3-bfb9-0be06e0f06d3",
+          "regionLabel" : "Column 1",
+          "regionName" : "col1",
+          "renditionMap" : { },
+          "type" : "region"
+        } ],
+        "renditionMap" : { },
+        "scopedBrandingSetId" : null,
+        "type" : "component"
       } ],
       "id" : "fa002163-c644-4db0-abe8-7a83d7d1adbf",
       "regionName" : "header",
