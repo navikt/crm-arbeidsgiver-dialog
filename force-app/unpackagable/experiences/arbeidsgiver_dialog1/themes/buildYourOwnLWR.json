@@ -26,17 +26,42 @@
         "regions" : [ {
           "components" : [ {
             "componentAttributes" : {
-              "NAVarea" : "",
-              "navareapicklist" : "Arbeidsgiver"
+              "NAVarea" : "Privatperson",
+              "navareapicklist" : "Privatperson"
             },
             "componentName" : "c:globalCommunityHeader",
-            "id" : "1931e7eb-2eb8-450f-9b60-ed93fda9b7d0",
+            "id" : "56126c23-5f4e-4d5f-986c-1c51933cef1e",
             "renditionMap" : { },
             "type" : "component"
           } ],
           "id" : "78f08667-b1c6-4062-ba1f-41618d485d00",
           "regionLabel" : "Theme Header",
           "regionName" : "headerSection",
+          "renditionMap" : { },
+          "type" : "region"
+        } ],
+        "renditionMap" : { },
+        "scopedBrandingSetId" : null,
+        "type" : "component"
+      }, {
+        "componentAttributes" : {
+          "backgroundImageConfig" : "",
+          "backgroundImageOverlay" : "rgba(0,0,0,0)",
+          "sectionConfig" : "{\"UUID\":\"26a8eb9c-e167-4faa-9155-a1b8779a0cc3\",\"columns\":[{\"UUID\":\"8af7b037-f2dc-45d3-bfb9-0be06e0f06d3\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+        },
+        "componentName" : "community_layout:section",
+        "id" : "26a8eb9c-e167-4faa-9155-a1b8779a0cc3",
+        "regions" : [ {
+          "components" : [ {
+            "componentAttributes" : { },
+            "componentName" : "c:organizationBanner",
+            "id" : "21f239cb-127f-4d29-92ba-e3008fe29839",
+            "renditionMap" : { },
+            "type" : "component"
+          } ],
+          "id" : "8af7b037-f2dc-45d3-bfb9-0be06e0f06d3",
+          "regionLabel" : "Column 1",
+          "regionName" : "col1",
           "renditionMap" : { },
           "type" : "region"
         } ],
@@ -79,6 +104,10 @@
       } ],
       "id" : "bce5a8c4-1bb1-47af-83c8-3e5d4dbb2716",
       "regionName" : "footer",
+      "type" : "region"
+    }, {
+      "id" : "747b0de9-5b5c-4425-b46e-562daff35c15",
+      "regionName" : "default",
       "type" : "region"
     } ],
     "type" : "view"

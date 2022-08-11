@@ -53,6 +53,24 @@ npm install
 npm run mac:build
 ```
 
+# Experience Cloud
+
+Når man skal teste funksjonaliteter i Experience Cloud under utvikling i scratch miljøet kan man bruke test brukeren "Kari Nordmann".
+
+### Teste dialog om en avtale
+
+Når man er på Home siden kan man legge til noen url paremetere som vil trigger en redirect til Thread\_\_c detail siden.
+
+E.g. https://dream-business-489.my.site.com/s/?organisasjonsnummer=910825585&avtalenummer=1234
+
+Avtalen, virksomheten og tråden skal være opprettet automatisk når mann bruker build scripten over.
+
+Legge til dette på slutten av URLen e.g.
+
+    ```
+    ?organisasjonsnummer=910825585&avtalenummer=1234
+    ```
+
 # Henvendelser
 
 For spørsmål om denne applikasjonen, bruk #arbeidsgiver-crm på Slack.

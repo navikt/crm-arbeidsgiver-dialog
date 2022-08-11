@@ -26,9 +26,12 @@ insert experienceUser;
 
 //Assign correct permission set to the user.
 String permissionSetId = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Dialog_Eksterne'].Id;
+String permissionSetId2 = [SELECT Id FROM PermissionSet WHERE Name = 'Messaging_Read_and_Write_Messages_and_Threads'].Id;
 
 PermissionSetAssignment permSetAssignment = new PermissionSetAssignment(PermissionSetId = permissionSetId, AssigneeId = experienceUser.Id);
-insert permSetAssignment;
+PermissionSetAssignment permSetAssignment2 = new PermissionSetAssignment(PermissionSetId = permissionSetId2, AssigneeId = experienceUser.Id);
+List<PermissionSetAssignment> perms = new List<PermissionSetAssignment>{permSetAssignment, permSetAssignment2};
+insert perms;
 
 
 

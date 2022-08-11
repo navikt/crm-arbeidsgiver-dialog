@@ -14,6 +14,7 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
             this.isRendered = true;
             this.organizationNumber = this.getUrlParam('organisasjonsnummer');
             this.agreementNumber = this.getUrlParam('avtalenummer');
+
             if (!this.organizationNumber || !this.agreementNumber) {
                 this.navigateToErrorPage();
                 return;
