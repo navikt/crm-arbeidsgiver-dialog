@@ -2,15 +2,19 @@ public without sharing class EmployerThreadSharingService {
     private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
         'AG_MLØNN' => new EmployerAltinnRight('5516', '1')
     };
+    private static final Integer SHARING_CALCULATION_CACHE_TIME = -2;
     private static final LoggerUtility logger = new LoggerUtility();
 
     public void calculateSharing(String organizationNumber, String personIdent) {
         try {
-            List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
-            List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
             User user = getUserFromPersonIdent(personIdent);
-            deleteOutdatedThreadShares(user);
-            createThreadShares(threadsToShare, user);
+            if (cacheExpired(DateTime.valueOf(user.AG_LastSharingCalculation__c))) {
+                List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
+                List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
+                deleteOutdatedThreadShares(user);
+                createThreadShares(threadsToShare, user);
+                cacheUsersLastShareCalculationTimeForOrganization(organizationNumber, user.Id);
+            }
         } catch (Exception e) {
             logger.logMessage(
                 LoggerUtility.LogLevel.Error,
@@ -75,6 +79,24 @@ public without sharing class EmployerThreadSharingService {
         return threadShares;
     }
 
+    private boolean cacheExpired(DateTime lastShareCalculation) {
+        boolean expired = true;
+        if (lastShareCalculation > DateTime.now().addMinutes(SHARING_CALCULATION_CACHE_TIME)) {
+            expired = false;
+        }
+        return expired;
+    }
+
+    private void cacheUsersLastShareCalculationTimeForOrganization(String organizationNumber, String userId) {
+        User user = new User(
+            id = userId,
+            AG_LastSharingCalculation__c = DateTime.now(),
+            AG_LastRepresentedOrganization__c = organizationNumber
+        );
+
+        update user;
+    }
+
     private void deleteOutdatedThreadShares(User user) {
         delete [
             SELECT Id, ParentId, UserOrGroupId
@@ -101,7 +123,7 @@ public without sharing class EmployerThreadSharingService {
 
     private User getUserFromPersonIdent(String personIdent) {
         return [
-            SELECT Id
+            SELECT Id, AG_LastSharingCalculation__c
             FROM User
             WHERE AccountId IN (SELECT Id FROM Account WHERE INT_PersonIdent__c = :personIdent)
         ];
