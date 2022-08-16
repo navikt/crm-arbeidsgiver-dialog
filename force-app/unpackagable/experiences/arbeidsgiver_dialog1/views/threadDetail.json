@@ -13,6 +13,14 @@
       "componentName" : "community_layout:section",
       "id" : "986b47db-17ea-4225-9ea9-f07991750c54",
       "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:recordShareInitializer",
+          "id" : "5c8c6aa6-e71b-43d3-90fa-4a073580c5ee",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
         "id" : "451e2565-aa32-43e9-b1a6-25f4645fd7ac",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
@@ -40,14 +48,10 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "alertopen" : "",
-            "alerttext" : "Dialogen er lukket",
-            "header" : "",
-            "maxLength" : 0,
             "recordId" : "{!recordId}"
           },
-          "componentName" : "c:crmMessagingCommunityThreadViewer",
-          "id" : "61ef9d11-51fa-42af-90db-7f33fe999953",
+          "componentName" : "c:chatWrapper",
+          "id" : "d89a7e2b-e6c1-40a3-8067-ecf9028b0a6a",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"

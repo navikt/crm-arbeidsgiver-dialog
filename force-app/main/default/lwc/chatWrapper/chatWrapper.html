@@ -1,0 +1,29 @@
+<template>
+    <template if:false={termsAccepted}>
+        <div class="terms-container decorator-wrapper">
+            <div class="terms-message-container">
+                <h2>Behandling av personopplysninger</h2>
+                <p class="typo-normal">
+                    Før du starter dialogen ber vi deg lese &nbsp;
+                    <a
+                        href="https://www.nav.no/no/nav-og-samfunn/om-nav/personvern-i-arbeids-og-velferdsetaten"
+                        target="_blank"
+                    >
+                        hvordan vi behandler personopplysningene dine.
+                    </a>
+                </p>
+                <p>
+                    For å sikre personvernet ditt er det viktig at du ikke skriver personopplysninger som gjør at vi kan
+                    identifisere deg, eller andre, i chatten. Personopplysninger kan være for eksempel navn,
+                    fødselsdato, adresse og saksnummer. Dette gjelder også deg som arbeidsgiver, lege eller behandler.
+                </p>
+                <p>Har du lest og forstått dette?</p>
+            </div>
+            <button class="knapp knapp--flat" onclick={handleReject}>Avbryt</button>
+            <button class="knapp knapp--hoved" onclick={handleAccept}>Ja, jeg forstår</button>
+        </div>
+    </template>
+    <template if:true={termsAccepted}>
+        <c-crm-messaging-community-thread-viewer record-id={recordId}></c-crm-messaging-community-thread-viewer>
+    </template>
+</template>
