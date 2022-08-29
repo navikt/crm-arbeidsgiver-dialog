@@ -30,6 +30,12 @@
         <locationX>176</locationX>
         <locationY>335</locationY>
         <inputAssignments>
+            <field>AAREG_Thread_Subject__c</field>
+            <value>
+                <stringValue>Midlertidig lønnstilskudd</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>CRM_Account__c</field>
             <value>
                 <elementReference>$Record.TAG_Account__c</elementReference>

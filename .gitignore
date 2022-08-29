@@ -80,6 +80,8 @@ install.cmd
 # Salesforce cache
 .sfdx/
 
+.sf/orgs
+
 # Logs
 logs
 *.log
