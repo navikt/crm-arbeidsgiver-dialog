@@ -6,6 +6,7 @@
                 "referenceId": "Thread__cRef1"
             },
             "TAG_RelatedObjectExternalId__c": "1234",
+            "AAREG_Thread_Subject__c": "Midlertidig lønnstilskudd",
             "CRM_Thread_Type__c": "AG_MLØNN",
             "CRM_Account__c": "@AccountRef1"
         }
