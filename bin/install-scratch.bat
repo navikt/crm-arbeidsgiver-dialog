@@ -79,10 +79,10 @@ cmd.exe /c sfdx force:data:tree:import -p  dummy-data/plan.json
 call :checkForError
 @echo:
 
-echo Activating Mocks...
+echo "Running post install scripts..."
 cmd.exe /c sfdx force:apex:execute -f ./scripts/apex/activateMock.cls
-call :checkForError
-@echo:
+cmd.exe /c sfdx force:apex:execute -f ./scripts/apex/createPortalUser.cls
+echo ""
 
 echo Opening org...
 cmd.exe /c sfdx force:org:open
