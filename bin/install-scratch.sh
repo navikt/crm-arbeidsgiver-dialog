@@ -45,6 +45,7 @@ echo ""
 echo "Running post install scripts..."
 sfdx force:apex:execute -f ./scripts/apex/activateMock.cls
 sfdx force:apex:execute -f ./scripts/apex/createPortalUser.cls
+sfdx force:apex:execute -f ./scripts/apex/createTestData.cls
 echo ""
 
 echo "Opening org..." && \
