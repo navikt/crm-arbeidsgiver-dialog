@@ -82,6 +82,7 @@ call :checkForError
 echo "Running post install scripts..."
 cmd.exe /c sfdx force:apex:execute -f ./scripts/apex/activateMock.cls
 cmd.exe /c sfdx force:apex:execute -f ./scripts/apex/createPortalUser.cls
+cmd.exe /c sfdx force:apex:execute -f ./scripts/apex/createTestData.cls
 echo ""
 
 echo Opening org...
