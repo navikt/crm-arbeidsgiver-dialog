@@ -18,7 +18,7 @@ sfdx force:org:create -s -f config/project-scratch-def.json -d 7 -a $ORG_ALIAS &
 echo "" && \
 
 echo "Installing dependencies..."
-secret=$(jq '.PACKAGE_KEY' env.json -r)
+secret=$npm_config_key
 keys="" && for p in $(jq '.packageAliases | keys[]' sfdx-project.json -r); do keys+=$p":"$secret" "; done 
 sfdx sfpowerkit:package:dependencies:install -u $ORG_ALIAS -r -a -w 60 -k "${keys}"
 echo ""
