@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
+    <decisions>
+        <name>Is_Record_Type_Id_Tiltak_Agreement</name>
+        <label>Is Record Type Id Tiltak Agreement</label>
+        <locationX>924</locationX>
+        <locationY>321</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>It_Is_Tiltak_Agreement</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>TiltakAgreement</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Thread_To_Create</targetReference>
+            </connector>
+            <label>It Is Tiltak Agreement</label>
+        </rules>
+    </decisions>
     <description>Create a thread for the contract when inserted.</description>
     <interviewLabel>Contract- Insert Create Thread {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Contract- Insert Create Thread</label>
@@ -13,7 +35,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -27,8 +49,8 @@
         <description>Thread to create</description>
         <name>Thread_To_Create</name>
         <label>Thread To Create</label>
-        <locationX>176</locationX>
-        <locationY>335</locationY>
+        <locationX>506</locationX>
+        <locationY>382</locationY>
         <inputAssignments>
             <field>AAREG_Thread_Subject__c</field>
             <value>
@@ -63,10 +85,10 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
+        <locationX>376</locationX>
+        <locationY>50</locationY>
         <connector>
-            <targetReference>Thread_To_Create</targetReference>
+            <targetReference>Is_Record_Type_Id_Tiltak_Agreement</targetReference>
         </connector>
         <object>Contract__c</object>
         <recordTriggerType>Create</recordTriggerType>
