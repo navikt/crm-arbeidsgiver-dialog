@@ -37,20 +37,11 @@ For å bygge lokalt uten SSDX, bruk føglende
 
 1. Hvis du ikke har autentisert en DevHub, kjør `sfdx auth:web:login -d -a production` og så logge inn.
 2. Installer sfdx plugin `echo y | sfdx plugins:install sfpowerkit@2.0.1`
-3. Opprette fil prosjekets root directory med navn `env.json`
-
-```
-{
-    "PACKAGE_KEY": "Your Package Key"
-}
-
-```
-
-4. Opprette scratch org, installer avhengigheter og så pushe metadata:
+3. Opprette scratch org, installer avhengigheter og så pushe metadata:
 
 ```
 npm install
-npm run mac:build
+npm run mac:build --key=<your installation key>
 ```
 
 # Experience Cloud
