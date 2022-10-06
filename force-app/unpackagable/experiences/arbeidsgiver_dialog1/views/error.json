@@ -15,7 +15,7 @@
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
-            "richTextValue" : "<h1 style=\"text-align: center;\">Invalid Page</h1>"
+            "richTextValue" : "<h1 community_builder-richtexteditor_richtexteditor=\"\" style=\"text-align: center;\"><br community_builder-richtexteditor_richtexteditor=\"\"></h1><h1 community_builder-richtexteditor_richtexteditor=\"\" style=\"text-align: center;\"><span community_builder-richtexteditor_richtexteditor=\"\" style=\"font-size: 24px;\">Det har oppstått en feil. Det kan skyldes at du mangler tilgang (sjekk at tilgangene er i orden i Altinn), eller en teknisk feil (prøv igjen senere).</span></h1><p community_builder-richtexteditor_richtexteditor=\"\"><br community_builder-richtexteditor_richtexteditor=\"\"></p><p community_builder-richtexteditor_richtexteditor=\"\"><br community_builder-richtexteditor_richtexteditor=\"\"></p>"
           },
           "componentName" : "community_builder:richTextEditor",
           "id" : "5c7376e7-194b-4d10-84d1-decbe166c21e",
