@@ -1,5 +1,6 @@
 <template>
+    <c-url-reader></c-url-reader>
     <div if:true={organization} class="hovedbanner arbeidsgiver">
-        <h1 class="typo-systemtittel">{organizationName} - {organizationNumber}</h1>
+        <h1 class="typo-systemtittel">{organizationName} - Org nr {organizationNumber} - Avtale nr {agreementNumberShow} </h1>
     </div>
 </template>
