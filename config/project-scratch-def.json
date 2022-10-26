@@ -30,6 +30,13 @@
         "experienceBundleSettings": {
             "enableExperienceBundleMetadata": true
         },
+        "securitySettings": {
+            "sessionSettings": {
+                "forceRelogin": false,
+                "lockerServiceNext": false
+            },
+            "enableAdminLoginAsAnyUser": true
+        },
         "communitiesSettings": {
             "enableNetworksEnabled": true,
             "enableOotbProfExtUserOpsEnable": true
