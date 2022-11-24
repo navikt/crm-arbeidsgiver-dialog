@@ -14,7 +14,7 @@
                 <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>TiltakAgreement</stringValue>
+                    <stringValue>MeasureAgreement</stringValue>
                 </rightValue>
             </conditions>
             <connector>

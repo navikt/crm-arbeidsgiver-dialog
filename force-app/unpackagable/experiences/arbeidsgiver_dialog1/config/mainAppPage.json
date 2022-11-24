@@ -7,5 +7,6 @@
   "isRelaxedCSPLevel" : false,
   "label" : "main",
   "templateName" : "talon-template-byo",
-  "type" : "appPage"
+  "type" : "appPage",
+  "isLockerServiceEnabled": true
 }
