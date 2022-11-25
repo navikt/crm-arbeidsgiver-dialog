@@ -30,8 +30,16 @@
         "experienceBundleSettings": {
             "enableExperienceBundleMetadata": true
         },
+        "securitySettings": {
+            "sessionSettings": {
+                "forceRelogin": false,
+                "lockerServiceNext": false
+            },
+            "enableAdminLoginAsAnyUser": true
+        },
         "communitiesSettings": {
-            "enableNetworksEnabled": true
+            "enableNetworksEnabled": true,
+            "enableOotbProfExtUserOpsEnable": true
         },
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true
@@ -63,6 +71,10 @@
         },
         "omniChannelSettings": {
             "enableOmniChannel": true
+        },
+        "accountSettings": {
+            "enableAccountHistoryTracking": true,
+            "enableAccountTeams": true
         }
     }
 }

@@ -1,0 +1,15 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef1"
+            },
+            "Name": "SKI KOMMUNE ADMINISTRASJON OG IKT",
+            "INT_Industry__c": "Generell offentlig administrasjon",
+            "INT_IndustryCode__c": "84.110",
+            "INT_OrganizationNumber__c": "910825585",
+            "INT_OrganizationalStructure__c": "BEDR"
+        }
+    ]
+}

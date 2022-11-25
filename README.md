@@ -36,16 +36,24 @@ Pakken har flere avhengiheter. Sjekk [sfdx-project.json](https://github.com/navi
 For å bygge lokalt uten SSDX, bruk føglende
 
 1. Hvis du ikke har autentisert en DevHub, kjør `sfdx auth:web:login -d -a production` og så logge inn.
-2. Opprette scratch org, installer avhengigheter og så push metadata:
 
-```bash
-sfdx force:org:create -f ./config/project-scratch-def.json --setalias scratch_org --durationdays 1 --setdefaultusername
-echo y | sfdx plugins:install sfpowerkit@2.0.1
-keys="" && for p in $(sfdx force:package:list --json | jq '.result | .[].Name' -r); do keys+=$p":PACKAGE_KEY "; done
-sfdx sfpowerkit:package:dependencies:install -u scratch_org -r -a -w 60 -k ${keys}
-sfdx force:source:push
-sfdx force:org:open
-```
+# Experience Cloud
+
+Når man skal teste funksjonaliteter i Experience Cloud under utvikling i scratch miljøet kan man bruke test brukeren "Kari Nordmann".
+
+### Teste dialog om en avtale
+
+Når man er på Home siden kan man legge til noen url paremetere som vil trigger en redirect til Thread\_\_c detail siden.
+
+E.g. https://dream-business-489.my.site.com/s/?organisasjonsnummer=910825585&avtalenummer=1234
+
+Avtalen, virksomheten og tråden skal være opprettet automatisk når mann bruker build scripten over.
+
+Legge til dette på slutten av URLen e.g.
+
+    ```
+    ?organisasjonsnummer=910825585&avtalenummer=1234
+    ```
 
 # Henvendelser
 

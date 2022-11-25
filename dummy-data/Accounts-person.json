@@ -1,0 +1,13 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef2"
+            },
+            "FirstName": "Kari",
+            "LastName": "Nordmann",
+            "INT_PersonIdent__c": "16120102137"
+        }
+    ]
+}
