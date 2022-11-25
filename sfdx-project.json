@@ -3,7 +3,7 @@
         {
             "path": "force-app",
             "default": true,
-            "package": "crm-arbiedsgiver-dialog",
+            "package": "crm-arbeidsgiver-dialog",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "dependencies": [
@@ -40,7 +40,7 @@
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "54.0",
+    "sourceApiVersion": "56.0",
     "packageAliases": {
         "crm-platform-base": "0Ho2o0000008ORmCAM",
         "crm-journal-utilities": "0Ho2o000000fxXkCAI",
