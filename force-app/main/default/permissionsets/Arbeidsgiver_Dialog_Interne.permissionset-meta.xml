@@ -38,7 +38,7 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver- Dialog(Interne)</label>
     <recordTypeVisibilities>
-        <recordType>Contract__c.TiltakAgreement</recordType>
+        <recordType>Contract__c.MeasureAgreement</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>

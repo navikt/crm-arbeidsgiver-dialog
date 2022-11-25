@@ -20,41 +20,47 @@ call :checkForError
 echo Installing dependencies...
 for /f "tokens=1,2 delims=:{} " %%A in (env.json) do set secret=%%~A
 
-echo "Installing crm-platform-base ver. 0.159"
-call sfdx force:package:install --package 04t7U000000Tph0QAC -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-platform-base ver. 0.180"
+call sfdx force:package:install --package 04t7U0000008qfxQAA -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-journal-utilities ver. 0.15"
-call sfdx force:package:install --package 04t7U000000TpOhQAK -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-journal-utilities ver. 0.18"
+call sfdx force:package:install --package 04t7U000000TqidQAC -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-shared-user-notification ver. 0.16"
-call sfdx force:package:install --package 04t7U000000TpdDQAS -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-shared-user-notification ver. 0.17"
+call sfdx force:package:install --package 04t7U000000TproQAC -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-shared-flowComponents ver. 0.2"
-call sfdx force:package:install --package 04t7U000000ToqLQAS -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-shared-flowComponents ver. 0.3"
+call sfdx force:package:install --package 04t7U000000Tpf4QAC -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-platform-access-control ver. 0.95"
-call sfdx force:package:install --package 04t7U000000TpVTQA0 -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-platform-access-control ver. 0.106"
+call sfdx force:package:install --package 04t7U0000008qWCQAY -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-community-base ver. 0.64"
-call sfdx force:package:install --package 04t7U000000TpSZQA0 -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-community-base ver. 0.76"
+call sfdx force:package:install --package 04t7U000000TqrzQAC -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-henvendelse-base ver. 0.8"
-call sfdx force:package:install --package 04t7U000000TpdwQAC -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-henvendelse-base ver. 0.12"
+call sfdx force:package:install --package 04t7U0000008qbWQAQ -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-henvendelse ver. 0.71"
-call sfdx force:package:install --package 04t7U000000TpoBQAS -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-platform-integration ver. 0.92"
+call sfdx force:package:install --package 04t7U0000008qZ6QAI -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-platform-integration ver. 0.79"
-call sfdx force:package:install --package 04t7U000000TpWWQA0 -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-platform-oppgave ver. 0.43"
+call sfdx force:package:install --package 04t7U0000008qSFQAY -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-henvendelse ver. 0.91"
+call sfdx force:package:install --package 04t7U0000008qYXQAY -r -k %secret% --wait 10 --publishwait 10
 
 echo "Installing crm-shared-base ver. 1.1"
 call sfdx force:package:install --package 04t2o000000ySqpAAE -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-shared-timeline ver. 1.13"
-call sfdx force:package:install --package 04t7U000000TpDjQAK -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-thread-view ver. 0.2"
+call sfdx force:package:install --package 04t7U000000TqvIQAS -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-arbeidsgiver-base ver. 1.234"
-call sfdx force:package:install --package 04t7U000000TpGOQA0 -r -k %secret% --wait 10 --publishwait 10
+echo "Installing crm-shared-timeline ver. 1.18"
+call sfdx force:package:install --package 04t7U000000TqbDQAS -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-arbeidsgiver-base ver. 1.275"
+call sfdx force:package:install --package 04t7U0000008qbvQAA -r -k %secret% --wait 10 --publishwait 10
 
 echo Pushing metadata...
 cmd.exe /c sfdx force:source:push
