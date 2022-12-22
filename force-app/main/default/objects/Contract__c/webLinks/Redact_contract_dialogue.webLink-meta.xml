@@ -16,5 +16,5 @@
     <protected>false</protected>
     <showsLocation>false</showsLocation>
     <showsStatus>false</showsStatus>
-    <url>https://innovation-data-9324.scratch.lightning.force.com/lightning/r/Thread__c/{!Contract__c.Thread__c}/view</url>
+    <url>{!URLFOR(&apos;/lightning/r/Thread__c/&apos;+Contract__c.Thread__c+&apos;/view&apos;)}</url>
 </WebLink>
