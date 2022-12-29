@@ -7,6 +7,9 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
+                            <value>CustomButton.Thread__c.Back_to_contract</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Thread__c.Abort_Redaction</value>
                         </valueListItems>
                         <valueListItems>
@@ -35,7 +38,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>numVisibleActions</name>
-                    <value>3</value>
+                    <value>4</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
                 <identifier>force_highlightsPanel</identifier>
@@ -59,17 +62,13 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.CRM_Account__c</fieldItem>
-                <identifier>RecordCRM_Account_cField</identifier>
+                <fieldItem>Record.TAG_RelatedObjectExternalId__c</fieldItem>
+                <identifier>RecordTAG_RelatedObjectExternalId_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-00191ca8-01ec-4163-ab9c-31e6a9a949e9</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <name>Facet-d091e9d0-f20b-4344-8004-484e21267549</name>
+        <name>Facet-f63c3a21-9758-4541-8caf-b67782fd3513</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -77,23 +76,13 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-00191ca8-01ec-4163-ab9c-31e6a9a949e9</value>
+                    <value>Facet-f63c3a21-9758-4541-8caf-b67782fd3513</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-d091e9d0-f20b-4344-8004-484e21267549</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-169f1f9e-f6f5-4f56-a25a-1abeffb011ec</name>
+        <name>Facet-c6c9a090-3f5f-4920-8651-f1e678362d08</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -101,11 +90,11 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-169f1f9e-f6f5-4f56-a25a-1abeffb011ec</value>
+                    <value>Facet-c6c9a090-3f5f-4920-8651-f1e678362d08</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Section</value>
+                    <value>Detaljer</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection</identifier>
