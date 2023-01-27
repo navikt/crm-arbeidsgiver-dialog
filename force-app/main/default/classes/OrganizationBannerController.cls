@@ -20,4 +20,9 @@ public without sharing class OrganizationBannerController {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled
+    public static String getContractUrl(String contractNr) {
+        return [SELECT id, TAG_ExternalURL__c FROM Contract__c WHERE ExternalId__c = :contractNr].TAG_ExternalURL__c;
+    }
 }
