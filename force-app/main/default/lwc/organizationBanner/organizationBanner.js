@@ -1,10 +1,26 @@
 import { LightningElement, wire, track } from 'lwc';
 import USER_ID from '@salesforce/user/Id';
 import calculateSharingForUser from '@salesforce/apex/OrganizationBannerController.getRepresentedOrganization';
+import getContractUrl from '@salesforce/apex/OrganizationBannerController.getContractUrl';
+import icons from '@salesforce/resourceUrl/icons';
+import { CurrentPageReference } from 'lightning/navigation';
 
 export default class OrganizationBanner extends LightningElement {
     @track organization;
-    
+    @track urlContract;
+    @track agreementNumberShow;
+
+    chevrondown = icons + '/chevrondown.svg';
+
+    currentPageReference = null;
+
+    @wire(CurrentPageReference)
+    getStateParameters(currentPageReference) {
+        if (currentPageReference) {
+            this.currentPageReference = currentPageReference;
+        }
+    }
+
     @wire(calculateSharingForUser, { userId: USER_ID })
     wiredAccount({ error, data }) {
         if (data) {
@@ -23,12 +39,18 @@ export default class OrganizationBanner extends LightningElement {
         return this.organization.INT_OrganizationNumber__c;
     }
 
-    get agreementNumberShow() {
-        return this.getUrlParam('avtalenummer');
+    getUrlParameter1(paramName) {
+        return this.currentPageReference.state[paramName];
     }
 
-    getUrlParam(urlParam) {
-        return this.template.querySelector('c-url-reader').getUrlParameter(urlParam);
+    connectedCallback() {
+        this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
+        getContractUrl({ contractNr: this.agreementNumberShow })
+            .then((result) => {
+                this.urlContract = result;
+            })
+            .catch((error) => {
+                console.log('Error: ' + error.body.message);
+            });
     }
-
 }
