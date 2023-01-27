@@ -43,23 +43,8 @@ export default class OrganizationBanner extends LightningElement {
         return this.currentPageReference.state[paramName];
     }
 
-    // get agreementNumberShow() {
-    //     return this.getUrlParam('avtalenummer');
-    // }
-
-    // getContractUrl({ contractNr: this.agreementNumberShow })
-    // .then((result) => {
-    //     this.urlContract = result;
-    // })
-    // .catch((error) => {
-    //     console.log('Error: ' + error.body.message);
-    // })
-
     connectedCallback() {
         this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
-        //     // this.urlContract = '';
-        // @wire(getContractUrl, { contractNr: '$agreementNumberShow' })
-        // this.urlContract;
         getContractUrl({ contractNr: this.agreementNumberShow })
             .then((result) => {
                 this.urlContract = result;
@@ -67,12 +52,5 @@ export default class OrganizationBanner extends LightningElement {
             .catch((error) => {
                 console.log('Error: ' + error.body.message);
             });
-        // }
-        // getUrlParam(urlParam) {
-        //     return this.template.querySelector('c-url-reader').getUrlParameter(urlParam);
     }
-
-    // getUrlParam() {
-    //     return getUrlParameter1(urlParam);
-    // }
 }
