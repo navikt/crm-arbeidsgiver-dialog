@@ -26,11 +26,11 @@
         "regions" : [ {
           "components" : [ {
             "componentAttributes" : {
-              "NAVarea" : "Privatperson",
-              "navareapicklist" : "Privatperson"
+              "context" : "Arbeidsgiver",
+              "env" : "Prod"
             },
-            "componentName" : "c:globalCommunityHeader",
-            "id" : "56126c23-5f4e-4d5f-986c-1c51933cef1e",
+            "componentName" : "c:decoratorHeader",
+            "id" : "a15f65f5-a3e7-4a96-89aa-4e26bc670da1",
             "renditionMap" : { },
             "type" : "component"
           } ],
@@ -83,12 +83,9 @@
         "id" : "1061d2f5-4270-4cc3-94f7-2b3dc103c17d",
         "regions" : [ {
           "components" : [ {
-            "componentAttributes" : {
-              "NAVarea" : "",
-              "navareapicklist" : "Arbeidsgiver"
-            },
-            "componentName" : "c:globalCommunityFooter",
-            "id" : "f3df4dfe-2e89-4a3f-a64a-a069d7c7a738",
+            "componentAttributes" : { },
+            "componentName" : "c:decoratorFooter",
+            "id" : "52f29e16-4ad6-4bfe-a411-9985cb506a1b",
             "renditionMap" : { },
             "type" : "component"
           } ],

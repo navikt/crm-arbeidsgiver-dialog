@@ -6,6 +6,84 @@
   "mainAppPageId" : "fa353a30-4b13-4e42-8489-45608036c376",
   "preferredDomain" : "none",
   "selfRegistrationRouteId" : null,
-  "type" : "site",
-  "isLockerServiceEnabled": true
+  "trustedSitesForScript" : [ {
+    "id" : "00d68267-8879-40be-ac19-013c11c64a04",
+    "isActive" : true,
+    "trustedSiteName" : "NAV",
+    "trustedSiteUrl" : "https://www.nav.no",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "dd2d63b1-f871-4987-b057-a7c02596e86f",
+    "isActive" : true,
+    "trustedSiteName" : "Dekoratoren",
+    "trustedSiteUrl" : "https://dekoratoren.ekstern.dev.nav.no/",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "72453c2d-ee27-4291-97d1-07bb19cbe2dd",
+    "isActive" : true,
+    "trustedSiteName" : "Account_psplugin",
+    "trustedSiteUrl" : "https://account.psplugin.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "68598c17-1f38-4c09-a924-b33c5b414c70",
+    "isActive" : true,
+    "trustedSiteName" : "in2_taskanalytics",
+    "trustedSiteUrl" : "https://in2.taskanalytics.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "a11bb3b1-5351-4a8d-a71e-3d00dbb22f88",
+    "isActive" : true,
+    "trustedSiteName" : "Static_Hotjar",
+    "trustedSiteUrl" : "https://static.hotjar.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "460f100f-d146-47e6-88fb-aa159a451a96",
+    "isActive" : true,
+    "trustedSiteName" : "Script_Hotjar",
+    "trustedSiteUrl" : "https://script.hotjar.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "55f27a65-ee09-4d25-944b-00449fd9e2ba",
+    "isActive" : true,
+    "trustedSiteName" : "Aksel",
+    "trustedSiteUrl" : "https://cdn.nav.no",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "3f35a787-8feb-4f81-8ddf-e1df48943e71",
+    "isActive" : true,
+    "trustedSiteName" : "*.taskanalytics.com",
+    "trustedSiteUrl" : "https://*.taskanalytics.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "188d08b8-a628-4a37-8383-242105318f0f",
+    "isActive" : true,
+    "trustedSiteName" : "*.hotjar.com",
+    "trustedSiteUrl" : "https://*.hotjar.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "63580153-d71c-4468-b69f-f655a8a4d096",
+    "isActive" : true,
+    "trustedSiteName" : "*.google-analytics.com",
+    "trustedSiteUrl" : "https://*.google-analytics.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "338b10a7-2133-4bca-a638-a865e918d38d",
+    "isActive" : true,
+    "trustedSiteName" : "*.googletagmanager.com",
+    "trustedSiteUrl" : "https://*.googletagmanager.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "bb1c083c-d24e-4586-94b5-d6d728fd4e44",
+    "isActive" : true,
+    "trustedSiteName" : "*.psplugin.com",
+    "trustedSiteUrl" : "https://*.psplugin.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "65fb1c7f-b6a4-4255-adb2-001d8dc367ac",
+    "isActive" : true,
+    "trustedSiteName" : "*.nav.no",
+    "trustedSiteUrl" : "https://*.nav.no",
+    "type" : "trustedSitesForScripts"
+  } ],
+  "type" : "site"
 }
