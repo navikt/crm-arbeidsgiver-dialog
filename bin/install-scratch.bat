@@ -20,35 +20,35 @@ call :checkForError
 echo Installing dependencies...
 for /f "tokens=1,2 delims=:{} " %%A in (env.json) do set secret=%%~A
 
-echo "Installing crm-platform-base ver. 0.180"
-call sfdx force:package:install --package 04t7U0000008qfxQAA -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-platform-base ver. 0.188"
+call sfdx force:package:install --package 04t7U0000008rIGQAY -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-journal-utilities ver. 0.18"
-call sfdx force:package:install --package 04t7U000000TqidQAC -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-journal-utilities ver. 0.19"
+call sfdx force:package:install --package 04t7U0000008qc0QAA -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-shared-user-notification ver. 0.17"
-call sfdx force:package:install --package 04t7U000000TproQAC -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-shared-user-notification ver. 0.21"
+call sfdx force:package:install --package 04t7U0000008qofQAA -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-shared-flowComponents ver. 0.3"
-call sfdx force:package:install --package 04t7U000000Tpf4QAC -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-shared-flowComponents ver. 0.4"
+call sfdx force:package:install --package 04t7U0000008qz4QAA -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-platform-access-control ver. 0.106"
-call sfdx force:package:install --package 04t7U0000008qWCQAY -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-platform-access-control ver. 0.109"
+call sfdx force:package:install --package 04t7U0000004dt0QAA -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-community-base ver. 0.76"
-call sfdx force:package:install --package 04t7U000000TqrzQAC -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-community-base ver. 0.86"
+call sfdx force:package:install --package 04t7U0000004duXQAQ -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-henvendelse-base ver. 0.12"
-call sfdx force:package:install --package 04t7U0000008qbWQAQ -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-henvendelse-base ver. 0.14"
+call sfdx force:package:install --package 04t7U0000008r4dQAA -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-platform-integration ver. 0.92"
-call sfdx force:package:install --package 04t7U0000008qZ6QAI -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-platform-integration ver. 0.97"
+call sfdx force:package:install --package 04t7U0000008rEnQAI -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-platform-oppgave ver. 0.43"
-call sfdx force:package:install --package 04t7U0000008qSFQAY -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-platform-oppgave ver. 0.44"
+call sfdx force:package:install --package 04t7U0000008qiNQAQ -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-henvendelse ver. 0.91"
-call sfdx force:package:install --package 04t7U0000008qYXQAY -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-henvendelse ver. 0.94"
+call sfdx force:package:install --package 04t7U0000008r7wQAA -r -k %secret% --wait 30 --publishwait 30
 
 echo "Installing crm-shared-base ver. 1.1"
 call sfdx force:package:install --package 04t2o000000ySqpAAE -r -k %secret% --wait 30 --publishwait 30
@@ -59,8 +59,8 @@ call sfdx force:package:install --package 04t7U000000TqvIQAS -r -k %secret% --wa
 echo "Installing crm-shared-timeline ver. 1.18"
 call sfdx force:package:install --package 04t7U000000TqbDQAS -r -k %secret% --wait 30 --publishwait 30
 
-echo "Installing crm-arbeidsgiver-base ver. 1.296"
-call sfdx force:package:install --package 04t7U0000004dp3QAA -r -k %secret% --wait 30 --publishwait 30
+echo "Installing crm-arbeidsgiver-base ver. 1.302"
+call sfdx force:package:install --package 04t7U0000004dyoQAA -r -k %secret% --wait 30 --publishwait 30
 
 echo Pushing metadata...
 cmd.exe /c sfdx force:source:push
