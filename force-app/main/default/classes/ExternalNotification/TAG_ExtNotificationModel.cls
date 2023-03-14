@@ -1,6 +1,18 @@
-public with sharing class TAG_ExternalNotificationModel {
+/**
+ * @description
+ *
+ * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+ * @since 2023-01-16 Created.
+ *
+ * @group TAG External Notification
+ */
+@SuppressWarnings('PMD.ExcessivePublicCount')
+public class TAG_ExtNotificationModel {
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#nybeskjedinput
      */
     public class NyBeskjedInput {
@@ -13,6 +25,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#mottakerinput
      */
     public class MottakerInput {
@@ -24,6 +39,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#altinnmottakerinput
      */
     public class AltinnMottakerInput {
@@ -33,6 +51,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#naermesteledermottakerinput
      */
     public class NaermesteLederMottakerInput {
@@ -42,6 +63,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#altinnrollemottakerinput
      */
     public class AltinnRolleMottakerInput {
@@ -50,6 +74,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#altinnreporteemottakerinput
      */
     public class AltinnReporteeMottakerInput {
@@ -58,6 +85,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#notifikasjoninput
      */
     public class NotifikasjonInput {
@@ -68,6 +98,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#metadatainput
      */
     public class MetadataInput {
@@ -80,6 +113,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#futuretemporalinput
      */
     public class FutureTemporalInput {
@@ -89,6 +125,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#eksterntvarselinput
      */
     public class EksterntVarselInput {
@@ -98,6 +137,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#eksterntvarselsmsinput
      */
     public class EksterntVarselSmsInput {
@@ -108,6 +150,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#smsmottakerinput
      */
     public class SmsMottakerInput {
@@ -116,6 +161,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#smsmottakerinput
      */
     public class SmsKontaktInfoInput {
@@ -124,6 +172,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#sendetidspunktinput
      */
     public class SendetidspunktInput {
@@ -133,6 +184,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#sendevindu
      */
     public enum Sendevindu {
@@ -143,6 +197,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#eksterntvarselepostinput
      */
     public class EksterntVarselEpostInput {
@@ -154,6 +211,9 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#epostmottakerinput
      */
     public class EpostMottakerInput {
@@ -162,9 +222,29 @@ public with sharing class TAG_ExternalNotificationModel {
 
     /**
      * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-01-16 Created.
      * @see https://navikt.github.io/arbeidsgiver-notifikasjon-produsent-api/api/#epostkontaktinfoinput
      */
     public class EpostKontaktInfoInput {
         public String epostadresse;
+    }
+
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-02-21 Created.
+     */
+    public class Variabler {
+        public String eksternId;
+        public String virksomhetsnummer;
+        public String lenke;
+        public String epostHtmlBody;
+        public String ansattFnr;
+        public String naermesteLederFnr;
+        public String tlf;
+        public String epost;
     }
 }
