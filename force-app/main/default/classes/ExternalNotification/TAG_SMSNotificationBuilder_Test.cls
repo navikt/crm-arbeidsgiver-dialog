@@ -11,7 +11,7 @@
 private class TAG_SMSNotificationBuilder_Test {
     /**
      * @description Testing that the EksterntVarselSmsInput
-     * (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`) is constructed
+     * (`TAG_ExtNotificationModel.EksterntVarselSmsInput`) is constructed
      * without any fields are set.
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
@@ -19,7 +19,7 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderStartAndBuildPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
 
         Test.startTest();
         smsInput = TAG_SMSNotificationBuilder.start().build();
@@ -28,28 +28,28 @@ private class TAG_SMSNotificationBuilder_Test {
         System.assertNotEquals(
             null,
             smsInput,
-            'Expected to not have null returned as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to not have null returned as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
         System.assertEquals(
             null,
             smsInput.mottaker,
-            'Expected to have null returned from the "mottaker" field as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to have null returned from the "mottaker" field as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
         System.assertEquals(
             null,
             smsInput.sendetidspunkt,
-            'Expected to have null returned from the "sendetidspunkt" field as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to have null returned from the "sendetidspunkt" field as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
         System.assertEquals(
             null,
             smsInput.smsTekst,
-            'Expected to have null returned from the "smsTekst" field as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to have null returned from the "smsTekst" field as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
     }
 
     /**
      * @description Testing that the EksterntVarselSmsInput
-     * (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`) is constructed
+     * (`TAG_ExtNotificationModel.EksterntVarselSmsInput`) is constructed
      * without by using existing instance and at the same time check that no
      * fields are set.
      *
@@ -58,8 +58,8 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderStartWithExistingInstanceAndBuildPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput modifiedSmsInputInstance;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
+        TAG_ExtNotificationModel.EksterntVarselSmsInput modifiedSmsInputInstance;
 
         Test.startTest();
         modifiedSmsInputInstance = TAG_SMSNotificationBuilder.start(existingSmsInputInstance).build();
@@ -68,27 +68,27 @@ private class TAG_SMSNotificationBuilder_Test {
         System.assertEquals(
             existingSmsInputInstance,
             modifiedSmsInputInstance,
-            'Expected to not have null returned as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to not have null returned as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
         System.assertNotEquals(
             null,
             modifiedSmsInputInstance,
-            'Expected to not have null returned as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to not have null returned as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
         System.assertEquals(
             null,
             modifiedSmsInputInstance.mottaker,
-            'Expected to have null returned from the "mottaker" field as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to have null returned from the "mottaker" field as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
         System.assertEquals(
             null,
             modifiedSmsInputInstance.sendetidspunkt,
-            'Expected to have null returned from the "sendetidspunkt" field as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to have null returned from the "sendetidspunkt" field as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
         System.assertEquals(
             null,
             modifiedSmsInputInstance.smsTekst,
-            'Expected to have null returned from the "smsTekst" field as a value since a new instance of "TAG_ExternalNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
+            'Expected to have null returned from the "smsTekst" field as a value since a new instance of "TAG_ExtNotificationModel.EksterntVarselSmsInput" should have been instantiated.'
         );
     }
 
@@ -101,7 +101,7 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderTextMethodPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String smsText = 'smsText Test';
 
         Test.startTest();
@@ -124,10 +124,10 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderTextMethodWithExistingTextPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
         existingSmsInputInstance.smsTekst = 'Old smsTekst';
 
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String smsText = 'smsText Test';
 
         Test.startTest();
@@ -150,7 +150,7 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderRecipientMethodPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String phoneNumber = 'phoneNumber Test';
 
         Test.startTest();
@@ -173,10 +173,10 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderRecipientMethodExistingReciverPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
-        existingSmsInputInstance.mottaker = new TAG_ExternalNotificationModel.SmsMottakerInput();
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
+        existingSmsInputInstance.mottaker = new TAG_ExtNotificationModel.SmsMottakerInput();
 
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String phoneNumber = 'phoneNumber Test';
 
         Test.startTest();
@@ -199,11 +199,11 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderRecipientMethodExistingReciverContactInfoPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
-        existingSmsInputInstance.mottaker = new TAG_ExternalNotificationModel.SmsMottakerInput();
-        existingSmsInputInstance.mottaker.kontaktinfo = new TAG_ExternalNotificationModel.SmsKontaktInfoInput();
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
+        existingSmsInputInstance.mottaker = new TAG_ExtNotificationModel.SmsMottakerInput();
+        existingSmsInputInstance.mottaker.kontaktinfo = new TAG_ExtNotificationModel.SmsKontaktInfoInput();
 
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String phoneNumber = 'phoneNumber Test';
 
         Test.startTest();
@@ -226,12 +226,12 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderRecipientMethodWithExistingPhoneNumberPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
-        existingSmsInputInstance.mottaker = new TAG_ExternalNotificationModel.SmsMottakerInput();
-        existingSmsInputInstance.mottaker.kontaktinfo = new TAG_ExternalNotificationModel.SmsKontaktInfoInput();
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
+        existingSmsInputInstance.mottaker = new TAG_ExtNotificationModel.SmsMottakerInput();
+        existingSmsInputInstance.mottaker.kontaktinfo = new TAG_ExtNotificationModel.SmsKontaktInfoInput();
         existingSmsInputInstance.mottaker.kontaktinfo.tlf = 'Old tlf';
 
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String phoneNumber = 'phoneNumber Test';
 
         Test.startTest();
@@ -254,7 +254,7 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderDispatchTimeMethodPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String dispatchTime = 'dispatchTime Test';
 
         Test.startTest();
@@ -277,11 +277,11 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderDispatchTimeMethodWithExistingDispatchTimePositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
-        existingSmsInputInstance.sendetidspunkt = new TAG_ExternalNotificationModel.SendetidspunktInput();
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
+        existingSmsInputInstance.sendetidspunkt = new TAG_ExtNotificationModel.SendetidspunktInput();
         existingSmsInputInstance.sendetidspunkt.tidspunkt = 'Old dispatchTime';
 
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String dispatchTime = 'dispatchTime Test';
 
         Test.startTest();
@@ -304,13 +304,13 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderDispatchTimeMethodException() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
-        existingSmsInputInstance.sendetidspunkt = new TAG_ExternalNotificationModel.SendetidspunktInput();
-        existingSmsInputInstance.sendetidspunkt.sendevindu = TAG_ExternalNotificationUtilities.convertDispatchWindow(
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
+        existingSmsInputInstance.sendetidspunkt = new TAG_ExtNotificationModel.SendetidspunktInput();
+        existingSmsInputInstance.sendetidspunkt.sendevindu = TAG_ExtNotificationUtilities.convertDispatchWindow(
             TAG_DispatchWindow_e.NKS_BUSINESS_HOURS
         );
 
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         String dispatchTime = 'dispatchTime Test';
 
         Boolean smsExceptionOccurred = false;
@@ -348,7 +348,7 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderDispatchWindowMethodPositive() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         TAG_DispatchWindow_e dispatchWindow = TAG_DispatchWindow_e.NKS_BUSINESS_HOURS;
 
         Test.startTest();
@@ -356,7 +356,7 @@ private class TAG_SMSNotificationBuilder_Test {
         Test.stopTest();
 
         System.assertEquals(
-            TAG_ExternalNotificationUtilities.convertDispatchWindow(dispatchWindow),
+            TAG_ExtNotificationUtilities.convertDispatchWindow(dispatchWindow),
             smsInput.sendetidspunkt.sendevindu,
             'Expected to have the value "' + dispatchWindow + '" returned from the "sendetidspunkt.sendevindu" field.'
         );
@@ -371,11 +371,11 @@ private class TAG_SMSNotificationBuilder_Test {
      */
     @IsTest
     private static void testSMSNotificationBuilderDispatchWindowMethodException() {
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExternalNotificationModel.EksterntVarselSmsInput();
-        existingSmsInputInstance.sendetidspunkt = new TAG_ExternalNotificationModel.SendetidspunktInput();
+        TAG_ExtNotificationModel.EksterntVarselSmsInput existingSmsInputInstance = new TAG_ExtNotificationModel.EksterntVarselSmsInput();
+        existingSmsInputInstance.sendetidspunkt = new TAG_ExtNotificationModel.SendetidspunktInput();
         existingSmsInputInstance.sendetidspunkt.tidspunkt = 'Old dispatchTime';
 
-        TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput;
+        TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput;
         TAG_DispatchWindow_e dispatchWindow = TAG_DispatchWindow_e.NKS_BUSINESS_HOURS;
 
         Boolean smsExceptionOccurred = false;

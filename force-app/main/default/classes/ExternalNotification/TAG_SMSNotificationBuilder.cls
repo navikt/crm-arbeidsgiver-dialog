@@ -6,26 +6,26 @@
  * @since 2023-02-07 Created.
  *
  * @group TAG External Notification
- * @see TAG_ExternalNotificationModel
+ * @see TAG_ExtNotificationModel
  */
 public inherited sharing class TAG_SMSNotificationBuilder {
     /**
      * @description The current EksterntVarselSmsInput
-     * (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`).
+     * (`TAG_ExtNotificationModel.EksterntVarselSmsInput`).
      */
-    private TAG_ExternalNotificationModel.EksterntVarselSmsInput current;
+    private TAG_ExtNotificationModel.EksterntVarselSmsInput current;
 
     /**
      * @description Constructor - Creates an instance of EksterntVarselSmsInput
-     * (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`) and set it to
+     * (`TAG_ExtNotificationModel.EksterntVarselSmsInput`) and set it to
      * the private class variable `current`.
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-02-07 Created.
-     * @param current The current instance of the EksterntVarselSmsInput (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`) object.
-     * @see TAG_ExternalNotificationModel.EksterntVarselSmsInput
+     * @param current The current instance of the EksterntVarselSmsInput (`TAG_ExtNotificationModel.EksterntVarselSmsInput`) object.
+     * @see TAG_ExtNotificationModel.EksterntVarselSmsInput
      */
-    private TAG_SMSNotificationBuilder(TAG_ExternalNotificationModel.EksterntVarselSmsInput current) {
+    private TAG_SMSNotificationBuilder(TAG_ExtNotificationModel.EksterntVarselSmsInput current) {
         this.current = current;
     }
 
@@ -35,10 +35,10 @@ public inherited sharing class TAG_SMSNotificationBuilder {
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-02-07 Created.
      * @return Returns new instance of itself (`TAG_SMSNotificationBuilder` new instance).
-     * @see TAG_ExternalNotificationModel.EksterntVarselSmsInput
+     * @see TAG_ExtNotificationModel.EksterntVarselSmsInput
      */
     public static TAG_SMSNotificationBuilder start() {
-        return new TAG_SMSNotificationBuilder(new TAG_ExternalNotificationModel.EksterntVarselSmsInput());
+        return new TAG_SMSNotificationBuilder(new TAG_ExtNotificationModel.EksterntVarselSmsInput());
     }
 
     /**
@@ -47,11 +47,11 @@ public inherited sharing class TAG_SMSNotificationBuilder {
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-02-07 Created.
-     * @param smsInput An instance of the EksterntVarselSmsInput (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`) object.
+     * @param smsInput An instance of the EksterntVarselSmsInput (`TAG_ExtNotificationModel.EksterntVarselSmsInput`) object.
      * @return Returns new instance of itself (`TAG_SMSNotificationBuilder` new instance).
-     * @see TAG_ExternalNotificationModel.EksterntVarselSmsInput
+     * @see TAG_ExtNotificationModel.EksterntVarselSmsInput
      */
-    public static TAG_SMSNotificationBuilder start(TAG_ExternalNotificationModel.EksterntVarselSmsInput smsInput) {
+    public static TAG_SMSNotificationBuilder start(TAG_ExtNotificationModel.EksterntVarselSmsInput smsInput) {
         return new TAG_SMSNotificationBuilder(smsInput);
     }
 
@@ -77,16 +77,16 @@ public inherited sharing class TAG_SMSNotificationBuilder {
      * @since 2023-02-07 Created.
      * @param smsText The value that the SMS Text (`smsTekst`) field will be set to.
      * @return Returns itself (`TAG_SMSNotificationBuilder` instance).
-     * @see TAG_ExternalNotificationModel.SmsMottakerInput
-     * @see TAG_ExternalNotificationModel.SmsKontaktInfoInput
+     * @see TAG_ExtNotificationModel.SmsMottakerInput
+     * @see TAG_ExtNotificationModel.SmsKontaktInfoInput
      */
     public TAG_SMSNotificationBuilder recipient(String phoneNumber) {
         if (current.mottaker == null) {
-            current.mottaker = new TAG_ExternalNotificationModel.SmsMottakerInput();
+            current.mottaker = new TAG_ExtNotificationModel.SmsMottakerInput();
         }
 
         if (current.mottaker.kontaktinfo == null) {
-            current.mottaker.kontaktinfo = new TAG_ExternalNotificationModel.SmsKontaktInfoInput();
+            current.mottaker.kontaktinfo = new TAG_ExtNotificationModel.SmsKontaktInfoInput();
         }
         current.mottaker.kontaktinfo.tlf = phoneNumber;
 
@@ -105,12 +105,12 @@ public inherited sharing class TAG_SMSNotificationBuilder {
      * @param dispatchTime The value that the SMS Dispatch Time (`tidspunkt`) field will be set to.
      * To be specified as ISO8601LocalDateTime.
      * @return Returns itself (`TAG_SMSNotificationBuilder` instance).
-     * @see TAG_ExternalNotificationModel.SendetidspunktInput
+     * @see TAG_ExtNotificationModel.SendetidspunktInput
      * @exception Throws `TAG_SMSNotificationBuilder.TAG_SMSNotificationBuilderException`
      */
     public TAG_SMSNotificationBuilder dispatchTime(String dispatchTime) {
         if (current.sendetidspunkt == null) {
-            current.sendetidspunkt = new TAG_ExternalNotificationModel.SendetidspunktInput();
+            current.sendetidspunkt = new TAG_ExtNotificationModel.SendetidspunktInput();
         }
 
         if (current.sendetidspunkt.sendevindu != null) {
@@ -136,7 +136,7 @@ public inherited sharing class TAG_SMSNotificationBuilder {
      */
     public TAG_SMSNotificationBuilder dispatchWindow(TAG_DispatchWindow_e dispatchWindow) {
         if (current.sendetidspunkt == null) {
-            current.sendetidspunkt = new TAG_ExternalNotificationModel.SendetidspunktInput();
+            current.sendetidspunkt = new TAG_ExtNotificationModel.SendetidspunktInput();
         }
 
         if (current.sendetidspunkt.tidspunkt != null) {
@@ -145,20 +145,20 @@ public inherited sharing class TAG_SMSNotificationBuilder {
             );
         }
 
-        current.sendetidspunkt.sendevindu = TAG_ExternalNotificationUtilities.convertDispatchWindow(dispatchWindow);
+        current.sendetidspunkt.sendevindu = TAG_ExtNotificationUtilities.convertDispatchWindow(dispatchWindow);
 
         return this;
     }
 
     /**
      * @description Returns the constructed SMS notification
-     * (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`).
+     * (`TAG_ExtNotificationModel.EksterntVarselSmsInput`).
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-02-07 Created.
-     * @return Returns an instance of the SMS notification (`TAG_ExternalNotificationModel.EksterntVarselSmsInput`).
+     * @return Returns an instance of the SMS notification (`TAG_ExtNotificationModel.EksterntVarselSmsInput`).
      */
-    public TAG_ExternalNotificationModel.EksterntVarselSmsInput build() {
+    public TAG_ExtNotificationModel.EksterntVarselSmsInput build() {
         return current;
     }
 

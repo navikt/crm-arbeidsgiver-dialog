@@ -98,46 +98,46 @@ public with sharing class TAG_NotificationService_Test {
 
         GQLVariableDefinitions definitions = new GQLVariableDefinitions(gqlVariables);
 
-        List<TAG_ExternalNotificationModel.MottakerInput> mottakere = new List<TAG_ExternalNotificationModel.MottakerInput>();
-        TAG_ExternalNotificationModel.MottakerInput mottakerInputOne = new TAG_ExternalNotificationModel.MottakerInput();
+        List<TAG_ExtNotificationModel.MottakerInput> mottakere = new List<TAG_ExtNotificationModel.MottakerInput>();
+        TAG_ExtNotificationModel.MottakerInput mottakerInputOne = new TAG_ExtNotificationModel.MottakerInput();
 
-        TAG_ExternalNotificationModel.AltinnMottakerInput altinn = new TAG_ExternalNotificationModel.AltinnMottakerInput();
+        TAG_ExtNotificationModel.AltinnMottakerInput altinn = new TAG_ExtNotificationModel.AltinnMottakerInput();
         altinn.serviceCode = 'serviceCode Test One';
         altinn.serviceEdition = 'serviceEdition Test One';
         mottakerInputOne.altinn = altinn;
 
-        TAG_ExternalNotificationModel.NaermesteLederMottakerInput naermesteLeder = new TAG_ExternalNotificationModel.NaermesteLederMottakerInput();
+        TAG_ExtNotificationModel.NaermesteLederMottakerInput naermesteLeder = new TAG_ExtNotificationModel.NaermesteLederMottakerInput();
         naermesteLeder.ansattFnr = 'ansattFnr Test One';
         naermesteLeder.naermesteLederFnr = 'naermesteLederFnr Test One';
         mottakerInputOne.naermesteLeder = naermesteLeder;
 
-        TAG_ExternalNotificationModel.AltinnRolleMottakerInput altinnRolle = new TAG_ExternalNotificationModel.AltinnRolleMottakerInput();
+        TAG_ExtNotificationModel.AltinnRolleMottakerInput altinnRolle = new TAG_ExtNotificationModel.AltinnRolleMottakerInput();
         altinnRolle.roleDefinitionCode = 'roleDefinitionCode Test One';
         mottakerInputOne.altinnRolle = altinnRolle;
 
-        TAG_ExternalNotificationModel.AltinnReporteeMottakerInput altinnReportee = new TAG_ExternalNotificationModel.AltinnReporteeMottakerInput();
+        TAG_ExtNotificationModel.AltinnReporteeMottakerInput altinnReportee = new TAG_ExtNotificationModel.AltinnReporteeMottakerInput();
         altinnReportee.fnr = 'fnr Test One';
         mottakerInputOne.altinnReportee = altinnReportee;
 
         mottakere.add(mottakerInputOne);
 
-        TAG_ExternalNotificationModel.MottakerInput mottakerInputTwo = new TAG_ExternalNotificationModel.MottakerInput();
+        TAG_ExtNotificationModel.MottakerInput mottakerInputTwo = new TAG_ExtNotificationModel.MottakerInput();
 
-        TAG_ExternalNotificationModel.AltinnMottakerInput altinnTwo = new TAG_ExternalNotificationModel.AltinnMottakerInput();
+        TAG_ExtNotificationModel.AltinnMottakerInput altinnTwo = new TAG_ExtNotificationModel.AltinnMottakerInput();
         altinnTwo.serviceCode = 'serviceCode Test Two';
         altinnTwo.serviceEdition = 'serviceEdition Test Two';
         mottakerInputTwo.altinn = altinnTwo;
 
-        TAG_ExternalNotificationModel.NaermesteLederMottakerInput naermesteLederTwo = new TAG_ExternalNotificationModel.NaermesteLederMottakerInput();
+        TAG_ExtNotificationModel.NaermesteLederMottakerInput naermesteLederTwo = new TAG_ExtNotificationModel.NaermesteLederMottakerInput();
         naermesteLederTwo.ansattFnr = 'ansattFnr Test Two';
         naermesteLederTwo.naermesteLederFnr = 'naermesteLederFnr Test Two';
         mottakerInputTwo.naermesteLeder = naermesteLederTwo;
 
         mottakere.add(mottakerInputTwo);
-        TAG_ExternalNotificationModel.NyBeskjedInput nyBeskjedInput = new TAG_ExternalNotificationModel.NyBeskjedInput();
+        TAG_ExtNotificationModel.NyBeskjedInput nyBeskjedInput = new TAG_ExtNotificationModel.NyBeskjedInput();
         nyBeskjedInput.mottakere = mottakere;
 
-        TAG_ExternalNotificationModel.NotifikasjonInput notifikasjon = new TAG_ExternalNotificationModel.NotifikasjonInput();
+        TAG_ExtNotificationModel.NotifikasjonInput notifikasjon = new TAG_ExtNotificationModel.NotifikasjonInput();
         notifikasjon.merkelapp = 'merkelapp Test';
         notifikasjon.lenke = 'lenke Test';
         notifikasjon.tekst = 'tekst Test';
