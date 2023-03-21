@@ -47,12 +47,32 @@ public inherited sharing class TAG_ExtNotificationBuilder {
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-02-13 Created.
-     * @param messageInput An instance of the NyBeskjedInput (`TAG_ExtNotificationModel.NyBeskjedInput`) object.
-     * @return Returns new instance of itself (`TAG_ExtNotificationBuilder` new instance).
+     * @param messageInput An instance of the NyBeskjedInput
+     * (`TAG_ExtNotificationModel.NyBeskjedInput`) object.
+     * @return Returns new instance of itself
+     * (`TAG_ExtNotificationBuilder` new instance).
      * @see TAG_ExtNotificationModel.NyBeskjedInput
      */
     public static TAG_ExtNotificationBuilder start(TAG_ExtNotificationModel.NyBeskjedInput messageInput) {
         return new TAG_ExtNotificationBuilder(messageInput);
+    }
+
+    /**
+     * @description This is a composable function that will set the Metadata
+     * Input(`metadata`) field to the value provided by the `metadataInput`
+     * parameter.
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-03-21 Created.
+     * @param metadataInput The instance of Metadata Input Builder
+     * (`TAG_MetadataInputBuilder`) representing the Metadata Input in the
+     * External Notificaton.
+     * @return Returns itself (`TAG_ExtNotificationBuilder` instance).
+     * @see TAG_MetadataInputBuilder
+     */
+    public TAG_ExtNotificationBuilder metadataInput(TAG_MetadataInputBuilder metadataInput) {
+        current.metadata = metadataInput.build();
+        return this;
     }
 
     /**

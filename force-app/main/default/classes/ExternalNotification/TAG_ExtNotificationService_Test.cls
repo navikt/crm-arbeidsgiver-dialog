@@ -170,6 +170,33 @@ private class TAG_ExtNotificationService_Test {
      * @description Testing
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-03-21 Created.
+     */
+    @IsTest
+    static void testMetadataInputPositive() {
+        TAG_ExtNotificationService externalNotificationService = new TAG_ExtNotificationService();
+
+        String enterpriseNumber = 'enterpriseNumber Test';
+        String externalId = 'externalId Test';
+        String groupingId = 'groupingId Test';
+        String createdTime = 'createdTime Test';
+
+        Test.startTest();
+        externalNotificationService.metadataInput(enterpriseNumber, externalId, groupingId, createdTime);
+        Test.stopTest();
+
+        TAG_ExtNotificationModel.NyBeskjedInput newMessage = externalNotificationService.notificationBuilder.build();
+
+        System.assertEquals(enterpriseNumber, newMessage.metadata.virksomhetsnummer);
+        System.assertEquals(externalId, newMessage.metadata.eksternId);
+        System.assertEquals(groupingId, newMessage.metadata.grupperingsid);
+        System.assertEquals(createdTime, newMessage.metadata.opprettetTidspunkt);
+    }
+
+    /**
+     * @description Testing
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-03-01 Created.
      */
     @IsTest

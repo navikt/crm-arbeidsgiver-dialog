@@ -63,6 +63,38 @@ private class TAG_ExtNotificationBuilder_Test {
     }
 
     /**
+     * @description Testing and verifying that the `metadataInput` method is overriding
+     * and setting the value in the Metadata Input (`metadata`) field.
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-03-21 Created.
+     */
+    @IsTest
+    private static void testExternalNotificationBuilderMetadataInputMethodPositive() {
+        TAG_ExtNotificationModel.NyBeskjedInput messageInput;
+
+        String enterpriseNumber = 'enterpriseNumber Test';
+        String externalId = 'externalId Test';
+        String groupingId = 'groupingId Test';
+        String createdTime = 'createdTime Test';
+        TAG_MetadataInputBuilder metadateInputBuilder = TAG_MetadataInputBuilder.start()
+            .enterpriseNumber(enterpriseNumber)
+            .externalId(externalId)
+            .groupingId(groupingId)
+            .createdTime(createdTime);
+
+        Test.startTest();
+        messageInput = TAG_ExtNotificationBuilder.start().metadataInput(metadateInputBuilder).build();
+        Test.stopTest();
+
+        System.assertEquals(
+            enterpriseNumber,
+            messageInput.metadata.virksomhetsnummer,
+            'Expected to have the value "' + enterpriseNumber + '" returned from the "virksomhetsnummer" field.'
+        );
+    }
+
+    /**
      * @description Testing and verifying that the `smsNotification` method is overriding
      * and setting the value in the SMS Notification (`sms`) field.
      *

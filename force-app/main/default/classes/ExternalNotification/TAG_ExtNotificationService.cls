@@ -588,7 +588,19 @@ public inherited sharing class TAG_ExtNotificationService {
         this.notificationBuilder = TAG_ExtNotificationBuilder.start();
     }
 
-    public TAG_ExtNotificationService metadataInput() {
+    public TAG_ExtNotificationService metadataInput(
+        String enterpriseNumber,
+        String externalId,
+        String groupingId,
+        String createdTime
+    ) {
+        TAG_MetadataInputBuilder metadataInputBuilder = TAG_MetadataInputBuilder.start()
+            .enterpriseNumber(enterpriseNumber)
+            .externalId(externalId)
+            .groupingId(groupingId)
+            .createdTime(createdTime);
+
+        this.notificationBuilder.metadataInput(metadataInputBuilder);
         return this;
     }
 
