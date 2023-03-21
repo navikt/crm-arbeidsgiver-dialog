@@ -106,61 +106,6 @@ public inherited sharing class TAG_ExtNotificationService {
     }
 
     /**
-     * @description
-     *
-     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
-     * @since 2023-02-14 Created.
-     */
-    @TestVisible
-    private void notificationBuilder() {
-        this.notificationBuilder = TAG_ExtNotificationBuilder.start();
-    }
-
-    /**
-     * @description
-     *
-     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
-     * @since 2023-02-14 Created.
-     * @param phoneNumber
-     * @param smsText
-     * @param dispatchTime
-     * @return  `TAG_ExtNotificationService`
-     */
-    public TAG_ExtNotificationService smsNotification(String phoneNumber, String smsText, String dispatchTime) {
-        TAG_SMSNotificationBuilder smsNotificationBuilder = TAG_SMSNotificationBuilder.start()
-            .recipient(phoneNumber)
-            .text(smsText)
-            .dispatchTime(dispatchTime);
-
-        this.notificationBuilder.smsNotification(smsNotificationBuilder);
-        return this;
-    }
-
-    /**
-     * @description
-     *
-     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
-     * @since 2023-02-14 Created.
-     * @param phoneNumber
-     * @param smsText
-     * @param dispatchWindow
-     * @return  `TAG_ExtNotificationService`
-     */
-    public TAG_ExtNotificationService smsNotification(
-        String phoneNumber,
-        String smsText,
-        TAG_DispatchWindow_e dispatchWindow
-    ) {
-        TAG_SMSNotificationBuilder smsNotificationBuilder = TAG_SMSNotificationBuilder.start()
-            .recipient(phoneNumber)
-            .text(smsText)
-            .dispatchWindow(dispatchWindow);
-
-        this.notificationBuilder.smsNotification(smsNotificationBuilder);
-        return this;
-    }
-
-    /**
      * @description This is a convenience method to indicate that the
      * `ansattFnr` variable is to be used/included.
      *
@@ -629,6 +574,65 @@ public inherited sharing class TAG_ExtNotificationService {
     public TAG_ExtNotificationService useAndSetVariableVirksomhetsnummer(String virksomhetsnummer) {
         this.useVariableVirksomhetsnummer();
         this.setVariableVirksomhetsnummer(virksomhetsnummer);
+        return this;
+    }
+
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-02-14 Created.
+     */
+    @TestVisible
+    private void notificationBuilder() {
+        this.notificationBuilder = TAG_ExtNotificationBuilder.start();
+    }
+
+    public TAG_ExtNotificationService metadataInput() {
+        return this;
+    }
+
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-02-14 Created.
+     * @param phoneNumber
+     * @param smsText
+     * @param dispatchTime
+     * @return  `TAG_ExtNotificationService`
+     */
+    public TAG_ExtNotificationService smsNotification(String phoneNumber, String smsText, String dispatchTime) {
+        TAG_SMSNotificationBuilder smsNotificationBuilder = TAG_SMSNotificationBuilder.start()
+            .recipient(phoneNumber)
+            .text(smsText)
+            .dispatchTime(dispatchTime);
+
+        this.notificationBuilder.smsNotification(smsNotificationBuilder);
+        return this;
+    }
+
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-02-14 Created.
+     * @param phoneNumber
+     * @param smsText
+     * @param dispatchWindow
+     * @return  `TAG_ExtNotificationService`
+     */
+    public TAG_ExtNotificationService smsNotification(
+        String phoneNumber,
+        String smsText,
+        TAG_DispatchWindow_e dispatchWindow
+    ) {
+        TAG_SMSNotificationBuilder smsNotificationBuilder = TAG_SMSNotificationBuilder.start()
+            .recipient(phoneNumber)
+            .text(smsText)
+            .dispatchWindow(dispatchWindow);
+
+        this.notificationBuilder.smsNotification(smsNotificationBuilder);
         return this;
     }
 
