@@ -37,12 +37,12 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Flow.CurrentRecord</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </filters>
         <object>Contract__c</object>
         <outputAssignments>
-            <assignToReference>contractId</assignToReference>
+            <assignToReference>recordId</assignToReference>
             <field>Id</field>
         </outputAssignments>
         <outputAssignments>
@@ -87,7 +87,7 @@
         <inputAssignments>
             <name>contractId</name>
             <value>
-                <elementReference>contractId</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -110,10 +110,10 @@
         </inputAssignments>
     </subflows>
     <variables>
-        <name>contractId</name>
+        <name>recordId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
-        <isInput>false</isInput>
+        <isInput>true</isInput>
         <isOutput>true</isOutput>
     </variables>
     <variables>
