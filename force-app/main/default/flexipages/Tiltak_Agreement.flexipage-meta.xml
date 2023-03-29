@@ -9,9 +9,6 @@
                         <valueListItems>
                             <value>Contract__c.TAG_Journal</value>
                         </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.Contract__c.Redact_contract_dialogue</value>
-                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
