@@ -46,16 +46,52 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Name</fieldItem>
+                <identifier>RecordNameField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_StartDate__c</fieldItem>
+                <identifier>RecordTAG_StartDate_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Status__c</fieldItem>
+                <identifier>RecordTAG_Status_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Account__c</fieldItem>
                 <identifier>RecordTAG_Account_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-8fd72360-78fb-4c84-9280-698bffe952f7</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_InternalContact__c</fieldItem>
+                <identifier>RecordTAG_InternalContact_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -76,34 +112,60 @@
                 <identifier>RecordTAG_EmployerContactPhone_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-9fdef75a-0178-4653-aa46-ba7d436c0ce2</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Mentor__c</fieldItem>
+                <identifier>RecordTAG_Mentor_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-5da74fd4-88f6-4577-9b22-b010417484fb</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-8fd72360-78fb-4c84-9280-698bffe952f7</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column3</identifier>
-            </componentInstance>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ExternalId__c</fieldItem>
+                <identifier>RecordExternalId_cField</identifier>
+            </fieldInstance>
         </itemInstances>
         <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-9fdef75a-0178-4653-aa46-ba7d436c0ce2</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column6</identifier>
-            </componentInstance>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_EndDate__c</fieldItem>
+                <identifier>RecordTAG_EndDate_cField</identifier>
+            </fieldInstance>
         </itemInstances>
-        <name>Facet-6b6f685e-4ce9-4e22-9c5b-4a535692dff2</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Category__c</fieldItem>
+                <identifier>RecordTAG_Category_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_NAVUnit__c</fieldItem>
+                <identifier>RecordTAG_NAVUnit_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -118,37 +180,23 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_MeasureParticipant__c</fieldItem>
+                <identifier>RecordTAG_MeasureParticipant_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Name</fieldItem>
-                <identifier>RecordNameField</identifier>
+                <fieldItem>Record.TAG_SourceURL__c</fieldItem>
+                <identifier>RecordTAG_SourceURL_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-c4e41877-fd3e-4d80-b03d-cec784615177</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.NAV_Office__c</fieldItem>
-                <identifier>RecordNAV_Office_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.ExternalId__c</fieldItem>
-                <identifier>RecordExternalId_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-2f6556ad-b233-494e-ac26-665192e96fe4</name>
+        <name>Facet-a205e458-4396-4a1a-a06d-7b0afa37ae13</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -156,23 +204,23 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-c4e41877-fd3e-4d80-b03d-cec784615177</value>
+                    <value>Facet-5da74fd4-88f6-4577-9b22-b010417484fb</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column7</identifier>
+                <identifier>flexipage_column</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-2f6556ad-b233-494e-ac26-665192e96fe4</value>
+                    <value>Facet-a205e458-4396-4a1a-a06d-7b0afa37ae13</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column8</identifier>
+                <identifier>flexipage_column2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-176e34e1-0fb4-4917-95f8-82e36fadaead</name>
+        <name>Facet-8f66dcfb-7247-4cd5-accb-bf00dea57807</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -180,28 +228,14 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-6b6f685e-4ce9-4e22-9c5b-4a535692dff2</value>
+                    <value>Facet-8f66dcfb-7247-4cd5-accb-bf00dea57807</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Arbeidsgiver</value>
+                    <value>Tiltaksavtale</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-176e34e1-0fb4-4917-95f8-82e36fadaead</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Intern informasjon</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection4</identifier>
+                <identifier>flexipage_fieldSection</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -217,20 +251,6 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;Skriv kun spørsmål eller opplysninger som gjelder denne avtalen. Husk å få med alle opplysninger som kan være relevant for saken. Du kan skrive maksimalt 1000 tegn. Det er cirka en halv A4-side.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Meldingen din kan bli delt med den ansatte.&lt;/li&gt;&lt;li&gt;Dialogen skal kun gjelde denne konkrete avtalen.&lt;/li&gt;&lt;/ul&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
                     <name>showClose</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -240,6 +260,13 @@
                 </componentInstanceProperties>
                 <componentName>crmMessagingMessageComponent</componentName>
                 <identifier>c_crmMessagingMessageComponent1</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Category__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MIDLERTIDIG_LONNSTILSKUDD</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>rightcol</name>
