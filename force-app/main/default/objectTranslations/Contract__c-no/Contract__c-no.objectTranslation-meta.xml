@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Bedriftsavtalen</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>Bedriftsavtale</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>Bedriftsavtale</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Bedriftsavtalene</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>true</plural>
+        <value>Bedriftsavtaler</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>Bedriftsavtaler</value>
+    </caseValues>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>Contract Layout</layout>
+        <sections>
+            <label>Ansvarlige</label>
+            <section>Contacts</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Measure agreement</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Tiltaksavtale</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tiltak Agreement</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Tittel</nameFieldLabel>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Sett til sladding</label>
+        <name>Set_to_Redaction</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Journalfør</label>
+        <name>TAG_Journal</name>
+    </quickActions>
+    <recordTypes>
+        <description></description>
+        <label></label>
+        <name>EmployerAgreement</name>
+    </recordTypes>
+    <recordTypes>
+        <description></description>
+        <label></label>
+        <name>MeasureAgreement</name>
+    </recordTypes>
+    <webLinks>
+        <label></label>
+        <name>Redact_contract_dialogue</name>
+    </webLinks>
+</CustomObjectTranslation>
