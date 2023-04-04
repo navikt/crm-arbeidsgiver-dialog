@@ -10,7 +10,7 @@
                             <value>Contract__c.TAG_Journal</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.Contract__c.Redact_contract_dialogue</value>
+                            <value>Contract__c.Set_to_Redaction</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>

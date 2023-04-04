@@ -99,6 +99,10 @@
         <recordType>Contract__c.MeasureAgreement</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Thread__c.TAG_Thread</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <tabSettings>
         <tab>Contract__c</tab>
         <visibility>Visible</visibility>
