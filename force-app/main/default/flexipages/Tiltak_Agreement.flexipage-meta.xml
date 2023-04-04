@@ -9,6 +9,9 @@
                         <valueListItems>
                             <value>Contract__c.TAG_Journal</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Contract__c.Set_to_Redaction</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
