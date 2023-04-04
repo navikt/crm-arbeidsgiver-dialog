@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Initiates the batch class to process any failed journal posts related to Dialog POAG Thread.</description>
+        <name>POAG_Thread_Journal_Errored_Retry_Batch</name>
+        <label>POAG Thread Journal Errored Retry Batch</label>
+        <locationX>176</locationX>
+        <locationY>276</locationY>
+        <actionName>TAG_ThreadJournalRetryBatch</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <environments>Default</environments>
+    <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Scheduled Failed Journal Thread Retry</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>POAG_Thread_Journal_Errored_Retry_Batch</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2023-03-29</startDate>
+            <startTime>00:50:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
