@@ -164,7 +164,7 @@
             <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>TAG_Journal_Entry</stringValue>
+                <stringValue>TAG Journal Entry</stringValue>
             </value>
         </filters>
         <object>RecordType</object>

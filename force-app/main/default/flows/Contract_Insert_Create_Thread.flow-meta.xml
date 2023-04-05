@@ -108,7 +108,7 @@
             <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>TAG_Thread</stringValue>
+                <stringValue>TAG Thread</stringValue>
             </value>
         </filters>
         <object>RecordType</object>
