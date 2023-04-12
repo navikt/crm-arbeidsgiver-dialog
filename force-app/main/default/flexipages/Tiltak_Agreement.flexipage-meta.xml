@@ -52,6 +52,16 @@
                 <identifier>RecordTAG_Account_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_AccountOrganizationNumber__c</fieldItem>
+                <identifier>RecordTAG_AccountOrganizationNumber_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-5da74fd4-88f6-4577-9b22-b010417484fb</name>
         <type>Facet</type>
     </flexiPageRegions>
