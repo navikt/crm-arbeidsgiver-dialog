@@ -12,6 +12,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contract__c.TAG_AccountOrganizationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contract__c.TAG_EmployerContactPhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -33,6 +38,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract__c.TAG_Mentor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract__c.TAG_Read_by_NAV__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
