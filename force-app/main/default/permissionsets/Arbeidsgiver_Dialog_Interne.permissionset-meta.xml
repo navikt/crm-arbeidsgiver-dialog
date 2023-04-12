@@ -86,7 +86,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>Arbeidsgiver- Dialog(Interne)</label>
+    <label>Arbeidsgiver - Dialog(Interne)</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

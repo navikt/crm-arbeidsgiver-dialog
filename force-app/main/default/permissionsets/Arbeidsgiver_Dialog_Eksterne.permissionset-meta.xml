@@ -193,7 +193,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>Arbeidsgiver- Dialog(Eksterne)</label>
+    <label>Arbeidsgiver - Dialog(Eksterne)</label>
     <license>Customer Community Plus Login</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
