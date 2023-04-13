@@ -101,7 +101,7 @@
         <name>Assign_Journal_Entry_Default_Data</name>
         <label>Assign Journal Entry Default Data</label>
         <locationX>314</locationX>
-        <locationY>1574</locationY>
+        <locationY>1694</locationY>
         <assignmentItems>
             <assignToReference>Journal_Entry_Record.CRM_Journal_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -309,7 +309,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Assign_Journal_Entry_Default_Data</targetReference>
+            <targetReference>Insert_Info_About_Journal_Into_Thread_Final</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -339,7 +339,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Assign_Journal_Entry_Default_Data</targetReference>
+            <targetReference>Insert_Info_About_Journal_Into_Thread</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -460,6 +460,76 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Insert_Info_About_Journal_Into_Thread</name>
+        <label>Insert Info About Journal Into Thread</label>
+        <locationX>314</locationX>
+        <locationY>1478</locationY>
+        <connector>
+            <targetReference>Assign_Journal_Entry_Default_Data</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CRM_Event_Type__c</field>
+            <value>
+                <stringValue>JOURNAL</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Message_Text__c</field>
+            <value>
+                <stringValue>Tråden ble journalført.</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Thread__c</field>
+            <value>
+                <elementReference>Thread_Record_JOURNALED.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Type__c</field>
+            <value>
+                <stringValue>Event</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Message__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Insert_Info_About_Journal_Into_Thread_Final</name>
+        <label>Insert Info About Journal Into Thread Final</label>
+        <locationX>50</locationX>
+        <locationY>1478</locationY>
+        <connector>
+            <targetReference>Assign_Journal_Entry_Default_Data</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CRM_Event_Type__c</field>
+            <value>
+                <stringValue>JOURNAL</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Message_Text__c</field>
+            <value>
+                <stringValue>Komplett samtale ble journalført.</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Thread__c</field>
+            <value>
+                <elementReference>Thread_Record_JOURNALED.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CRM_Type__c</field>
+            <value>
+                <stringValue>Event</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Message__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <name>Get_Account_Record</name>
         <label>Get Account Record</label>
@@ -515,7 +585,7 @@
         <name>Update_Journal_Entry</name>
         <label>Update Journal Entry</label>
         <locationX>314</locationX>
-        <locationY>1694</locationY>
+        <locationY>1814</locationY>
         <connector>
             <targetReference>Update_Thread</targetReference>
         </connector>
@@ -525,7 +595,7 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>314</locationX>
-        <locationY>1814</locationY>
+        <locationY>1934</locationY>
         <inputReference>Thread_Record_JOURNALED</inputReference>
     </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
