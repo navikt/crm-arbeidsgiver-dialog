@@ -112,7 +112,7 @@
             <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>TAG_Journal_Entry</stringValue>
+                <stringValue>TAG Journal Entry</stringValue>
             </value>
         </filters>
         <object>RecordType</object>
@@ -163,7 +163,7 @@
         <inputAssignments>
             <name>Application_Domain</name>
             <value>
-                <stringValue>POAG</stringValue>
+                <stringValue>POAB</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
