@@ -252,7 +252,15 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;Arbeidsgiver blir varslet ved ny melding, men det kan ta tid før de svarer. Arbeidsgiver blir informert om at det kan ta tid før NAV svarer.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Send bare spørsmål eller opplysninger som gjelder denne avtalen. Husk å få med alle opplysninger som kan være relevant for saken. Du kan skrive maksimalt 1000 tegn. Det er cirka en halv A4-side.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Vi minner om at meldingen din også kan bli delt med den ansatte.&lt;/li&gt;&lt;li&gt;Denne dialogen skal kun gjelde denne konkrete avtalen.&lt;/li&gt;&lt;/ul&gt;</value>
+                    <value>&lt;p&gt;Arbeidsgiver blir varslet ved ny melding, men det kan ta tid før
+                        de svarer. Arbeidsgiver blir informert om at det kan ta tid før NAV
+                        svarer.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Send bare spørsmål
+                        eller opplysninger som gjelder denne avtalen. Husk å få med alle
+                        opplysninger som kan være relevant for saken. Du kan skrive maksimalt 1000
+                        tegn. Det er cirka en halv A4-side.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Vi minner
+                        om at meldingen din også kan bli delt med den
+                        ansatte.&lt;/li&gt;&lt;li&gt;Denne dialogen skal kun gjelde denne konkrete
+                        avtalen.&lt;/li&gt;&lt;/ul&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText</identifier>
@@ -282,7 +290,7 @@
         <name>rightcol</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Tiltak Agreement</masterLabel>
+    <masterLabel>Measure Agreement</masterLabel>
     <sobjectType>Contract__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>
