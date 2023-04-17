@@ -5,7 +5,7 @@
         <name>Assign_fields_to_Temp_Thread</name>
         <label>Assign fields to Temp Thread</label>
         <locationX>264</locationX>
-        <locationY>758</locationY>
+        <locationY>876</locationY>
         <assignmentItems>
             <assignToReference>Temp_Thread_Record.CRM_Account__c</assignToReference>
             <operator>Assign</operator>
@@ -49,7 +49,7 @@
         <name>Assign_Temp_Thread_To_Collection</name>
         <label>Assign Temp Thread To Collection</label>
         <locationX>264</locationX>
-        <locationY>638</locationY>
+        <locationY>756</locationY>
         <assignmentItems>
             <assignToReference>New_Thread_Records</assignToReference>
             <operator>Add</operator>
@@ -65,7 +65,7 @@
         <name>Assign_Thread_Id_to_Contract</name>
         <label>Assign Thread Id to Contract</label>
         <locationX>264</locationX>
-        <locationY>518</locationY>
+        <locationY>636</locationY>
         <assignmentItems>
             <assignToReference>Loop_Contracts_W_O_Thread.Thread__c</assignToReference>
             <operator>Assign</operator>
@@ -78,13 +78,13 @@
         </connector>
     </assignments>
     <environments>Default</environments>
-    <interviewLabel>TAG Manual {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Manual Create Threads for Tiltak Contracts</label>
+    <interviewLabel>TAG One-Off Create Threads for Tiltak Contracts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG One-Off Create Threads for Tiltak Contracts</label>
     <loops>
         <name>Loop_Contracts_W_O_Thread</name>
         <label>Loop Contracts W/O Thread</label>
         <locationX>176</locationX>
-        <locationY>398</locationY>
+        <locationY>516</locationY>
         <collectionReference>Contract_Tiltak_Records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -117,7 +117,7 @@
         <name>Create_Threads</name>
         <label>Create Threads</label>
         <locationX>176</locationX>
-        <locationY>974</locationY>
+        <locationY>1092</locationY>
         <connector>
             <targetReference>Update_Contracts_with_Thread_Id</targetReference>
         </connector>
@@ -127,7 +127,7 @@
         <name>Get_Tiltak_Record_Type_Id</name>
         <label>Get Tiltak Record Type Id</label>
         <locationX>176</locationX>
-        <locationY>158</locationY>
+        <locationY>276</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Tiltak_Records_Without_Thread</targetReference>
@@ -150,7 +150,7 @@
         <name>Get_Tiltak_Records_Without_Thread</name>
         <label>Get Tiltak Records Without Thread</label>
         <locationX>176</locationX>
-        <locationY>278</locationY>
+        <locationY>396</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Contracts_W_O_Thread</targetReference>
@@ -188,7 +188,7 @@
         <name>Update_Contracts_with_Thread_Id</name>
         <label>Update Contracts with Thread Id</label>
         <locationX>176</locationX>
-        <locationY>1094</locationY>
+        <locationY>1212</locationY>
         <inputReference>Contract_Tiltak_Records</inputReference>
     </recordUpdates>
     <start>
@@ -197,6 +197,12 @@
         <connector>
             <targetReference>Get_Tiltak_Record_Type_Id</targetReference>
         </connector>
+        <schedule>
+            <frequency>Once</frequency>
+            <startDate>2023-04-14</startDate>
+            <startTime>00:15:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
     </start>
     <status>Draft</status>
     <variables>
