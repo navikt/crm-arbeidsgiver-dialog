@@ -8,13 +8,13 @@ public without sharing class EmployerThreadSharingService {
     public void calculateSharing(String organizationNumber, String personIdent) {
         try {
             User user = getUserFromPersonIdent(personIdent);
-            if (cacheExpired(DateTime.valueOf(user.AG_LastSharingCalculation__c))) {
-                List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
-                List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
-                deleteOutdatedThreadShares(user);
-                createThreadShares(threadsToShare, user);
-                cacheUsersLastShareCalculationTimeForOrganization(organizationNumber, user.Id);
-            }
+            //if (cacheExpired(DateTime.valueOf(user.AG_LastSharingCalculation__c))) {
+            List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
+            List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
+            deleteOutdatedThreadShares(user);
+            createThreadShares(threadsToShare, user);
+            cacheUsersLastShareCalculationTimeForOrganization(organizationNumber, user.Id);
+            //}
         } catch (Exception e) {
             logger.logMessage(
                 LoggerUtility.LogLevel.Error,
