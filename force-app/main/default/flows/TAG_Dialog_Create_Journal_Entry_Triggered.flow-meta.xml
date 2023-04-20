@@ -5,7 +5,7 @@
         <name>Edit_Thread_Status</name>
         <label>Edit Thread Status</label>
         <locationX>314</locationX>
-        <locationY>516</locationY>
+        <locationY>695</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.CRM_Journal_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -28,7 +28,7 @@
         <name>Check_if_Thread_has_Messages</name>
         <label>Check if Thread has Messages</label>
         <locationX>314</locationX>
-        <locationY>756</locationY>
+        <locationY>935</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Has_Messages</name>
@@ -47,10 +47,32 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_If_Thread_Record_Is_Found</name>
+        <label>Check If Thread Record Is Found</label>
+        <locationX>182</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>Check_Thread_status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_Records</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Thread</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>No Records</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Thread_status</name>
         <label>Check Thread status</label>
         <locationX>578</locationX>
-        <locationY>396</locationY>
+        <locationY>575</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Thread_active</name>
@@ -76,8 +98,8 @@
         </rules>
     </decisions>
     <environments>Default</environments>
-    <interviewLabel>TAG Dialog Create Journal Entry Final {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Dialog Create Journal Entry Final</label>
+    <interviewLabel>TAG Dialog Create Journal Entry Triggered {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Dialog Create Journal Entry Triggered</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -101,7 +123,7 @@
         <name>Create_journal_entry</name>
         <label>Create journal entry</label>
         <locationX>50</locationX>
-        <locationY>996</locationY>
+        <locationY>1175</locationY>
         <faultConnector>
             <targetReference>Create_Application_Log</targetReference>
         </faultConnector>
@@ -154,7 +176,7 @@
         <name>Get_recordtype_id</name>
         <label>Get recordtype id</label>
         <locationX>50</locationX>
-        <locationY>876</locationY>
+        <locationY>1055</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_journal_entry</targetReference>
@@ -176,11 +198,11 @@
     <recordLookups>
         <name>Get_Thread</name>
         <label>Get Thread</label>
-        <locationX>578</locationX>
-        <locationY>276</locationY>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_Thread_status</targetReference>
+            <targetReference>Check_If_Thread_Record_Is_Found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -198,18 +220,19 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>314</locationX>
-        <locationY>636</locationY>
+        <locationY>815</locationY>
         <connector>
             <targetReference>Check_if_Thread_has_Messages</targetReference>
         </connector>
         <inputReference>Get_Thread</inputReference>
     </recordUpdates>
     <start>
-        <locationX>452</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Thread</targetReference>
         </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
             <field>TAG_Status__c</field>
@@ -218,27 +241,16 @@
                 <stringValue>AVSLUTTET</stringValue>
             </value>
         </filters>
-        <filters>
-            <field>TAG_Category__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>MIDLERTIDIG_LONNSTILSKUDD</stringValue>
-            </value>
-        </filters>
         <object>Contract__c</object>
-        <schedule>
-            <frequency>Daily</frequency>
-            <startDate>2023-03-23</startDate>
-            <startTime>01:45:00.000Z</startTime>
-        </schedule>
-        <triggerType>Scheduled</triggerType>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
         <locationX>314</locationX>
-        <locationY>1116</locationY>
+        <locationY>1295</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
