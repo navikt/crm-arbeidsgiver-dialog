@@ -1,12 +1,14 @@
 <template>
     <c-url-reader></c-url-reader>
-    <div if:true={organization} class="hovedbanner arbeidsgiver">
+    <template if:true={showBanner} >
+    <div class="hovedbanner arbeidsgiver">
         <h1 class="typo-systemtittel">
-            {organizationName} - Org nr {organizationNumber} - Avtale nr {agreementNumberShow}
+            {organizationName} - Org nr {organizationNumber} - Avtale nr {agreementNumberShow} 
         </h1>
         <a class="lenke" href={urlContract} title="Tilbake til avtale detaljer">
             <i class="chevronboks chevron--venstre"><img class="tst" src={chevrondown} alt="pil ned ikon" /></i>
             Tilbake til Avtalen</a
         >
     </div>
+</template>
 </template>

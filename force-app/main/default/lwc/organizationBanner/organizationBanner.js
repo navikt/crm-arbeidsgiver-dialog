@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 import USER_ID from '@salesforce/user/Id';
 import calculateSharingForUser from '@salesforce/apex/OrganizationBannerController.getRepresentedOrganization';
 import getContractUrl from '@salesforce/apex/OrganizationBannerController.getContractUrl';
@@ -8,11 +8,13 @@ import { CurrentPageReference } from 'lightning/navigation';
 export default class OrganizationBanner extends LightningElement {
     @track organization;
     @track urlContract;
-    @track agreementNumberShow;
+    @track agreementNumberShow
+
 
     chevrondown = icons + '/chevrondown.svg';
-
     currentPageReference = null;
+    contractUrlRequested = false;
+    
 
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
@@ -27,30 +29,44 @@ export default class OrganizationBanner extends LightningElement {
             this.organization = data;
             this.error = undefined;
         } else if (error) {
+            this.error = error;
+            this.organization = undefined;
             console.error(error);
         }
     }
-
+@api
     get organizationName() {
         return this.organization.Name;
     }
-
+@api
     get organizationNumber() {
         return this.organization.INT_OrganizationNumber__c;
     }
-
+@api
     getUrlParameter1(paramName) {
         return this.currentPageReference.state[paramName];
     }
-
-    connectedCallback() {
-        this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
-        getContractUrl({ contractNr: this.agreementNumberShow })
-            .then((result) => {
-                this.urlContract = result;
-            })
-            .catch((error) => {
-                console.log('Error: ' + error.body.message);
-            });
+    @api
+    get showBanner() {
+        return this.organization && this.urlContract;
     }
+
+       connectedCallback(){
+            this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
+            if (!this.contractUrlRequested && this.agreementNumberShow) {
+                this.contractUrlRequested = true;
+                getContractUrl({ contractNr: this.agreementNumberShow })
+                    .then((result) => {
+                        this.urlcontract = result;
+                    })
+                    .catch((error) => {
+                        console.log('Error: ' + error.body.message);
+                        this.urlcontract = undefined;
+                    
+                    });
+                  
+            }
+        }
+   
 }
+
