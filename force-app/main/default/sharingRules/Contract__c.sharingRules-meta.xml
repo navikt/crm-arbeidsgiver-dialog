@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>TAG_Share_Employer_Agreement_Measure</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing of measuere agreement with NAV Unit that agreement is related to.</description>
+        <label>TAG Share Employer Agreement Measure</label>
+        <sharedTo>
+            <group>NAV_Ansatte</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>TAG_Category__c</field>
+            <operation>equals</operation>
+            <value>Midlertidig lønnstilskudd</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>TAG_Status__c</field>
+            <operation>equals</operation>
+            <value>Påbegynt,Avsluttet</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>
