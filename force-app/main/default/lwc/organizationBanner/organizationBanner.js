@@ -8,8 +8,7 @@ import { CurrentPageReference } from 'lightning/navigation';
 export default class OrganizationBanner extends LightningElement {
     @track organization;
     @track urlContract;
-    @track agreementNumberShow
-
+    @track agreementNumberShow;
 
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
@@ -46,27 +45,36 @@ export default class OrganizationBanner extends LightningElement {
     getUrlParameter1(paramName) {
         return this.currentPageReference.state[paramName];
     }
-    @api
+@api
     get showBanner() {
-        return this.organization && this.urlContract;
+        return this.organization && this.agreementNumberShow;
     }
 
-       connectedCallback(){
+       renderedCallback(){
             this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
+            console.log(this.agreementNumberShow +  " agreementnumbershow");
             if (!this.contractUrlRequested && this.agreementNumberShow) {
                 this.contractUrlRequested = true;
-                getContractUrl({ contractNr: this.agreementNumberShow })
-                    .then((result) => {
-                        this.urlcontract = result;
-                    })
-                    .catch((error) => {
-                        console.log('Error: ' + error.body.message);
-                        this.urlcontract = undefined;
-                    
-                    });
-                  
+                
+            /*    
+            
+            getContractUrl({ contractNr: this.agreementNumberShow })
+                .then((result) => {
+                    this.urlcontract = result;
+                })
+                .catch((error) => {
+                    console.log('Error: ' + error.body.message);
+                    this.urlcontract = undefined;
+
+                }); 
+                
+                */
+
+             }else{
+                this.contractUrlRequested = false;
+             }
+        console.log(this.contractUrlRequested + " skal være true");
             }
-        }
-   
+           
 }
 
