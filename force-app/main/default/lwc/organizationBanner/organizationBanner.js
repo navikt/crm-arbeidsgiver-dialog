@@ -8,7 +8,7 @@ import { CurrentPageReference } from 'lightning/navigation';
 export default class OrganizationBanner extends LightningElement {
     @track organization;
     @track urlContract;
-    @track agreementNumberShow;
+    @track agreementNumberShow
 
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
@@ -45,6 +45,7 @@ export default class OrganizationBanner extends LightningElement {
     getUrlParameter1(paramName) {
         return this.currentPageReference.state[paramName];
     }
+
 @api
     get showBanner() {
         return this.organization && this.urlContract;
@@ -76,5 +77,5 @@ export default class OrganizationBanner extends LightningElement {
         console.log(this.contractUrlRequested + " skal være true");
             }
            
-}
 
+}
