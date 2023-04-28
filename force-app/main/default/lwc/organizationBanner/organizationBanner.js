@@ -11,19 +11,15 @@ export default class OrganizationBanner extends LightningElement {
     @track agreementNumberShow;
     @track noErrorMessage;
     
-
-
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
     contractUrlRequested = false;
     noErrorMessage = true;
     
-
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         if (currentPageReference) {
             this.currentPageReference = currentPageReference;
-
         }
     }
 
@@ -53,18 +49,19 @@ export default class OrganizationBanner extends LightningElement {
 
 @api
     get showBanner() {
-        return this.organization && this.agreementNumberShow && this.noErrorMessage;
-    }
+            console.log(" noerrormessage in showbanner:  " + this.noErrorMessage);
+            return this.organization && this.agreementNumberShow && this.noErrorMessage;
+        }
+     
 
        renderedCallback(){
             this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
-            console.log(this.currentPageReference.attributes.name +  " curent page ref");
-           
-            if(this.currentPageReference.attributes.name = 'Error'){ 
+            console.log(this.currentPageReference.attributes.name +  " current page ref");
+            if(this.currentPageReference.attributes.name == 'Error'){ 
                 this.noErrorMessage = false;
-                console.log(" attributes is error and banner should not show");
+                console.log(" attributes should be error "+ this.currentPageReference.attributes.name + " and banner should not show");
             }else{
-                console.log( " attributes is true and banner should show");
+                console.log( " attributes should not be error,  is " + this.currentPageReference.attributes.name + " and banner should show");
             }
       
             if (!this.contractUrlRequested && this.agreementNumberShow) {
@@ -89,6 +86,6 @@ export default class OrganizationBanner extends LightningElement {
              }
     
             }
-           
+
 
 }
