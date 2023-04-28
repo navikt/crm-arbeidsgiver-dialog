@@ -8,17 +8,22 @@ import { CurrentPageReference } from 'lightning/navigation';
 export default class OrganizationBanner extends LightningElement {
     @track organization;
     @track urlContract;
-    @track agreementNumberShow
+    @track agreementNumberShow;
+    @track noErrorMessage;
+    
+
 
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
     contractUrlRequested = false;
+    noErrorMessage = true;
     
 
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         if (currentPageReference) {
             this.currentPageReference = currentPageReference;
+
         }
     }
 
@@ -48,12 +53,20 @@ export default class OrganizationBanner extends LightningElement {
 
 @api
     get showBanner() {
-        return this.organization && this.agreementNumberShow;
+        return this.organization && this.agreementNumberShow && this.noErrorMessage;
     }
 
        renderedCallback(){
             this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
-            console.log(this.agreementNumberShow +  " agreementnumbershow");
+            console.log(this.currentPageReference.attributes.name +  " curent page ref");
+           
+            if(this.currentPageReference.attributes.name = 'Error'){ 
+                this.noErrorMessage = false;
+                console.log(" attributes is error and banner should not show");
+            }else{
+                console.log( " attributes is true and banner should show");
+            }
+      
             if (!this.contractUrlRequested && this.agreementNumberShow) {
                 this.contractUrlRequested = true;
                 
@@ -74,7 +87,7 @@ export default class OrganizationBanner extends LightningElement {
              }else{
                 this.contractUrlRequested = false;
              }
-        console.log(this.contractUrlRequested + " skal være true");
+    
             }
            
 
