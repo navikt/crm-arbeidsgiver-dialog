@@ -48,7 +48,7 @@ export default class OrganizationBanner extends LightningElement {
 
 @api
     get showBanner() {
-        return this.organization && this.agreementNumberShow;
+        return this.organization && this.urlContract;
     }
 
        renderedCallback(){
@@ -57,11 +57,11 @@ export default class OrganizationBanner extends LightningElement {
             if (!this.contractUrlRequested && this.agreementNumberShow) {
                 this.contractUrlRequested = true;
                 
-            /*    
-            
+
             getContractUrl({ contractNr: this.agreementNumberShow })
                 .then((result) => {
                     this.urlcontract = result;
+                    console.log(this.urlContract +  " urlcontract");
                 })
                 .catch((error) => {
                     console.log('Error: ' + error.body.message);
@@ -69,7 +69,7 @@ export default class OrganizationBanner extends LightningElement {
 
                 }); 
                 
-                */
+        
 
              }else{
                 this.contractUrlRequested = false;
