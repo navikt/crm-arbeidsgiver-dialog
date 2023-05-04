@@ -1,21 +1,18 @@
-import { LightningElement, wire, track, api } from 'lwc';
-import USER_ID from '@salesforce/user/Id';
-import calculateSharingForUser from '@salesforce/apex/OrganizationBannerController.getRepresentedOrganization';
+import { LightningElement, wire, track } from 'lwc';
+import getOrganization from '@salesforce/apex/OrganizationBannerController.getOrganization';
 import getContractUrl from '@salesforce/apex/OrganizationBannerController.getContractUrl';
 import icons from '@salesforce/resourceUrl/icons';
 import { CurrentPageReference } from 'lightning/navigation';
 
 export default class OrganizationBanner extends LightningElement {
-    @track organization;
+    @track organizationName;
+    @track organizationNumber;
     @track urlContract;
-    @track agreementNumberShow;
-    @track noErrorMessage;
-    
+    @track agreementNumber;
+
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
-    contractUrlRequested = false;
-    noErrorMessage = true;
-    
+
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         if (currentPageReference) {
@@ -23,69 +20,44 @@ export default class OrganizationBanner extends LightningElement {
         }
     }
 
-    @wire(calculateSharingForUser, { userId: USER_ID })
-    wiredAccount({ error, data }) {
-        if (data) {
-            this.organization = data;
-            this.error = undefined;
-        } else if (error) {
-            this.error = error;
-            this.organization = undefined;
-            console.error(error);
+    connectedCallback() {
+        if (this.currentPageReference.attributes.name == 'Error') {
+            console.log(
+                ' attributes should be error ' +
+                    this.currentPageReference.attributes.name +
+                    ' and banner should not show'
+            );
+        } else {
+            this.agreementNumber = this.getUrlParameter('avtalenummer');
+            this.organizationNumber = this.getUrlParameter('organisasjonsnummer');
+            console.log(this.currentPageReference.attributes.name + ' current page ref');
+            this.getOrg();
+            this.getAgreementUrl();
         }
     }
-@api
-    get organizationName() {
-        return this.organization.Name;
+
+    getOrg() {
+        getOrganization({ orgNumber: this.organizationNumber })
+            .then((result) => {
+                this.organizationName = result.Name;
+                this.organizationNumber = result.INT_OrganizationNumber__c;
+            })
+            .catch((error) => {
+                console.error('getOrganization error', error);
+            });
     }
-@api
-    get organizationNumber() {
-        return this.organization.INT_OrganizationNumber__c;
+
+    getAgreementUrl() {
+        getContractUrl({ contractNr: this.agreementNumber })
+            .then((result) => {
+                this.urlContract = result;
+            })
+            .catch((error) => {
+                console.error('getAgreementUrl error', error);
+            });
     }
-@api
-    getUrlParameter1(paramName) {
+
+    getUrlParameter(paramName) {
         return this.currentPageReference.state[paramName];
     }
-
-@api
-    get showBanner() {
-            console.log(" noerrormessage in showbanner:  " + this.noErrorMessage);
-            return this.organization && this.agreementNumberShow && this.noErrorMessage;
-        }
-     
-
-       renderedCallback(){
-            this.agreementNumberShow = this.getUrlParameter1('avtalenummer');
-            console.log(this.currentPageReference.attributes.name +  " current page ref");
-            if(this.currentPageReference.attributes.name == 'Error'){ 
-                this.noErrorMessage = false;
-                console.log(" attributes should be error "+ this.currentPageReference.attributes.name + " and banner should not show");
-            }else{
-                console.log( " attributes should not be error,  is " + this.currentPageReference.attributes.name + " and banner should show");
-            }
-      
-            if (!this.contractUrlRequested && this.agreementNumberShow) {
-                this.contractUrlRequested = true;
-                
-            /*    
-            
-            getContractUrl({ contractNr: this.agreementNumberShow })
-                .then((result) => {
-                    this.urlcontract = result;
-                })
-                .catch((error) => {
-                    console.log('Error: ' + error.body.message);
-                    this.urlcontract = undefined;
-
-                }); 
-                
-                */
-
-             }else{
-                this.contractUrlRequested = false;
-             }
-    
-            }
-
-
 }
