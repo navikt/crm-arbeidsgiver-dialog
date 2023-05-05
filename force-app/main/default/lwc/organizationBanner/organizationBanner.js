@@ -1,14 +1,15 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 import getOrganization from '@salesforce/apex/OrganizationBannerController.getOrganization';
 import getContractUrl from '@salesforce/apex/OrganizationBannerController.getContractUrl';
 import icons from '@salesforce/resourceUrl/icons';
 import { CurrentPageReference } from 'lightning/navigation';
 
 export default class OrganizationBanner extends LightningElement {
-    @track organizationName;
-    @track organizationNumber;
+    @api organizationName;
+    @api organizationNumber;
     @track urlContract;
     @track agreementNumber;
+    @api showBanner;
 
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
