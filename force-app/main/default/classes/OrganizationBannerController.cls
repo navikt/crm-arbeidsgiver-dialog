@@ -21,8 +21,13 @@ public without sharing class OrganizationBannerController {
         }
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static String getContractUrl(String contractNr) {
         return [SELECT id, TAG_ExternalURL__c FROM Contract__c WHERE ExternalId__c = :contractNr].TAG_ExternalURL__c;
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Account getOrganization(String orgNumber) {
+        return [SELECT id, INT_OrganizationNumber__c, Name FROM Account WHERE INT_OrganizationNumber__c = :orgNumber];
     }
 }
