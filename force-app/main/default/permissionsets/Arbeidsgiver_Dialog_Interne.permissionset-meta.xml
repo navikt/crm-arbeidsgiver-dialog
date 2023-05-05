@@ -281,6 +281,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Thread__c.TAG_Number_of_unread_messages_fro__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Thread__c.TAG_RelatedObjectExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
