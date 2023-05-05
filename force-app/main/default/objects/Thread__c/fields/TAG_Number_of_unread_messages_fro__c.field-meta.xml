@@ -14,9 +14,9 @@
         <value>Message</value>
     </summaryFilterItems>
     <summaryFilterItems>
-        <field>Message__c.CRM_From_Ident__c</field>
-        <operation>notEqual</operation>
-        <value></value>
+        <field>Message__c.CRM_External_Message__c</field>
+        <operation>equals</operation>
+        <value>True</value>
     </summaryFilterItems>
     <summaryForeignKey>Message__c.CRM_Thread__c</summaryForeignKey>
     <summaryOperation>count</summaryOperation>
