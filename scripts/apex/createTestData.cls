@@ -5,7 +5,9 @@ Contract__c contract = new Contract__c(
     ExternalId__c = '1234',
     TAG_Account__c = account.Id,
     RecordTypeId = recordTypeId,
-    TAG_Category__c = 'Midlertidig lønnstilskudd'
+    TAG_Category__c = 'Midlertidig lønnstilskudd',
+    TAG_MeasureParticipant__c = 'Test Testersen',
+    TAG_Status__c = 'GJENNOMFØRES'
 );
 insert contract;
 
