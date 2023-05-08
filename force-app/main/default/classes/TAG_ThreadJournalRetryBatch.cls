@@ -1,6 +1,7 @@
 public without sharing class TAG_ThreadJournalRetryBatch implements Database.Batchable<SObject>, Database.AllowsCallouts, Database.Stateful {
     private LoggerUtility logger = new LoggerUtility('Thread POAG Journal Retry Batch');
     private Boolean error = false;
+    private Id threadRecordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'TAG_Thread' LIMIT 1].Id;
 
     @InvocableMethod(
         label='Initiate POAG Thread Journal Retry Batch'
@@ -41,7 +42,7 @@ public without sharing class TAG_ThreadJournalRetryBatch implements Database.Bat
         }
 
         private String getJournalConditions() {
-            return 'CRM_Thread__r.CRM_Thread_Type__c = \'AG_MLØNN\' AND Journal_Entry_Status__c = \'Failed\'';
+            return 'Journal_Entry_Status__c = \'Failed\' AND CRM_Thread__r.RecordTypeId = :threadRecordTypeId';
         }
 
         public String getJournalEntriesToJournal() {
