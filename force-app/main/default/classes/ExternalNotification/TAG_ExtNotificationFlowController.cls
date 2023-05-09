@@ -62,6 +62,7 @@ public with sharing class TAG_ExtNotificationFlowController {
         results.errorMessage = (String) nyBeskjed?.get('feilmelding');
         results.notificationId = (String) nyBeskjed?.get('id');
         Map<String, Object> eksterneVarsler = (Map<String, Object>) nyBeskjed?.get('eksterneVarsler');
+        results.externalNotificationId = (String) eksterneVarsler?.get('id');
 
         resultsList.add(results);
 
