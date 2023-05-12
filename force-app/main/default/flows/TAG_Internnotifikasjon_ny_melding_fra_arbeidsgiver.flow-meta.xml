@@ -7,6 +7,9 @@
         <locationY>335</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>TAG_Add_Internal_Contact_ID_in_receipients_IDs_variable</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>emailBody</name>
@@ -27,8 +30,75 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>TAG_Notification_elements</name>
+        <label>Notification elements</label>
+        <locationX>176</locationX>
+        <locationY>695</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>TAG_Get_Custom_Notification_Record_ID.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>TAG_Notificationbody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Ny melding fra arbeidsgiver</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>TAG_RecipientIDs</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <description>Add Internal Contact ID in receipients IDs variable</description>
+        <name>TAG_Add_Internal_Contact_ID_in_receipients_IDs_variable</name>
+        <label>Add Internal Contact ID in receipients IDs variable</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <assignmentItems>
+            <assignToReference>TAG_RecipientIDs</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.TAG_InternalContact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>TAG_Get_Custom_Notification_Record_ID</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <description>Notification within Salesforce for new message from employer is received.</description>
+        <name>TAG_newessagenotification</name>
+        <dataType>String</dataType>
+    </constants>
     <environments>Default</environments>
+    <formulas>
+        <description>Notification Body Message</description>
+        <name>TAG_Notificationbody</name>
+        <dataType>String</dataType>
+        <expression>&quot;Det har kommet ny melding fra &quot;+ {!$Record.TAG_Account__r.Name}</expression>
+    </formulas>
     <interviewLabel>TAG Internnotifikasjon ny melding fra arbeidsgiver {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Internnotifikasjon ny melding fra arbeidsgiver</label>
     <processMetadataValues>
@@ -50,6 +120,28 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get Custom Notification Record ID</description>
+        <name>TAG_Get_Custom_Notification_Record_ID</name>
+        <label>Get Custom Notification Record ID</label>
+        <locationX>176</locationX>
+        <locationY>575</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>TAG_Notification_elements</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>TAG_Internal_notifictaion_New_message_from_employer</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
@@ -65,13 +157,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
-        <filters>
-            <field>TAG_InternalContact__c</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <stringValue></stringValue>
-            </value>
-        </filters>
         <object>Contract__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
@@ -82,4 +167,12 @@
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;Hei&lt;/p&gt;&lt;p&gt;Det har komme en ny melding fra arbeidsgiver, klikk her for å lese den:&lt;/p&gt;&lt;p&gt;https://navdialog--sit2.sandbox.lightning.force.com/lightning/r/Contract__c{!$Record.Id}/view&lt;/p&gt;</text>
     </textTemplates>
+    <variables>
+        <description>RecipientIDs</description>
+        <name>TAG_RecipientIDs</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
