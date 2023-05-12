@@ -149,14 +149,7 @@
             <targetReference>TAG_Intern_notification_message_from_employer</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>TAG_Read_by_NAV__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterFormula>{!$Record.Thread__r.TAG_Number_of_unread_messages_fro__c} &gt; 0</filterFormula>
         <object>Contract__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
