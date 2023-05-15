@@ -149,7 +149,7 @@
             <targetReference>TAG_Intern_notification_message_from_employer</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-        <filterFormula>{!$Record.Thread__r.TAG_Number_of_unread_messages_fro__c} &gt; 0</filterFormula>
+        <filterFormula>{!$Record.Thread__r.TAG_Number_of_unread_messages_fro__c}&gt;0</filterFormula>
         <object>Contract__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
