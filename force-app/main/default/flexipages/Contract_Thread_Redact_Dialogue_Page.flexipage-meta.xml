@@ -143,8 +143,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Journaled__c</fieldItem>
-                <identifier>RecordJournaled_cField</identifier>
+                <fieldItem>Record.CRM_Journal_Status_Formula__c</fieldItem>
+                <identifier>RecordCRM_Journal_Status_Formula_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
