@@ -6,14 +6,17 @@ public class TAG_ThreadJournalRetryBatchTest {
             new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '910825526')
         );
 
+        Id threadRecordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'TAG_Thread' LIMIT 1].Id;
+
         Thread__c thread = (Thread__c) CRM_HENV_TestDataFactory.createRecord(
             new Thread__c(
                 CRM_isActive__c = true,
-                //CRM_Thread_Type__c = 'AG_MLØNN',
+                CRM_Thread_Type__c = 'AG_MLØNN',
                 CRM_Account__c = acc.Id,
                 CRM_Date_Time_Registered__c = DateTime.Now(),
                 TAG_RelatedObjectExternalId__c = '1234',
-                CRM_Closed_Date__c = DateTime.Now()
+                CRM_Closed_Date__c = DateTime.Now(),
+                RecordTypeId = threadRecordTypeId
             )
         );
 
@@ -33,9 +36,6 @@ public class TAG_ThreadJournalRetryBatchTest {
                 Journal_Entry_Status__c = 'Failed'
             )
         );
-
-        thread.CRM_Thread_Type__c = 'AG_MLØNN';
-        update thread;
     }
 
     @isTest

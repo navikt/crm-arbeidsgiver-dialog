@@ -1,6 +1,6 @@
 import { LightningElement, wire, track, api } from 'lwc';
 import getOrganization from '@salesforce/apex/OrganizationBannerController.getOrganization';
-import getContractUrl from '@salesforce/apex/OrganizationBannerController.getContractUrl';
+import getContract from '@salesforce/apex/OrganizationBannerController.getContract';
 import icons from '@salesforce/resourceUrl/icons';
 import { CurrentPageReference } from 'lightning/navigation';
 
@@ -8,6 +8,7 @@ export default class OrganizationBanner extends LightningElement {
     @api organizationName;
     @api organizationNumber;
     @track urlContract;
+    @track participantContract;
     @track agreementNumber;
     @api showBanner;
 
@@ -33,7 +34,7 @@ export default class OrganizationBanner extends LightningElement {
             this.organizationNumber = this.getUrlParameter('organisasjonsnummer');
             console.log(this.currentPageReference.attributes.name + ' current page ref');
             this.getOrg();
-            this.getAgreementUrl();
+            this.getAgreement();
         }
     }
 
@@ -48,13 +49,15 @@ export default class OrganizationBanner extends LightningElement {
             });
     }
 
-    getAgreementUrl() {
-        getContractUrl({ contractNr: this.agreementNumber })
+    getAgreement() {
+        getContract({ contractNr: this.agreementNumber })
             .then((result) => {
-                this.urlContract = result;
+                this.urlContract = result.TAG_ExternalURL__c;
+                this.participantContract = result.TAG_MeasureParticipant__c;
+                
             })
             .catch((error) => {
-                console.error('getAgreementUrl error', error);
+                console.error('getAgreement error', error);
             });
     }
 
