@@ -144,7 +144,7 @@
     </decisions>
     <decisions>
         <name>Internal_or_external</name>
-        <label>Internal or external</label>
+        <label>Notify internal or external</label>
         <locationX>842</locationX>
         <locationY>695</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
@@ -155,7 +155,7 @@
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -172,9 +172,9 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -192,7 +192,7 @@
     </decisions>
     <decisions>
         <name>Internal_or_external_message</name>
-        <label>Internal or external message</label>
+        <label>Notify internal or external (first msg)</label>
         <locationX>50</locationX>
         <locationY>695</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
@@ -203,7 +203,7 @@
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -222,7 +222,7 @@
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
