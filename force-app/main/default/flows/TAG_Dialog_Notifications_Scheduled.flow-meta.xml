@@ -101,7 +101,7 @@
     <formulas>
         <name>ExternId</name>
         <dataType>String</dataType>
-        <expression>{!Get_contract.ExternalId__c} + TEXT(DATETIMEVALUE(NOW()))</expression>
+        <expression>{!Get_contract.ExternalId__c} + {!MessageId}</expression>
     </formulas>
     <interviewLabel>TAG Dialog Notifications Scheduled {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialog Notifications Scheduled</label>
@@ -171,6 +171,10 @@
         </filters>
         <object>Message__c</object>
         <outputAssignments>
+            <assignToReference>MessageId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <outputAssignments>
             <assignToReference>HasUnreadMessages</assignToReference>
             <field>TAG_OldUnreadMsgExtern__c</field>
         </outputAssignments>
@@ -208,12 +212,12 @@
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Label.TAG_DialogNotifikasjon} + {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
+        <text>&lt;p&gt;{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotifification</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Label.TAG_DialogSMSNotifikasjon} + {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
+        <text>&lt;p&gt;{!$Label.TAG_DialogSMSNotifikasjon} {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>HasUnreadMessages</name>
@@ -224,5 +228,12 @@
         <value>
             <booleanValue>false</booleanValue>
         </value>
+    </variables>
+    <variables>
+        <name>MessageId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>
