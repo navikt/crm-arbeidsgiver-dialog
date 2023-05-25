@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Create_Custom_Notification</name>
+        <label>Create Custom Notification</label>
+        <locationX>50</locationX>
+        <locationY>1055</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>TAG_Get_custom_notification_Record_ID.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>TAG_NotificationBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Ny melding fra arbeidsgiver</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>TAG_RecipientIDs</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.CRM_Thread__r.TAG_RelatedObjectExternalId__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Send_external_notification</name>
         <label>Send external notification</label>
         <locationX>242</locationX>
         <locationY>768</locationY>
+        master
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -63,6 +103,7 @@
         <label>Send external notification not first</label>
         <locationX>1034</locationX>
         <locationY>768</locationY>
+         master
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -117,11 +158,28 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>TAG_Add_internal_contact_user_id</name>
+        <label>Add internal contact user id</label>
+        <locationX>50</locationX>
+        <locationY>815</locationY>
+        <assignmentItems>
+            <assignToReference>TAG_RecipientIDs</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Get_contract.TAG_InternalContact__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>TAG_Get_custom_notification_Record_ID</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
         <locationX>638</locationX>
         <locationY>528</locationY>
+         master
         <defaultConnector>
             <targetReference>Internal_or_external</targetReference>
         </defaultConnector>
@@ -147,6 +205,7 @@
         <label>Notify internal or external</label>
         <locationX>1034</locationX>
         <locationY>648</locationY>
+        master
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Internal_message</name>
@@ -195,6 +254,7 @@
         <label>Notify internal or external (first msg)</label>
         <locationX>242</locationX>
         <locationY>648</locationY>
+        master
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Internal</name>
@@ -213,6 +273,9 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>TAG_Add_internal_contact_user_id</targetReference>
+            </connector>
             <label>Internal</label>
         </rules>
         <rules>
@@ -244,6 +307,22 @@
         <dataType>String</dataType>
         <expression>{!Get_contract.ExternalId__c} + {!Get_first_message.Id}</expression>
     </formulas>
+    <formulas>
+        <name>TAG_InternalContactID</name>
+        <dataType>String</dataType>
+        <expression>{!Get_contract.TAG_InternalContact__r.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>tag_internalcontactuserid</name>
+        <dataType>String</dataType>
+        <expression>{!Get_contract.TAG_InternalContact__c}</expression>
+    </formulas>
+    <formulas>
+        <description>Text to show in notifciation bell in Salesforce</description>
+        <name>TAG_NotificationBody</name>
+        <dataType>String</dataType>
+        <expression>&quot;Det har kommet ny melding fra &quot;+ {!Get_contract.TAG_Account__c}</expression>
+    </formulas>
     <interviewLabel>TAG Dialog Notifications {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialog Notifications</label>
     <processMetadataValues>
@@ -270,6 +349,7 @@
         <label>Get contract</label>
         <locationX>638</locationX>
         <locationY>288</locationY>
+        master
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_first_message</targetReference>
@@ -291,6 +371,7 @@
         <label>Get first message</label>
         <locationX>638</locationX>
         <locationY>408</locationY>
+        master
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>First_message</targetReference>
@@ -310,8 +391,31 @@
         <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <description>Get id for custom notification</description>
+        <name>TAG_Get_custom_notification_Record_ID</name>
+        <label>Get custom notification Record ID</label>
+        <locationX>50</locationX>
+        <locationY>935</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Custom_Notification</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>TAG_Internal_notifictaion_New_message_from_employer</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>50</locationX>
+        master
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -338,7 +442,7 @@
         </scheduledPaths>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
@@ -349,4 +453,12 @@
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;{!$Label.TAG_DialogSMSNotifikasjon} {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
     </textTemplates>
+    <variables>
+        <description>RecipientIDs</description>
+        <name>TAG_RecipientIDs</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
