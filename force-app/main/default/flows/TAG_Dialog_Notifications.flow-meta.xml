@@ -42,8 +42,9 @@
     <actionCalls>
         <name>Send_external_notification</name>
         <label>Send external notification</label>
-        <locationX>314</locationX>
-        <locationY>815</locationY>
+        <locationX>242</locationX>
+        <locationY>768</locationY>
+        master
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -100,8 +101,9 @@
     <actionCalls>
         <name>Send_external_notification_not_first</name>
         <label>Send external notification not first</label>
-        <locationX>1106</locationX>
-        <locationY>815</locationY>
+        <locationX>1034</locationX>
+        <locationY>768</locationY>
+         master
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -175,8 +177,9 @@
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
-        <locationX>710</locationX>
-        <locationY>575</locationY>
+        <locationX>638</locationX>
+        <locationY>528</locationY>
+         master
         <defaultConnector>
             <targetReference>Internal_or_external</targetReference>
         </defaultConnector>
@@ -199,9 +202,10 @@
     </decisions>
     <decisions>
         <name>Internal_or_external</name>
-        <label>Internal or external</label>
-        <locationX>1106</locationX>
-        <locationY>695</locationY>
+        <label>Notify internal or external</label>
+        <locationX>1034</locationX>
+        <locationY>648</locationY>
+        master
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Internal_message</name>
@@ -210,7 +214,7 @@
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -227,9 +231,9 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -247,9 +251,10 @@
     </decisions>
     <decisions>
         <name>Internal_or_external_message</name>
-        <label>Internal or external message</label>
-        <locationX>314</locationX>
-        <locationY>695</locationY>
+        <label>Notify internal or external (first msg)</label>
+        <locationX>242</locationX>
+        <locationY>648</locationY>
+        master
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Internal</name>
@@ -258,7 +263,7 @@
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -280,7 +285,7 @@
                 <leftValueReference>$Record.CRM_From_User__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -300,7 +305,7 @@
     <formulas>
         <name>ExternId</name>
         <dataType>String</dataType>
-        <expression>{!Get_contract.ExternalId__c} + TEXT(DATETIMEVALUE(NOW()))</expression>
+        <expression>{!Get_contract.ExternalId__c} + {!Get_first_message.Id}</expression>
     </formulas>
     <formulas>
         <name>TAG_InternalContactID</name>
@@ -342,8 +347,9 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>710</locationX>
-        <locationY>335</locationY>
+        <locationX>638</locationX>
+        <locationY>288</locationY>
+        master
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_first_message</targetReference>
@@ -363,8 +369,9 @@
     <recordLookups>
         <name>Get_first_message</name>
         <label>Get first message</label>
-        <locationX>710</locationX>
-        <locationY>455</locationY>
+        <locationX>638</locationX>
+        <locationY>408</locationY>
+        master
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>First_message</targetReference>
@@ -407,11 +414,9 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>584</locationX>
+        <locationX>50</locationX>
+        master
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_contract</targetReference>
-        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>CRM_Type__c</field>
@@ -429,18 +434,24 @@
         </filters>
         <object>Message__c</object>
         <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>Get_contract</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Label.TAG_DialogNotifikasjon} + {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
+        <text>&lt;p&gt;{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotification</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Label.TAG_DialogSMSNotifikasjon} + {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
+        <text>&lt;p&gt;{!$Label.TAG_DialogSMSNotifikasjon} {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <description>RecipientIDs</description>
