@@ -1,34 +1,67 @@
-import { LightningElement, wire, track } from 'lwc';
-import USER_ID from '@salesforce/user/Id';
-import calculateSharingForUser from '@salesforce/apex/OrganizationBannerController.getRepresentedOrganization';
+import { LightningElement, wire, track, api } from 'lwc';
+import getOrganization from '@salesforce/apex/OrganizationBannerController.getOrganization';
+import getContract from '@salesforce/apex/OrganizationBannerController.getContract';
+import icons from '@salesforce/resourceUrl/icons';
+import { CurrentPageReference } from 'lightning/navigation';
 
 export default class OrganizationBanner extends LightningElement {
-    @track organization;
-    
-    @wire(calculateSharingForUser, { userId: USER_ID })
-    wiredAccount({ error, data }) {
-        if (data) {
-            this.organization = data;
-            this.error = undefined;
-        } else if (error) {
-            console.error(error);
+    @api organizationName;
+    @api organizationNumber;
+    @track urlContract;
+    @track participantContract;
+    @track agreementNumber;
+    @api showBanner;
+
+    chevrondown = icons + '/chevrondown.svg';
+    currentPageReference = null;
+
+    @wire(CurrentPageReference)
+    getStateParameters(currentPageReference) {
+        if (currentPageReference) {
+            this.currentPageReference = currentPageReference;
         }
     }
 
-    get organizationName() {
-        return this.organization.Name;
+    connectedCallback() {
+        if (this.currentPageReference.attributes.name == 'Error') {
+            console.log(
+                ' attributes should be error ' +
+                    this.currentPageReference.attributes.name +
+                    ' and banner should not show'
+            );
+        } else {
+            this.agreementNumber = this.getUrlParameter('avtalenummer');
+            this.organizationNumber = this.getUrlParameter('organisasjonsnummer');
+            console.log(this.currentPageReference.attributes.name + ' current page ref');
+            this.getOrg();
+            this.getAgreement();
+        }
     }
 
-    get organizationNumber() {
-        return this.organization.INT_OrganizationNumber__c;
+    getOrg() {
+        getOrganization({ orgNumber: this.organizationNumber })
+            .then((result) => {
+                this.organizationName = result.Name;
+                this.organizationNumber = result.INT_OrganizationNumber__c;
+            })
+            .catch((error) => {
+                console.error('getOrganization error', error);
+            });
     }
 
-    get agreementNumberShow() {
-        return this.getUrlParam('avtalenummer');
+    getAgreement() {
+        getContract({ contractNr: this.agreementNumber })
+            .then((result) => {
+                this.urlContract = result.TAG_ExternalURL__c;
+                this.participantContract = result.TAG_MeasureParticipant__c;
+                
+            })
+            .catch((error) => {
+                console.error('getAgreement error', error);
+            });
     }
 
-    getUrlParam(urlParam) {
-        return this.template.querySelector('c-url-reader').getUrlParameter(urlParam);
+    getUrlParameter(paramName) {
+        return this.currentPageReference.state[paramName];
     }
-
 }

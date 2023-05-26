@@ -7,13 +7,24 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>Thread__c.Abort_Redaction</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Thread__c.Complete_Redaction</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.CRM_Thread_Type__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>AG_MLØNN</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>Thread__c.Set_to_Redaction</value>
+                            <value>Thread__c.Abort_Redaction</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.CRM_Thread_Type__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>AG_MLØNN</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -49,6 +60,13 @@
             <componentInstance>
                 <componentName>crmMessagingRedactThreadViewer</componentName>
                 <identifier>c_crmMessagingRedactThreadViewer</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.STO_Sensitive_Information__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>leftcol</name>
@@ -61,15 +79,85 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.CRM_Account__c</fieldItem>
-                <identifier>RecordCRM_Account_cField</identifier>
+                <fieldItem>Record.STO_Sensitive_Information_Activated_By__c</fieldItem>
+                <identifier>RecordSTO_Sensitive_Information_Activated_By_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-00191ca8-01ec-4163-ab9c-31e6a9a949e9</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.STO_Sensitive_Information_Date__c</fieldItem>
+                <identifier>RecordSTO_Sensitive_Information_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.STO_Sensitive_Information_Unit__c</fieldItem>
+                <identifier>RecordSTO_Sensitive_Information_Unit_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_RelatedObjectExternalId__c</fieldItem>
+                <identifier>RecordTAG_RelatedObjectExternalId_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-2e17cee9-cf61-41d2-968c-1632b7ed9e6a</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>Facet-d091e9d0-f20b-4344-8004-484e21267549</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Cause__c</fieldItem>
+                <identifier>RecordCause_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Redaction_Progress__c</fieldItem>
+                <identifier>RecordRedaction_Progress_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.CRM_Journal_Status_Formula__c</fieldItem>
+                <identifier>RecordCRM_Journal_Status_Formula_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Related_Account__c</fieldItem>
+                <identifier>RecordTAG_Related_Account_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-c2988111-892b-493e-864b-fe51d41af951</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -77,7 +165,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-00191ca8-01ec-4163-ab9c-31e6a9a949e9</value>
+                    <value>Facet-2e17cee9-cf61-41d2-968c-1632b7ed9e6a</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column</identifier>
@@ -87,13 +175,13 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-d091e9d0-f20b-4344-8004-484e21267549</value>
+                    <value>Facet-c2988111-892b-493e-864b-fe51d41af951</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-169f1f9e-f6f5-4f56-a25a-1abeffb011ec</name>
+        <name>Facet-2e113eda-e853-4054-94d4-bc911cec017a</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -101,14 +189,69 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-169f1f9e-f6f5-4f56-a25a-1abeffb011ec</value>
+                    <value>Facet-2e113eda-e853-4054-94d4-bc911cec017a</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Section</value>
+                    <value>Detaljer</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Thread__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Journal_Entries__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CRM_Journal_Date__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CRM_Created_By_Ident__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Journal Entries</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList</identifier>
             </componentInstance>
         </itemInstances>
         <name>rightcol</name>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Sett til sladding</label>
+        <name>Set_to_Redaction</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Journalfør</label>
+        <name>TAG_Journal</name>
+    </quickActions>
+    <webLinks>
+        <label></label>
+        <name>Redact_contract_dialogue</name>
+    </webLinks>
+</CustomObjectTranslation>

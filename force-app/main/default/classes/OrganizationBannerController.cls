@@ -20,4 +20,14 @@ public without sharing class OrganizationBannerController {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled(cacheable=true)
+    public static Contract__c getContract(String contractNr) {
+        return [SELECT id, TAG_ExternalURL__c, TAG_MeasureParticipant__c FROM Contract__c WHERE ExternalId__c = :contractNr];
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Account getOrganization(String orgNumber) {
+        return [SELECT id, INT_OrganizationNumber__c, Name FROM Account WHERE INT_OrganizationNumber__c = :orgNumber];
+    }
 }

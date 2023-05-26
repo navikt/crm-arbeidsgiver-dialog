@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomSite xmlns="http://soap.sforce.com/2006/04/metadata">
     <active>true</active>
+    <allowGuestPaymentsApi>false</allowGuestPaymentsApi>
     <allowHomePage>false</allowHomePage>
     <allowStandardAnswersPages>false</allowStandardAnswersPages>
     <allowStandardIdeasPages>false</allowStandardIdeasPages>
@@ -23,7 +24,7 @@
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
     <serverIsDown>SNA_arbeidsgiver_dialog1_sf_default_cdn_Zhre0</serverIsDown>
-    <siteAdmin>test-tj8emi5f0c2s@example.com</siteAdmin>
-    <siteGuestRecordDefaultOwner>test-tj8emi5f0c2s@example.com</siteGuestRecordDefaultOwner>
+    <siteAdmin>test-thcgeqpngs6f@example.com</siteAdmin>
+    <siteGuestRecordDefaultOwner>test-thcgeqpngs6f@example.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
 </CustomSite>

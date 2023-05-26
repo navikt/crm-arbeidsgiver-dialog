@@ -4,8 +4,8 @@
     <decisions>
         <name>Is_Record_Type_Id_Tiltak_Agreement</name>
         <label>Is Record Type Id Tiltak Agreement</label>
-        <locationX>924</locationX>
-        <locationY>321</locationY>
+        <locationX>1084</locationX>
+        <locationY>280</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>It_Is_Tiltak_Agreement</name>
@@ -18,7 +18,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Thread_To_Create</targetReference>
+                <targetReference>Get_Thread_record_Id</targetReference>
             </connector>
             <label>It Is Tiltak Agreement</label>
         </rules>
@@ -81,6 +81,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>RecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_RelatedObjectExternalId__c</field>
             <value>
                 <elementReference>$Record.ExternalId__c</elementReference>
@@ -88,6 +94,29 @@
         </inputAssignments>
         <object>Thread__c</object>
     </recordCreates>
+    <recordLookups>
+        <name>Get_Thread_record_Id</name>
+        <label>Get Thread record Id</label>
+        <locationX>713</locationX>
+        <locationY>382</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Thread_To_Create</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>TAG Thread</stringValue>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>RecordTypeId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
     <recordUpdates>
         <name>Update_contract_relation_to_thread</name>
         <label>Update contract relation to thread</label>
@@ -112,6 +141,13 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>RecordTypeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>ThreadID</name>
         <dataType>String</dataType>

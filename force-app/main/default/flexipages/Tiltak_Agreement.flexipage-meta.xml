@@ -7,7 +7,10 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>CustomButton.Contract__c.Redact_contract_dialogue</value>
+                            <value>Contract__c.TAG_Journal</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contract__c.Set_to_Redaction</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -40,9 +43,201 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Account__c</fieldItem>
+                <identifier>RecordTAG_Account_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_AccountOrganizationNumber__c</fieldItem>
+                <identifier>RecordTAG_AccountOrganizationNumber_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-5da74fd4-88f6-4577-9b22-b010417484fb</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_EmployerContact__c</fieldItem>
+                <identifier>RecordTAG_EmployerContact_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_EmployerContactPhone__c</fieldItem>
+                <identifier>RecordTAG_EmployerContactPhone_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-a205e458-4396-4a1a-a06d-7b0afa37ae13</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
-                <componentName>force:detailPanel</componentName>
-                <identifier>force_detailPanel1</identifier>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-5da74fd4-88f6-4577-9b22-b010417484fb</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-a205e458-4396-4a1a-a06d-7b0afa37ae13</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-8f66dcfb-7247-4cd5-accb-bf00dea57807</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_InternalContact__c</fieldItem>
+                <identifier>RecordTAG_InternalContact_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.NavIdent__c</fieldItem>
+                <identifier>RecordNavIdent_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ExternalId__c</fieldItem>
+                <identifier>RecordExternalId_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-dd9a6b40-6f41-4f3d-9562-4584ec658665</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_NAVUnit__c</fieldItem>
+                <identifier>RecordTAG_NAVUnit_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Category__c</fieldItem>
+                <identifier>RecordTAG_Category_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_ExternalURL__c</fieldItem>
+                <identifier>RecordTAG_ExternalURL_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-e16e9cad-fdd4-47e5-a1f3-22f1f4fc405a</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-dd9a6b40-6f41-4f3d-9562-4584ec658665</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-e16e9cad-fdd4-47e5-a1f3-22f1f4fc405a</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-f077bf0b-e3b8-4e8a-a6ac-22e4d3adc0e3</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-8f66dcfb-7247-4cd5-accb-bf00dea57807</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Arbeidsgiver</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-f077bf0b-e3b8-4e8a-a6ac-22e4d3adc0e3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Intern Informasjon</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:recordDetailPanelMobile</componentName>
+                <identifier>force_recordDetailPanelMobile</identifier>
             </componentInstance>
         </itemInstances>
         <name>leftcol</name>
@@ -52,8 +247,30 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Arbeidsgiver blir varslet ved ny melding, men det kan ta tid før
+                        de svarer. Arbeidsgiver blir informert om at det kan ta tid før NAV
+                        svarer.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Send bare spørsmål
+                        eller opplysninger som gjelder denne avtalen. Husk å få med alle
+                        opplysninger som kan være relevant for saken. Du kan skrive maksimalt 1000
+                        tegn. Det er cirka en halv A4-side.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Vi minner
+                        om at meldingen din også kan bli delt med den
+                        ansatte.&lt;/li&gt;&lt;li&gt;Denne dialogen skal kun gjelde denne konkrete
+                        avtalen.&lt;/li&gt;&lt;/ul&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>showClose</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>singleThread</name>
@@ -61,12 +278,25 @@
                 </componentInstanceProperties>
                 <componentName>crmMessagingMessageComponent</componentName>
                 <identifier>c_crmMessagingMessageComponent1</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Category__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MIDLERTIDIG_LONNSTILSKUDD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>GJENNOMFØRES</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>rightcol</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Tiltak Agreement</masterLabel>
+    <masterLabel>Measure Agreement</masterLabel>
     <sobjectType>Contract__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>
