@@ -1,29 +1,34 @@
+
 import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent'
-import ToastContainer from 'lightning/toastContainer';
 
-export default class ToastMessageContainer extends LightningElement {
-    connectedCallback() { 
-        const toastContainer = ToastContainer.instance();
-        toastContainer.maxShown = 3;
-    }
-  showError() {
-        const evt = new ShowToastEvent({
-            title: 'Error',
-            message: 'Journalføringen ble ikke gjennomført',
-            variant: 'error'
-        });
-        this.dispatchEvent(evt);
-    }
-    showSuccess() {
-        const evt = new ShowToastEvent({
-            title: 'Suksess',
-            message: 'Journalføring gjennomført',
-            variant: 'success'
-        });
-        this.dispatchEvent(evt);
+export default class ToastMessage extends LightningElement {
+    journalSaved = false;
+    
+//Også må vi finne en måte å kjøre koden på. burde kanskje heller ha dette som en apex action. 
+    saveJournal(){
+        //leetkode
+     if(the_journal_has_been_saved) {
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Success',
+                variant: 'success',
+                message: 'Journal has been saved',
+            })
+        );
+        }else{
+            this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error',
+                message: 'Journal has not been saved',
+                variant: 'error'
+            })
+        );
+        }
     }
    
 
-    
+   
 }
+    
+      
