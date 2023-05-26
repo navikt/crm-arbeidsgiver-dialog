@@ -4,7 +4,7 @@
         <name>Create_Custom_Notification</name>
         <label>Create Custom Notification</label>
         <locationX>50</locationX>
-        <locationY>1055</locationY>
+        <locationY>1008</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -35,16 +35,15 @@
         <inputParameters>
             <name>targetId</name>
             <value>
-                <elementReference>$Record.CRM_Thread__r.TAG_RelatedObjectExternalId__c</elementReference>
+                <elementReference>Get_contract.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <actionCalls>
         <name>Send_external_notification</name>
         <label>Send external notification</label>
-        <locationX>242</locationX>
+        <locationX>314</locationX>
         <locationY>768</locationY>
-        master
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -101,9 +100,8 @@
     <actionCalls>
         <name>Send_external_notification_not_first</name>
         <label>Send external notification not first</label>
-        <locationX>1034</locationX>
+        <locationX>1106</locationX>
         <locationY>768</locationY>
-         master
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -162,7 +160,7 @@
         <name>TAG_Add_internal_contact_user_id</name>
         <label>Add internal contact user id</label>
         <locationX>50</locationX>
-        <locationY>815</locationY>
+        <locationY>768</locationY>
         <assignmentItems>
             <assignToReference>TAG_RecipientIDs</assignToReference>
             <operator>Add</operator>
@@ -177,9 +175,8 @@
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
-        <locationX>638</locationX>
+        <locationX>710</locationX>
         <locationY>528</locationY>
-         master
         <defaultConnector>
             <targetReference>Internal_or_external</targetReference>
         </defaultConnector>
@@ -203,9 +200,8 @@
     <decisions>
         <name>Internal_or_external</name>
         <label>Notify internal or external</label>
-        <locationX>1034</locationX>
+        <locationX>1106</locationX>
         <locationY>648</locationY>
-        master
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Internal_message</name>
@@ -252,9 +248,8 @@
     <decisions>
         <name>Internal_or_external_message</name>
         <label>Notify internal or external (first msg)</label>
-        <locationX>242</locationX>
+        <locationX>314</locationX>
         <locationY>648</locationY>
-        master
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Internal</name>
@@ -347,9 +342,8 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>638</locationX>
+        <locationX>710</locationX>
         <locationY>288</locationY>
-        master
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_first_message</targetReference>
@@ -369,9 +363,8 @@
     <recordLookups>
         <name>Get_first_message</name>
         <label>Get first message</label>
-        <locationX>638</locationX>
+        <locationX>710</locationX>
         <locationY>408</locationY>
-        master
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>First_message</targetReference>
@@ -396,7 +389,7 @@
         <name>TAG_Get_custom_notification_Record_ID</name>
         <label>Get custom notification Record ID</label>
         <locationX>50</locationX>
-        <locationY>935</locationY>
+        <locationY>888</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Custom_Notification</targetReference>
@@ -414,8 +407,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
-        master
+        <locationX>122</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
         <filters>
