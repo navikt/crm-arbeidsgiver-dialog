@@ -157,6 +157,7 @@
     </actionCalls>
     <apiVersion>57.0</apiVersion>
     <assignments>
+        <description>Add internal contact user id</description>
         <name>TAG_Add_internal_contact_user_id</name>
         <label>Add internal contact user id</label>
         <locationX>50</locationX>
