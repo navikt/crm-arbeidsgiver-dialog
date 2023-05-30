@@ -11,7 +11,7 @@
         <inputParameters>
             <name>customNotifTypeId</name>
             <value>
-                <elementReference>TAG_Get_custom_notification_Record_ID.Id</elementReference>
+                <elementReference>TAG_Get_custom_notification_ID_No_first.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
