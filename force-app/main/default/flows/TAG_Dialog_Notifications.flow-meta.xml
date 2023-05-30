@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Copy_1_of_Create_Custom_Notification</name>
+        <label>Copy 1 of Create Custom Notification</label>
+        <locationX>842</locationX>
+        <locationY>1008</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>TAG_Get_custom_notification_Record_ID.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>TAG_NotificationBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Ny melding fra arbeidsgiver</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>TAG_RecipientIDs</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>Get_contract.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Create_Custom_Notification</name>
         <label>Create Custom Notification</label>
         <locationX>50</locationX>
@@ -172,6 +211,22 @@
             <targetReference>TAG_Get_custom_notification_Record_ID</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>TAG_Add_internal_contact_user_id_notfirsmessage</name>
+        <label>Add internal contact user id not first message</label>
+        <locationX>842</locationX>
+        <locationY>768</locationY>
+        <assignmentItems>
+            <assignToReference>TAG_RecipientIDs</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Get_contract.TAG_InternalContact__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>TAG_Get_custom_notification_ID_No_first</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
@@ -220,6 +275,9 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>TAG_Add_internal_contact_user_id_notfirsmessage</targetReference>
+            </connector>
             <label>Internal message</label>
         </rules>
         <rules>
@@ -382,6 +440,28 @@
         <queriedFields>Id</queriedFields>
         <sortField>CRM_Sent_date__c</sortField>
         <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get ID for custom notification</description>
+        <name>TAG_Get_custom_notification_ID_No_first</name>
+        <label>Get custom notification ID No first</label>
+        <locationX>842</locationX>
+        <locationY>888</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Copy_1_of_Create_Custom_Notification</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>TAG_Internal_notifictaion_New_message_from_employer</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
