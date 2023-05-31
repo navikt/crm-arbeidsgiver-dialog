@@ -154,7 +154,7 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <textTemplates>
         <name>TAG_InternalNotification_new_message</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
