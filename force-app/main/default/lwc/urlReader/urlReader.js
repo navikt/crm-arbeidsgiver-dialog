@@ -22,7 +22,7 @@ export default class UrlReader extends LightningElement {
     }
 
     @api
-    getAttribute(attributeName) {
+    getAttributes(attributeName) {
         return this.currentPageReference.attributes[attributeName];
     }
 }
