@@ -17,13 +17,7 @@
         <inputParameters>
             <name>message</name>
             <value>
-                <stringValue>The journal has been saved</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>title</name>
-            <value>
-                <stringValue>Success</stringValue>
+                <stringValue>Journalføring gjennomført</stringValue>
             </value>
         </inputParameters>
         <inputParameters>

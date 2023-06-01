@@ -5,13 +5,15 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Dialog Notifikasjon</shortDescription>
-        <value>Hei, du har mottatt en ny melding på en tiltaksavtale tilknyttet din virksomhet. Meldingen er tilknyttet avtalenummer:</value>
+        <value>Hei, du har mottatt en ny melding på en tiltaksavtale tilknyttet din virksomhet.
+            Meldingen er tilknyttet avtalenummer:</value>
     </labels>
     <labels>
         <fullName>TAG_DialogSMSNotifikasjon</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Dialog SMS Notifikasjon</shortDescription>
-        <value>Hei, du har mottatt en ny melding fra NAV. Du kan logge inn på &quot;Min side arbeidsgiver&quot; for å se meldingen. Meldingen ligger under tiltaksavtaler, på avtalenummer:</value>
+        <value>Hei, du har mottatt en ny melding fra NAV. Du kan logge inn på Min side arbeidsgiver
+            for å se meldingen. Meldingen ligger under tiltaksavtaler, på avtalenummer:</value>
     </labels>
 </CustomLabels>

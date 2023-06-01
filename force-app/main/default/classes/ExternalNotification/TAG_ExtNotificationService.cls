@@ -125,7 +125,7 @@ public inherited sharing class TAG_ExtNotificationService {
             ' } } smsTekst: \\"' +
             this.smsText +
             '\\" sendetidspunkt: { sendevindu: ' +
-            this.dispatchWindow +
+            dispatchWindowConverted +
             ' }}}]';
 
         return this;
