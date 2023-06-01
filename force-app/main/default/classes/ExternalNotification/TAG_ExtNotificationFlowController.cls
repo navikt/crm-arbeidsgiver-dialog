@@ -55,15 +55,19 @@ public with sharing class TAG_ExtNotificationFlowController {
         {"data":{"nyBeskjed":{"__typename":"DuplikatEksternIdOgMerkelapp","feilmelding":"notifikasjon med angitt eksternId og merkelapp finnes fra før"}}}
         */
 
-        Map<String, Object> responseDeserialize = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-        Map<String, Object> data = (Map<String, Object>) responseDeserialize?.get('data');
-        Map<String, Object> nyBeskjed = (Map<String, Object>) data?.get('nyBeskjed');
-        results.typeName = (String) nyBeskjed?.get('__typename');
-        results.errorMessage = (String) nyBeskjed?.get('feilmelding');
-        results.notificationId = (String) nyBeskjed?.get('id');
-        Map<String, Object> eksterneVarsler = (Map<String, Object>) nyBeskjed?.get('eksterneVarsler');
-        results.externalNotificationId = (String) eksterneVarsler?.get('id');
-
+        if (response.getStatusCode() == 500) {
+            results.errorMessage = response.getStatus() + ' ' + response.getBody();
+            results.statusCode = response.getStatusCode();
+        } else {
+            Map<String, Object> responseDeserialize = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+            Map<String, Object> data = (Map<String, Object>) responseDeserialize?.get('data');
+            Map<String, Object> nyBeskjed = (Map<String, Object>) data?.get('nyBeskjed');
+            results.typeName = (String) nyBeskjed?.get('__typename');
+            results.errorMessage = (String) nyBeskjed?.get('feilmelding');
+            results.notificationId = (String) nyBeskjed?.get('id');
+            Map<String, Object> eksterneVarsler = (Map<String, Object>) nyBeskjed?.get('eksterneVarsler');
+            results.externalNotificationId = (String) eksterneVarsler?.get('id');
+        }
         resultsList.add(results);
 
         return resultsList;
@@ -127,5 +131,8 @@ public with sharing class TAG_ExtNotificationFlowController {
 
         @InvocableVariable
         public String errorMessage;
+
+        @InvocableVariable
+        public Integer statusCode;
     }
 }
