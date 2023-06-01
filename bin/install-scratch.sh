@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SCRIPT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd $SCRIPT_PATH/..
+
 # Check exit code function
 error() {
     echo ""
@@ -19,8 +22,15 @@ error() {
     fi
 }
 
-SCRIPT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-cd $SCRIPT_PATH/..
+publishCommunity() {
+    echo "Publishing arbeidsgiver-dialog site..."
+    if [[ $npm_config_without_publish ]]; then
+        echo "Skipping publish of community: "arbeidsgiver-dialog"..."
+    else
+        sf community publish --name "arbeidsgiver-dialog" || { error $? '"sf community publish" command failed for community: "arbeidsgiver-dialog".'; }
+    fi
+echo ""
+}
 
 if [[ $npm_config_info ]]; then
     echo "Usage: npm run mac:build [options]"
@@ -31,10 +41,17 @@ if [[ $npm_config_info ]]; then
     echo "  --org-duration=<days>       Duration of the scratch org"
     echo "  --without-deploy            Skip deploy"
     echo "  --without-publish           Skip publish of community: \"arbeidsgiver-dialog\""
+    echo "  --publish-community         Publish of community: \"arbeidsgiver-dialog\""
     echo "  --browser=<option>          Browser where the org opens."
     echo "                              <options: chrome|edge|firefox>"
     echo "  --info                      Show this help"
     echo ""
+    exit 0
+fi
+
+if [[ $npm_config_publish_community ]]; then
+    publishCommunity
+    
     exit 0
 fi
 
@@ -114,14 +131,6 @@ else
 fi
 echo ""
 
-echo "Publishing arbeidsgiver-dialog site..."
-if [[ $npm_config_without_publish ]]; then
-    echo "Skipping publish of community: "arbeidsgiver-dialog"..."
-else
-    sf community publish --name "arbeidsgiver-dialog" || { error $? '"sf community publish" command failed for community: "arbeidsgiver-dialog".'; }
-fi
-echo ""
-
 echo "Assigning permissions..."
 sf org assign permset \
 --name Messaging_Read_and_Write_Messages_and_Threads \
@@ -148,5 +157,7 @@ else
     sf org open --path "lightning/app/standard__LightningService" || { error $? '"sf org open" command failed.'; }
 fi
 echo ""
+
+publishCommunity
 
 error $?
