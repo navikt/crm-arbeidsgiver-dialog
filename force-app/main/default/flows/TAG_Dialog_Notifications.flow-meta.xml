@@ -431,7 +431,7 @@
         <description>Text to show in notifciation bell in Salesforce</description>
         <name>TAG_NotificationBody</name>
         <dataType>String</dataType>
-        <expression>&quot;Det har kommet ny melding fra &quot;+ {!Get_contract.TAG_Account__c}</expression>
+        <expression>&quot;Det har kommet ny melding fra &quot;+ {!Get_contract.TAG_Account__r.Name}</expression>
     </formulas>
     <interviewLabel>TAG Dialog Notifications {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialog Notifications</label>
@@ -571,7 +571,7 @@
         </scheduledPaths>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>LogError200</name>
         <label>Log error 200</label>
