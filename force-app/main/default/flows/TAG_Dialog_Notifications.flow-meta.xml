@@ -236,17 +236,41 @@
     <decisions>
         <name>Error_occured</name>
         <label>Error occured</label>
-        <locationX>710</locationX>
+        <locationX>974</locationX>
         <locationY>1440</locationY>
-        <defaultConnectorLabel>Status Code 200 OK</defaultConnectorLabel>
+        <defaultConnector>
+            <targetReference>Log_Other_Errors</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other errors</defaultConnectorLabel>
         <rules>
             <name>StatusCode200WithError</name>
-            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditionLogic>(1 OR 2) AND (3 OR 4 OR 5 OR 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>Send_external_notification.statusCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
             <conditions>
                 <leftValueReference>Send_external_notification_not_first.statusCode</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Send_external_notification.errorMessage</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Send_external_notification.errorMessage</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -270,7 +294,14 @@
         </rules>
         <rules>
             <name>Status_Code_500</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Send_external_notification.statusCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>500.0</numberValue>
+                </rightValue>
+            </conditions>
             <conditions>
                 <leftValueReference>Send_external_notification_not_first.statusCode</leftValueReference>
                 <operator>EqualTo</operator>
@@ -283,16 +314,35 @@
             </connector>
             <label>Status Code 500</label>
         </rules>
+        <rules>
+            <name>Status_Code_200_OK</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Send_external_notification.statusCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Send_external_notification_not_first.statusCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
+            <label>Status Code 200 OK</label>
+        </rules>
     </decisions>
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
-        <locationX>710</locationX>
+        <locationX>974</locationX>
         <locationY>528</locationY>
         <defaultConnector>
-            <targetReference>Internal_or_external</targetReference>
+            <targetReference>Log_error_missing_data</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Not first message</defaultConnectorLabel>
+        <defaultConnectorLabel>Missing data</defaultConnectorLabel>
         <rules>
             <name>Is_first_message</name>
             <conditionLogic>and</conditionLogic>
@@ -303,10 +353,32 @@
                     <elementReference>$Record.Id</elementReference>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Get_contract.TAG_EmployerContactPhone__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Internal_or_external_message</targetReference>
             </connector>
             <label>Is first message</label>
+        </rules>
+        <rules>
+            <name>Not_first_message</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_contract.TAG_EmployerContactPhone__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Internal_or_external</targetReference>
+            </connector>
+            <label>Not first message</label>
         </rules>
     </decisions>
     <decisions>
@@ -328,6 +400,13 @@
             <conditions>
                 <leftValueReference>$Record.CRM_Read_By_Nav__c</leftValueReference>
                 <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_contract.TAG_InternalContact__c</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
@@ -383,6 +462,13 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Get_contract.TAG_InternalContact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>TAG_Add_internal_contact_user_id</targetReference>
             </connector>
@@ -431,7 +517,7 @@
         <description>Text to show in notifciation bell in Salesforce</description>
         <name>TAG_NotificationBody</name>
         <dataType>String</dataType>
-        <expression>&quot;Det har kommet ny melding fra &quot;+ {!Get_contract.TAG_Account__r.Name}</expression>
+        <expression>&quot;Det har kommet ny melding fra &quot;+ {!Get_contract.TAG_Account__c}</expression>
     </formulas>
     <interviewLabel>TAG Dialog Notifications {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialog Notifications</label>
@@ -457,7 +543,7 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>710</locationX>
+        <locationX>974</locationX>
         <locationY>288</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -478,7 +564,7 @@
     <recordLookups>
         <name>Get_first_message</name>
         <label>Get first message</label>
-        <locationX>710</locationX>
+        <locationX>974</locationX>
         <locationY>408</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -544,7 +630,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>122</locationX>
+        <locationX>254</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -573,9 +659,113 @@
     </start>
     <status>Active</status>
     <subflows>
+        <name>Log_error_missing_data</name>
+        <label>Log error missing data</label>
+        <locationX>1634</locationX>
+        <locationY>648</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow - TAG Dialog Notifications</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Warning</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error &quot;missing data&quot; encountered when sending external notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Message__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Log_Other_Errors</name>
+        <label>Log Other Errors</label>
+        <locationX>1370</locationX>
+        <locationY>1560</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>Send_external_notification_not_first.errorMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow - TAG Dialog Notifications</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Warning</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error &quot;other errors&quot; encountered when sending external notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Message__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>LogError200</name>
         <label>Log error 200</label>
-        <locationX>446</locationX>
+        <locationX>578</locationX>
         <locationY>1560</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
@@ -630,7 +820,7 @@
     <subflows>
         <name>LogError500</name>
         <label>Log error 500</label>
-        <locationX>710</locationX>
+        <locationX>842</locationX>
         <locationY>1560</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
@@ -684,13 +874,13 @@
     </subflows>
     <textTemplates>
         <name>Notification</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotification</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Label.TAG_DialogSMSNotifikasjon} {!Get_contract.ExternalId__c}&lt;/p&gt;</text>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!$Label.TAG_DialogSMSNotifikasjon} {!Get_contract.ExternalId__c}</text>
     </textTemplates>
     <variables>
         <description>RecipientIDs</description>
