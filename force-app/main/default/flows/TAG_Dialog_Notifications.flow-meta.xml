@@ -501,7 +501,12 @@
     <formulas>
         <name>ExternId</name>
         <dataType>String</dataType>
-        <expression>{!Get_contract.ExternalId__c} + {!Get_first_message.Id}</expression>
+        <expression>{!Get_contract.ExternalId__c} + &apos;-&apos; + {!$Record.Id} + &apos;-&apos; + {!GetTimeStamp}</expression>
+    </formulas>
+    <formulas>
+        <name>GetTimeStamp</name>
+        <dataType>String</dataType>
+        <expression>TEXT((DATETIMEVALUE(TODAY()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
     </formulas>
     <formulas>
         <name>TAG_InternalContactID</name>
