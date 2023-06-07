@@ -236,7 +236,7 @@
     <decisions>
         <name>Error_occured</name>
         <label>Error occured</label>
-        <locationX>974</locationX>
+        <locationX>710</locationX>
         <locationY>1440</locationY>
         <defaultConnector>
             <targetReference>Log_Other_Errors</targetReference>
@@ -337,12 +337,12 @@
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
-        <locationX>974</locationX>
+        <locationX>710</locationX>
         <locationY>528</locationY>
         <defaultConnector>
-            <targetReference>Log_error_missing_data</targetReference>
+            <targetReference>Internal_or_external</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Missing data</defaultConnectorLabel>
+        <defaultConnectorLabel>Nor first message</defaultConnectorLabel>
         <rules>
             <name>Is_first_message</name>
             <conditionLogic>and</conditionLogic>
@@ -364,21 +364,6 @@
                 <targetReference>Internal_or_external_message</targetReference>
             </connector>
             <label>Is first message</label>
-        </rules>
-        <rules>
-            <name>Not_first_message</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_contract.TAG_EmployerContactPhone__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Internal_or_external</targetReference>
-            </connector>
-            <label>Not first message</label>
         </rules>
     </decisions>
     <decisions>
@@ -491,6 +476,13 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Get_contract.TAG_EmployerContactPhone__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Send_external_notification</targetReference>
             </connector>
@@ -548,7 +540,7 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>974</locationX>
+        <locationX>710</locationX>
         <locationY>288</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -569,7 +561,7 @@
     <recordLookups>
         <name>Get_first_message</name>
         <label>Get first message</label>
-        <locationX>974</locationX>
+        <locationX>710</locationX>
         <locationY>408</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -635,7 +627,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>254</locationX>
+        <locationX>122</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -664,58 +656,9 @@
     </start>
     <status>Active</status>
     <subflows>
-        <name>Log_error_missing_data</name>
-        <label>Log error missing data</label>
-        <locationX>1634</locationX>
-        <locationY>648</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Warning</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error &quot;missing data&quot; encountered when sending external notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
         <name>Log_Other_Errors</name>
         <label>Log Other Errors</label>
-        <locationX>1370</locationX>
+        <locationX>1106</locationX>
         <locationY>1560</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
@@ -770,7 +713,7 @@
     <subflows>
         <name>LogError200</name>
         <label>Log error 200</label>
-        <locationX>578</locationX>
+        <locationX>314</locationX>
         <locationY>1560</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
@@ -825,7 +768,7 @@
     <subflows>
         <name>LogError500</name>
         <label>Log error 500</label>
-        <locationX>842</locationX>
+        <locationX>578</locationX>
         <locationY>1560</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
