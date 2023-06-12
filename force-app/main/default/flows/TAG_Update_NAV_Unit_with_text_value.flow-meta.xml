@@ -32,7 +32,7 @@
         <inputAssignments>
             <field>NAV_Unit_text_value__c</field>
             <value>
-                <elementReference>$Record.TAG_NAVUnit__c</elementReference>
+                <elementReference>$Record.TAG_NAVUnit__r.Name</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
