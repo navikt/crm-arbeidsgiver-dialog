@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>NAV_Ullensaker_Pilot</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>NAV Ullensaker Pilot</label>
+        <sharedTo>
+            <group>NAV_Ullensaker_Pilot</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>NAV_Unit_text_value__c</field>
+            <operation>equals</operation>
+            <value>NAV Ullensaker</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Measure Agreement</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>TAG_Status__c</field>
+            <operation>equals</operation>
+            <value>Gjennomføres,Avsluttet</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>
