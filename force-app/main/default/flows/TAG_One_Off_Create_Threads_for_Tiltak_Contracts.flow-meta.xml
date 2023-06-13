@@ -2,10 +2,26 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>57.0</apiVersion>
     <assignments>
+        <name>Assign_Current_Contract_To_Collection</name>
+        <label>Assign Current Contract To Collection</label>
+        <locationX>264</locationX>
+        <locationY>1416</locationY>
+        <assignmentItems>
+            <assignToReference>Contract_To_Assign_ThreadId</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Contracts_To_Update_With_Thread</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Threads_To_Assign_ThreadId_to_Contracts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_fields_to_Temp_Thread</name>
         <label>Assign fields to Temp Thread</label>
         <locationX>264</locationX>
-        <locationY>756</locationY>
+        <locationY>684</locationY>
         <assignmentItems>
             <assignToReference>Temp_Thread_Record.CRM_Account__c</assignToReference>
             <operator>Assign</operator>
@@ -56,7 +72,7 @@
         <name>Assign_Temp_Thread_To_Collection</name>
         <label>Assign Temp Thread To Collection</label>
         <locationX>264</locationX>
-        <locationY>876</locationY>
+        <locationY>792</locationY>
         <assignmentItems>
             <assignToReference>New_Thread_Records</assignToReference>
             <operator>Add</operator>
@@ -72,7 +88,7 @@
         <name>Assign_ThreadId_to_Current_Contract</name>
         <label>Assign ThreadId to Current Contract</label>
         <locationX>264</locationX>
-        <locationY>1452</locationY>
+        <locationY>1308</locationY>
         <assignmentItems>
             <assignToReference>currentItem_Contract_To_Assign_ThreadId.Thread__c</assignToReference>
             <operator>Assign</operator>
@@ -81,7 +97,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Loop_Threads_To_Assign_ThreadId_to_Contracts</targetReference>
+            <targetReference>Assign_Current_Contract_To_Collection</targetReference>
         </connector>
     </assignments>
     <collectionProcessors>
@@ -89,7 +105,7 @@
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Contract To Assign ThreadId</label>
         <locationX>264</locationX>
-        <locationY>1332</locationY>
+        <locationY>1200</locationY>
         <assignNextValueToReference>currentItem_Contract_To_Assign_ThreadId</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>Contract_Tiltak_Records</collectionReference>
@@ -112,7 +128,7 @@
         <name>Loop_Contracts_W_O_Thread</name>
         <label>Loop Contracts W/O Thread</label>
         <locationX>176</locationX>
-        <locationY>636</locationY>
+        <locationY>576</locationY>
         <collectionReference>Contract_Tiltak_Records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -126,7 +142,7 @@
         <name>Loop_Threads_To_Assign_ThreadId_to_Contracts</name>
         <label>Loop Threads To Assign ThreadId to Contracts</label>
         <locationX>176</locationX>
-        <locationY>1212</locationY>
+        <locationY>1092</locationY>
         <collectionReference>New_Thread_Records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -159,7 +175,7 @@
         <name>Create_Threads</name>
         <label>Create Threads</label>
         <locationX>176</locationX>
-        <locationY>1092</locationY>
+        <locationY>984</locationY>
         <connector>
             <targetReference>Loop_Threads_To_Assign_ThreadId_to_Contracts</targetReference>
         </connector>
@@ -169,7 +185,7 @@
         <name>Get_Thread_Record_Type_Id</name>
         <label>Get Thread Record Type Id</label>
         <locationX>176</locationX>
-        <locationY>276</locationY>
+        <locationY>252</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Tiltak_Record_Type_Id</targetReference>
@@ -192,7 +208,7 @@
         <name>Get_Tiltak_Record_Type_Id</name>
         <label>Get Tiltak Record Type Id</label>
         <locationX>176</locationX>
-        <locationY>396</locationY>
+        <locationY>360</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Tiltak_Records_Without_Thread</targetReference>
@@ -215,7 +231,7 @@
         <name>Get_Tiltak_Records_Without_Thread</name>
         <label>Get Tiltak Records Without Thread</label>
         <locationX>176</locationX>
-        <locationY>516</locationY>
+        <locationY>468</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Contracts_W_O_Thread</targetReference>
@@ -242,6 +258,20 @@
                 <stringValue>AVSLUTTET</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>TAG_NAVUnit__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>a0B2o00001roxenEAA</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Category__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>MIDLERTIDIG_LONNSTILSKUDD</stringValue>
+            </value>
+        </filters>
         <object>Contract__c</object>
         <outputReference>Contract_Tiltak_Records</outputReference>
         <queriedFields>Id</queriedFields>
@@ -253,8 +283,8 @@
         <name>Update_Contracts_with_Thread_Id</name>
         <label>Update Contracts with Thread Id</label>
         <locationX>176</locationX>
-        <locationY>1668</locationY>
-        <inputReference>Contract_Tiltak_Records</inputReference>
+        <locationY>1608</locationY>
+        <inputReference>Contracts_To_Update_With_Thread</inputReference>
     </recordUpdates>
     <start>
         <locationX>50</locationX>
@@ -279,6 +309,14 @@
     </variables>
     <variables>
         <name>Contract_Tiltak_Records</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contract__c</objectType>
+    </variables>
+    <variables>
+        <name>Contracts_To_Update_With_Thread</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
