@@ -33,6 +33,14 @@
         <connector>
             <targetReference>Update_thread_NAV_unit</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.CRM_Related_Object__c</elementReference>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Contract__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
