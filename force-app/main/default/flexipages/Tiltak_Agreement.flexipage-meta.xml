@@ -213,6 +213,10 @@
                     <value>Facet-8f66dcfb-7247-4cd5-accb-bf00dea57807</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Arbeidsgiver</value>
                 </componentInstanceProperties>
@@ -225,6 +229,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-f077bf0b-e3b8-4e8a-a6ac-22e4d3adc0e3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -286,9 +294,9 @@
                         <rightValue>MIDLERTIDIG_LONNSTILSKUDD</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <leftValue>{!Record.TAG_DialogueActive__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>GJENNOMFØRES</rightValue>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
