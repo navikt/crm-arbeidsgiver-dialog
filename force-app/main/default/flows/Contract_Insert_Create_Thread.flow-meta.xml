@@ -26,7 +26,7 @@
     <description>Create a thread for the contract when inserted.</description>
     <environments>Default</environments>
     <interviewLabel>Contract- Insert Create Thread {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Contract- Insert Create Thread</label>
+    <label>TAG Dialog Create Thread</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -51,7 +51,7 @@
         <name>Thread_To_Create</name>
         <label>Thread To Create</label>
         <locationX>506</locationX>
-        <locationY>382</locationY>
+        <locationY>381</locationY>
         <assignRecordIdToReference>ThreadID</assignRecordIdToReference>
         <connector>
             <targetReference>Update_contract_relation_to_thread</targetReference>
@@ -59,7 +59,7 @@
         <inputAssignments>
             <field>AAREG_Thread_Subject__c</field>
             <value>
-                <stringValue>Midlertidig lønnstilskudd</stringValue>
+                <elementReference>$Record.TAG_Category__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
