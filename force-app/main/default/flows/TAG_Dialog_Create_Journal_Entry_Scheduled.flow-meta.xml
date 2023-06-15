@@ -5,7 +5,7 @@
         <name>Edit_Thread_Status</name>
         <label>Edit Thread Status</label>
         <locationX>314</locationX>
-        <locationY>695</locationY>
+        <locationY>576</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.CRM_Journal_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -28,7 +28,7 @@
         <name>Check_if_Thread_has_Messages</name>
         <label>Check if Thread has Messages</label>
         <locationX>314</locationX>
-        <locationY>935</locationY>
+        <locationY>792</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Has_Messages</name>
@@ -50,7 +50,7 @@
         <name>Check_If_Thread_Record_Is_Found</name>
         <label>Check If Thread Record Is Found</label>
         <locationX>182</locationX>
-        <locationY>455</locationY>
+        <locationY>360</locationY>
         <defaultConnector>
             <targetReference>Check_Thread_status</targetReference>
         </defaultConnector>
@@ -72,7 +72,7 @@
         <name>Check_Thread_status</name>
         <label>Check Thread status</label>
         <locationX>578</locationX>
-        <locationY>575</locationY>
+        <locationY>468</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Thread_active</name>
@@ -98,8 +98,8 @@
         </rules>
     </decisions>
     <environments>Default</environments>
-    <interviewLabel>TAG Dialog Create Journal Entry Triggered {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Dialog Create Journal Entry Triggered</label>
+    <interviewLabel>TAG Dialog Create Journal Entry {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Dialog Create Journal Entry Scheduled</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -123,7 +123,7 @@
         <name>Create_journal_entry</name>
         <label>Create journal entry</label>
         <locationX>50</locationX>
-        <locationY>1175</locationY>
+        <locationY>1008</locationY>
         <faultConnector>
             <targetReference>Create_Application_Log</targetReference>
         </faultConnector>
@@ -176,7 +176,7 @@
         <name>Get_recordtype_id</name>
         <label>Get recordtype id</label>
         <locationX>50</locationX>
-        <locationY>1055</locationY>
+        <locationY>900</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_journal_entry</targetReference>
@@ -199,7 +199,7 @@
         <name>Get_Thread</name>
         <label>Get Thread</label>
         <locationX>182</locationX>
-        <locationY>335</locationY>
+        <locationY>252</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_If_Thread_Record_Is_Found</targetReference>
@@ -220,7 +220,7 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>314</locationX>
-        <locationY>815</locationY>
+        <locationY>684</locationY>
         <connector>
             <targetReference>Check_if_Thread_has_Messages</targetReference>
         </connector>
@@ -232,25 +232,28 @@
         <connector>
             <targetReference>Get_Thread</targetReference>
         </connector>
-        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>TAG_Status__c</field>
+            <field>TAG_EndDialogue__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>AVSLUTTET</stringValue>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <object>Contract__c</object>
-        <recordTriggerType>Update</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2023-06-14</startDate>
+            <startTime>03:15:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
         <locationX>314</locationX>
-        <locationY>1295</locationY>
+        <locationY>1116</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
