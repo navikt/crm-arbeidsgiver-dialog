@@ -132,7 +132,7 @@
         <name>Unread_messages</name>
         <label>Unread messages</label>
         <locationX>776</locationX>
-        <locationY>360</locationY>
+        <locationY>468</locationY>
         <defaultConnectorLabel>No unread messages</defaultConnectorLabel>
         <rules>
             <name>Has_unread_messages</name>
@@ -144,8 +144,29 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Get_contract.TAG_EmployerContactPhone__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_contract.KafkaId__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_contract.TAG_ExternalURL__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
-                <targetReference>Get_contract</targetReference>
+                <targetReference>Send_sms_notification</targetReference>
             </connector>
             <label>Has unread messages</label>
         </rules>
@@ -190,11 +211,11 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>446</locationX>
-        <locationY>468</locationY>
+        <locationX>776</locationX>
+        <locationY>360</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_sms_notification</targetReference>
+            <targetReference>Unread_messages</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -215,7 +236,7 @@
         <locationY>252</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Unread_messages</targetReference>
+            <targetReference>Get_contract</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -436,21 +457,4 @@
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>{!$Label.TAG_DialogSMSNotifikasjon} {!Get_contract.ExternalId__c}</text>
     </textTemplates>
-    <variables>
-        <name>HasUnreadMessages</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <booleanValue>false</booleanValue>
-        </value>
-    </variables>
-    <variables>
-        <name>MessageId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
 </Flow>
