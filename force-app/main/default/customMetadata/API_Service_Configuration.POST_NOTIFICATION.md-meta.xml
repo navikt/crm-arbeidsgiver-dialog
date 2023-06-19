@@ -19,7 +19,7 @@
         <value xsi:type="xsd:string">{
 &quot;200&quot;: {
 &quot;headers&quot;: null,
-&quot;body&quot;: null
+&quot;body&quot;: {&quot;data&quot;:{&quot;nyBeskjed&quot;:{&quot;__typename&quot;:&quot;NyBeskjedVellykket&quot;,&quot;id&quot;:&quot;f764bdf3-9905-40b2-a081-acb902a4cecf&quot;, &quot;eksterneVarsler&quot;:{&quot;id&quot;:&quot;f764bdf3-9905-40b2-a081-acb809a4cccf&quot;}}}}
 },
 &quot;401&quot;: {
 &quot;headers&quot;: null,

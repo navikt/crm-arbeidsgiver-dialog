@@ -126,6 +126,12 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>sendSms</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>smsText</name>
             <value>
                 <elementReference>SMSNotification</elementReference>
@@ -184,6 +190,12 @@
             <name>phoneNumber</name>
             <value>
                 <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendSms</name>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
         <inputParameters>
