@@ -87,6 +87,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_Contract_NAV_Unit__c</field>
+            <value>
+                <elementReference>$Record.TAG_NAVUnit__r.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_RelatedObjectExternalId__c</field>
             <value>
                 <elementReference>$Record.ExternalId__c</elementReference>

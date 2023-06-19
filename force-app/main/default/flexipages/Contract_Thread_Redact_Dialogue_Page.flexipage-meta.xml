@@ -143,16 +143,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.CRM_Journal_Status_Formula__c</fieldItem>
-                <identifier>RecordCRM_Journal_Status_Formula_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Related_Account__c</fieldItem>
                 <identifier>RecordTAG_Related_Account_cField</identifier>
             </fieldInstance>
@@ -190,6 +180,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-2e113eda-e853-4054-94d4-bc911cec017a</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
