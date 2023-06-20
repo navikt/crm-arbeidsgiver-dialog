@@ -48,6 +48,12 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>sendSms</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>smsText</name>
             <value>
                 <elementReference>SMSNotifification</elementReference>
