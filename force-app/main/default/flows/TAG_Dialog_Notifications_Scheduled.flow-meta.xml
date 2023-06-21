@@ -8,7 +8,7 @@
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>ResponseStatusCode</targetReference>
+            <targetReference>AssignNotificationExternalId</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -68,18 +68,34 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>AssignNotificationExternalId</name>
+        <label>Assign Notification External Id</label>
+        <locationX>446</locationX>
+        <locationY>684</locationY>
+        <assignmentItems>
+            <assignToReference>Get_message.TAG_NotificationExternalId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ExternId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>SaveNotficationExternalId</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>ResponseStatusCode</name>
         <label>Response Status Code</label>
         <locationX>446</locationX>
-        <locationY>684</locationY>
+        <locationY>900</locationY>
         <defaultConnector>
             <targetReference>LogOtherErrors</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Other errors</defaultConnectorLabel>
         <rules>
             <name>StatusCode200WithError</name>
-            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditionLogic>1 AND 2</conditionLogic>
             <conditions>
                 <leftValueReference>Send_sms_notification.statusCode</leftValueReference>
                 <operator>EqualTo</operator>
@@ -92,13 +108,6 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Send_sms_notification.errorMessage</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue></stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -186,7 +195,7 @@
     <formulas>
         <name>GetTimeStamp</name>
         <dataType>String</dataType>
-        <expression>TEXT((DATETIMEVALUE(TODAY()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
+        <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
     </formulas>
     <formulas>
         <name>unreadMessage</name>
@@ -258,6 +267,16 @@
         <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>SaveNotficationExternalId</name>
+        <label>Save Notfication External Id</label>
+        <locationX>446</locationX>
+        <locationY>792</locationY>
+        <connector>
+            <targetReference>ResponseStatusCode</targetReference>
+        </connector>
+        <inputReference>Get_message</inputReference>
+    </recordUpdates>
     <start>
         <locationX>650</locationX>
         <locationY>0</locationY>
@@ -292,7 +311,7 @@
         <name>LogError200</name>
         <label>Log error 200</label>
         <locationX>50</locationX>
-        <locationY>792</locationY>
+        <locationY>1008</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -347,7 +366,7 @@
         <name>LogError500</name>
         <label>Log error 500</label>
         <locationX>314</locationX>
-        <locationY>792</locationY>
+        <locationY>1008</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -402,7 +421,7 @@
         <name>LogOtherErrors</name>
         <label>Log other errors</label>
         <locationX>842</locationX>
-        <locationY>792</locationY>
+        <locationY>1008</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>

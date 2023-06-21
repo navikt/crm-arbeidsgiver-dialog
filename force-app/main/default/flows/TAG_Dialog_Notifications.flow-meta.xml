@@ -86,15 +86,9 @@
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>ResponseStatusCodeNotFirst</targetReference>
+            <targetReference>SaveNotificationExternalIdNotFirst</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>dispatchWindow</name>
-            <value>
-                <stringValue>NKS_BUSINESS_HOURS</stringValue>
-            </value>
-        </inputParameters>
         <inputParameters>
             <name>enterpriseNumber</name>
             <value>
@@ -120,24 +114,6 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>phoneNumber</name>
-            <value>
-                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendSms</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>smsText</name>
-            <value>
-                <elementReference>SMSNotification</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>url</name>
             <value>
                 <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
@@ -153,7 +129,7 @@
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>ResponseStatusCode</targetReference>
+            <targetReference>SaveNotificationExternalId</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -404,14 +380,14 @@
         <name>ResponseStatusCode</name>
         <label>Response Status Code</label>
         <locationX>710</locationX>
-        <locationY>816</locationY>
+        <locationY>924</locationY>
         <defaultConnector>
             <targetReference>LogOtherErrors</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Other errors</defaultConnectorLabel>
         <rules>
             <name>StatusCode200WithError</name>
-            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditionLogic>1 AND 2</conditionLogic>
             <conditions>
                 <leftValueReference>SendSmsNotification.statusCode</leftValueReference>
                 <operator>EqualTo</operator>
@@ -424,13 +400,6 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SendSmsNotification.errorMessage</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue></stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -470,14 +439,14 @@
         <name>ResponseStatusCodeNotFirst</name>
         <label>Response Status Code (not first)</label>
         <locationX>2294</locationX>
-        <locationY>816</locationY>
+        <locationY>924</locationY>
         <defaultConnector>
             <targetReference>LogOtherErrorsNotFirst</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Other errors</defaultConnectorLabel>
         <rules>
             <name>StatusCode200WithErrorNotFirst</name>
-            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditionLogic>1 AND 2</conditionLogic>
             <conditions>
                 <leftValueReference>Send_external_notification_not_first.statusCode</leftValueReference>
                 <operator>EqualTo</operator>
@@ -490,13 +459,6 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Send_external_notification_not_first.errorMessage</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue></stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -541,7 +503,7 @@
     <formulas>
         <name>GetTimeStamp</name>
         <dataType>String</dataType>
-        <expression>TEXT((DATETIMEVALUE(TODAY()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
+        <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
     </formulas>
     <formulas>
         <name>TAG_InternalContactID</name>
@@ -669,6 +631,38 @@
         <object>CustomNotificationType</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>SaveNotificationExternalId</name>
+        <label>Save Notification External Id</label>
+        <locationX>710</locationX>
+        <locationY>816</locationY>
+        <connector>
+            <targetReference>ResponseStatusCode</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>TAG_NotificationExternalId__c</field>
+            <value>
+                <elementReference>ExternId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>SaveNotificationExternalIdNotFirst</name>
+        <label>Save Notification External Id (not first)</label>
+        <locationX>2294</locationX>
+        <locationY>816</locationY>
+        <connector>
+            <targetReference>ResponseStatusCodeNotFirst</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>TAG_NotificationExternalId__c</field>
+            <value>
+                <elementReference>ExternId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <start>
         <locationX>518</locationX>
         <locationY>0</locationY>
@@ -702,7 +696,7 @@
         <name>LogError200</name>
         <label>Log error 200</label>
         <locationX>314</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -757,7 +751,7 @@
         <name>LogError200NotFirst</name>
         <label>Log error 200 (not first)</label>
         <locationX>1898</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -812,7 +806,7 @@
         <name>LogError500</name>
         <label>Log error 500</label>
         <locationX>578</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -867,7 +861,7 @@
         <name>LogError500NotFirst</name>
         <label>Log error 500 (not first)</label>
         <locationX>2162</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -922,7 +916,7 @@
         <name>LogOtherErrors</name>
         <label>Log other errors</label>
         <locationX>1106</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -977,7 +971,7 @@
         <name>LogOtherErrorsNotFirst</name>
         <label>Log other errors (not first)</label>
         <locationX>2690</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
