@@ -114,6 +114,12 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>sendSms</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>url</name>
             <value>
                 <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
