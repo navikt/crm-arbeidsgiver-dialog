@@ -32,7 +32,7 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
         const urlReader = this.template.querySelector('c-url-reader');
         if (
             urlReader.getPageType() === 'standard__recordPage' &&
-            urlReader.getAttribute('objectApiName') === 'Thread__c'
+            urlReader.getAttributes('objectApiName') === 'Thread__c'
         ) {
             return true;
         }

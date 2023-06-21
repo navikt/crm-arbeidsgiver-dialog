@@ -4,35 +4,207 @@
  * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
  * @since 2023-05-08 Created.
  *
+ * @see [License](https://github.com/navikt/crm-arbeidsgiver-dialog/blob/master/LICENSE)
+ * @see [Github](https://github.com/navikt/crm-arbeidsgiver-dialog)
+ *
  * @group TAG External Notification
  */
-public inherited sharing class TAG_ExtNotificationService {
-    private static final String DEFAULT_NAME = 'OpprettNyBeskjed';
-    private static final String DEFAULT_FIELD_NAME = 'nyBeskjed';
-    private static final String DEFAULT_ARGUMENT_NAME = 'nyBeskjed';
-    private static final String DEFAULT_OPERATION_TYPE = 'mutation';
-    private static final String DEFAULT_SERVICE_CODE = '5516';
-    private static final String DEFAULT_SERVICE_EDITION = '1';
-    private static final String DEFAULT_LABEL = 'Lønnstilskudd';
+@SuppressWarnings('PMD.ExcessivePublicCount')
+public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNotificationService {
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    public static final String DEFAULT_NAME = 'OpprettNyBeskjed';
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    public static final String DEFAULT_FIELD_NAME = 'nyBeskjed';
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    public static final String DEFAULT_ARGUMENT_NAME = 'nyBeskjed';
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    public static final String DEFAULT_OPERATION_TYPE = 'mutation';
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    public static final String DEFAULT_SERVICE_CODE = '5516';
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    public static final String DEFAULT_SERVICE_EDITION = '1';
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    public static final String DEFAULT_LABEL = 'Lønnstilskudd';
 
-    private String name;
-    private String fieldName;
-    private String argumentName;
-    private String operationType;
-    private String serviceCode;
-    private String serviceEdition;
-    private String label;
-    private String enterpriseNumber;
-    private String externalId;
-    private String groupingId;
-    private String notificationText;
-    private String url;
-    private String phoneNumber;
-    private String smsText;
-    private TAG_DispatchWindow_e dispatchWindow;
-    private String smsNotificationBody;
-    private String notificationBody;
-    private HttpResponse notificationResponse;
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String name { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String fieldName { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String argumentName { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String operationType { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String serviceCode { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String serviceEdition { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String label { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String enterpriseNumber { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String externalId { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String groupingId { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String notificationText { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String url { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String phoneNumber { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String smsText { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public TAG_DispatchWindow_e dispatchWindow { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String smsNotificationBody { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public String notificationBody { get; private set; }
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
+     */
+    @TestVisible
+    public HttpResponse notificationResponse { get; private set; }
     //private String query;
 
     /**
@@ -70,6 +242,7 @@ public inherited sharing class TAG_ExtNotificationService {
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-05-08 Created.
      */
+    @SuppressWarnings('PMD.ExcessiveParameterList')
     public TAG_ExtNotificationService notification(
         String enterpriseNumber,
         String externalId,
@@ -80,7 +253,7 @@ public inherited sharing class TAG_ExtNotificationService {
         this.enterpriseNumber = enterpriseNumber;
         this.externalId = externalId;
         this.groupingId = groupingId;
-        this.notificationText = notificationText;
+        this.notificationText = notificationText.replaceAll('\r\n|\n|\r', ' ').normalizeSpace().escapeJava();
         this.url = url;
 
         return this;
@@ -99,7 +272,7 @@ public inherited sharing class TAG_ExtNotificationService {
         TAG_DispatchWindow_e dispatchWindow
     ) {
         this.phoneNumber = phoneNumber;
-        this.smsText = smsText;
+        this.smsText = smsText.replaceAll('\r\n|\n|\r', ' ').normalizeSpace().escapeJava();
         this.dispatchWindow = dispatchWindow;
 
         String dispatchWindowConverted;
@@ -115,17 +288,19 @@ public inherited sharing class TAG_ExtNotificationService {
                 dispatchWindowConverted = 'LOEPENDE';
             }
             when else {
-                throw new ExtNotificationServiceException('Unknown dispatch window: ' + this.dispatchWindow);
+                throw new ExtNotificationServiceException(
+                    'The dispatch window value is not valid. Unknown dispatch window: ' + this.dispatchWindow
+                );
             }
         }
 
         this.smsNotificationBody =
-            'eksterneVarsler: [{ sms: { mottaker: { kontaktinfo: { tlf: ' +
+            'eksterneVarsler: [{ sms: { mottaker: { kontaktinfo: { tlf: \\"' +
             this.phoneNumber +
-            ' } } smsTekst: \\"' +
+            '\\" } } smsTekst: \\"' +
             this.smsText +
             '\\" sendetidspunkt: { sendevindu: ' +
-            this.dispatchWindow +
+            dispatchWindowConverted +
             ' }}}]';
 
         return this;
@@ -133,6 +308,15 @@ public inherited sharing class TAG_ExtNotificationService {
 
     /**
      * @description
+     *
+     * String body2 =
+     * '{"query": "mutation OpprettNyBeskjed($eksternId: String! $virksomhetsnummer: String! $lenke: String!) { nyBeskjed(nyBeskjed: {' +
+     * 'metadata: { eksternId: $eksternId, virksomhetsnummer: $virksomhetsnummer }' +
+     * 'mottakere: [{ altinn: { serviceCode: \\"5516\\" serviceEdition: \\"1\\" } }]' +
+     * 'notifikasjon: {merkelapp: \\"Lønnstilskudd\\" tekst: \\"Du har mottatt en ny melding fra NAV i dialogen.\\" lenke: $lenke }' +
+     * 'eksterneVarsler: [{ sms: { mottaker: { kontaktinfo: { tlf: \\"95062297\\" } } smsTekst: \\"Test melding!\\" sendetidspunkt: { sendevindu: LOEPENDE }}}]' +
+     * ' }) { __typename ... on NyBeskjedVellykket {id} ... on Error {feilmelding} } }",' +
+     * '"variables": {"eksternId": "12345569", "virksomhetsnummer":"910825526", "lenke": "https://dev.nav.no/melding/12345"}}';
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-05-08 Created.
@@ -161,17 +345,15 @@ public inherited sharing class TAG_ExtNotificationService {
             '\\" lenke: $lenke }' +
             (String.isBlank(this.smsNotificationBody) ? '' : this.smsNotificationBody) +
             ' }) { __typename ... on NyBeskjedVellykket {id} ... on Error {feilmelding} } }",' +
-            '"variables": {\\"eksternId\\": \\"' +
+            '"variables": {"eksternId": "' +
             this.externalId +
-            '\\", \\"grupperingsId\\": \\"' +
+            '", "grupperingsId": "' +
             this.groupingId +
-            '\\", \\"virksomhetsnummer\\":\\"' +
+            '", "virksomhetsnummer": "' +
             this.enterpriseNumber +
-            '\\", \\"lenke\\": \\"' +
+            '", "lenke": "' +
             this.url +
-            '\\"}}';
-
-        System.debug('Generated Body: ' + this.notificationBody);
+            '"}}';
 
         return this;
     }
@@ -194,8 +376,6 @@ public inherited sharing class TAG_ExtNotificationService {
         apiCtrl.doCallout();
 
         this.notificationResponse = apiCtrl.getResponse();
-        System.debug('Response: ' + this.notificationResponse);
-        System.debug('Returned Body: ' + this.notificationResponse.getBody());
         return this;
     }
 

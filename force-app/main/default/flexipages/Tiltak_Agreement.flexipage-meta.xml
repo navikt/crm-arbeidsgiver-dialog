@@ -144,6 +144,46 @@
                 <identifier>RecordExternalId_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.KafkaId__c</fieldItem>
+                <identifier>RecordKafkaId_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_StartDate__c</fieldItem>
+                <identifier>RecordTAG_StartDate_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_EndDate__c</fieldItem>
+                <identifier>RecordTAG_EndDate_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Status__c</fieldItem>
+                <identifier>RecordTAG_Status_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-dd9a6b40-6f41-4f3d-9562-4584ec658665</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -213,6 +253,10 @@
                     <value>Facet-8f66dcfb-7247-4cd5-accb-bf00dea57807</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Arbeidsgiver</value>
                 </componentInstanceProperties>
@@ -225,6 +269,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-f077bf0b-e3b8-4e8a-a6ac-22e4d3adc0e3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -278,19 +326,6 @@
                 </componentInstanceProperties>
                 <componentName>crmMessagingMessageComponent</componentName>
                 <identifier>c_crmMessagingMessageComponent1</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.TAG_Category__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>MIDLERTIDIG_LONNSTILSKUDD</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.TAG_Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>GJENNOMFØRES</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>rightcol</name>
