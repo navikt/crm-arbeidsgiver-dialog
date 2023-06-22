@@ -4,7 +4,7 @@
         <name>Create_Custom_Notification</name>
         <label>Create Custom Notification</label>
         <locationX>50</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -43,7 +43,7 @@
         <name>Create_Custom_Notification_not_first</name>
         <label>Create Custom Notification (not first)</label>
         <locationX>1634</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -128,6 +128,176 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
+        <name>SendNotificationOppgaveToGoSys</name>
+        <label>Send Notification/Oppgave to GoSys</label>
+        <locationX>50</locationX>
+        <locationY>708</locationY>
+        <actionName>EmployerNotificationOppgaveHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>AddInternalContactUserId</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>assignedResource</name>
+            <value>
+                <elementReference>Get_contract.TAG_InternalContact__r.CRM_NAV_Ident__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>assignToUnitNumber</name>
+            <value>
+                <elementReference>Get_contract.TAG_NAVUnit__r.INT_UnitNumber__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>description</name>
+            <value>
+                <elementReference>NotificationGoSys</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>dueDays</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>organizationNumber</name>
+            <value>
+                <elementReference>Get_contract.TAG_Account__r.INT_OrganizationNumber__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>priority</name>
+            <value>
+                <stringValue>NORM</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>processingTheme</name>
+            <value>
+                <stringValue>ab0336</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>processingType</name>
+            <value>
+                <stringValue>ae0034</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>requestType</name>
+            <value>
+                <stringValue>POST</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>taskTypeCode</name>
+            <value>
+                <stringValue>KONT_BRUK</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>theme</name>
+            <value>
+                <stringValue>TIL</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>SendNotificationOppgaveToGoSysNotFirst</name>
+        <label>Send Notification/Oppgave to GoSys (Not First)</label>
+        <locationX>1634</locationX>
+        <locationY>708</locationY>
+        <actionName>EmployerNotificationOppgaveHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>AddInternalContactUserIdNotFirst</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>assignedResource</name>
+            <value>
+                <elementReference>Get_contract.TAG_InternalContact__r.CRM_NAV_Ident__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>assignToUnitNumber</name>
+            <value>
+                <elementReference>Get_contract.TAG_NAVUnit__r.INT_UnitNumber__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>description</name>
+            <value>
+                <elementReference>NotificationGoSys</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>dueDays</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>organizationNumber</name>
+            <value>
+                <elementReference>Get_contract.TAG_Account__r.INT_OrganizationNumber__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>priority</name>
+            <value>
+                <stringValue>NORM</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>processingTheme</name>
+            <value>
+                <stringValue>ab0336</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>processingType</name>
+            <value>
+                <stringValue>ae0034</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>requestType</name>
+            <value>
+                <stringValue>POST</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>taskTypeCode</name>
+            <value>
+                <stringValue>KONT_BRUK</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>theme</name>
+            <value>
+                <stringValue>TIL</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>SendSmsNotification</name>
         <label>Send sms notification</label>
         <locationX>710</locationX>
@@ -199,7 +369,7 @@
         <name>AddInternalContactUserId</name>
         <label>Add internal contact user id</label>
         <locationX>50</locationX>
-        <locationY>708</locationY>
+        <locationY>816</locationY>
         <assignmentItems>
             <assignToReference>TAG_RecipientIDs</assignToReference>
             <operator>Add</operator>
@@ -215,7 +385,7 @@
         <name>AddInternalContactUserIdNotFirst</name>
         <label>Add internal contact user id (not first)</label>
         <locationX>1634</locationX>
-        <locationY>708</locationY>
+        <locationY>816</locationY>
         <assignmentItems>
             <assignToReference>TAG_RecipientIDs</assignToReference>
             <operator>Add</operator>
@@ -290,7 +460,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>AddInternalContactUserId</targetReference>
+                <targetReference>SendNotificationOppgaveToGoSys</targetReference>
             </connector>
             <label>Internal</label>
         </rules>
@@ -355,7 +525,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>AddInternalContactUserIdNotFirst</targetReference>
+                <targetReference>SendNotificationOppgaveToGoSysNotFirst</targetReference>
             </connector>
             <label>Internal (not first)</label>
         </rules>
@@ -598,7 +768,7 @@
         <name>GetCustomNotificationIdNotFirst</name>
         <label>Get custom notification ID (not first)</label>
         <locationX>1634</locationX>
-        <locationY>816</locationY>
+        <locationY>924</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Custom_Notification_not_first</targetReference>
@@ -620,7 +790,7 @@
         <name>TAG_Get_custom_notification_Record_ID</name>
         <label>Get custom notification Record ID</label>
         <locationX>50</locationX>
-        <locationY>816</locationY>
+        <locationY>924</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Custom_Notification</targetReference>
@@ -1032,6 +1202,11 @@
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>NotificationGoSys</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hei, du har mottatt en ny melding på en tiltaksavtale tilknyttet din virksomhet. Meldingen er tilknyttet avtalenummer: {!Get_contract.ExternalId__c} for {!Get_contract.TAG_Account__r.Name}. Du kan svare på meldingen ved å logge inn til Salesforce og navigere til Avtalen.</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotification</name>
