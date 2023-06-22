@@ -26,6 +26,7 @@ public without sharing class EmployerNotificationOppgaveHandler {
                 OppgaveResponse apiResp = (OppgaveResponse) JSON.deserialize(response.getBody(), OppgaveResponse.class);
                 message.TAG_NotificationOppgaveId__c = String.valueOf(apiResp.id);
                 resp.setResponse(true, null, message);
+                update message;
             } else {
                 logger.httpError(
                     'Error posting oppgave',
@@ -99,7 +100,7 @@ public without sharing class EmployerNotificationOppgaveHandler {
         public String assignToUnitNumber;
         @invocableVariable(label='number of due days from created date')
         public Integer dueDays;
-        @invocableVariable
+        @invocableVariable(label='[HOY, NORM, LAV]')
         public String priority;
         //@invocableVariable
         //public Boolean POST_AS_SYSTEM = true; //set post-as-system as default
