@@ -88,19 +88,19 @@ public without sharing class EmployerNotificationOppgaveHandler {
         public String assignedResource;
         @invocableVariable
         public String description;
-        @invocableVariable(label='REQUIRED- TIL for Tiltak')
+        @invocableVariable(label='Theme REQUIRED- TIL for Tiltak')
         public String theme;
-        @invocableVariable(label='ab0336 for "Midlertidig lønnstilskudd"')
+        @invocableVariable(label='ProcessingTheme ab0336 for "Midlertidig lønnstilskudd"')
         public String processingTheme;
-        @invocableVariable(label='KONT_BRUK, term: Kontakt bruker')
+        @invocableVariable(label='TaskTypeCode KONT_BRUK, term: Kontakt bruker')
         public String taskTypeCode;
-        @invocableVariable(label='ae0034 - valid type for "Midlertidig lønnstilskudd"')
+        @invocableVariable(label='TaskTypeCode ae0034 - valid type for "Midlertidig lønnstilskudd"')
         public String processingType;
         @invocableVariable
         public String assignToUnitNumber;
         @invocableVariable(label='number of due days from created date')
         public Integer dueDays;
-        @invocableVariable(label='[HOY, NORM, LAV]')
+        @invocableVariable(label='Priority [HOY, NORM, LAV]')
         public String priority;
         //@invocableVariable
         //public Boolean POST_AS_SYSTEM = true; //set post-as-system as default
@@ -117,7 +117,6 @@ public without sharing class EmployerNotificationOppgaveHandler {
     }
 
     //### API WRAPPERS ###//
-    //
     @testVisible
     private class OppgaveResponse {
         @testVisible
