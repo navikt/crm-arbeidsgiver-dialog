@@ -42,7 +42,7 @@
     <actionCalls>
         <name>Create_Custom_Notification_not_first</name>
         <label>Create Custom Notification (not first)</label>
-        <locationX>1634</locationX>
+        <locationX>842</locationX>
         <locationY>1032</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
@@ -81,7 +81,7 @@
     <actionCalls>
         <name>Send_external_notification_not_first</name>
         <label>Send external notification (not first)</label>
-        <locationX>2294</locationX>
+        <locationX>1106</locationX>
         <locationY>708</locationY>
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
@@ -122,7 +122,7 @@
         <inputParameters>
             <name>url</name>
             <value>
-                <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
+                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -215,7 +215,7 @@
     <actionCalls>
         <name>SendNotificationOppgaveToGoSysNotFirst</name>
         <label>Send Notification/Oppgave to GoSys (Not First)</label>
-        <locationX>1634</locationX>
+        <locationX>842</locationX>
         <locationY>708</locationY>
         <actionName>EmployerNotificationOppgaveHandler</actionName>
         <actionType>apex</actionType>
@@ -300,7 +300,7 @@
     <actionCalls>
         <name>SendSmsNotification</name>
         <label>Send sms notification</label>
-        <locationX>710</locationX>
+        <locationX>314</locationX>
         <locationY>708</locationY>
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
@@ -359,7 +359,7 @@
         <inputParameters>
             <name>url</name>
             <value>
-                <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
+                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -384,7 +384,7 @@
     <assignments>
         <name>AddInternalContactUserIdNotFirst</name>
         <label>Add internal contact user id (not first)</label>
-        <locationX>1634</locationX>
+        <locationX>842</locationX>
         <locationY>816</locationY>
         <assignmentItems>
             <assignToReference>TAG_RecipientIDs</assignToReference>
@@ -400,7 +400,7 @@
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
-        <locationX>1502</locationX>
+        <locationX>710</locationX>
         <locationY>492</locationY>
         <defaultConnector>
             <targetReference>NotifyInternalOrExternalNotFirst</targetReference>
@@ -432,7 +432,7 @@
     <decisions>
         <name>NotifyInternalOrExternal</name>
         <label>Notify internal or external</label>
-        <locationX>710</locationX>
+        <locationX>314</locationX>
         <locationY>600</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
@@ -497,7 +497,7 @@
     <decisions>
         <name>NotifyInternalOrExternalNotFirst</name>
         <label>Notify internal or external (not first)</label>
-        <locationX>2294</locationX>
+        <locationX>1106</locationX>
         <locationY>600</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
@@ -552,124 +552,6 @@
             <label>External (not first)</label>
         </rules>
     </decisions>
-    <decisions>
-        <name>ResponseStatusCode</name>
-        <label>Response Status Code</label>
-        <locationX>710</locationX>
-        <locationY>924</locationY>
-        <defaultConnector>
-            <targetReference>LogOtherErrors</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Other errors</defaultConnectorLabel>
-        <rules>
-            <name>StatusCode200WithError</name>
-            <conditionLogic>1 AND 2</conditionLogic>
-            <conditions>
-                <leftValueReference>SendSmsNotification.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>200.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SendSmsNotification.errorMessage</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>LogError200</targetReference>
-            </connector>
-            <label>Status Code 200 With Error</label>
-        </rules>
-        <rules>
-            <name>StatusCode500</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SendSmsNotification.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>500.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>LogError500</targetReference>
-            </connector>
-            <label>Status Code 500</label>
-        </rules>
-        <rules>
-            <name>StatusCode200OK</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>SendSmsNotification.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>200.0</numberValue>
-                </rightValue>
-            </conditions>
-            <label>Status Code 200 OK</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>ResponseStatusCodeNotFirst</name>
-        <label>Response Status Code (not first)</label>
-        <locationX>2294</locationX>
-        <locationY>924</locationY>
-        <defaultConnector>
-            <targetReference>LogOtherErrorsNotFirst</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Other errors</defaultConnectorLabel>
-        <rules>
-            <name>StatusCode200WithErrorNotFirst</name>
-            <conditionLogic>1 AND 2</conditionLogic>
-            <conditions>
-                <leftValueReference>Send_external_notification_not_first.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>200.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Send_external_notification_not_first.errorMessage</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>LogError200NotFirst</targetReference>
-            </connector>
-            <label>Status Code 200 With Error (not first)</label>
-        </rules>
-        <rules>
-            <name>StatusCode500NotFirst</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Send_external_notification_not_first.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>500.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>LogError500NotFirst</targetReference>
-            </connector>
-            <label>Status Code 500 (not first)</label>
-        </rules>
-        <rules>
-            <name>StatusCode200OKNotFirst</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Send_external_notification_not_first.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>200.0</numberValue>
-                </rightValue>
-            </conditions>
-            <label>Status Code 200 OK (not first)</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>ExternId</name>
@@ -680,16 +562,6 @@
         <name>GetTimeStamp</name>
         <dataType>String</dataType>
         <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
-    </formulas>
-    <formulas>
-        <name>TAG_InternalContactID</name>
-        <dataType>String</dataType>
-        <expression>{!Get_contract.TAG_InternalContact__r.Id}</expression>
-    </formulas>
-    <formulas>
-        <name>tag_internalcontactuserid</name>
-        <dataType>String</dataType>
-        <expression>{!Get_contract.TAG_InternalContact__c}</expression>
     </formulas>
     <formulas>
         <description>Text to show in notifciation bell in Salesforce</description>
@@ -721,7 +593,7 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>1502</locationX>
+        <locationX>710</locationX>
         <locationY>276</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -742,7 +614,7 @@
     <recordLookups>
         <name>Get_first_message</name>
         <label>Get first message</label>
-        <locationX>1502</locationX>
+        <locationX>710</locationX>
         <locationY>384</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -767,7 +639,7 @@
         <description>Get ID for custom notification</description>
         <name>GetCustomNotificationIdNotFirst</name>
         <label>Get custom notification ID (not first)</label>
-        <locationX>1634</locationX>
+        <locationX>842</locationX>
         <locationY>924</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -810,11 +682,8 @@
     <recordUpdates>
         <name>SaveNotificationExternalId</name>
         <label>Save Notification External Id</label>
-        <locationX>710</locationX>
+        <locationX>314</locationX>
         <locationY>816</locationY>
-        <connector>
-            <targetReference>ResponseStatusCode</targetReference>
-        </connector>
         <inputAssignments>
             <field>TAG_NotificationExternalId__c</field>
             <value>
@@ -826,11 +695,8 @@
     <recordUpdates>
         <name>SaveNotificationExternalIdNotFirst</name>
         <label>Save Notification External Id (not first)</label>
-        <locationX>2294</locationX>
+        <locationX>1106</locationX>
         <locationY>816</locationY>
-        <connector>
-            <targetReference>ResponseStatusCodeNotFirst</targetReference>
-        </connector>
         <inputAssignments>
             <field>TAG_NotificationExternalId__c</field>
             <value>
@@ -840,7 +706,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>518</locationX>
+        <locationX>122</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -868,340 +734,10 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
-    <subflows>
-        <name>LogError200</name>
-        <label>Log error 200</label>
-        <locationX>314</locationX>
-        <locationY>1032</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>SendSmsNotification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Warning</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error 200 encountered when sending external notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>LogError200NotFirst</name>
-        <label>Log error 200 (not first)</label>
-        <locationX>1898</locationX>
-        <locationY>1032</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>SendSmsNotification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Warning</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error 200 encountered when sending external notification. Not first message.</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>LogError500</name>
-        <label>Log error 500</label>
-        <locationX>578</locationX>
-        <locationY>1032</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>SendSmsNotification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Error</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error 500 encountered when sending external notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>LogError500NotFirst</name>
-        <label>Log error 500 (not first)</label>
-        <locationX>2162</locationX>
-        <locationY>1032</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>SendSmsNotification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Error</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error 500 encountered when sending external notification: Not first message</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>LogOtherErrors</name>
-        <label>Log other errors</label>
-        <locationX>1106</locationX>
-        <locationY>1032</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>SendSmsNotification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Warning</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error &quot;other errors&quot; encountered when sending external notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>LogOtherErrorsNotFirst</name>
-        <label>Log other errors (not first)</label>
-        <locationX>2690</locationX>
-        <locationY>1032</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>SendSmsNotification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Warning</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error &quot;other errors&quot; encountered when sending external notification. Not first message</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}</text>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} - Klikk her for å komme til dialogen</text>
     </textTemplates>
     <textTemplates>
         <name>NotificationGoSys</name>

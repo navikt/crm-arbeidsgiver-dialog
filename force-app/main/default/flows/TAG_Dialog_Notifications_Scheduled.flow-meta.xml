@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Send_sms_notification</name>
         <label>Send sms notification</label>
-        <locationX>446</locationX>
+        <locationX>50</locationX>
         <locationY>576</locationY>
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
@@ -62,7 +62,7 @@
         <inputParameters>
             <name>url</name>
             <value>
-                <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
+                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -71,7 +71,7 @@
     <assignments>
         <name>AssignNotificationExternalId</name>
         <label>Assign Notification External Id</label>
-        <locationX>446</locationX>
+        <locationX>50</locationX>
         <locationY>684</locationY>
         <assignmentItems>
             <assignToReference>Get_message.TAG_NotificationExternalId__c</assignToReference>
@@ -85,68 +85,9 @@
         </connector>
     </assignments>
     <decisions>
-        <name>ResponseStatusCode</name>
-        <label>Response Status Code</label>
-        <locationX>446</locationX>
-        <locationY>900</locationY>
-        <defaultConnector>
-            <targetReference>LogOtherErrors</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Other errors</defaultConnectorLabel>
-        <rules>
-            <name>StatusCode200WithError</name>
-            <conditionLogic>1 AND 2</conditionLogic>
-            <conditions>
-                <leftValueReference>Send_sms_notification.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>200.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Send_sms_notification.errorMessage</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>LogError200</targetReference>
-            </connector>
-            <label>Status Code 200 With Error</label>
-        </rules>
-        <rules>
-            <name>StatusCode500</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Send_sms_notification.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>500.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>LogError500</targetReference>
-            </connector>
-            <label>Status Code 500</label>
-        </rules>
-        <rules>
-            <name>StatusCode200OK</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Send_sms_notification.statusCode</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>200.0</numberValue>
-                </rightValue>
-            </conditions>
-            <label>Status Code 200 OK</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Unread_messages</name>
         <label>Unread messages</label>
-        <locationX>776</locationX>
+        <locationX>182</locationX>
         <locationY>468</locationY>
         <defaultConnectorLabel>No unread messages</defaultConnectorLabel>
         <rules>
@@ -174,10 +115,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Get_contract.TAG_ExternalURL__c</leftValueReference>
+                <leftValueReference>Get_message.TAG_NotificationExternalId__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -226,7 +167,7 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>776</locationX>
+        <locationX>182</locationX>
         <locationY>360</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -247,7 +188,7 @@
     <recordLookups>
         <name>Get_message</name>
         <label>Get message</label>
-        <locationX>776</locationX>
+        <locationX>182</locationX>
         <locationY>252</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -270,15 +211,12 @@
     <recordUpdates>
         <name>SaveNotficationExternalId</name>
         <label>Save Notfication External Id</label>
-        <locationX>446</locationX>
+        <locationX>50</locationX>
         <locationY>792</locationY>
-        <connector>
-            <targetReference>ResponseStatusCode</targetReference>
-        </connector>
         <inputReference>Get_message</inputReference>
     </recordUpdates>
     <start>
-        <locationX>650</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_message</targetReference>
@@ -302,180 +240,15 @@
         <schedule>
             <frequency>Daily</frequency>
             <startDate>2023-05-23</startDate>
-            <startTime>08:00:00.000Z</startTime>
+            <startTime>09:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
-    <subflows>
-        <name>LogError200</name>
-        <label>Log error 200</label>
-        <locationX>50</locationX>
-        <locationY>1008</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>Send_sms_notification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications Scheduled</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Warning</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error 200 encountered when sending external notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>Get_message.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>LogError500</name>
-        <label>Log error 500</label>
-        <locationX>314</locationX>
-        <locationY>1008</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>Send_sms_notification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications Scheduled</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Error</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error 500 encountered when sending external notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>Get_message.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>LogOtherErrors</name>
-        <label>Log other errors</label>
-        <locationX>842</locationX>
-        <locationY>1008</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>Send_sms_notification.errorMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications Scheduled</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External Notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Warning</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error &quot;other errors&quot; encountered when sending external notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>Get_message.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}</text>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} - Klikk her for å komme til dialogen</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotifification</name>
