@@ -174,8 +174,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_ExternalURL__c</fieldItem>
-                <identifier>RecordTAG_ExternalURL_cField</identifier>
+                <fieldItem>Record.TAG_SourceURL__c</fieldItem>
+                <identifier>RecordTAG_SourceURL_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-e16e9cad-fdd4-47e5-a1f3-22f1f4fc405a</name>

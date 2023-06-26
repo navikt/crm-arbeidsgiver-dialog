@@ -122,7 +122,7 @@
         <inputParameters>
             <name>url</name>
             <value>
-                <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
+                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -359,7 +359,7 @@
         <inputParameters>
             <name>url</name>
             <value>
-                <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
+                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -1201,7 +1201,7 @@
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}</text>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} &apos; - Klikk her for å komme til dialogen&apos;</text>
     </textTemplates>
     <textTemplates>
         <name>NotificationGoSys</name>
