@@ -46,11 +46,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contract__c.TAG_DialogueURL__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Contract__c.TAG_EmployerContactPhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -212,16 +207,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Message__c.CRM_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Message__c.TAG_NotificationExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Message__c.TAG_NotificationOppgaveId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

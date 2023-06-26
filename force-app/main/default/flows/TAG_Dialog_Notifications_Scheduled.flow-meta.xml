@@ -62,7 +62,7 @@
         <inputParameters>
             <name>url</name>
             <value>
-                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
+                <elementReference>Get_contract.TAG_ExternalURL__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -178,13 +178,6 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_message.TAG_NotificationExternalId__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -309,7 +302,7 @@
         <schedule>
             <frequency>Daily</frequency>
             <startDate>2023-05-23</startDate>
-            <startTime>09:00:00.000Z</startTime>
+            <startTime>08:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
@@ -482,7 +475,7 @@
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} &apos; - Klikk her for å komme til dialogen&apos;</text>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotifification</name>
