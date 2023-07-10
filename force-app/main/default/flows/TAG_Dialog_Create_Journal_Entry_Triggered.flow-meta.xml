@@ -136,7 +136,7 @@
         <inputAssignments>
             <field>CRM_Created_By_NAV_Unit__c</field>
             <value>
-                <elementReference>$Record.TAG_NAVUnit__c</elementReference>
+                <elementReference>$Record.TAG_NAVUnit__r.INT_UnitNumber__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
