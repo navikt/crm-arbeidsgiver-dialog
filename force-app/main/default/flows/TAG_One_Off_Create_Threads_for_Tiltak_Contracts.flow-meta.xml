@@ -4,17 +4,17 @@
     <assignments>
         <name>Assign_Current_Contract_To_Collection</name>
         <label>Assign Current Contract To Collection</label>
-        <locationX>264</locationX>
-        <locationY>1416</locationY>
+        <locationX>440</locationX>
+        <locationY>1524</locationY>
         <assignmentItems>
-            <assignToReference>Contract_To_Assign_ThreadId</assignToReference>
+            <assignToReference>Contracts_To_Update_With_Thread</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Contracts_To_Update_With_Thread</elementReference>
+                <elementReference>LoopFilterContracts</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Loop_Threads_To_Assign_ThreadId_to_Contracts</targetReference>
+            <targetReference>LoopFilterContracts</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -87,10 +87,10 @@
     <assignments>
         <name>Assign_ThreadId_to_Current_Contract</name>
         <label>Assign ThreadId to Current Contract</label>
-        <locationX>264</locationX>
-        <locationY>1308</locationY>
+        <locationX>440</locationX>
+        <locationY>1416</locationY>
         <assignmentItems>
-            <assignToReference>currentItem_Contract_To_Assign_ThreadId.Thread__c</assignToReference>
+            <assignToReference>LoopFilterContracts.Thread__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Loop_Threads_To_Assign_ThreadId_to_Contracts.Id</elementReference>
@@ -104,21 +104,21 @@
         <name>Contract_To_Assign_ThreadId</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Contract To Assign ThreadId</label>
-        <locationX>264</locationX>
+        <locationX>352</locationX>
         <locationY>1200</locationY>
-        <assignNextValueToReference>currentItem_Contract_To_Assign_ThreadId</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Contract_To_Assign_ThreadId_0</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>Contract_Tiltak_Records</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Contract_To_Assign_ThreadId.ExternalId__c</leftValueReference>
+            <leftValueReference>currentItem_Contract_To_Assign_ThreadId_0.ExternalId__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <elementReference>Loop_Threads_To_Assign_ThreadId_to_Contracts.TAG_RelatedObjectExternalId__c</elementReference>
             </rightValue>
         </conditions>
         <connector>
-            <targetReference>Assign_ThreadId_to_Current_Contract</targetReference>
+            <targetReference>LoopFilterContracts</targetReference>
         </connector>
     </collectionProcessors>
     <environments>Default</environments>
@@ -150,6 +150,20 @@
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Contracts_with_Thread_Id</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>LoopFilterContracts</name>
+        <label>Loop Filter Contracts</label>
+        <locationX>352</locationX>
+        <locationY>1308</locationY>
+        <collectionReference>Contract_To_Assign_ThreadId</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_ThreadId_to_Current_Contract</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Loop_Threads_To_Assign_ThreadId_to_Contracts</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -283,7 +297,7 @@
         <name>Update_Contracts_with_Thread_Id</name>
         <label>Update Contracts with Thread Id</label>
         <locationX>176</locationX>
-        <locationY>1608</locationY>
+        <locationY>1800</locationY>
         <inputReference>Contracts_To_Update_With_Thread</inputReference>
     </recordUpdates>
     <start>
@@ -324,7 +338,7 @@
         <objectType>Contract__c</objectType>
     </variables>
     <variables>
-        <name>currentItem_Contract_To_Assign_ThreadId</name>
+        <name>currentItem_Contract_To_Assign_ThreadId_0</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
