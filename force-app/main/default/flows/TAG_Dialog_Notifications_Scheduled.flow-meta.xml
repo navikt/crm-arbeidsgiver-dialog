@@ -12,6 +12,12 @@
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
+            <name>sendAsync</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>dispatchWindow</name>
             <value>
                 <stringValue>NKS_BUSINESS_HOURS</stringValue>
@@ -131,17 +137,20 @@
     <formulas>
         <name>ExternId</name>
         <dataType>String</dataType>
-        <expression>{!Get_contract.ExternalId__c} + &apos;-&apos; + {!Get_message.Id} + &apos;-&apos; + {!GetTimeStamp}</expression>
+        <expression>{!Get_contract.ExternalId__c} + &apos;-&apos; + {!Get_message.Id} +
+            &apos;-&apos; + {!GetTimeStamp}</expression>
     </formulas>
     <formulas>
         <name>GetTimeStamp</name>
         <dataType>String</dataType>
-        <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
+        <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; )) *
+            86400)</expression>
     </formulas>
     <formulas>
         <name>unreadMessage</name>
         <dataType>Boolean</dataType>
-        <expression>AND(NOT({!Get_message.CRM_Read__c}), DATETIMEVALUE({!Get_message.CreatedDate} + (60/1440)) &lt; DATETIMEVALUE( NOW() ) )</expression>
+        <expression>AND(NOT({!Get_message.CRM_Read__c}), DATETIMEVALUE({!Get_message.CreatedDate} +
+            (60/1440)) &lt; DATETIMEVALUE( NOW() ) )</expression>
     </formulas>
     <interviewLabel>TAG Dialog Notifications Scheduled {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialog Notifications Scheduled</label>
@@ -248,7 +257,8 @@
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} - Klikk her for å komme til dialogen</text>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} - Klikk her for å komme
+            til dialogen</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotifification</name>

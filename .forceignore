@@ -125,3 +125,6 @@
 # **/components/SitePoweredBy.component
 
 **/audience
+
+# Autocomplete folder
+**/force-app/autocomplete/*

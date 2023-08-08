@@ -190,3 +190,6 @@ fabric.properties
 
 # Environment variables
 env.json
+
+# Autocomplete folder
+**/force-app/autocomplete/*

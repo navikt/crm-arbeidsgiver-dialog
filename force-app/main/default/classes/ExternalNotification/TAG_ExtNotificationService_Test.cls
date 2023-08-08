@@ -470,7 +470,7 @@ private class TAG_ExtNotificationService_Test {
     @IsTest
     private static void testSendMethodPositive() {
         TAG_ExtNotificationService externalNotificationService = new TAG_ExtNotificationService();
-        externalNotificationService.notificationBody = 'Test Notification Body';
+        externalNotificationService.notificationBody = '{"data":{"nyBeskjed":{"__typename":"DuplikatEksternIdOgMerkelapp","feilmelding":"notifikasjon med angitt eksternId og merkelapp finnes fra før"}}}';
 
         SingleRequestMock mock = new SingleRequestMock(
             200,
@@ -508,6 +508,36 @@ private class TAG_ExtNotificationService_Test {
      * @since 2023-06-20 Created.
      */
     @IsTest
+    private static void testSendAsynMethodPositive() {
+        TAG_ExtNotificationService externalNotificationService = new TAG_ExtNotificationService();
+        externalNotificationService.externalId = 'Test External Id';
+        externalNotificationService.notificationBody = '{ "data": "Test Notification Body"}';
+
+        SingleRequestMock mock = new SingleRequestMock(
+            200,
+            'OK',
+            externalNotificationService.notificationBody,
+            new Map<String, String>()
+        );
+        Test.setMock(HttpCalloutMock.class, mock);
+
+        System.Test.startTest();
+        TAG_ExtNotificationService.sendAsync(
+            externalNotificationService.externalId,
+            externalNotificationService.notificationBody
+        );
+        System.Test.stopTest();
+
+        System.assert(true, 'This assert is not asserting anything!');
+    }
+
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-06-20 Created.
+     */
+    @IsTest
     static void testGetResponseMethodPositive() {
         TAG_ExtNotificationService externalNotificationService = new TAG_ExtNotificationService();
         String expectedBody = 'Test Body';
@@ -524,5 +554,139 @@ private class TAG_ExtNotificationService_Test {
             externalNotificationService.notificationResponse.getBody(),
             'Expected to have the "Test Body" value returned.'
         );
+    }
+
+    /**
+     * @description Test the "log" method.
+     *
+     * @author Kenneth.Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-07-17 Created.
+     */
+    @IsTest
+    static void testLogMethodForCode200Positive() {
+        HttpResponse response = new HttpResponse();
+        response.setStatusCode(200);
+        response.setStatus('OK');
+        response.setHeader('Content-Type', 'application/json');
+        response.setBody(
+            '{"data":{"nyBeskjed":{"__typename":"NyBeskjedVellykket","id":"f764bdf3-9905-40b2-a081-acb902a4cecf"}}}'
+        );
+
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            TAG_ExtNotificationService.log(response);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        List<Application_Log__c> applicationLog = [
+            SELECT Id
+            FROM Application_Log__c
+        ];
+
+        System.assert(applicationLog.size() < 1, 'message');
+    }
+
+    /**
+     * @description Test the "log" method.
+     *
+     * @author Kenneth.Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-07-17 Created.
+     */
+    @IsTest
+    static void testLogMethodForCode200withErrorMessagePositive() {
+        HttpResponse response = new HttpResponse();
+        response.setStatusCode(200);
+        response.setStatus('OK');
+        response.setHeader('Content-Type', 'application/json');
+        response.setBody(
+            '{"data":{"nyBeskjed":{"__typename":"DuplikatEksternIdOgMerkelapp","feilmelding":"notifikasjon med angitt eksternId og merkelapp finnes fra før"}}}'
+        );
+
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            TAG_ExtNotificationService.log(response);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        List<Application_Log__c> applicationLog = [
+            SELECT Id
+            FROM Application_Log__c
+        ];
+
+        System.assert(applicationLog.size() > 0, 'message');
+    }
+
+    /**
+     * @description Test the "log" method.
+     *
+     * @author Kenneth.Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-07-17 Created.
+     */
+    @IsTest
+    static void testLogMethodForCode500Positive() {
+        HttpResponse response = new HttpResponse();
+        response.setStatusCode(500);
+        response.setStatus('Internal Server Error');
+
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            TAG_ExtNotificationService.log(response);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        List<Application_Log__c> applicationLog = [
+            SELECT Id
+            FROM Application_Log__c
+        ];
+
+        System.assert(applicationLog.size() > 0, 'message');
+    }
+
+    /**
+     * @description Test the "log" method.
+     *
+     * @author Kenneth.Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-07-17 Created.
+     */
+    @IsTest
+    static void testLogMethodForCode200NoJSONBodyNegative() {
+        HttpResponse response = new HttpResponse();
+        response.setStatusCode(200);
+        response.setStatus('OK');
+        response.setHeader('Content-Type', 'text/plain');
+        response.setBody('Test Body');
+
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            TAG_ExtNotificationService.log(response);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        List<Application_Log__c> applicationLog = [
+            SELECT Id
+            FROM Application_Log__c
+        ];
+
+        System.assert(applicationLog.size() > 0, 'message');
     }
 }

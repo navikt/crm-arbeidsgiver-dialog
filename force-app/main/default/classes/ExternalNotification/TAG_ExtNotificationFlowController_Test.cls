@@ -447,9 +447,10 @@ private class TAG_ExtNotificationFlowController_Test {
      * @since 2023-05-16 Created.
      */
     @isTest
-    static void testSendSMSNotificationDWHours() {
+    static void testSendSMSNotificationDWHoursUsingSynchronousVersion() {
         List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
         TAG_ExtNotificationFlowController.ExtNotificationRequest request = new TAG_ExtNotificationFlowController.ExtNotificationRequest();
+        request.sendAsync = false;
         request.enterpriseNumber = 'TestEnterprise';
         request.externalId = 'TestExternalId';
         request.groupingId = 'TestGroupingId';
@@ -483,9 +484,10 @@ private class TAG_ExtNotificationFlowController_Test {
      * @since 2023-05-16 Created.
      */
     @isTest
-    static void testSendSMSNotificationDWSunday() {
+    static void testSendSMSNotificationDWSundayUsingSynchronousVersion() {
         List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
         TAG_ExtNotificationFlowController.ExtNotificationRequest request = new TAG_ExtNotificationFlowController.ExtNotificationRequest();
+        request.sendAsync = false;
         request.enterpriseNumber = 'TestEnterprise1';
         request.externalId = 'TestExternalId1';
         request.groupingId = 'TestGroupingId1';
@@ -519,9 +521,10 @@ private class TAG_ExtNotificationFlowController_Test {
      * @since 2023-05-16 Created.
      */
     @isTest
-    static void testSendSMSNotificationDWContinuously() {
+    static void testSendSMSNotificationDWContinuouslyUsingSynchronousVersion() {
         List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
         TAG_ExtNotificationFlowController.ExtNotificationRequest request = new TAG_ExtNotificationFlowController.ExtNotificationRequest();
+        request.sendAsync = false;
         request.enterpriseNumber = 'TestEnterprise2';
         request.externalId = 'TestExternalId2';
         request.groupingId = 'TestGroupingId2';
@@ -555,9 +558,10 @@ private class TAG_ExtNotificationFlowController_Test {
      * @since 2023-05-16 Created.
      */
     @isTest
-    static void testSendSMSNotificationDWNull() {
+    static void testSendSMSNotificationDWNullUsingSynchronousVersion() {
         List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
         TAG_ExtNotificationFlowController.ExtNotificationRequest request = new TAG_ExtNotificationFlowController.ExtNotificationRequest();
+        request.sendAsync = false;
         request.enterpriseNumber = 'TestEnterprise3';
         request.externalId = 'TestExternalId3';
         request.groupingId = 'TestGroupingId3';
@@ -600,5 +604,79 @@ private class TAG_ExtNotificationFlowController_Test {
             extNotificationServiceException.getMessage(),
             'Expected to have a "ExtNotificationServiceException" with the message "The dispatch window value is not valid. Unknown dispatch window: null"'
         );
+    }
+
+    /**
+     * @description Testing the `buildAndSendExternalNotificationAsync` method with correct value.
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-08-07 Created.
+     */
+    @IsTest
+    static void testBuildAndSendExternalNotificationAsyncMethodPositive() {
+        TAG_ExtNotificationService mockExtNotificationService = (TAG_ExtNotificationService) System.Test.createStub(
+            TAG_ExtNotificationService.class,
+            new TAG_MockExtNotificationService()
+        );
+
+        SingleRequestMock mock = new SingleRequestMock(
+            200,
+            'OK',
+            '{ "data": "Test Notification Body"}',
+            new Map<String, String>()
+        );
+        Test.setMock(HttpCalloutMock.class, mock);
+
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            TAG_ExtNotificationFlowController.buildAndSendExternalNotificationAsync(mockExtNotificationService);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+    }
+
+    /**
+     * @description Testing the `buildAndSendExternalNotification` method with correct value.
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-06-14 Created.
+     */
+    @IsTest
+    static void testSendExternalNotificationMethodUsingAsynchronousVersionPositive() {
+        List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
+        TAG_ExtNotificationFlowController.ExtNotificationRequest request = new TAG_ExtNotificationFlowController.ExtNotificationRequest();
+        request.sendAsync = true;
+        request.enterpriseNumber = 'TestEnterprise';
+        request.externalId = 'TestExternalId';
+        request.groupingId = 'TestGroupingId';
+        request.notificationText = 'TestNotificationText';
+        request.url = 'TestURL';
+        request.sendSms = true;
+        request.phoneNumber = 'TestPhoneNumber';
+        request.smsText = 'TestSMS';
+        request.dispatchWindow = 'NKS_BUSINESS_HOURS';
+        requests.add(request);
+
+        ApiMock.setTestMock('POST_NOTIFICATION', 200, 'OK');
+
+        List<TAG_ExtNotificationFlowController.ExtNotificationResult> results;
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            results = TAG_ExtNotificationFlowController.sendExternalNotification(requests);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        System.assertEquals(1, results.size(), 'Expected to have 1 result.');
+        System.assert(results[0].success, 'Expected to have a success result.');
+        System.assert(results[0].sentAsync, 'Expected to have a success result.');
     }
 }
