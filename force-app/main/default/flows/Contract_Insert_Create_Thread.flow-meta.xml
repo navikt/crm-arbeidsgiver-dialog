@@ -126,8 +126,14 @@
     <recordUpdates>
         <name>Update_contract_relation_to_thread</name>
         <label>Update contract relation to thread</label>
-        <locationX>508</locationX>
-        <locationY>572</locationY>
+        <locationX>507</locationX>
+        <locationY>573</locationY>
+        <inputAssignments>
+            <field>NAV_Unit_text_value__c</field>
+            <value>
+                <elementReference>$Record.TAG_NAVUnit__r.Name</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Thread__c</field>
             <value>
