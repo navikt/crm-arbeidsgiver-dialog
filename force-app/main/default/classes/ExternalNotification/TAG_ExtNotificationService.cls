@@ -253,7 +253,7 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
         this.enterpriseNumber = enterpriseNumber;
         this.externalId = externalId;
         this.groupingId = groupingId;
-        this.notificationText = notificationText.replaceAll('\r\n|\n|\r', ' ').normalizeSpace().escapeJava();
+        this.notificationText = notificationText?.replaceAll('\r\n|\n|\r', ' ')?.normalizeSpace()?.escapeJava();
         this.url = url;
 
         return this;

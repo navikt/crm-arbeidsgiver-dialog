@@ -125,33 +125,35 @@ private class TAG_ExtNotificationFlowController_Test {
         );
 
         System.Test.startTest();
-        TAG_ExtNotificationService extNotificationService = (TAG_ExtNotificationService) TAG_ExtNotificationFlowController.createNotification(
-            mockExtNotificationService,
-            request
-        );
+        TAG_ExtNotificationFlowController.createNotification(mockExtNotificationService, request);
         System.Test.stopTest();
+
+        System.debug(
+            LoggingLevel.DEBUG,
+            'mockExtNotificationService: ' + JSON.SerializePretty(mockExtNotificationService)
+        );
 
         System.assertEquals(
             request.enterpriseNumber,
-            extNotificationService.enterpriseNumber,
+            mockExtNotificationService.enterpriseNumber,
             'Expected to have the same "enterprise number" returned.'
         );
         System.assertEquals(
             request.externalId,
-            extNotificationService.externalId,
+            mockExtNotificationService.externalId,
             'Expected to have the same "external Id" returned.'
         );
         System.assertEquals(
             request.groupingId,
-            extNotificationService.groupingId,
+            mockExtNotificationService.groupingId,
             'Expected to have the same "grouping Id" returned.'
         );
         System.assertEquals(
             request.notificationText,
-            extNotificationService.notificationText,
+            mockExtNotificationService.notificationText,
             'Expected to have the same "notification Text" returned.'
         );
-        System.assertEquals(request.url, extNotificationService.url, 'Expected to have the same "url" returned.');
+        System.assertEquals(request.url, mockExtNotificationService.url, 'Expected to have the same "url" returned.');
     }
 
     /**
@@ -173,25 +175,22 @@ private class TAG_ExtNotificationFlowController_Test {
         );
 
         System.Test.startTest();
-        TAG_ExtNotificationService extNotificationService = (TAG_ExtNotificationService) TAG_ExtNotificationFlowController.addSMSNotification(
-            mockExtNotificationService,
-            request
-        );
+        TAG_ExtNotificationFlowController.addSMSNotification(mockExtNotificationService, request);
         System.Test.stopTest();
 
         System.assertEquals(
             request.phoneNumber,
-            extNotificationService.phoneNumber,
+            mockExtNotificationService.phoneNumber,
             'Expected to have the same "phone number" returned.'
         );
         System.assertEquals(
             request.smsText,
-            extNotificationService.smsText,
+            mockExtNotificationService.smsText,
             'Expected to have the same "sms text" returned.'
         );
         System.assertEquals(
             request.dispatchWindow,
-            extNotificationService.dispatchWindow.name(),
+            mockExtNotificationService.dispatchWindow.name(),
             'Expected to have the same "dispatch window" returned.'
         );
     }
@@ -215,25 +214,22 @@ private class TAG_ExtNotificationFlowController_Test {
         );
 
         System.Test.startTest();
-        TAG_ExtNotificationService extNotificationService = (TAG_ExtNotificationService) TAG_ExtNotificationFlowController.addSMSNotification(
-            mockExtNotificationService,
-            request
-        );
+        TAG_ExtNotificationFlowController.addSMSNotification(mockExtNotificationService, request);
         System.Test.stopTest();
 
         System.assertEquals(
             request.phoneNumber,
-            extNotificationService.phoneNumber,
+            mockExtNotificationService.phoneNumber,
             'Expected to have the same "phone number" returned.'
         );
         System.assertEquals(
             request.smsText,
-            extNotificationService.smsText,
+            mockExtNotificationService.smsText,
             'Expected to have the same "sms text" returned.'
         );
         System.assertEquals(
             null,
-            extNotificationService.dispatchWindow?.name(),
+            mockExtNotificationService.dispatchWindow?.name(),
             'Expected to have the same "null" returned.'
         );
     }
@@ -252,19 +248,17 @@ private class TAG_ExtNotificationFlowController_Test {
         );
 
         System.Test.startTest();
-        TAG_ExtNotificationService extNotificationService = (TAG_ExtNotificationService) TAG_ExtNotificationFlowController.buildAndSendExternalNotification(
-            mockExtNotificationService
-        );
+        TAG_ExtNotificationFlowController.buildAndSendExternalNotification(mockExtNotificationService);
         System.Test.stopTest();
 
         System.assertNotEquals(
             null,
-            extNotificationService.notificationBody,
+            mockExtNotificationService.notificationBody,
             'Expected to have a "notification body" returned.'
         );
         System.assertEquals(
             'TestNotificationBody',
-            extNotificationService.notificationBody,
+            mockExtNotificationService.notificationBody,
             'Expected to have "notification body" return the value: "TestNotificationBody"'
         );
 
@@ -272,12 +266,12 @@ private class TAG_ExtNotificationFlowController_Test {
         String expectedBody = TAG_MockExtNotificationService.DEFAULT_BODY;
         System.assertEquals(
             expectedStatusCode,
-            extNotificationService.notificationResponse.getStatusCode(),
+            mockExtNotificationService.notificationResponse.getStatusCode(),
             'Expected status code "' + expectedStatusCode + '" to be returned.'
         );
         System.assertEquals(
             expectedBody,
-            extNotificationService.notificationResponse.getBody(),
+            mockExtNotificationService.notificationResponse.getBody(),
             'Expected body "' + expectedBody + '" to be returned.'
         );
     }
@@ -297,7 +291,7 @@ private class TAG_ExtNotificationFlowController_Test {
         );
 
         System.Test.startTest();
-        List<TAG_ExtNotificationFlowController.ExtNotificationResult> resultsList = TAG_ExtNotificationFlowController.getResponseAndCreateResults(
+        TAG_ExtNotificationFlowController.ExtNotificationResult result = TAG_ExtNotificationFlowController.getResponseAndCreateResults(
             mockExtNotificationService
         );
         System.Test.stopTest();
@@ -309,27 +303,27 @@ private class TAG_ExtNotificationFlowController_Test {
         String expextedExternalNotificationId = 'f764bdf3-9905-40b2-a081-acb809a4cccf';
         System.assertEquals(
             expectedStatusCode,
-            resultsList[0].statusCode,
+            result.statusCode,
             'Expected status code "' + expectedStatusCode + '" to be returned.'
         );
         System.assertEquals(
             expextedTypeName,
-            resultsList[0].typeName,
+            result.typeName,
             'Expected type name "' + expextedTypeName + '" to be returned.'
         );
         System.assertEquals(
             expectedErrorMessage,
-            resultsList[0].errorMessage,
+            result.errorMessage,
             'Expected error message "' + expectedErrorMessage + '" to be returned.'
         );
         System.assertEquals(
             expectedNotificationId,
-            resultsList[0].notificationId,
+            result.notificationId,
             'Expected notification id "' + expectedNotificationId + '" to be returned.'
         );
         System.assertEquals(
             expextedExternalNotificationId,
-            resultsList[0].externalNotificationId,
+            result.externalNotificationId,
             'Expected external notification id "' + expextedExternalNotificationId + '" to be returned.'
         );
     }
@@ -351,7 +345,7 @@ private class TAG_ExtNotificationFlowController_Test {
         );
 
         System.Test.startTest();
-        List<TAG_ExtNotificationFlowController.ExtNotificationResult> resultsList = TAG_ExtNotificationFlowController.getResponseAndCreateResults(
+        TAG_ExtNotificationFlowController.ExtNotificationResult result = TAG_ExtNotificationFlowController.getResponseAndCreateResults(
             mockExtNotificationService
         );
         System.Test.stopTest();
@@ -362,27 +356,27 @@ private class TAG_ExtNotificationFlowController_Test {
         String expextedExternalNotificationId = null;
         System.assertEquals(
             expectedStatusCode,
-            resultsList[0].statusCode,
+            result.statusCode,
             'Expected status code "' + expectedStatusCode + '" to be returned.'
         );
         System.assertEquals(
             expextedTypeName,
-            resultsList[0].typeName,
+            result.typeName,
             'Expected type name "' + expextedTypeName + '" to be returned.'
         );
         System.assertEquals(
             expectedErrorMessage,
-            resultsList[0].errorMessage,
+            result.errorMessage,
             'Expected error message "' + expectedErrorMessage + '" to be returned.'
         );
         System.assertEquals(
             expectedNotificationId,
-            resultsList[0].notificationId,
+            result.notificationId,
             'Expected notification id "' + expectedNotificationId + '" to be returned.'
         );
         System.assertEquals(
             expextedExternalNotificationId,
-            resultsList[0].externalNotificationId,
+            result.externalNotificationId,
             'Expected external notification id "' + expextedExternalNotificationId + '" to be returned.'
         );
     }
@@ -404,7 +398,7 @@ private class TAG_ExtNotificationFlowController_Test {
         );
 
         System.Test.startTest();
-        List<TAG_ExtNotificationFlowController.ExtNotificationResult> resultsList = TAG_ExtNotificationFlowController.getResponseAndCreateResults(
+        TAG_ExtNotificationFlowController.ExtNotificationResult result = TAG_ExtNotificationFlowController.getResponseAndCreateResults(
             mockExtNotificationService
         );
         System.Test.stopTest();
@@ -415,27 +409,27 @@ private class TAG_ExtNotificationFlowController_Test {
         String expextedExternalNotificationId = null;
         System.assertEquals(
             expectedStatusCode,
-            resultsList[0].statusCode,
+            result.statusCode,
             'Expected status code "' + expectedStatusCode + '" to be returned.'
         );
         System.assertEquals(
             expextedTypeName,
-            resultsList[0].typeName,
+            result.typeName,
             'Expected type name "' + expextedTypeName + '" to be returned.'
         );
         System.assertEquals(
             expectedErrorMessage,
-            resultsList[0].errorMessage,
+            result.errorMessage,
             'Expected error message "' + expectedErrorMessage + '" to be returned.'
         );
         System.assertEquals(
             expectedNotificationId,
-            resultsList[0].notificationId,
+            result.notificationId,
             'Expected notification id "' + expectedNotificationId + '" to be returned.'
         );
         System.assertEquals(
             expextedExternalNotificationId,
-            resultsList[0].externalNotificationId,
+            result.externalNotificationId,
             'Expected external notification id "' + expextedExternalNotificationId + '" to be returned.'
         );
     }
@@ -678,5 +672,155 @@ private class TAG_ExtNotificationFlowController_Test {
         System.assertEquals(1, results.size(), 'Expected to have 1 result.');
         System.assert(results[0].success, 'Expected to have a success result.');
         System.assert(results[0].sentAsync, 'Expected to have a success result.');
+    }
+
+    /**
+     * @description Testing the `buildAndSendExternalNotification` method with correct value.
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-06-14 Created.
+     */
+    @IsTest
+    static void testSendExternalNotificationMethodNegative() {
+        List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
+
+        List<TAG_ExtNotificationFlowController.ExtNotificationResult> results;
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            results = TAG_ExtNotificationFlowController.sendExternalNotification(requests);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        System.assertEquals(1, results.size(), 'Expected to have 1 result.');
+        System.assert(!results[0].success, 'Expected to have a none success result.');
+        System.assertEquals(
+            results[0].errorMessage,
+            TAG_ExtNotificationFlowController.ERROR_MISSING_REQUEST,
+            'Expected to have a success result.'
+        );
+    }
+
+    /**
+     * @description Testing the `sendExternalNotification` method with multiple requests
+     * to test for correct bulkification.
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-08-07 Created.
+     */
+    @IsTest
+    static void testSendExternalNotificationMethodeWithBulkRequestsPositive() {
+        List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
+
+        Integer length = 10;
+        for (Integer i = 0; i < length; i++) {
+            TAG_ExtNotificationFlowController.ExtNotificationRequest request = new TAG_ExtNotificationFlowController.ExtNotificationRequest();
+            request.sendAsync = false;
+            request.enterpriseNumber = 'TestEnterprise-' + i;
+            request.externalId = 'TestExternalId-' + i;
+            request.groupingId = 'TestGroupingId-' + i;
+            request.notificationText = 'TestNotificationText-' + i;
+            request.sendSms = true;
+            request.url = 'TestURL-' + i;
+            request.phoneNumber = 'TestPhoneNumber-' + i;
+            request.smsText = 'TestSMS-' + i;
+            request.dispatchWindow = 'CONTINUOUSLY';
+            requests.add(request);
+            System.debug(LoggingLevel.DEBUG, 'request: ' + request);
+        }
+
+        SingleRequestMock mock = new SingleRequestMock(
+            200,
+            'OK',
+            '{"data":{"nyBeskjed":{"__typename":"NyBeskjedVellykket","id":"TestId"}}}',
+            new Map<String, String>()
+        );
+        Test.setMock(HttpCalloutMock.class, mock);
+
+        List<TAG_ExtNotificationFlowController.ExtNotificationResult> results;
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            results = TAG_ExtNotificationFlowController.sendExternalNotification(requests);
+        } catch (Exception ex) {
+            System.debug('Exception Type Name: ' + ex.getTypeName());
+            System.debug('Exception Cause: ' + ex.getCause());
+            System.debug('Exception Message: ' + ex.getMessage());
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        System.assertEquals(requests.size(), results.size(), 'Expected to have ' + requests.size() + ' results.');
+
+        Integer index = 0;
+        for (TAG_ExtNotificationFlowController.ExtNotificationResult result : results) {
+            System.assert(result.success, 'Expected to have a success result for request: ' + index + '.');
+
+            System.assertEquals(
+                'NyBeskjedVellykket',
+                result.typeName,
+                'Expected to have a "typeName" returned with the value: "NyBeskjedVellykket" for request: ' +
+                    index +
+                    '.'
+            );
+
+            System.assertEquals(
+                'TestId',
+                result.notificationId,
+                'Expected to have a "notificationId" returned with the value: "TestId" for request: ' + index + '.'
+            );
+            index++;
+        }
+    }
+
+    /**
+     * @description Testing the `sendExternalNotification` method with empty requests
+     * to test for handling null in various conditions.
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-08-14 Created.
+     */
+    @IsTest
+    static void testSendExternalNotificationMethodWithEmptyRequestNegative() {
+        List<TAG_ExtNotificationFlowController.ExtNotificationRequest> requests = new List<TAG_ExtNotificationFlowController.ExtNotificationRequest>();
+        TAG_ExtNotificationFlowController.ExtNotificationRequest request = new TAG_ExtNotificationFlowController.ExtNotificationRequest();
+        requests.add(request);
+
+        SingleRequestMock mock = new SingleRequestMock(
+            200,
+            'OK',
+            '{"data":"Test Notification Body"}',
+            new Map<String, String>()
+        );
+        Test.setMock(HttpCalloutMock.class, mock);
+
+        List<TAG_ExtNotificationFlowController.ExtNotificationResult> results;
+        Boolean isExceptionThrown = false;
+        System.Test.startTest();
+        try {
+            results = TAG_ExtNotificationFlowController.sendExternalNotification(requests);
+        } catch (Exception ex) {
+            isExceptionThrown = true;
+        }
+        System.Test.stopTest();
+
+        System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
+
+        System.assertEquals(requests.size(), results.size(), 'Expected to have ' + requests.size() + ' results.');
+
+        System.assert(!results[0].success, 'Expected to have a unsuccess result.');
+
+        String errorMessage = 'The JSON body is not valid! - System.TypeException: Invalid conversion from runtime type String to Map<String,ANY>';
+        System.assertEquals(
+            errorMessage,
+            results[0].errorMessage,
+            'Expected to have a "errorMessage" returned with the value: "' + errorMessage + '".'
+        );
     }
 }

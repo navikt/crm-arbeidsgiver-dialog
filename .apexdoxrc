@@ -1,0 +1,20 @@
+{
+    "engine": {
+        "targetDirectory": "${workspaceFolder}/documentation/code",
+        "source": [
+            {
+                "path": "${workspaceFolder}/force-app/main/default/classes"
+            }
+        ],
+        "scope": [
+            "global",
+            "public",
+            "protected",
+            "private",
+            "testMethod",
+            "webService"
+        ],
+        "title": "CRM Arbeidsgiver Dialog - Apex Documentation",
+        "cleanDir": true
+    }
+}
