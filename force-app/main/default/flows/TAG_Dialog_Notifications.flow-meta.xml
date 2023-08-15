@@ -90,6 +90,12 @@
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
+            <name>sendAsync</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>enterpriseNumber</name>
             <value>
                 <elementReference>Get_contract.TAG_Account__r.INT_OrganizationNumber__c</elementReference>
@@ -308,6 +314,12 @@
             <targetReference>SaveNotificationExternalId</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>sendAsync</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
         <inputParameters>
             <name>dispatchWindow</name>
             <value>
@@ -556,12 +568,14 @@
     <formulas>
         <name>ExternId</name>
         <dataType>String</dataType>
-        <expression>{!Get_contract.ExternalId__c} + &apos;-&apos; + {!$Record.Id} + &apos;-&apos; + {!GetTimeStamp}</expression>
+        <expression>{!Get_contract.ExternalId__c} + &apos;-&apos; + {!$Record.Id} + &apos;-&apos; +
+            {!GetTimeStamp}</expression>
     </formulas>
     <formulas>
         <name>GetTimeStamp</name>
         <dataType>String</dataType>
-        <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; ))  * 86400)</expression>
+        <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; )) *
+            86400)</expression>
     </formulas>
     <formulas>
         <description>Text to show in notifciation bell in Salesforce</description>
@@ -737,12 +751,16 @@
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} - Klikk her for å komme til dialogen</text>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} - Klikk her for å komme
+            til dialogen</text>
     </textTemplates>
     <textTemplates>
         <name>NotificationGoSys</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Hei, du har mottatt en ny melding på en tiltaksavtale tilknyttet din virksomhet. Meldingen er tilknyttet avtalenummer: {!Get_contract.ExternalId__c} for {!Get_contract.TAG_Account__r.Name}. Du kan svare på meldingen ved å logge inn til Salesforce og navigere til Avtalen.</text>
+        <text>Hei, du har mottatt en ny melding på en tiltaksavtale tilknyttet din virksomhet.
+            Meldingen er tilknyttet avtalenummer: {!Get_contract.ExternalId__c} for
+            {!Get_contract.TAG_Account__r.Name}. Du kan svare på meldingen ved å logge inn til
+            Salesforce og navigere til Avtalen.</text>
     </textTemplates>
     <textTemplates>
         <name>SMSNotification</name>

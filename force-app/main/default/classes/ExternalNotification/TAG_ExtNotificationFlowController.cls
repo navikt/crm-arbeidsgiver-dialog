@@ -1,42 +1,81 @@
 /**
- * @description This is the
+ * @description This External Notification Flow Controller class exposes a Flow Action to use when
+ * you send an external notification via a flow. The external notification flow action will send a
+ * message to the employer identified by Enterprise Number. The notification is shown in the
+ * NAV Employer Portal (employer my page on nav.no) in the notification bell. Additionally, you can
+ * send a sms to the phone number identified.
  *
  * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
  * @since 2023-05-08 Created.
+ * @since 2023-07-18 Updated to reflect the use of Asynchronous and Synchronous sending of notifications.
+ * @since 2023-08-09 Changed Flow Action to handle bulkification and added error message on missing request.
  *
  * @see [License](https://github.com/navikt/crm-arbeidsgiver-dialog/blob/master/LICENSE)
  * @see [Github](https://github.com/navikt/crm-arbeidsgiver-dialog)
+ * @see TAG_ExtNotificationService
+ * @see TAG_ExtNotificationFlowController_Test
  *
  * @group TAG External Notification
  */
 public with sharing class TAG_ExtNotificationFlowController {
-    @TestVisible
-    private static TAG_ExtNotificationService extNotificationService = new TAG_ExtNotificationService();
+    public static final String ERROR_MISSING_REQUEST = 'No requests provided.';
 
     /**
-     * @description
+     * @description The Flow Action exposed to the Flow Builder.
+     * Sending notification to employer on the NAV Employer Portal (employer my page on nav.no).
+     * Also possible to include an notification by sms to provided phone number.
      *
-     * @author Kenneth Soerensen <kenneth.sorensen@mav.no>
-     * @since 2023-05-08
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-05-08 Created.
      *
-     * @param requests
-     * @return
+     * @param requests The request/input parameters from the Flow Action.
+     * @return The result `List<ExtNotificationResult>` is provided back to the Flow Action.
+     *
+     * @see TAG_ExtNotificationFlowController.ExtNotificationRequest
+     * @see TAG_ExtNotificationFlowController.ExtNotificationResult
      */
     @InvocableMethod(
         label='Send SMS Notification'
-        description='Sending notification to employer on the employer my page on nav.no. Also possible to include an notification by sms to provided phone number'
+        description='Sending notification to employer on the NAV Employer Portal (employer my page on nav.no). Also possible to include an notification by sms to provided phone number.'
         category='Notifications'
         iconName='slds:custom:custom53'
     )
     public static List<ExtNotificationResult> sendExternalNotification(List<ExtNotificationRequest> requests) {
-        ExtNotificationRequest request = requests[0];
+        List<ExtNotificationResult> resultsList = new List<ExtNotificationResult>();
 
-        createNotification(extNotificationService, request);
-        if (request.sendSms) {
-            addSMSNotification(extNotificationService, request);
+        if (requests.size() == 0) {
+            ExtNotificationResult result = new ExtNotificationResult();
+            result.success = false;
+            result.errorMessage = ERROR_MISSING_REQUEST;
+            resultsList.add(result);
+            return resultsList;
         }
 
-        return getResponseAndCreateResults(buildAndSendExternalNotification(extNotificationService));
+        TAG_ExtNotificationService extNotificationService;
+
+        for (ExtNotificationRequest request : requests) {
+            extNotificationService = new TAG_ExtNotificationService();
+            createNotification(extNotificationService, request);
+
+            request.sendSms = request.sendSms == null ? false : request.sendSms;
+            if (request.sendSms) {
+                addSMSNotification(extNotificationService, request);
+            }
+
+            request.sendAsync = request.sendAsync == null ? false : request.sendAsync;
+            if (request.sendAsync) {
+                buildAndSendExternalNotificationAsync(extNotificationService);
+
+                ExtNotificationResult result = new ExtNotificationResult();
+                result.success = true;
+                result.sentAsync = true;
+                resultsList.add(result);
+            } else {
+                resultsList.add(getResponseAndCreateResults(buildAndSendExternalNotification(extNotificationService)));
+            }
+        }
+
+        return resultsList;
     }
 
     /**
@@ -46,7 +85,7 @@ public with sharing class TAG_ExtNotificationFlowController {
      * @since 2023-06-0 Created.
      *
      * @param dispatchWindow
-     * @return
+     * @return ...
      */
     @TestVisible
     private static TAG_DispatchWindow_e getDispatchWindowEnum(String dispatchWindow) {
@@ -72,11 +111,11 @@ public with sharing class TAG_ExtNotificationFlowController {
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-06-06 Created.
      *
+     * @param extNotificationService
      * @param requests
-     * @return
      */
     @TestVisible
-    private static TAG_IExtNotificationService createNotification(
+    private static void createNotification(
         TAG_IExtNotificationService extNotificationService,
         ExtNotificationRequest request
     ) {
@@ -87,21 +126,19 @@ public with sharing class TAG_ExtNotificationFlowController {
             request.notificationText,
             request.url
         );
-
-        return extNotificationService;
     }
 
     /**
      * @description
      *
+     * @param extNotificationService
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-06-06 Created.
      *
      * @param requests
-     * @return
      */
     @TestVisible
-    private static TAG_IExtNotificationService addSMSNotification(
+    private static void addSMSNotification(
         TAG_IExtNotificationService extNotificationService,
         ExtNotificationRequest request
     ) {
@@ -110,8 +147,6 @@ public with sharing class TAG_ExtNotificationFlowController {
             request.smsText,
             getDispatchWindowEnum(request.dispatchWindow)
         );
-
-        return extNotificationService;
     }
 
     /**
@@ -123,7 +158,7 @@ public with sharing class TAG_ExtNotificationFlowController {
      * @since 2023-06-14 Updated ...
      *
      * @param requests
-     * @return
+     * @return ...
      */
     @TestVisible
     private static TAG_IExtNotificationService buildAndSendExternalNotification(
@@ -138,19 +173,38 @@ public with sharing class TAG_ExtNotificationFlowController {
      * @description
      *
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-07-18 Created.
+     *
+     * @param requests
+     */
+    @TestVisible
+    private static void buildAndSendExternalNotificationAsync(TAG_IExtNotificationService iExtNotificationService) {
+        iExtNotificationService.build();
+        TAG_ExtNotificationService extNotificationService = (TAG_ExtNotificationService) iExtNotificationService;
+        TAG_ExtNotificationService.sendAsync(
+            extNotificationService.externalId,
+            extNotificationService.notificationBody
+        );
+    }
+
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-06-06 Created.
      *
      * @param extNotificationService
-     * @return  `List<ExtNotificationResult>`
+     * @return  `ExtNotificationResult`
      */
     @TestVisible
-    private static List<ExtNotificationResult> getResponseAndCreateResults(
+    private static ExtNotificationResult getResponseAndCreateResults(
         TAG_IExtNotificationService extNotificationService
     ) {
         HttpResponse response = extNotificationService.getResponse();
 
-        List<ExtNotificationResult> resultsList = new List<ExtNotificationResult>();
-        ExtNotificationResult results = new ExtNotificationResult();
+        ExtNotificationResult result = new ExtNotificationResult();
+        result.success = false;
+        result.sentAsync = false;
 
         /*
         {"data":{"nyBeskjed":{"__typename":"NyBeskjedVellykket","id":"f764bdf3-9905-40b2-a081-acb902a4cecf"}}}
@@ -163,31 +217,48 @@ public with sharing class TAG_ExtNotificationFlowController {
             if (String.isNotBlank(response.getBody())) {
                 errorMessage = errorMessage + ' ' + response.getBody();
             }
-            results.errorMessage = errorMessage;
-            results.statusCode = response.getStatusCode();
+            result.errorMessage = errorMessage;
+            result.statusCode = response.getStatusCode();
         } else {
-            results.statusCode = response.getStatusCode();
-            Map<String, Object> responseDeserialize = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-            Map<String, Object> data = (Map<String, Object>) responseDeserialize?.get('data');
-            Map<String, Object> nyBeskjed = (Map<String, Object>) data?.get('nyBeskjed');
-            results.typeName = (String) nyBeskjed?.get('__typename');
-            results.errorMessage = (String) nyBeskjed?.get('feilmelding');
-            results.notificationId = (String) nyBeskjed?.get('id');
-            Map<String, Object> eksterneVarsler = (Map<String, Object>) nyBeskjed?.get('eksterneVarsler');
-            results.externalNotificationId = (String) eksterneVarsler?.get('id');
+            result.statusCode = response.getStatusCode();
+            try {
+                Map<String, Object> responseDeserialize = (Map<String, Object>) JSON.deserializeUntyped(
+                    response.getBody()
+                );
+                System.debug(LoggingLevel.DEBUG, 'responseDeserialize: ' + responseDeserialize);
+                Map<String, Object> data = (Map<String, Object>) responseDeserialize?.get('data');
+                Map<String, Object> nyBeskjed = (Map<String, Object>) data?.get('nyBeskjed');
+                result.typeName = (String) nyBeskjed?.get('__typename');
+                result.errorMessage = (String) nyBeskjed?.get('feilmelding');
+                result.notificationId = (String) nyBeskjed?.get('id');
+                Map<String, Object> eksterneVarsler = (Map<String, Object>) nyBeskjed?.get('eksterneVarsler');
+                result.externalNotificationId = (String) eksterneVarsler?.get('id');
+            } catch (Exception ex) {
+                result.errorMessage = 'The JSON body is not valid! - ' + ex.getTypeName() + ': ' + ex.getMessage();
+            }
         }
-        resultsList.add(results);
 
-        return resultsList;
+        if (String.isBlank(result.errorMessage)) {
+            result.success = true;
+        }
+
+        return result;
     }
 
     /**
-     * @description
+     * @description ExtNotificationRequest ...
      *
      * @auther Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-06-06 Created.
      */
     public class ExtNotificationRequest {
+        @InvocableVariable(
+            label='Send Notification Async'
+            description='If true, the notification will be sent "Asynchronous". If false, the notification will be sent "Synchronous".'
+            required=true
+        )
+        public boolean sendAsync;
+
         @InvocableVariable(
             label='Enterprise Number'
             description='The enterprise that should recive the notification.'
@@ -240,7 +311,26 @@ public with sharing class TAG_ExtNotificationFlowController {
         public String dispatchWindow;
     }
 
+    /**
+     * @description ExtNotificationResult...
+     *
+     * @auther Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-06-06 Created.
+     * @since 2023-07-18 Updated to reflect the use of Asynchronous and Synchronous sending of notifications.
+     */
     public class ExtNotificationResult {
+        @InvocableVariable(
+            label='Success State'
+            description='If sent Asynchronous, this will always be true. If sent Synchronous, this will be true if the notification was sent successfully, and false if not.'
+        )
+        public Boolean success;
+
+        @InvocableVariable(
+            label='Sent Asynchronous'
+            description='If true, the notification was sent "Asynchronous". If false, the notification was sent "Synchronous".'
+        )
+        public Boolean sentAsync;
+
         @InvocableVariable
         public String notificationId;
 

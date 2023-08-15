@@ -253,7 +253,7 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
         this.enterpriseNumber = enterpriseNumber;
         this.externalId = externalId;
         this.groupingId = groupingId;
-        this.notificationText = notificationText.replaceAll('\r\n|\n|\r', ' ').normalizeSpace().escapeJava();
+        this.notificationText = notificationText?.replaceAll('\r\n|\n|\r', ' ')?.normalizeSpace()?.escapeJava();
         this.url = url;
 
         return this;
@@ -358,6 +358,24 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
         return this;
     }
 
+    @TestVisible
+    private static HttpResponse callout(String externalId, String notificationBody) {
+        ApiController apiCtrl = new ApiController();
+
+        apiCtrl.initRequest('ArbeidsgiverNotifikasjonAPI', 'POST_NOTIFICATION');
+        apiCtrl.setSystemContext()
+            .addServiceAuthHeader('ArbeidsgiverNotifikasjon')
+            .addHeader('Content-Type', 'application/json')
+            .addHeader('X-Correlation-ID', 'TSA-' + externalId)
+            .setBody(notificationBody);
+        apiCtrl.doCallout();
+
+        HttpResponse notificationResponse = apiCtrl.getResponse();
+        log(notificationResponse);
+
+        return notificationResponse;
+    }
+
     /**
      * @description
      *
@@ -365,18 +383,22 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
      * @since 2023-05-08 Created.
      */
     public TAG_ExtNotificationService send() {
-        ApiController apiCtrl = new ApiController();
+        this.notificationResponse = callout(this.externalId, this.notificationBody);
 
-        apiCtrl.initRequest('ArbeidsgiverNotifikasjonAPI', 'POST_NOTIFICATION');
-        apiCtrl.setSystemContext()
-            .addServiceAuthHeader('ArbeidsgiverNotifikasjon')
-            .addHeader('Content-Type', 'application/json')
-            .addHeader('X-Correlation-ID', 'TSA-' + this.externalId)
-            .setBody(this.notificationBody);
-        apiCtrl.doCallout();
-
-        this.notificationResponse = apiCtrl.getResponse();
         return this;
+    }
+
+    /**
+     * @description
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-06-26 Created.
+     *
+     * @param notificationService
+     */
+    @future(callout=true)
+    public static void sendAsync(String externalId, String notificationBody) {
+        callout(externalId, notificationBody);
     }
 
     /**
@@ -387,6 +409,52 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
      */
     public HttpResponse getResponse() {
         return this.notificationResponse;
+    }
+
+    /**
+     * @description Log the response from the callout
+     *
+     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
+     * @since 2023-06-26 Created.
+     *
+     * @param response
+     */
+    @TestVisible
+    private static void log(HttpResponse response) {
+        LoggerUtility logger = new LoggerUtility('ExtNotificationService');
+
+        if (response.getStatusCode() != 200) {
+            String errorMessage =
+                'Error: ' +
+                response.getStatusCode() +
+                ' ' +
+                response.getStatus() +
+                ' Body: ' +
+                response.getBody();
+
+            System.debug(LoggingLevel.ERROR, 'HttpResponse: ' + errorMessage);
+            logger.error(errorMessage, null, CRM_ApplicationDomain.Domain.POAB);
+        } else if (response.getStatusCode() == 200) {
+            String errorMessage;
+
+            try {
+                JSONParser parser = JSON.createParser(response.getBody());
+                while (parser.nextToken() != null) {
+                    if (parser.getCurrentToken() == JSONToken.FIELD_NAME && parser.getText() == 'feilmelding') {
+                        parser.nextToken();
+                        errorMessage = 'HttpResponse: ' + parser.getText();
+                    }
+                }
+            } catch (Exception ex) {
+                errorMessage = 'Not valid JSON: ' + ex.getMessage() + ' \nResponse body: ' + response.getBody();
+            }
+
+            if (String.isNotBlank(errorMessage)) {
+                logger.error(errorMessage, null, CRM_ApplicationDomain.Domain.POAB);
+            }
+        }
+
+        logger.publish();
     }
 
     /**
