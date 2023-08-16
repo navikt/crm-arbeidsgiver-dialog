@@ -4,9 +4,9 @@
     <externalId>false</externalId>
     <formula>IF($Organization.Id = &quot;00D0E000000DttS&quot;, 
 
-HYPERLINK(&quot;https://navdialog--sit2.sandbox.my.site.com/arbeidsgiverdialogtest/s/?organisasjonsnummer=&quot;&amp;TAG_Account__r.INT_OrganizationNumber__c + &quot;?avtalenummer=&quot;&amp;ExternalId__c , &quot;Dialog&quot;, &quot;_self&quot;) , 
+&quot;https://navdialog--sit2.sandbox.my.site.com/arbeidsgiverdialogtest/s/?organisasjonsnummer=&quot;&amp;TAG_Account__r.INT_OrganizationNumber__c + &quot;?avtalenummer=&quot;&amp;ExternalId__c, 
 
-HYPERLINK(&quot;https://arbeidsgiverdialog.nav.no/s/?organisasjonsnummer=&quot;&amp;TAG_Account__r.INT_OrganizationNumber__c + &quot;?avtalenummer=&quot;&amp;ExternalId__c , &quot;Dialog&quot;, &quot;_self&quot;) )</formula>
+&quot;https://arbeidsgiverdialog.nav.no/s/?organisasjonsnummer=&quot;&amp;TAG_Account__r.INT_OrganizationNumber__c + &quot;?avtalenummer=&quot;&amp;ExternalId__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Dialogue URL</label>
     <required>false</required>
