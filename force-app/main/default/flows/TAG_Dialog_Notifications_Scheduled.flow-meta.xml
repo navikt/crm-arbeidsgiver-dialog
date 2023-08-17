@@ -120,13 +120,6 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>Get_message.TAG_NotificationExternalId__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>Send_sms_notification</targetReference>
             </connector>
@@ -243,6 +236,13 @@
             <operator>GreaterThan</operator>
             <value>
                 <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_RelatedObjectExternalId__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <object>Thread__c</object>
