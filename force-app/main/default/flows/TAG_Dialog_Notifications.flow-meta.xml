@@ -766,25 +766,25 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
+                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>Error_Source</name>
             <value>
-                <elementReference>SMSNotification</elementReference>
+                <stringValue>Flow - TAG Dialog Notifications Scheduled</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>Log_Category</name>
             <value>
-                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
+                <stringValue>External notification</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>Log_Level</name>
             <value>
-                <elementReference>ExternId</elementReference>
+                <stringValue>Error</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
