@@ -95,6 +95,9 @@
         <label>Unread messages</label>
         <locationX>182</locationX>
         <locationY>468</locationY>
+        <defaultConnector>
+            <targetReference>No_external_message_sent</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No unread messages</defaultConnectorLabel>
         <rules>
             <name>Has_unread_messages</name>
@@ -215,6 +218,9 @@
         <label>Save Notfication External Id</label>
         <locationX>50</locationX>
         <locationY>792</locationY>
+        <connector>
+            <targetReference>External_message_sent</targetReference>
+        </connector>
         <inputReference>Get_message</inputReference>
     </recordUpdates>
     <start>
@@ -254,6 +260,116 @@
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>External_message_sent</name>
+        <label>External message sent</label>
+        <locationX>50</locationX>
+        <locationY>900</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <elementReference>Get_contract.KafkaId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <elementReference>ExternId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>External sms message should have been sent</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Message__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>Get_message.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>No_external_message_sent</name>
+        <label>No external message sent</label>
+        <locationX>314</locationX>
+        <locationY>576</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <elementReference>Get_contract.KafkaId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <elementReference>unreadMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>No message sent. Criteria for sending is not met</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Message__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>Get_message.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
