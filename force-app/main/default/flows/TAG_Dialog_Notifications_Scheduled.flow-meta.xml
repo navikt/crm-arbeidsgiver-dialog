@@ -80,7 +80,7 @@
         <locationX>50</locationX>
         <locationY>684</locationY>
         <assignmentItems>
-            <assignToReference>Get_message.TAG_NotificationExternalId__c</assignToReference>
+            <assignToReference>Get_message.TAG_NotificationSMSExternalId__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>ExternId</elementReference>
@@ -101,7 +101,7 @@
         <defaultConnectorLabel>No unread messages</defaultConnectorLabel>
         <rules>
             <name>Has_unread_messages</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
             <conditions>
                 <leftValueReference>unreadMessage</leftValueReference>
                 <operator>EqualTo</operator>
@@ -121,6 +121,20 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_message.TAG_NotificationSMSExternalId__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_message.TAG_NotificationSMSExternalId__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -251,6 +265,13 @@
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
+        <filters>
+            <field>CRM_isActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>Thread__c</object>
         <schedule>
             <frequency>Daily</frequency>
@@ -275,7 +296,7 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
+                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -330,7 +351,7 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
+                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

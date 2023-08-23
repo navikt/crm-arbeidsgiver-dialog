@@ -702,7 +702,7 @@
             <targetReference>SMS_sent_first_message</targetReference>
         </connector>
         <inputAssignments>
-            <field>TAG_NotificationExternalId__c</field>
+            <field>TAG_NotificationSMSExternalId__c</field>
             <value>
                 <elementReference>ExternId</elementReference>
             </value>
@@ -766,7 +766,7 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>Get_contract.TAG_DialogueURL__c</elementReference>
+                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
