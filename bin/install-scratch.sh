@@ -47,7 +47,7 @@ installDependencies() {
     do
         keys+=$p":"$secret" ";
     done
-    sf dependency install --installationkeys "${keys}" || { error $? '"sf dependency install" command failed.'; }
+    sf dependency install --installationkeys "${keys}" --targetusername "$org_alias" --targetdevhubusername "$devHubAlias" || { error $? '"sf dependency install" command failed.'; }
 }
 
 deployingMetadata() {
@@ -93,11 +93,11 @@ openOrg() {
     fi
 }
 
-if [[ $npm_config_info ]]; then
+info() {
     echo "Usage: npm run mac:build [options]"
     echo ""
     echo "Options:"
-    echo "  --package-key=<key>         Package key to install"
+    echo "  --package-key=<key>         Package key to install - THIS IS REQUIRED"
     echo "  --org-alias=<alias>         Alias for the scratch org"
     echo "  --org-duration=<days>       Duration of the scratch org"
     echo "  --without-deploy            Skip deploy"
@@ -110,6 +110,13 @@ if [[ $npm_config_info ]]; then
     echo "  --info                      Show this help"
     echo ""
     exit 0
+}
+if [[ $npm_config_info ]]; then
+    info
+elif [[ -z $npm_config_package_key ]]; then
+    echo "Package key is required."
+    echo ""
+    info
 fi
 
 sf plugins inspect @dxatscale/sfpowerscripts >/dev/null 2>&1 || { 
@@ -140,6 +147,7 @@ command -v jq >/dev/null 2>&1 || {
 
 ORG_ALIAS="arbeidsgiver-dialog"
 secret=$npm_config_package_key
+devHubAlias=$(sf config get target-dev-hub --json | jq -r '.result[0].value')
 
 if [[ -n $npm_config_org_alias ]]; then
     org_alias=$npm_config_org_alias
