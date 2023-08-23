@@ -101,7 +101,7 @@
         <defaultConnectorLabel>No unread messages</defaultConnectorLabel>
         <rules>
             <name>Has_unread_messages</name>
-            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
+            <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>unreadMessage</leftValueReference>
                 <operator>EqualTo</operator>
@@ -125,16 +125,9 @@
             </conditions>
             <conditions>
                 <leftValueReference>Get_message.TAG_NotificationSMSExternalId__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_message.TAG_NotificationSMSExternalId__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue></stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
