@@ -8,6 +8,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contract__c.TAG_sentwelcomemessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Thread__c.CRM_Number_of_External_Messages__c</field>
         <readable>true</readable>
     </fieldPermissions>
