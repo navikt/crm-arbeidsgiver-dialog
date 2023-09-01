@@ -241,6 +241,11 @@
             <field>Thread__c</field>
             <table>Contract__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_sentwelcomemessage__c</field>
+            <table>Contract__c</table>
+        </columns>
         <masterLabel>Contracts</masterLabel>
     </sections>
     <sections>
