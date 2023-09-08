@@ -315,12 +315,6 @@
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
-            <name>sendAsync</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>dispatchWindow</name>
             <value>
                 <stringValue>NKS_BUSINESS_HOURS</stringValue>
@@ -354,6 +348,12 @@
             <name>phoneNumber</name>
             <value>
                 <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendAsync</name>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -583,6 +583,11 @@
         <dataType>String</dataType>
         <expression>&quot;Det har kommet ny melding fra &quot;+ {!Get_contract.TAG_Account__r.Name}</expression>
     </formulas>
+    <formulas>
+        <name>TimestampNow</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW()</expression>
+    </formulas>
     <interviewLabel>TAG Dialog Notifications {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialog Notifications</label>
     <processMetadataValues>
@@ -604,6 +609,109 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Report_Data_Record_Notification</name>
+        <label>Create Report Data Record Notification</label>
+        <locationX>1106</locationX>
+        <locationY>924</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Get_contract.ExternalId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_ExternalNotificationId__c</field>
+            <value>
+                <elementReference>ExternId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_ExternalNotifificationSent__c</field>
+            <value>
+                <elementReference>TimestampNow</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_MessageRecordId__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NotificationGroupId__c</field>
+            <value>
+                <elementReference>Get_contract.KafkaId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NotificationType__c</field>
+            <value>
+                <stringValue>Ekstern varsel</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_SentToPhoneNr__c</field>
+            <value>
+                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>ReportingData__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Report_Data_Record_SMS</name>
+        <label>Create Report Data Record SMS</label>
+        <locationX>314</locationX>
+        <locationY>924</locationY>
+        <connector>
+            <targetReference>SMS_sent_first_message</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Get_contract.ExternalId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_ExternalNotificationId__c</field>
+            <value>
+                <elementReference>ExternId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_ExternalNotifificationSent__c</field>
+            <value>
+                <elementReference>TimestampNow</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_MessageRecordId__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NotificationGroupId__c</field>
+            <value>
+                <elementReference>Get_contract.KafkaId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NotificationType__c</field>
+            <value>
+                <stringValue>Ekstern sms</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_SentToPhoneNr__c</field>
+            <value>
+                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>ReportingData__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
@@ -699,7 +807,7 @@
         <locationX>314</locationX>
         <locationY>816</locationY>
         <connector>
-            <targetReference>SMS_sent_first_message</targetReference>
+            <targetReference>Create_Report_Data_Record_SMS</targetReference>
         </connector>
         <inputAssignments>
             <field>TAG_NotificationSMSExternalId__c</field>
@@ -714,6 +822,9 @@
         <label>Save Notification External Id (not first)</label>
         <locationX>1106</locationX>
         <locationY>816</locationY>
+        <connector>
+            <targetReference>Create_Report_Data_Record_Notification</targetReference>
+        </connector>
         <inputAssignments>
             <field>TAG_NotificationExternalId__c</field>
             <value>
@@ -755,7 +866,7 @@
         <name>SMS_sent_first_message</name>
         <label>SMS sent first message</label>
         <locationX>314</locationX>
-        <locationY>924</locationY>
+        <locationY>1032</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -809,8 +920,7 @@
     <textTemplates>
         <name>Notification</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c} - Klikk her for å komme
-            til dialogen</text>
+        <text>{!$Label.TAG_DialogNotifikasjon} {!Get_contract.ExternalId__c}</text>
     </textTemplates>
     <textTemplates>
         <name>NotificationGoSys</name>

@@ -5,8 +5,8 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Dialog Notifikasjon</shortDescription>
-        <value>Hei, du har mottatt en ny melding på en tiltaksavtale tilknyttet din virksomhet.
-            Meldingen er tilknyttet avtalenummer:</value>
+        <value>Det har kommet en ny melding på en tiltaksavtale tilknyttet din virksomhet.
+Meldingen er tilknyttet avtalenummer:</value>
     </labels>
     <labels>
         <fullName>TAG_DialogSMSNotifikasjon</fullName>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_NotificationType__c</fullName>
+    <externalId>false</externalId>
+    <label>Notification Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ekstern varsel</fullName>
+                <default>false</default>
+                <label>Ekstern varsel</label>
+            </value>
+            <value>
+                <fullName>Ekstern epost</fullName>
+                <default>false</default>
+                <label>Ekstern epost</label>
+            </value>
+            <value>
+                <fullName>Ekstern sms</fullName>
+                <default>false</default>
+                <label>Ekstern sms</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
