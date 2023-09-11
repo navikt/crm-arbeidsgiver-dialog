@@ -190,6 +190,12 @@
             <targetReference>External_message_sent</targetReference>
         </connector>
         <inputAssignments>
+            <field>CRM_Category__c</field>
+            <value>
+                <stringValue>TAG External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Name</field>
             <value>
                 <elementReference>Get_contract.ExternalId__c</elementReference>
