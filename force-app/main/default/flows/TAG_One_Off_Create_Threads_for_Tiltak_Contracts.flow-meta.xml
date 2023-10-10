@@ -250,7 +250,7 @@
         <connector>
             <targetReference>Loop_Contracts_W_O_Thread</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>1 AND 2 AND (3 OR 6) AND 4 AND 5 AND 7</filterLogic>
         <filters>
             <field>RecordTypeId</field>
             <operator>EqualTo</operator>
@@ -267,7 +267,7 @@
         </filters>
         <filters>
             <field>TAG_Status__c</field>
-            <operator>NotEqualTo</operator>
+            <operator>EqualTo</operator>
             <value>
                 <stringValue>AVSLUTTET</stringValue>
             </value>
@@ -276,7 +276,7 @@
             <field>TAG_NAVUnit__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>a0B2o00001roxenEAA</stringValue>
+                <stringValue>0127U00000006GPQAY</stringValue>
             </value>
         </filters>
         <filters>
@@ -284,6 +284,20 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>MIDLERTIDIG_LONNSTILSKUDD</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>GJENNOMFØRES</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_EndDate__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <dateValue>2023-07-18</dateValue>
             </value>
         </filters>
         <object>Contract__c</object>
@@ -344,6 +358,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contract__c</objectType>
+    </variables>
+    <variables>
+        <name>NavUnitId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>New_Thread_Records</name>
