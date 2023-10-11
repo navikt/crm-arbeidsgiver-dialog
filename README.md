@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/navikt/crm-arbeidsgiver-dialog/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-dialog/actions?query=workflow%3ABuild)
 [![GitHub version](https://badgen.net/github/release/navikt/crm-arbeidsgiver-dialog/stable)](https://github.com/navikt/crm-arbeidsgiver-dialog)
-[![MIT License](https://img.shields.io/github/license/navikt/crm-arbeidsgiver-dialog)
+[![MIT License](https://img.shields.io/github/license/navikt/crm-arbeidsgiver-dialog)](https://github.com/navikt/crm-arbeidsgiver-dialog/blob/master/LICENSE)
 [![codecov](https://codecov.io/gh/navikt/crm-arbeidsgiver-dialog/branch/master/graph/badge.svg)](https://codecov.io/gh/navikt/crm-arbeidsgiver-dialog)
 
 Dette repo brukes for funksjonalitet knyttet til asynkron dialog mellom nav ansatte og arbeidsgivere.
