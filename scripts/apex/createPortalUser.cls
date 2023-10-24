@@ -6,7 +6,7 @@ update usr;
 //Create community user
 Account personAccount = [SELECT FirstName, LastName, PersonContactId FROM Account WHERE INT_PersonIdent__c = '16120102137'];
 String experienceProfileId = [SELECT Id FROM Profile WHERE Name='Customer Community Plus Login User' Limit 1]?.Id;
-String experienceUserEmail  = personAccount.FirstName + '.' +personAccount.LastName + '@' + URL.getSalesforceBaseUrl().getHost();
+String experienceUserEmail  = personAccount.FirstName + '.' +personAccount.LastName + '@' + URL.getOrgDomainUrl().getHost();
 
 User experienceUser = new User(
     UserName = experienceUserEmail,
