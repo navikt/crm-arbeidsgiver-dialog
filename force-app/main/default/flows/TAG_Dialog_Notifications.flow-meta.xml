@@ -42,7 +42,7 @@
     <actionCalls>
         <name>Create_Custom_Notification_not_first</name>
         <label>Create Custom Notification (not first)</label>
-        <locationX>842</locationX>
+        <locationX>1370</locationX>
         <locationY>1032</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
@@ -81,7 +81,7 @@
     <actionCalls>
         <name>Send_external_notification_not_first</name>
         <label>Send external notification (not first)</label>
-        <locationX>1106</locationX>
+        <locationX>1634</locationX>
         <locationY>708</locationY>
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
@@ -221,7 +221,7 @@
     <actionCalls>
         <name>SendNotificationOppgaveToGoSysNotFirst</name>
         <label>Send Notification/Oppgave to GoSys (Not First)</label>
-        <locationX>842</locationX>
+        <locationX>1370</locationX>
         <locationY>708</locationY>
         <actionName>EmployerNotificationOppgaveHandler</actionName>
         <actionType>apex</actionType>
@@ -396,7 +396,7 @@
     <assignments>
         <name>AddInternalContactUserIdNotFirst</name>
         <label>Add internal contact user id (not first)</label>
-        <locationX>842</locationX>
+        <locationX>1370</locationX>
         <locationY>816</locationY>
         <assignmentItems>
             <assignToReference>TAG_RecipientIDs</assignToReference>
@@ -412,7 +412,7 @@
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
-        <locationX>710</locationX>
+        <locationX>1238</locationX>
         <locationY>492</locationY>
         <defaultConnector>
             <targetReference>NotifyInternalOrExternalNotFirst</targetReference>
@@ -444,7 +444,7 @@
     <decisions>
         <name>NotifyInternalOrExternal</name>
         <label>Notify internal or external</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>600</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
@@ -509,7 +509,7 @@
     <decisions>
         <name>NotifyInternalOrExternalNotFirst</name>
         <label>Notify internal or external (not first)</label>
-        <locationX>1106</locationX>
+        <locationX>1898</locationX>
         <locationY>600</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
@@ -612,8 +612,11 @@
     <recordCreates>
         <name>Create_Report_Data_Record_Notification</name>
         <label>Create Report Data Record Notification</label>
-        <locationX>1106</locationX>
+        <locationX>1634</locationX>
         <locationY>924</locationY>
+        <faultConnector>
+            <targetReference>Create_Application_Log_Notification</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>CRM_Category__c</field>
             <value>
@@ -673,6 +676,9 @@
         <connector>
             <targetReference>SMS_sent_first_message</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_Sms</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>CRM_Category__c</field>
             <value>
@@ -727,7 +733,7 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>710</locationX>
+        <locationX>1238</locationX>
         <locationY>276</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -748,7 +754,7 @@
     <recordLookups>
         <name>Get_first_message</name>
         <label>Get first message</label>
-        <locationX>710</locationX>
+        <locationX>1238</locationX>
         <locationY>384</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -773,7 +779,7 @@
         <description>Get ID for custom notification</description>
         <name>GetCustomNotificationIdNotFirst</name>
         <label>Get custom notification ID (not first)</label>
-        <locationX>842</locationX>
+        <locationX>1370</locationX>
         <locationY>924</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -821,6 +827,9 @@
         <connector>
             <targetReference>Create_Report_Data_Record_SMS</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_Sms_ExternalId</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>TAG_NotificationSMSExternalId__c</field>
             <value>
@@ -832,11 +841,14 @@
     <recordUpdates>
         <name>SaveNotificationExternalIdNotFirst</name>
         <label>Save Notification External Id (not first)</label>
-        <locationX>1106</locationX>
+        <locationX>1634</locationX>
         <locationY>816</locationY>
         <connector>
             <targetReference>Create_Report_Data_Record_Notification</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_Notification_ExternalId</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>TAG_NotificationExternalId__c</field>
             <value>
@@ -846,7 +858,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>122</locationX>
+        <locationX>386</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -874,6 +886,226 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Create_Application_Log_Notification</name>
+        <label>Create Application Log Notification</label>
+        <locationX>1898</locationX>
+        <locationY>1032</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow TAG Dialog Notifications</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error creating Reporting Data record when triggered by notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>ReportingData__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Create_Application_Log_Notification_ExternalId</name>
+        <label>Create Application Log Notification ExternalId</label>
+        <locationX>2162</locationX>
+        <locationY>924</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow TAG Dialog Notifications</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error updating message__c record with externalId for Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Message__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Create_Application_Log_Sms</name>
+        <label>Create Application Log Sms</label>
+        <locationX>578</locationX>
+        <locationY>1032</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow TAG Dialog Notifications</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error creating Reporting Data record when triggered by Sms</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>ReportingData__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Create_Application_Log_Sms_ExternalId</name>
+        <label>Create Application Log Sms ExternalId</label>
+        <locationX>842</locationX>
+        <locationY>924</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow TAG Dialog Notifications</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error updating message__c record with externalId for Sms</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Message__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <subflows>
         <name>SMS_sent_first_message</name>
         <label>SMS sent first message</label>
