@@ -33,7 +33,6 @@ public with sharing class EmployerThreadDialogHelperTest {
 
             insert communityUser;
         }
-
     }
 
     @isTest
