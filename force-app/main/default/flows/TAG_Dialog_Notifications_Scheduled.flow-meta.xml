@@ -93,7 +93,7 @@
     <decisions>
         <name>Unread_messages</name>
         <label>Unread messages</label>
-        <locationX>182</locationX>
+        <locationX>446</locationX>
         <locationY>468</locationY>
         <defaultConnector>
             <targetReference>No_external_message_sent</targetReference>
@@ -189,6 +189,9 @@
         <connector>
             <targetReference>External_message_sent</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_Sms</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>CRM_Category__c</field>
             <value>
@@ -243,7 +246,7 @@
     <recordLookups>
         <name>Get_contract</name>
         <label>Get contract</label>
-        <locationX>182</locationX>
+        <locationX>446</locationX>
         <locationY>360</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -264,7 +267,7 @@
     <recordLookups>
         <name>Get_message</name>
         <label>Get message</label>
-        <locationX>182</locationX>
+        <locationX>446</locationX>
         <locationY>252</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -292,10 +295,13 @@
         <connector>
             <targetReference>Create_Report_Data_Record_SMS</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_Sms_ExternalId</targetReference>
+        </faultConnector>
         <inputReference>Get_message</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>320</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_message</targetReference>
@@ -338,6 +344,116 @@
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Create_Application_Log_Sms</name>
+        <label>Create Application Log Sms</label>
+        <locationX>314</locationX>
+        <locationY>1008</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow TAG Dialog Notifications</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error creating Reporting Data record when triggered by Sms. For Scheduled flow.</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>ReportingData__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>Get_message.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Create_Application_Log_Sms_ExternalId</name>
+        <label>Create Application Log Sms ExternalId</label>
+        <locationX>578</locationX>
+        <locationY>900</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow TAG Dialog Notifications Scheduled</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>External Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error updating message__c record with externalId for Sms. Scheduled flow.</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Message__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>Get_message.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <subflows>
         <name>External_message_sent</name>
         <label>External message sent</label>
@@ -396,7 +512,7 @@
     <subflows>
         <name>No_external_message_sent</name>
         <label>No external message sent</label>
-        <locationX>314</locationX>
+        <locationX>842</locationX>
         <locationY>576</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>

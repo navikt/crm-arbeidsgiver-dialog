@@ -8,7 +8,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ReportingData__c.CRM_Category_Index__c</field>
+        <field>ReportingData__c.CRM_Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
