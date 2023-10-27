@@ -126,5 +126,7 @@
 
 **/audience
 
+**/force-app/main/default/customindex/*
+
 # Autocomplete folder
 **/force-app/autocomplete/*
