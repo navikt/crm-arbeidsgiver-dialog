@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Spørretime SAG</masterLabel>
+    <promptVersions>
+        <actionButtonLabel>Mer informasjon</actionButtonLabel>
+        <actionButtonLink>https://web.yammer.com/main/org/nav.no/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMjQ5NTIwODY1OTk3NjE5MiJ9</actionButtonLink>
+        <body>&lt;p&gt;Onsdag 1. november, fra 12 til13. Logg deg på og få svar eller hjelp om Salesforce for arbeidsgivere.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Mer informasjon og lenke til pålogging på Yammer/Viva Engage:&lt;/p&gt;&lt;p&gt;https://web.yammer.com/main/org/nav.no/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMjQ5NTIwODY1OTk3NjE5MiJ9 &lt;/p&gt;</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <dismissButtonLabel>OK</dismissButtonLabel>
+        <displayPosition>TopCenter</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <endDate>2023-11-01</endDate>
+        <isPublished>true</isPublished>
+        <masterLabel>Spørretime SAG</masterLabel>
+        <publishedDate>2023-10-30</publishedDate>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2023-10-30</startDate>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <timesToDisplay>1</timesToDisplay>
+        <title>Digital spørretime</title>
+        <uiFormulaRule>
+            <criteria>
+                <leftValue>{!$Permission.CustomPermission.Arbeidsgiver}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>TRUE</rightValue>
+            </criteria>
+        </uiFormulaRule>
+        <userAccess>SpecificPermissions</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
