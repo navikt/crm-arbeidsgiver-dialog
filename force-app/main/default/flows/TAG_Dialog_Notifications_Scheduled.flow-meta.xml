@@ -95,9 +95,6 @@
         <label>Unread messages</label>
         <locationX>446</locationX>
         <locationY>468</locationY>
-        <defaultConnector>
-            <targetReference>No_external_message_sent</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>No unread messages</defaultConnectorLabel>
         <rules>
             <name>Has_unread_messages</name>
@@ -487,68 +484,13 @@
         <inputAssignments>
             <name>Log_Level</name>
             <value>
-                <stringValue>Error</stringValue>
+                <stringValue>Info</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>Log_Message</name>
             <value>
                 <stringValue>External sms message should have been sent</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>Get_message.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>No_external_message_sent</name>
-        <label>No external message sent</label>
-        <locationX>842</locationX>
-        <locationY>576</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications Scheduled</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Error</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>No message sent. Criteria for sending is not met</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
