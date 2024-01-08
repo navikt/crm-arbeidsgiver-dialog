@@ -65,6 +65,7 @@ assignPermission() {
     --name Arbeidsgiver_base \
     --name Arbeidsgiver_contract \
     --name TAG_Arbeidsgiver_Dialog_Admin \
+    --name Arbeidsgiver_NavApp \
     || { error $? '"sf org assign permset" command failed.'; }
 }
 

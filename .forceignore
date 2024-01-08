@@ -128,5 +128,7 @@
 
 **/force-app/main/default/customindex/*
 
+**/main/default/permissionsets/sfdcInternalInt__sfdc_scrt2.permissionset-meta.xml
+
 # Autocomplete folder
 **/force-app/autocomplete/*
