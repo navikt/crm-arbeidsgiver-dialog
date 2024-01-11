@@ -183,9 +183,6 @@
         <label>Create Report Data Record SMS</label>
         <locationX>50</locationX>
         <locationY>900</locationY>
-        <connector>
-            <targetReference>External_message_sent</targetReference>
-        </connector>
         <faultConnector>
             <targetReference>Create_Application_Log_Sms</targetReference>
         </faultConnector>
@@ -436,61 +433,6 @@
             <name>Log_Message</name>
             <value>
                 <stringValue>Error updating message__c record with externalId for Sms. Scheduled flow.</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Message__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>Get_message.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>External_message_sent</name>
-        <label>External message sent</label>
-        <locationX>50</locationX>
-        <locationY>1008</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>Get_contract.TAG_EmployerContactPhone__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Dialog Notifications Scheduled</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>External notification</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Info</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>External sms message should have been sent</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>

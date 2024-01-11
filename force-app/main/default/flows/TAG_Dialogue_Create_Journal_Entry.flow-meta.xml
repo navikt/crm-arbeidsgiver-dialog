@@ -5,7 +5,7 @@
         <name>Check_journal_status</name>
         <label>Check journal status</label>
         <locationX>314</locationX>
-        <locationY>278</locationY>
+        <locationY>242</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Journal_not_completed</name>
@@ -24,8 +24,8 @@
         </rules>
     </decisions>
     <environments>Default</environments>
-    <interviewLabel>TAG Dialog Create Journal Entry {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Dialog Create Journal Entry</label>
+    <interviewLabel>TAG Dialogue Create Journal Entry {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Dialogue Create Journal Entry</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -49,7 +49,7 @@
         <name>Create_journal_entry</name>
         <label>Create journal entry</label>
         <locationX>50</locationX>
-        <locationY>518</locationY>
+        <locationY>458</locationY>
         <faultConnector>
             <targetReference>Create_Application_Log</targetReference>
         </faultConnector>
@@ -102,7 +102,7 @@
         <name>Get_JournalPost_recordtype</name>
         <label>Get JournalPost recordtype</label>
         <locationX>50</locationX>
-        <locationY>398</locationY>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_journal_entry</targetReference>
@@ -125,7 +125,7 @@
         <name>Get_thread</name>
         <label>Get thread</label>
         <locationX>314</locationX>
-        <locationY>158</locationY>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_journal_status</targetReference>
@@ -153,12 +153,12 @@
             <targetReference>Get_thread</targetReference>
         </connector>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
         <locationX>314</locationX>
-        <locationY>638</locationY>
+        <locationY>566</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
