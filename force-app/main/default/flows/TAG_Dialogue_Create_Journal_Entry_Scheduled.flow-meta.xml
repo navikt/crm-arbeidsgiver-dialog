@@ -1,31 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Edit_Thread_Status</name>
+        <label>Edit Thread Status</label>
+        <locationX>440</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Thread.CRM_Journal_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Journal Completed</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Thread.CRM_isActive__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Thread</targetReference>
+        </connector>
+    </assignments>
     <decisions>
-        <name>Check_journal_status</name>
-        <label>Check journal status</label>
-        <locationX>314</locationX>
-        <locationY>278</locationY>
+        <name>Check_if_Thread_has_Messages</name>
+        <label>Check if Thread has Messages</label>
+        <locationX>440</locationX>
+        <locationY>684</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Journal_not_completed</name>
+            <name>Has_Messages</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_thread.CRM_Journal_Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>Get_Thread.CRM_Number_of_Messages__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_recordtype_id</targetReference>
+            </connector>
+            <label>Has Messages</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Thread_found_and_not_journaled</name>
+        <label>Thread found and not journaled?</label>
+        <locationX>176</locationX>
+        <locationY>360</locationY>
+        <defaultConnector>
+            <targetReference>Edit_Thread_Status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Yes</defaultConnectorLabel>
+        <rules>
+            <name>No</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Thread</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Thread.CRM_Journal_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Journal Completed</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Get_JournalPost_recordtype</targetReference>
-            </connector>
-            <label>Journal not completed</label>
+            <label>No</label>
         </rules>
     </decisions>
     <environments>Default</environments>
-    <interviewLabel>TAG Dialog Create Journal Entry {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Dialog Create Journal Entry</label>
+    <interviewLabel>TAG Dialogue Create Journal Entry Scheduled {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Dialogue Create Journal Entry Scheduled</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -48,27 +100,27 @@
     <recordCreates>
         <name>Create_journal_entry</name>
         <label>Create journal entry</label>
-        <locationX>50</locationX>
-        <locationY>518</locationY>
+        <locationX>176</locationX>
+        <locationY>900</locationY>
         <faultConnector>
             <targetReference>Create_Application_Log</targetReference>
         </faultConnector>
         <inputAssignments>
             <field>CRM_Created_By_Ident__c</field>
             <value>
-                <elementReference>JournalEntryNAVIdent</elementReference>
+                <elementReference>$Record.NavIdent__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>CRM_Created_By_NAV_Unit__c</field>
             <value>
-                <elementReference>JournalEntryUnit</elementReference>
+                <elementReference>$Record.TAG_NAVUnit__r.INT_UnitNumber__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>CRM_Journal_Date__c</field>
             <value>
-                <elementReference>$Flow.CurrentDateTime</elementReference>
+                <elementReference>$Flow.CurrentDate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -80,7 +132,7 @@
         <inputAssignments>
             <field>CRM_Thread__c</field>
             <value>
-                <elementReference>threadId</elementReference>
+                <elementReference>$Record.Thread__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -99,10 +151,10 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <name>Get_JournalPost_recordtype</name>
-        <label>Get JournalPost recordtype</label>
-        <locationX>50</locationX>
-        <locationY>398</locationY>
+        <name>Get_recordtype_id</name>
+        <label>Get recordtype id</label>
+        <locationX>176</locationX>
+        <locationY>792</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_journal_entry</targetReference>
@@ -122,43 +174,64 @@
         </outputAssignments>
     </recordLookups>
     <recordLookups>
-        <name>Get_thread</name>
-        <label>Get thread</label>
-        <locationX>314</locationX>
-        <locationY>158</locationY>
+        <name>Get_Thread</name>
+        <label>Get Thread</label>
+        <locationX>176</locationX>
+        <locationY>252</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_journal_status</targetReference>
+            <targetReference>Thread_found_and_not_journaled</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>threadId</elementReference>
+                <elementReference>$Record.Thread__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Thread__c</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>CRM_Journal_Status__c</queriedFields>
-        <queriedFields>CRM_From_External__c</queriedFields>
-        <queriedFields>CRM_isActive__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Thread</name>
+        <label>Update Thread</label>
+        <locationX>440</locationX>
+        <locationY>576</locationY>
+        <connector>
+            <targetReference>Check_if_Thread_has_Messages</targetReference>
+        </connector>
+        <inputReference>Get_Thread</inputReference>
+    </recordUpdates>
     <start>
-        <locationX>188</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_thread</targetReference>
+            <targetReference>Get_Thread</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TAG_EndDialogue__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Contract__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2023-06-14</startDate>
+            <startTime>03:15:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
-        <locationX>314</locationX>
-        <locationY>638</locationY>
+        <locationX>440</locationX>
+        <locationY>1008</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -175,7 +248,7 @@
         <inputAssignments>
             <name>Error_Source</name>
             <value>
-                <stringValue>Flow - TAG Dialog Create Journal Entry</stringValue>
+                <stringValue>Flow - TAG Dialog Create Journal Entry Final</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -205,43 +278,15 @@
         <inputAssignments>
             <name>ReferenceID</name>
             <value>
-                <elementReference>Get_thread.Id</elementReference>
+                <elementReference>Get_Thread.Id</elementReference>
             </value>
         </inputAssignments>
     </subflows>
-    <variables>
-        <name>contractId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>JournalEntryNAVIdent</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
     <variables>
         <name>JournalEntryRecordTypeId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>JournalEntryUnit</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>threadId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>
