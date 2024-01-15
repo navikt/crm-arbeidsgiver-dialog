@@ -241,7 +241,7 @@
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
