@@ -42,10 +42,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Thread__r.Journaled__c</leftValueReference>
+                <leftValueReference>$Record.Thread__r.CRM_Journal_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>Journal Completed</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -75,16 +75,9 @@
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Thread__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue></stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Thread__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
