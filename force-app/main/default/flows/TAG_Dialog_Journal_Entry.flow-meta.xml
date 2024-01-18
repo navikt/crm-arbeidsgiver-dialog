@@ -4,7 +4,7 @@
         <name>show_Toast_action</name>
         <label>show Toast action</label>
         <locationX>176</locationX>
-        <locationY>518</locationY>
+        <locationY>458</locationY>
         <actionName>c:fcFlowToaster</actionName>
         <actionType>component</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -55,7 +55,7 @@
         <name>Get_Contract</name>
         <label>Get Contract</label>
         <locationX>176</locationX>
-        <locationY>158</locationY>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Journal_Screen</targetReference>
@@ -82,12 +82,12 @@
         <name>Journal_Screen</name>
         <label>Arkivering</label>
         <locationX>176</locationX>
-        <locationY>278</locationY>
+        <locationY>242</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>TAG_Dialog_Create_Journal_Entry</targetReference>
+            <targetReference>Create_Journal_Entry</targetReference>
         </connector>
         <fields>
             <name>DoubleCheckJournalfor</name>
@@ -107,14 +107,14 @@
     </start>
     <status>Active</status>
     <subflows>
-        <name>TAG_Dialog_Create_Journal_Entry</name>
-        <label>TAG Dialog Create Journal Entry</label>
+        <name>Create_Journal_Entry</name>
+        <label>Create Journal Entry</label>
         <locationX>176</locationX>
-        <locationY>398</locationY>
+        <locationY>350</locationY>
         <connector>
             <targetReference>show_Toast_action</targetReference>
         </connector>
-        <flowName>TAG_Dialog_Create_Journal_Entry</flowName>
+        <flowName>TAG_Dialogue_Create_Journal_Entry</flowName>
         <inputAssignments>
             <name>contractId</name>
             <value>
