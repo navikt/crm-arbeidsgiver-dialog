@@ -121,10 +121,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.NAV_Unit_text_value__c</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>$Record.TAG_NAVUnit__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <elementReference>$Record.Thread__r.TAG_Contract_NAV_Unit__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -308,7 +308,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>TagThreadRecordTypeId</name>
         <dataType>String</dataType>
