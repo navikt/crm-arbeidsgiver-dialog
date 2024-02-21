@@ -4,7 +4,7 @@
     <assignments>
         <name>Set_Thread_values</name>
         <label>Set Thread values</label>
-        <locationX>50</locationX>
+        <locationX>138</locationX>
         <locationY>1055</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.CRM_isActive__c</assignToReference>
@@ -28,7 +28,7 @@
         <description>if a contract has changed status from &quot;Avsluttet&quot; to &quot;Gjennomføres&quot;, means that it has been reopened. In that case we need to reopen the dialogue</description>
         <name>Contract_reopened</name>
         <label>Contract reopened?</label>
-        <locationX>182</locationX>
+        <locationX>270</locationX>
         <locationY>839</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -64,10 +64,10 @@
     <decisions>
         <name>Has_thread</name>
         <label>Has thread?</label>
-        <locationX>182</locationX>
+        <locationX>270</locationX>
         <locationY>323</locationY>
         <defaultConnector>
-            <targetReference>Contract_reopened</targetReference>
+            <targetReference>Has_Thread_NAVUnit</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Has thread</defaultConnectorLabel>
         <rules>
@@ -84,6 +84,53 @@
                 <targetReference>Get_TAG_Thread_record_type_id</targetReference>
             </connector>
             <label>No thread</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Has_Thread_NAVUnit</name>
+        <label>Has Thread NAVUnit?</label>
+        <locationX>490</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Set_NAVUnit_Name_to_related_Thread</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Has just NAVUnit</defaultConnectorLabel>
+        <rules>
+            <name>Has_Not_NAVUnit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_NAVUnit__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Contract_reopened</targetReference>
+            </connector>
+            <label>Has Not NAVUnit</label>
+        </rules>
+        <rules>
+            <name>Has_NAVUnit_and_NAVUnit_Name</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_NAVUnit__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_NAVUnit__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Thread__r.TAG_Contract_NAV_Unit__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Contract_reopened</targetReference>
+            </connector>
+            <label>Has NAVUnit and NAVUnit Name</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -187,7 +234,7 @@
     <recordLookups>
         <name>Get_Thread</name>
         <label>Get Thread</label>
-        <locationX>50</locationX>
+        <locationX>138</locationX>
         <locationY>947</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -205,6 +252,22 @@
         <object>Thread__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Set_NAVUnit_Name_to_related_Thread</name>
+        <label>Set NAVUnit Name to related Thread</label>
+        <locationX>666</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Contract_reopened</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>TAG_Contract_NAV_Unit__c</field>
+            <value>
+                <elementReference>$Record.TAG_NAVUnit__r.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Thread__r</inputReference>
+    </recordUpdates>
     <recordUpdates>
         <name>Update_Records</name>
         <label>Update Records</label>
@@ -230,12 +293,12 @@
     <recordUpdates>
         <name>Update_Thread</name>
         <label>Update Thread</label>
-        <locationX>50</locationX>
+        <locationX>138</locationX>
         <locationY>1163</locationY>
         <inputReference>Get_Thread</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>144</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Has_thread</targetReference>
