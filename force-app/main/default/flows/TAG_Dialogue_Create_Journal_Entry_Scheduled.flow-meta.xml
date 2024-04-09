@@ -1,10 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Create_Custom_Notification</name>
+        <label>Create Custom Notification</label>
+        <locationX>578</locationX>
+        <locationY>684</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>Get_custom_notification_Record_ID.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>contractUserIdsStartDate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Partner-avtale har start-dato i morgen</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>notificationBodyFormulaStartDate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Create_Custom_Notification_End_Date</name>
+        <label>Create Custom Notification End Date</label>
+        <locationX>314</locationX>
+        <locationY>684</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>Get_custom_notification_Record_ID.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>contractUserIdsStartDate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Partner-avtale avsluttes om tre dager</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>notificationBodyFormulaStartDate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Add_internal_contact_user_id</name>
+        <label>Add internal contact user id</label>
+        <locationX>578</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>contractUserIdsStartDate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_custom_notification_Record_ID</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_internal_contact_user_id_end_date</name>
+        <label>Add internal contact user id end date</label>
+        <locationX>314</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>contractUserIdsEndDate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_custom_notification_Record_ID_end_date</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Edit_Thread_Status</name>
         <label>Edit Thread Status</label>
-        <locationX>1106</locationX>
+        <locationX>1898</locationX>
         <locationY>576</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.CRM_Journal_Status__c</assignToReference>
@@ -27,7 +141,7 @@
     <decisions>
         <name>Check_if_Thread_has_Messages</name>
         <label>Check if Thread has Messages</label>
-        <locationX>1106</locationX>
+        <locationX>1898</locationX>
         <locationY>792</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -49,19 +163,12 @@
     <decisions>
         <name>Is_contract_active</name>
         <label>Is contract active?</label>
-        <locationX>182</locationX>
+        <locationX>578</locationX>
         <locationY>360</locationY>
         <defaultConnectorLabel>Active</defaultConnectorLabel>
         <rules>
-            <name>Not_active</name>
+            <name>Past_end_date</name>
             <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>IsContractActiveFormula</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
             <conditions>
                 <leftValueReference>$Record.TAG_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -69,16 +176,75 @@
                     <stringValue>Godkjent</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Past_end_date</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Update_partner_status</targetReference>
             </connector>
-            <label>Not active</label>
+            <label>Past end date</label>
+        </rules>
+        <rules>
+            <name>Before_end_date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Before_end_date</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_internal_contact_user_id_end_date</targetReference>
+            </connector>
+            <label>Before end date</label>
+        </rules>
+        <rules>
+            <name>Day_before_start_date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Day_before_start_date</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_internal_contact_user_id</targetReference>
+            </connector>
+            <label>Day before start date</label>
+        </rules>
+        <rules>
+            <name>Before_start_date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Before_start_date</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Utkast</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_partner_status_to_utkast</targetReference>
+            </connector>
+            <label>Before start date</label>
         </rules>
     </decisions>
     <decisions>
         <name>Thread_found_and_not_journaled</name>
         <label>Thread found and not journaled?</label>
-        <locationX>842</locationX>
+        <locationX>1634</locationX>
         <locationY>468</locationY>
         <defaultConnector>
             <targetReference>Edit_Thread_Status</targetReference>
@@ -107,7 +273,7 @@
     <decisions>
         <name>Type_of_agreement</name>
         <label>Type of agreement</label>
-        <locationX>512</locationX>
+        <locationX>1106</locationX>
         <locationY>252</locationY>
         <defaultConnector>
             <targetReference>Get_Thread</targetReference>
@@ -123,6 +289,13 @@
                     <stringValue>Employer Agreement</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_Type_Partner__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Is_contract_active</targetReference>
             </connector>
@@ -132,9 +305,34 @@
     <description>This flow creates journal entries for dialogues, where agreements are closed and older than 12 weeks. The flow also updates status of employer partner agreements where end date is overdue</description>
     <environments>Default</environments>
     <formulas>
-        <name>IsContractActiveFormula</name>
+        <name>beforeEndDateFormula</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!$Record.TAG_StartDate__c &lt;= TODAY()} &amp;&amp; {!$Record.TAG_EndDate__c &gt;= TODAY()} , true, false)</expression>
+        <expression>IF({!$Record.TAG_EndDate__c = TODAY() - 3}, true, false)</expression>
+    </formulas>
+    <formulas>
+        <name>beforeStartDateFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!$Record.TAG_StartDate__c &gt; TODAY()}, true, false)</expression>
+    </formulas>
+    <formulas>
+        <name>dayBeforeStartDateFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!$Record.TAG_StartDate__c = TODAY() + 1}, true, false)</expression>
+    </formulas>
+    <formulas>
+        <name>notificationBodyFormulaEndDate</name>
+        <dataType>String</dataType>
+        <expression>&quot;Det er en partner-avtale som har slutt-dato om tre dager, som du er registrert som eier av. Gjelder avtale &quot; + {!$Record.Name} + &quot; på virksomhet &quot; + {!$Record.TAG_Account__r.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>notificationBodyFormulaStartDate</name>
+        <dataType>String</dataType>
+        <expression>&quot;Det er en partner-avtale som har start dato i morgen, som du er registrert som eier av. Du må endre status på avtalen. Det gjelder avtale &quot; + {!$Record.Name} + &quot; på virksomhet &quot; + {!$Record.TAG_Account__r.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>pastEndDateFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!$Record.TAG_EndDate__c &lt; TODAY()} , true, false)</expression>
     </formulas>
     <interviewLabel>TAG Dialogue Create Journal Entry Scheduled {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialogue Create Journal Entry Scheduled</label>
@@ -160,7 +358,7 @@
     <recordCreates>
         <name>Create_journal_entry</name>
         <label>Create journal entry</label>
-        <locationX>842</locationX>
+        <locationX>1634</locationX>
         <locationY>1008</locationY>
         <faultConnector>
             <targetReference>Create_Application_Log</targetReference>
@@ -211,9 +409,51 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_custom_notification_Record_ID</name>
+        <label>Get custom notification Record ID</label>
+        <locationX>578</locationX>
+        <locationY>576</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Custom_Notification</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>TAG_Internal_notifictaion_New_message_from_employer</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_custom_notification_Record_ID_end_date</name>
+        <label>Get custom notification Record ID end date</label>
+        <locationX>314</locationX>
+        <locationY>576</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Custom_Notification_End_Date</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>TAG_Internal_notifictaion_New_message_from_employer</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_recordtype_id</name>
         <label>Get recordtype id</label>
-        <locationX>842</locationX>
+        <locationX>1634</locationX>
         <locationY>900</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -236,7 +476,7 @@
     <recordLookups>
         <name>Get_Thread</name>
         <label>Get Thread</label>
-        <locationX>842</locationX>
+        <locationX>1634</locationX>
         <locationY>360</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -268,9 +508,25 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+<<<<<<< Updated upstream
+=======
+        <name>Update_partner_status_to_utkast</name>
+        <label>Update partner status to utkast</label>
+        <locationX>842</locationX>
+        <locationY>468</locationY>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>Utkast</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+>>>>>>> Stashed changes
         <name>Update_Thread</name>
         <label>Update Thread</label>
-        <locationX>1106</locationX>
+        <locationX>1898</locationX>
         <locationY>684</locationY>
         <connector>
             <targetReference>Check_if_Thread_has_Messages</targetReference>
@@ -278,7 +534,7 @@
         <inputReference>Get_Thread</inputReference>
     </recordUpdates>
     <start>
-        <locationX>386</locationX>
+        <locationX>980</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Type_of_agreement</targetReference>
@@ -310,7 +566,7 @@
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
-        <locationX>1106</locationX>
+        <locationX>1898</locationX>
         <locationY>1116</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
@@ -362,6 +618,20 @@
             </value>
         </inputAssignments>
     </subflows>
+    <variables>
+        <name>contractUserIdsEndDate</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>contractUserIdsStartDate</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>JournalEntryRecordTypeId</name>
         <dataType>String</dataType>
