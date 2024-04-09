@@ -24,19 +24,6 @@
             <targetReference>Update_Thread</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <name>Set_partner_status_to</name>
-        <label>Set partner status to</label>
-        <locationX>50</locationX>
-        <locationY>468</locationY>
-        <assignmentItems>
-            <assignToReference>$Record.TAG_Status__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>AVSLUTTET</stringValue>
-            </value>
-        </assignmentItems>
-    </assignments>
     <decisions>
         <name>Check_if_Thread_has_Messages</name>
         <label>Check if Thread has Messages</label>
@@ -83,7 +70,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Set_partner_status_to</targetReference>
+                <targetReference>Update_partner_status</targetReference>
             </connector>
             <label>Not active</label>
         </rules>
@@ -267,6 +254,19 @@
         <object>Thread__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_partner_status</name>
+        <label>Update partner status</label>
+        <locationX>50</locationX>
+        <locationY>468</locationY>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>AVSLUTTET</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <recordUpdates>
         <name>Update_Thread</name>
         <label>Update Thread</label>
