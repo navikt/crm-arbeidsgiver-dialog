@@ -508,22 +508,6 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-<<<<<<< Updated upstream
-=======
-        <name>Update_partner_status_to_utkast</name>
-        <label>Update partner status to utkast</label>
-        <locationX>842</locationX>
-        <locationY>468</locationY>
-        <inputAssignments>
-            <field>TAG_Status__c</field>
-            <value>
-                <stringValue>Utkast</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
->>>>>>> Stashed changes
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>1898</locationX>
