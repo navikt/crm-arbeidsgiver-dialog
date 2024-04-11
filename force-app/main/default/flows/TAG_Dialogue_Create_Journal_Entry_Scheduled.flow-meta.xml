@@ -165,7 +165,7 @@
         <label>Is contract active?</label>
         <locationX>446</locationX>
         <locationY>360</locationY>
-        <defaultConnectorLabel>Active</defaultConnectorLabel>
+        <defaultConnectorLabel>Active or terminated</defaultConnectorLabel>
         <rules>
             <name>Past_end_date</name>
             <conditionLogic>and</conditionLogic>
@@ -177,7 +177,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Past_end_date</leftValueReference>
+                <leftValueReference>pastEndDateFormula</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -192,7 +192,7 @@
             <name>Before_end_date</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Before_end_date</leftValueReference>
+                <leftValueReference>beforeEndDateFormula</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -207,7 +207,7 @@
             <name>Day_before_start_date</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Day_before_start_date</leftValueReference>
+                <leftValueReference>dayBeforeStartDateFormula</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -278,27 +278,27 @@
     <formulas>
         <name>beforeEndDateFormula</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!$Record.TAG_EndDate__c = TODAY() - 3}, true, false)</expression>
+        <expression>IF({!$Record.TAG_EndDate__c = TODAY() + 10}, true, false)</expression>
     </formulas>
     <formulas>
         <name>dayBeforeStartDateFormula</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!$Record.TAG_StartDate__c = TODAY() - 1}, true, false)</expression>
+        <expression>IF({!$Record.TAG_StartDate__c = TODAY() + 1}, true, false)</expression>
     </formulas>
     <formulas>
         <name>notificationEndDate</name>
         <dataType>String</dataType>
-        <expression>&quot;En partner-avtale utløper om tre dager. Avtalenummer: &quot; + {!$Record.Name} + &quot; Virksomhet: &quot; + {!$Record.TAG_Account__r.Name}</expression>
+        <expression>&quot;En partner-avtale utløper om ti dager. Avtalenummer: &quot; + {!$Record.Name} + &quot; Virksomhet: &quot; + {!$Record.TAG_Account__r.Name}</expression>
     </formulas>
     <formulas>
         <name>notificationStartDate</name>
         <dataType>String</dataType>
-        <expression>&quot;En partner-avtale har start-dato i morgen, du bør endre status på avtalen. Avtalenummer: &quot; + {!$Record.Name} + &quot; Virksomhet: &quot; + {!$Record.TAG_Account__r.Name}</expression>
+        <expression>&quot;En partner-avtale har start-dato i morgen. Avtalenummer: &quot; + {!$Record.Name} + &quot; Virksomhet: &quot; + {!$Record.TAG_Account__r.Name}</expression>
     </formulas>
     <formulas>
         <name>pastEndDateFormula</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!$Record.TAG_EndDate__c &lt;= TODAY()} , true, false)</expression>
+        <expression>IF({!$Record.TAG_EndDate__c &lt; TODAY()} , true, false)</expression>
     </formulas>
     <interviewLabel>TAG Dialogue Create Journal Entry Scheduled {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialogue Create Journal Entry Scheduled</label>
