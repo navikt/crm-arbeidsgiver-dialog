@@ -148,7 +148,7 @@
         <locationX>50</locationX>
         <locationY>674</locationY>
         <connector>
-            <targetReference>Finish_Screen</targetReference>
+            <targetReference>Redirecting</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Error_Screen</targetReference>
@@ -206,53 +206,35 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>Finish_Screen</name>
-        <label>Finish Screen</label>
+        <name>Redirecting</name>
+        <label>Redirecting</label>
         <locationX>50</locationX>
         <locationY>782</locationY>
-        <allowBack>true</allowBack>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
+        <allowPause>false</allowPause>
         <fields>
-            <name>Success_toast</name>
-            <extensionName>c:fcFlowCloseWithToast</extensionName>
+            <name>goToListView</name>
+            <extensionName>c:tagFlowRedirect</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>closeModal</name>
+                <name>listViewName</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>Mitt_NAV_kontor_Dialoger</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>mode</name>
+                <name>objectApiName</name>
                 <value>
-                    <stringValue>dismissible</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>message</name>
-                <value>
-                    <stringValue>Melding satt til ulest.</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>title</name>
-                <value>
-                    <stringValue>Vellykket!</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>variant</name>
-                <value>
-                    <stringValue>success</stringValue>
+                    <stringValue>Contract__c</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
     </screens>
     <start>
         <locationX>452</locationX>
@@ -262,13 +244,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <variables>
-        <name>ids</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
     <variables>
         <name>recordId</name>
         <dataType>String</dataType>
