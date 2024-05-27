@@ -7,20 +7,13 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
+                            <value>Contract__c.Mark_as_Unread</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Contract__c.TAG_Journal</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Contract__c.Set_to_Redaction</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Contract__c.Mark_as_Unread</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.TAG_Read_by_NAV__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>false</rightValue>
-                                </criteria>
-                            </visibilityRule>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -203,6 +196,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_SourceURL__c</fieldItem>
                 <identifier>RecordTAG_SourceURL_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Read_by_NAV__c</fieldItem>
+                <identifier>RecordTAG_Read_by_NAV_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-e16e9cad-fdd4-47e5-a1f3-22f1f4fc405a</name>
