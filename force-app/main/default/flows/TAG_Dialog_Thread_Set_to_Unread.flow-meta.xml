@@ -17,6 +17,22 @@
             <targetReference>Update_Message</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Update_toast_message</name>
+        <label>Update toast message</label>
+        <locationX>578</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>toastSuccessMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Melding allerede markert som ulest.</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Contract_found</name>
         <label>Contract found</label>
@@ -26,7 +42,7 @@
             <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>No contract (route to error screen)</defaultConnectorLabel>
         <rules>
             <name>Found_Contract</name>
             <conditionLogic>and</conditionLogic>
@@ -45,16 +61,15 @@
     </decisions>
     <decisions>
         <name>Message_found</name>
-        <label>Message found</label>
+        <label>Message found?</label>
         <locationX>314</locationX>
         <locationY>458</locationY>
         <defaultConnector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Update_toast_message</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>No message or already unread</defaultConnectorLabel>
         <rules>
-            <name>Found_Message</name>
+            <name>Found_read_message</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Get_most_recent_external_message</leftValueReference>
@@ -63,10 +78,17 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Get_most_recent_external_message.CRM_Read_By_Nav__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Set_as_unread</targetReference>
             </connector>
-            <label>Found Message</label>
+            <label>Found read message</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -138,7 +160,7 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Message__c</object>
-        <sortField>CreatedDate</sortField>
+        <sortField>CRM_Sent_date__c</sortField>
         <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
@@ -148,7 +170,7 @@
         <locationX>50</locationX>
         <locationY>674</locationY>
         <connector>
-            <targetReference>Redirecting</targetReference>
+            <targetReference>Success_Screen</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Error_Screen</targetReference>
@@ -202,19 +224,57 @@
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>Redirecting</name>
-        <label>Redirecting</label>
-        <locationX>50</locationX>
-        <locationY>782</locationY>
-        <allowBack>false</allowBack>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>314</locationX>
+        <locationY>1106</locationY>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
+        <allowPause>true</allowPause>
         <fields>
-            <name>goToListView</name>
+            <name>Success_toast</name>
+            <extensionName>c:fcFlowCloseWithToast</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>mode</name>
+                <value>
+                    <stringValue>dismissible</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>closeModal</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>title</name>
+                <value>
+                    <stringValue>Vellykket!</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>message</name>
+                <value>
+                    <elementReference>toastSuccessMessage</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>variant</name>
+                <value>
+                    <stringValue>success</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Redirect_page</name>
             <extensionName>c:tagFlowRedirect</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
@@ -250,5 +310,15 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>toastSuccessMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Meldingen ble satt til ulest.</stringValue>
+        </value>
     </variables>
 </Flow>
