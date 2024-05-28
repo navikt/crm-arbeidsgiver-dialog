@@ -7,13 +7,13 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>Contract__c.Mark_as_Unread</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Contract__c.TAG_Journal</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Contract__c.Set_to_Redaction</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contract__c.Mark_Unread_Exit</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
