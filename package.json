@@ -16,7 +16,8 @@
         "mock:inactive": "sfdx force:apex:execute -f scripts/apex/deactivateMock.cls",
         "create:portal:user": "sfdx force:apex:execute -f ./scripts/apex/createPortalUser.cls",
         "build": "C:bin/install-scratch.bat",
-        "mac:build": "bash bin/install-scratch.sh"
+        "mac:build": "bash bin/install-scratch.sh",
+        "mac:build:pool": "bash bin/pool-scratch.sh"
     },
     "engines": {
         "node": ">= 10.13.0",
