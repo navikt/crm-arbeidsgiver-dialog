@@ -90,11 +90,11 @@ public without sharing class EmployerNotificationOppgaveHandler {
         public String description;
         @invocableVariable(label='Theme REQUIRED- TIL for Tiltak')
         public String theme;
-        @invocableVariable(label='ProcessingTheme ab0336 for "Midlertidig lønnstilskudd"')
+        @invocableVariable(label='processingThemeCode- code from Common Codes (kodeverk)')
         public String processingTheme;
         @invocableVariable(label='TaskTypeCode KONT_BRUK, term: Kontakt bruker')
         public String taskTypeCode;
-        @invocableVariable(label='TaskTypeCode ae0034 - valid type for "Midlertidig lønnstilskudd"')
+        @invocableVariable(label='TaskTypeCode ae0034 "Søknad"')
         public String processingType;
         @invocableVariable
         public String assignToUnitNumber;
