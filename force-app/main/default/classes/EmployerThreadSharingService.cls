@@ -1,6 +1,7 @@
 public without sharing class EmployerThreadSharingService {
     private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
-        'AG_MLØNN' => new EmployerAltinnRight('5516', '1')
+        'MIDLERTIDIG_LONNSTILSKUDDN' => new EmployerAltinnRight('5516', '1'),
+        'ARBEIDSTRENING' => new EmployerAltinnRight('5332', '2')
     };
     private static final Integer SHARING_CALCULATION_CACHE_TIME = -2;
     private static final LoggerUtility logger = new LoggerUtility();
@@ -106,7 +107,7 @@ public without sharing class EmployerThreadSharingService {
                 AND ParentId IN (
                     SELECT Id
                     FROM Thread__c
-                    WHERE CRM_isActive__c = TRUE AND CRM_Thread_Type__c IN :THREAD_TOPIC_SERVICE_CODE.keySet()
+                    WHERE CRM_isActive__c = TRUE AND AAREG_Thread_Subject__c IN :THREAD_TOPIC_SERVICE_CODE.keySet()
                 )
         ];
     }
@@ -117,7 +118,7 @@ public without sharing class EmployerThreadSharingService {
             FROM Thread__c
             WHERE
                 CRM_Account__c IN (SELECT Id FROM Account WHERE INT_OrganizationNumber__c = :organizationNumber)
-                AND CRM_Thread_Type__c IN :threadTopics
+                AND AAREG_Thread_Subject__c IN :threadTopics
         ];
     }
 
