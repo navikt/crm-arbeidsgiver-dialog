@@ -7,29 +7,26 @@ export default class TagFlowRedirect extends NavigationMixin(LightningElement) {
     @api objectApiName;
     @api listViewName;
 
-
     connectedCallback() {
-        if(this.objectApiName!=null && this.recordId!=null) { 
+        if (this.objectApiName != null && this.recordId != null) {
             this.navToRecord();
             this.fireFlowFinish();
-        }
-        else if(this.objectApiName!=null && this.listViewName!=null ) {
+        } else if (this.objectApiName != null && this.listViewName != null) {
             this.navToListView();
             this.fireFlowFinish();
         }
-        
     }
 
-    fireFlowFinish() {        
+    fireFlowFinish() {
         const finishEvent = new FlowNavigationFinishEvent();
         this.dispatchEvent(finishEvent);
     }
-    
+
     navToRecord() {
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
-                recordId:  this.recordId,
+                recordId: this.recordId,
                 actionName: 'view'
             }
         });
@@ -47,6 +44,4 @@ export default class TagFlowRedirect extends NavigationMixin(LightningElement) {
             }
         });
     }
-
-
 }
