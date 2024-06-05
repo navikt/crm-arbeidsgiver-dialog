@@ -29,7 +29,7 @@
                 },
                 {
                     "package": "crm-community-base",
-                    "versionNumber": "0.86.0.LATEST"
+                    "versionNumber": "0.92.0.LATEST"
                 },
                 {
                     "package": "crm-henvendelse-base",
@@ -37,11 +37,11 @@
                 },
                 {
                     "package": "crm-platform-integration",
-                    "versionNumber": "0.99.0.LATEST"
+                    "versionNumber": "0.100.0.LATEST"
                 },
                 {
                     "package": "crm-platform-oppgave",
-                    "versionNumber": "0.49.0.LATEST"
+                    "versionNumber": "0.51.0.LATEST"
                 },
                 {
                     "package": "crm-platform-reporting",
