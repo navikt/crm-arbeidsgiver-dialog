@@ -36,7 +36,8 @@
         "lint-staged": "^10.5.3",
         "prettier": "^2.2.1",
         "prettier-plugin-apex": "^1.8.0",
-        "semver": "^7.3.4"
+        "semver": "^7.3.4",
+        "@babel/eslint-parser": "^7.24.7"
     },
     "lint-staged": {
         "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
