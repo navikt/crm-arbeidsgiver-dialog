@@ -311,7 +311,7 @@
                 <componentName>crmMessagingMessageComponent</componentName>
                 <identifier>c_crmMessagingMessageComponent1</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
+                    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_Category__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -321,6 +321,11 @@
                         <leftValue>{!Record.TAG_Category__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>ARBEIDSTRENING</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$Permission.CustomPermission.POAG_Pilot}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
