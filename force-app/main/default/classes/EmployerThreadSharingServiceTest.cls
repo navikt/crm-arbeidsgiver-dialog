@@ -46,11 +46,11 @@ public with sharing class EmployerThreadSharingServiceTest {
         );
         insert thread1;
 
-        /*Thread__c thread2 = new Thread__c(
+        Thread__c thread2 = new Thread__c(
             CRM_Account__c = businessAccount.Id,
             AAREG_Thread_Subject__c = 'ARBEIDSTRENING'
         );
-        insert thread2;*/
+        insert thread2;
 
         List<Thread__Share> recordAccessBefore = [
             SELECT Id
@@ -71,10 +71,10 @@ public with sharing class EmployerThreadSharingServiceTest {
             List<Thread__Share> recordAccessAfter = [
                 SELECT Id
                 FROM Thread__Share
-                WHERE UserOrGroupId = :user.Id AND ParentId = :thread1.Id AND AccessLevel = 'Edit'
+                WHERE UserOrGroupId = :user.Id AND ParentId IN (:thread1.Id, :thread2.Id) AND AccessLevel = 'Edit'
             ];
 
-            System.assertEquals(1, recordAccessAfter.size(), 'Record share created');
+            System.assertEquals(2, recordAccessAfter.size(), 'Record share created');
         }
     }
 
@@ -124,8 +124,12 @@ public with sharing class EmployerThreadSharingServiceTest {
             AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
         );
         Thread__c thread2 = new Thread__c(CRM_Account__c = businessAccount.Id, AAREG_Thread_Subject__c = 'DEFAULT');
+        Thread__c thread3 = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'ARBEIDSTRENING'
+        );
 
-        insert new List<Thread__c>{ thread1, thread2 };
+        insert new List<Thread__c>{ thread1, thread2, thread3 };
 
         List<Thread__Share> recordAccessBefore = [
             SELECT Id
@@ -149,8 +153,7 @@ public with sharing class EmployerThreadSharingServiceTest {
                 WHERE UserOrGroupId = :user.Id AND AccessLevel = 'Edit'
             ];
 
-            System.assertEquals(1, recordAccessAfter.size(), 'Record Share created');
-            System.assertEquals(thread1.Id, recordAccessAfter[0].ParentId, 'Record Share created');
+            System.assertEquals(2, recordAccessAfter.size(), 'Record Share created');
         }
 
     }
