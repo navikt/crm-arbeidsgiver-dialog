@@ -42,7 +42,7 @@ public class RecordShareInitializerControllerTest {
 
         Thread__c thread = new Thread__c(
             CRM_Account__c = businessAccount.Id,
-            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
         );
         insert thread;
 
