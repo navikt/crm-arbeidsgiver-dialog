@@ -92,8 +92,8 @@
         </rules>
     </decisions>
     <environments>Default</environments>
-    <interviewLabel>TAG Dialog Thread Set to Unread {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Dialog Thread Set to Unread</label>
+    <interviewLabel>TAG Dialogue Thread Set to Unread {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Dialogue Thread Set to Unread</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
