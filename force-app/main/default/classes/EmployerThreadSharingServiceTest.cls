@@ -42,7 +42,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
         Thread__c thread1 = new Thread__c(
             CRM_Account__c = businessAccount.Id,
-            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
         );
         insert thread1;
 
@@ -84,7 +84,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
         Thread__c thread = new Thread__c(
             CRM_Account__c = businessAccount.Id,
-            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
         );
         insert thread;
 
@@ -121,7 +121,7 @@ public with sharing class EmployerThreadSharingServiceTest {
 
         Thread__c thread1 = new Thread__c(
             CRM_Account__c = businessAccount.Id,
-            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
         );
         Thread__c thread2 = new Thread__c(CRM_Account__c = businessAccount.Id, AAREG_Thread_Subject__c = 'DEFAULT');
         Thread__c thread3 = new Thread__c(
@@ -176,11 +176,11 @@ public with sharing class EmployerThreadSharingServiceTest {
 
         Thread__c thread1 = new Thread__c(
             CRM_Account__c = businessAccount.Id,
-            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
         );
         Thread__c thread2 = new Thread__c(
             CRM_Account__c = businessAccount2.Id,
-            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
         );
         Thread__c thread3 = new Thread__c(
             CRM_Account__c = businessAccount.Id,
@@ -236,7 +236,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
         Thread__c thread = new Thread__c(
             CRM_Account__c = businessAccount.Id,
-            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDDN'
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
         );
         insert thread;
 

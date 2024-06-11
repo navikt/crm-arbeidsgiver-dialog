@@ -1,6 +1,6 @@
 public without sharing class EmployerThreadSharingService {
     private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
-        'MIDLERTIDIG_LONNSTILSKUDDN' => new EmployerAltinnRight('5516', '1'),
+        'MIDLERTIDIG_LONNSTILSKUDD' => new EmployerAltinnRight('5516', '1'),
         'ARBEIDSTRENING' => new EmployerAltinnRight('5332', '2')
     };
     private static final Integer SHARING_CALCULATION_CACHE_TIME = -2;
