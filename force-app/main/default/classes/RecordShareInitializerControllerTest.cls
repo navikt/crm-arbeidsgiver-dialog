@@ -40,7 +40,10 @@ public class RecordShareInitializerControllerTest {
         Account businessAccount = [SELECT Id FROM Account WHERE isPersonAccount = FALSE LIMIT 1];
         User user = [SELECT Id, UserRoleId FROM USER WHERE FirstName = 'Community User' LIMIT 1];
 
-        Thread__c thread = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
+        Thread__c thread = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
+        );
         insert thread;
 
         List<Thread__Share> recordAccessBefore = [

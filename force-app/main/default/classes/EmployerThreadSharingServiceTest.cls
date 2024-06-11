@@ -40,13 +40,22 @@ public with sharing class EmployerThreadSharingServiceTest {
     static void calculateSharing_successAccessGrant() {
         Account businessAccount = [SELECT Id FROM Account WHERE isPersonAccount = FALSE LIMIT 1];
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
-        Thread__c thread = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
-        insert thread;
+        Thread__c thread1 = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
+        );
+        insert thread1;
+
+        Thread__c thread2 = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'ARBEIDSTRENING'
+        );
+        insert thread2;
 
         List<Thread__Share> recordAccessBefore = [
             SELECT Id
             FROM Thread__Share
-            WHERE UserOrGroupId = :user.Id AND ParentId = :thread.Id AND AccessLevel = 'Edit'
+            WHERE UserOrGroupId = :user.Id AND ParentId = :thread1.Id AND AccessLevel = 'Edit'
         ];
 
         System.assert(recordAccessBefore.size() == 0, 'No pre-existing record share');
@@ -62,10 +71,10 @@ public with sharing class EmployerThreadSharingServiceTest {
             List<Thread__Share> recordAccessAfter = [
                 SELECT Id
                 FROM Thread__Share
-                WHERE UserOrGroupId = :user.Id AND ParentId = :thread.Id AND AccessLevel = 'Edit'
+                WHERE UserOrGroupId = :user.Id AND ParentId IN (:thread1.Id, :thread2.Id) AND AccessLevel = 'Edit'
             ];
 
-            System.assertEquals(1, recordAccessAfter.size(), 'Record share created');
+            System.assertEquals(2, recordAccessAfter.size(), 'Record share created');
         }
     }
 
@@ -73,7 +82,10 @@ public with sharing class EmployerThreadSharingServiceTest {
     static void calculateSharing_missingAccess() {
         Account businessAccount = [SELECT Id FROM Account WHERE isPersonAccount = FALSE LIMIT 1];
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
-        Thread__c thread = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
+        Thread__c thread = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
+        );
         insert thread;
 
         List<Thread__Share> recordAccessBefore = [
@@ -107,10 +119,17 @@ public with sharing class EmployerThreadSharingServiceTest {
         Account businessAccount = [SELECT Id FROM Account WHERE isPersonAccount = FALSE LIMIT 1];
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
 
-        Thread__c thread1 = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
-        Thread__c thread2 = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'DEFAULT');
+        Thread__c thread1 = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
+        );
+        Thread__c thread2 = new Thread__c(CRM_Account__c = businessAccount.Id, AAREG_Thread_Subject__c = 'DEFAULT');
+        Thread__c thread3 = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'ARBEIDSTRENING'
+        );
 
-        insert new List<Thread__c>{ thread1, thread2 };
+        insert new List<Thread__c>{ thread1, thread2, thread3 };
 
         List<Thread__Share> recordAccessBefore = [
             SELECT Id
@@ -134,8 +153,14 @@ public with sharing class EmployerThreadSharingServiceTest {
                 WHERE UserOrGroupId = :user.Id AND AccessLevel = 'Edit'
             ];
 
-            System.assertEquals(1, recordAccessAfter.size(), 'Record Share created');
-            System.assertEquals(thread1.Id, recordAccessAfter[0].ParentId, 'Record Share created');
+            List<Thread__Share> noAccessAfter = [
+                SELECT Id
+                FROM Thread__Share
+                WHERE UserOrGroupId = :user.Id AND ParentId = :thread2.Id AND AccessLevel = 'Edit'
+            ];
+
+            System.assertEquals(2, recordAccessAfter.size(), 'Record Share created');
+            System.assertEquals(0, noAccessAfter.size(), 'Record Share not created');
         }
 
     }
@@ -149,10 +174,20 @@ public with sharing class EmployerThreadSharingServiceTest {
         businessAccount.INT_OrganizationNumber__c = '123456789';
         insert businessAccount2;
 
-        Thread__c thread1 = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
-        Thread__c thread2 = new Thread__c(CRM_Account__c = businessAccount2.Id, CRM_Thread_Type__c = 'AG_MLØNN');
+        Thread__c thread1 = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
+        );
+        Thread__c thread2 = new Thread__c(
+            CRM_Account__c = businessAccount2.Id,
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
+        );
+        Thread__c thread3 = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'ARBEIDSTRENING'
+        );
 
-        insert new List<Thread__c>{ thread1, thread2 };
+        insert new List<Thread__c>{ thread1, thread2, thread3 };
 
         Thread__Share threadShare = new Thread__Share(
             ParentId = thread2.Id,
@@ -168,7 +203,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         ];
 
         System.assertEquals(1, recordAccessBefore.size(), 'User only has access to 1 thread');
-        System.assertEquals(thread2.Id, recordAccessBefore[0].ParentId, 'No pre-existing record share');
+        System.assertEquals(thread2.Id, recordAccessBefore[0].ParentId, 'Pre-existing record share');
 
         ApiMock.setTestMock('GET_ALTINN_RIGHTS', 200, 'OK');
 
@@ -184,9 +219,14 @@ public with sharing class EmployerThreadSharingServiceTest {
                 WHERE UserOrGroupId = :user.Id AND AccessLevel = 'Edit'
             ];
 
-            System.assertEquals(1, recordAccessAfter.size(), 'User only has access to 1 thread');
-            System.assertEquals(thread1.Id, recordAccessAfter[0].ParentId, 'Record Share created');
-            System.assertNotEquals(thread2.Id, recordAccessAfter[0].ParentId, 'Outdated record share deleted');
+            List<Thread__Share> noAccessAfter = [
+                SELECT Id
+                FROM Thread__Share
+                WHERE UserOrGroupId = :user.Id AND ParentId = :thread2.Id AND AccessLevel = 'Edit'
+            ];
+
+            System.assertEquals(2, recordAccessAfter.size(), 'User only has access to 1 thread');
+            System.assertEquals(0, noAccessAfter.size(), 'No access to outadated thread');
         }
     }
 
@@ -194,7 +234,10 @@ public with sharing class EmployerThreadSharingServiceTest {
     static void calculateSharing_CalculationError() {
         Account businessAccount = [SELECT Id FROM Account WHERE isPersonAccount = FALSE LIMIT 1];
         User user = [SELECT Id FROM USER WHERE FirstName = 'Community User' LIMIT 1];
-        Thread__c thread = new Thread__c(CRM_Account__c = businessAccount.Id, CRM_Thread_Type__c = 'AG_MLØNN');
+        Thread__c thread = new Thread__c(
+            CRM_Account__c = businessAccount.Id,
+            AAREG_Thread_Subject__c = 'MIDLERTIDIG_LONNSTILSKUDD'
+        );
         insert thread;
 
         ApiMock.setTestMock('GET_ALTINN_RIGHTS', 200, 'OK');
