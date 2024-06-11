@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Redirect</masterLabel>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="recordId" type="String" label="Record ID" role="InputOnly" />
+            <property name="objectApiName" type="String" label="Object API Name" role="InputOnly" />
+            <property name="listViewName" type="String" label="List View API Name" role="InputOnly" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

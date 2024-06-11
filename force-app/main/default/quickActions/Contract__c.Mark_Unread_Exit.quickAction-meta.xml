@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Call flow to set last message as unread and redirect to Contract listview</description>
+    <flowDefinition>TAG_Dialogue_Thread_Set_to_Unread</flowDefinition>
+    <label>Mark Unread &amp; Exit</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

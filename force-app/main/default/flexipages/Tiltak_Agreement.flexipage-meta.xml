@@ -7,6 +7,9 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
+                            <value>Contract__c.Mark_Unread_Exit</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Contract__c.TAG_Journal</value>
                         </valueListItems>
                         <valueListItems>
