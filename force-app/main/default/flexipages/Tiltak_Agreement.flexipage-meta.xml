@@ -22,7 +22,7 @@
                                 <criteria>
                                     <leftValue>{!$User.Email}</leftValue>
                                     <operator>EQUAL</operator>
-                                    <rightValue>Andre.Colle@nav.no</rightValue>
+                                    <rightValue>andre.colle@nav.no</rightValue>
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!$User.Email}</leftValue>
@@ -32,12 +32,12 @@
                                 <criteria>
                                     <leftValue>{!$User.Email}</leftValue>
                                     <operator>EQUAL</operator>
-                                    <rightValue>Martin.Ingeberg@nav.no</rightValue>
+                                    <rightValue>martin.ingeberg@nav.no</rightValue>
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!$User.Email}</leftValue>
                                     <operator>EQUAL</operator>
-                                    <rightValue>Silje.Olsen@nav.no</rightValue>
+                                    <rightValue>silje.olsen@nav.no</rightValue>
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!$User.Email}</leftValue>
@@ -47,7 +47,7 @@
                                 <criteria>
                                     <leftValue>{!$User.Email}</leftValue>
                                     <operator>EQUAL</operator>
-                                    <rightValue>Tonje.Karidotter.Okland@nav.no</rightValue>
+                                    <rightValue>tonje.karidotter.okland@nav.no</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
