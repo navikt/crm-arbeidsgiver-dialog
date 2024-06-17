@@ -60,6 +60,11 @@
     <nameFieldLabel>Tittel</nameFieldLabel>
     <quickActions>
         <aspect>Master</aspect>
+        <label>Nullstill dialog</label>
+        <name>Clear_messages</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
         <label>Send tilbake til benken</label>
         <name>Mark_Unread_Exit</name>
     </quickActions>
