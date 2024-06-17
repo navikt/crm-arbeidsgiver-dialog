@@ -35,7 +35,7 @@ public with sharing class TAG_ExtNotificationFlowController {
      * @see TAG_ExtNotificationFlowController.ExtNotificationResult
      */
     @InvocableMethod(
-        label='Send SMS Notification'
+        label='Send External Notification (with/without SMS)'
         description='Sending notification to employer on the NAV Employer Portal (employer my page on nav.no). Also possible to include an notification by sms to provided phone number.'
         category='Notifications'
         iconName='slds:custom:custom53'
@@ -120,6 +120,9 @@ public with sharing class TAG_ExtNotificationFlowController {
         ExtNotificationRequest request
     ) {
         extNotificationService.notification(
+            request.label,
+            request.serviceCode,
+            request.serviceEdition,
             request.enterpriseNumber,
             request.externalId,
             request.groupingId,
@@ -258,6 +261,15 @@ public with sharing class TAG_ExtNotificationFlowController {
             required=true
         )
         public boolean sendAsync;
+
+        @InvocableVariable(label='Label' description='Notification label' required=true)
+        public String label;
+
+        @InvocableVariable(label='Service Code' description='Service code for Altinn topic' required=true)
+        public String serviceCode;
+
+        @InvocableVariable(label='Service Edition' description='Service edition for Altinn topic' required=true)
+        public String serviceEdition;
 
         @InvocableVariable(
             label='Enterprise Number'

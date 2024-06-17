@@ -94,12 +94,6 @@
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
-            <name>sendAsync</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>enterpriseNumber</name>
             <value>
                 <elementReference>Get_contract.TAG_Account__r.INT_OrganizationNumber__c</elementReference>
@@ -118,15 +112,39 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>label</name>
+            <value>
+                <elementReference>labelNotification</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>notificationText</name>
             <value>
                 <elementReference>Notification</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
+            <name>sendAsync</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>sendSms</name>
             <value>
                 <booleanValue>false</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>serviceCode</name>
+            <value>
+                <elementReference>serviceCodeAltinn</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>serviceEdition</name>
+            <value>
+                <elementReference>serviceEditionAltinn</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -349,6 +367,12 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>label</name>
+            <value>
+                <elementReference>labelNotification</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>notificationText</name>
             <value>
                 <elementReference>Notification</elementReference>
@@ -370,6 +394,18 @@
             <name>sendSms</name>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>serviceCode</name>
+            <value>
+                <elementReference>serviceCodeAltinn</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>serviceEdition</name>
+            <value>
+                <elementReference>serviceEditionAltinn</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -433,6 +469,27 @@
                 <stringValue>ab0422</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>labelNotification</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Arbeidstrening</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>serviceCodeAltinn</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>5332</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>serviceEditionAltinn</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>2</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Get_first_message</targetReference>
         </connector>
@@ -447,6 +504,27 @@
             <operator>Assign</operator>
             <value>
                 <stringValue>ab0336</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>labelNotification</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Lønnstilskudd</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>serviceCodeAltinn</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>5516</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>serviceEditionAltinn</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>1</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -1206,7 +1284,28 @@
         <text>{!$Label.TAG_DialogSMSNotifikasjon} {!Get_contract.ExternalId__c}</text>
     </textTemplates>
     <variables>
+        <name>labelNotification</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>processingThemeCode</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>serviceCodeAltinn</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>serviceEditionAltinn</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

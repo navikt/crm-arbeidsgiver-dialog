@@ -44,6 +44,9 @@ private class TAG_ExtNotificationService_Test {
     @IsTest
     private static void testNotificationMethodPositive() {
         TAG_ExtNotificationService externalNotificationService = new TAG_ExtNotificationService();
+        String label = 'Lønnstilskudd';
+        String serviceCode = '5516';
+        String serviceEdition = '1';
         String enterpriseNumber = '123456789';
         String externalId = '123456789ExternalId';
         String groupingId = '123456789GroupingId';
@@ -51,7 +54,16 @@ private class TAG_ExtNotificationService_Test {
         String url = 'https://www.nav.no';
 
         System.Test.startTest();
-        externalNotificationService.notification(enterpriseNumber, externalId, groupingId, notificationText, url);
+        externalNotificationService.notification(
+            label,
+            serviceCode,
+            serviceEdition,
+            enterpriseNumber,
+            externalId,
+            groupingId,
+            notificationText,
+            url
+        );
         System.Test.stopTest();
 
         System.assertEquals(
@@ -77,7 +89,7 @@ private class TAG_ExtNotificationService_Test {
         String notificationText = 'Test "notification".';
 
         System.Test.startTest();
-        externalNotificationService.notification('', '', '', notificationText, '');
+        externalNotificationService.notification('', '', '', '', '', '', notificationText, '');
         System.Test.stopTest();
 
         System.assertEquals(
@@ -102,7 +114,7 @@ private class TAG_ExtNotificationService_Test {
         String notificationText = 'Test  notification.';
 
         System.Test.startTest();
-        externalNotificationService.notification('', '', '', notificationText, '');
+        externalNotificationService.notification('', '', '', '', '', '', notificationText, '');
         System.Test.stopTest();
 
         System.assertEquals(
@@ -129,7 +141,7 @@ private class TAG_ExtNotificationService_Test {
         String notificationText = 'Test\n\ntest2 \r\n test3 \r notification.';
 
         System.Test.startTest();
-        externalNotificationService.notification('', '', '', notificationText, '');
+        externalNotificationService.notification('', '', '', '', '', '', notificationText, '');
         System.Test.stopTest();
 
         System.assertEquals(
@@ -583,10 +595,7 @@ private class TAG_ExtNotificationService_Test {
 
         System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
 
-        List<Application_Log__c> applicationLog = [
-            SELECT Id
-            FROM Application_Log__c
-        ];
+        List<Application_Log__c> applicationLog = [SELECT Id FROM Application_Log__c];
 
         System.assert(applicationLog.size() < 1, 'message');
     }
@@ -618,10 +627,7 @@ private class TAG_ExtNotificationService_Test {
 
         System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
 
-        List<Application_Log__c> applicationLog = [
-            SELECT Id
-            FROM Application_Log__c
-        ];
+        List<Application_Log__c> applicationLog = [SELECT Id FROM Application_Log__c];
 
         System.assert(applicationLog.size() > 0, 'message');
     }
@@ -649,10 +655,7 @@ private class TAG_ExtNotificationService_Test {
 
         System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
 
-        List<Application_Log__c> applicationLog = [
-            SELECT Id
-            FROM Application_Log__c
-        ];
+        List<Application_Log__c> applicationLog = [SELECT Id FROM Application_Log__c];
 
         System.assert(applicationLog.size() > 0, 'message');
     }
@@ -682,10 +685,7 @@ private class TAG_ExtNotificationService_Test {
 
         System.assert(!isExceptionThrown, 'Expected to have a no exception thrown.');
 
-        List<Application_Log__c> applicationLog = [
-            SELECT Id
-            FROM Application_Log__c
-        ];
+        List<Application_Log__c> applicationLog = [SELECT Id FROM Application_Log__c];
 
         System.assert(applicationLog.size() > 0, 'message');
     }
