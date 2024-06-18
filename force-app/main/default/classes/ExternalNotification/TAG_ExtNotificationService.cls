@@ -45,28 +45,6 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
      * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
      * @since 2023-05-08 Created.
      */
-    public static final String DEFAULT_SERVICE_CODE = '5516';
-    /**
-     * @description
-     *
-     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
-     * @since 2023-05-08 Created.
-     */
-    public static final String DEFAULT_SERVICE_EDITION = '1';
-    /**
-     * @description
-     *
-     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
-     * @since 2023-05-08 Created.
-     */
-    public static final String DEFAULT_LABEL = 'Lønnstilskudd';
-
-    /**
-     * @description
-     *
-     * @author Kenneth Soerensen <kenneth.sorensen@nav.no>
-     * @since 2023-05-08 Created.
-     */
     @TestVisible
     public String name { get; private set; }
     /**
@@ -230,9 +208,6 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
         this.operationType = operationType;
         this.fieldName = DEFAULT_FIELD_NAME;
         this.argumentName = DEFAULT_ARGUMENT_NAME;
-        this.serviceCode = DEFAULT_SERVICE_CODE;
-        this.serviceEdition = DEFAULT_SERVICE_EDITION;
-        this.label = DEFAULT_LABEL;
         this.smsNotificationBody = '';
     }
 
@@ -244,12 +219,18 @@ public inherited sharing class TAG_ExtNotificationService implements TAG_IExtNot
      */
     @SuppressWarnings('PMD.ExcessiveParameterList')
     public TAG_ExtNotificationService notification(
+        String label,
+        String serviceCode,
+        String serviceEdition,
         String enterpriseNumber,
         String externalId,
         String groupingId,
         String notificationText,
         String url
     ) {
+        this.label = label;
+        this.serviceCode = serviceCode;
+        this.serviceEdition = serviceEdition;
         this.enterpriseNumber = enterpriseNumber;
         this.externalId = externalId;
         this.groupingId = groupingId;

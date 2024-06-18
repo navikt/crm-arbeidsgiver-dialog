@@ -15,6 +15,9 @@ public interface TAG_IExtNotificationService {
      * @since 2023-06-12 Created.
      *
      * @param enterpriseNumber
+     * @param label
+     * @param serviceCode
+     * @param serviceEdition
      * @param externalId
      * @param groupingId
      * @param notificationText
@@ -22,6 +25,9 @@ public interface TAG_IExtNotificationService {
      * @return  `Object`
      */
     Object notification(
+        String label,
+        String serviceCode,
+        String serviceEdition,
         String enterpriseNumber,
         String externalId,
         String groupingId,
