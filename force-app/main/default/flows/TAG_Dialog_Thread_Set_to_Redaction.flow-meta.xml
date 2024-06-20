@@ -5,7 +5,7 @@
         <name>Set_Thread_For_Redaction</name>
         <label>Set Thread For Redaction</label>
         <locationX>446</locationX>
-        <locationY>638</locationY>
+        <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.STO_Sensitive_Information__c</assignToReference>
             <operator>Assign</operator>
@@ -25,10 +25,35 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Are_there_messages_on_Thread</name>
+        <label>Are there messages on Thread?</label>
+        <locationX>545</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>No_Messages_for_Redaction</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Messages_exist</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Messages</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_If_Sensitive_Information_Is_True</targetReference>
+            </connector>
+            <label>Messages exist</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_If_Sensitive_Information_Is_True</name>
         <label>Check If Sensitive Information Is True</label>
         <locationX>248</locationX>
-        <locationY>398</locationY>
+        <locationY>566</locationY>
         <defaultConnector>
             <targetReference>Set_Thread_to_Redaction</targetReference>
         </defaultConnector>
@@ -53,7 +78,7 @@
         <name>Check_If_Thead_Is_Set_To_Redaction</name>
         <label>Check If Thead Is Set To Redaction</label>
         <locationX>446</locationX>
-        <locationY>878</locationY>
+        <locationY>998</locationY>
         <defaultConnector>
             <targetReference>Error_Screen</targetReference>
         </defaultConnector>
@@ -122,8 +147,8 @@
     <recordLookups>
         <name>Get_Contract</name>
         <label>Get Contract</label>
-        <locationX>248</locationX>
-        <locationY>158</locationY>
+        <locationX>545</locationX>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Thread</targetReference>
@@ -141,13 +166,34 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>Get_Thread</name>
-        <label>Get Thread</label>
-        <locationX>248</locationX>
-        <locationY>278</locationY>
+        <name>Get_Messages</name>
+        <label>Get Messages</label>
+        <locationX>545</locationX>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_If_Sensitive_Information_Is_True</targetReference>
+            <targetReference>Are_there_messages_on_Thread</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CRM_Thread__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Thread.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Message__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Thread</name>
+        <label>Get Thread</label>
+        <locationX>545</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Messages</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -165,7 +211,7 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>446</locationX>
-        <locationY>758</locationY>
+        <locationY>890</locationY>
         <connector>
             <targetReference>Check_If_Thead_Is_Set_To_Redaction</targetReference>
         </connector>
@@ -176,7 +222,7 @@
         <name>Error_Screen</name>
         <label>Error Screen</label>
         <locationX>578</locationX>
-        <locationY>998</locationY>
+        <locationY>1106</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -225,7 +271,7 @@
         <name>Finish_Screen</name>
         <label>Finish Screen</label>
         <locationX>314</locationX>
-        <locationY>998</locationY>
+        <locationY>1106</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -271,10 +317,27 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>No_Messages_for_Redaction</name>
+        <label>No Messages for Redaction</label>
+        <locationX>842</locationX>
+        <locationY>566</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>NoMessages</name>
+            <fieldText>&lt;p&gt;Det finnes ingen samtale i tråden som kan settes til sladding. &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>OK</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Redaction_Thread_Screen</name>
         <label>Redaction Thread Screen</label>
         <locationX>50</locationX>
-        <locationY>518</locationY>
+        <locationY>674</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -291,7 +354,7 @@
         <name>Set_Thread_to_Redaction</name>
         <label>Set Thread to Redaction</label>
         <locationX>446</locationX>
-        <locationY>518</locationY>
+        <locationY>674</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -339,6 +402,7 @@
             </defaultValue>
             <fieldText>Årsak</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -356,7 +420,7 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>122</locationX>
+        <locationX>419</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Contract</targetReference>
@@ -369,5 +433,15 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>textForNoMessages</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Det finnes ingen samtaler for sladding</stringValue>
+        </value>
     </variables>
 </Flow>

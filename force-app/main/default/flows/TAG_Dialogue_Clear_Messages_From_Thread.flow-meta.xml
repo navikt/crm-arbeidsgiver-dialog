@@ -5,7 +5,7 @@
         <name>Assign_sensitive_information_to_not_true</name>
         <label>Assign sensitive information to not true</label>
         <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.STO_Sensitive_Information__c</assignToReference>
             <operator>Assign</operator>
@@ -24,11 +24,27 @@
             <targetReference>Update_Thread</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Clear_Thread_Summary</name>
+        <label>Clear Thread Summary</label>
+        <locationX>314</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Thread.CRM_Conversation_Summary__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Thread_Summary</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Is_Thread_set_to_redaction</name>
         <label>Is Thread set to redaction?</label>
         <locationX>314</locationX>
-        <locationY>566</locationY>
+        <locationY>782</locationY>
         <defaultConnector>
             <targetReference>Success_deleting_messages</targetReference>
         </defaultConnector>
@@ -78,7 +94,7 @@
         <locationX>314</locationX>
         <locationY>458</locationY>
         <connector>
-            <targetReference>Is_Thread_set_to_redaction</targetReference>
+            <targetReference>Clear_Thread_Summary</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Error_deleting_messages</targetReference>
@@ -152,13 +168,23 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>50</locationX>
-        <locationY>782</locationY>
+        <locationY>998</locationY>
         <connector>
             <targetReference>Success_deleting_messages</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Error_updating_redaction</targetReference>
         </faultConnector>
+        <inputReference>Get_Thread</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Thread_Summary</name>
+        <label>Update Thread Summary</label>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>Is_Thread_set_to_redaction</targetReference>
+        </connector>
         <inputReference>Get_Thread</inputReference>
     </recordUpdates>
     <screens>
@@ -214,7 +240,7 @@
         <name>Error_updating_redaction</name>
         <label>Error updating redaction</label>
         <locationX>314</locationX>
-        <locationY>890</locationY>
+        <locationY>1106</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -263,7 +289,7 @@
         <name>Success_deleting_messages</name>
         <label>Success deleting messages</label>
         <locationX>314</locationX>
-        <locationY>1214</locationY>
+        <locationY>1430</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
