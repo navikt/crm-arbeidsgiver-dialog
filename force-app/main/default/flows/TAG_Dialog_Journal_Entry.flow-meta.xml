@@ -3,8 +3,8 @@
     <actionCalls>
         <name>show_Toast_action</name>
         <label>show Toast action</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
         <actionName>c:fcFlowToaster</actionName>
         <actionType>component</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -26,9 +26,36 @@
                 <stringValue>success</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>c:fcFlowToaster</nameSegment>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <decisions>
+        <name>Are_there_Messages_on_Thread</name>
+        <label>Are there Messages on Thread?</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>No_Message_for_Journal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Messages_exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Messages</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Journal_Screen</targetReference>
+            </connector>
+            <label>Messages exists</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Dialog Journal Entry {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialog Journal Entry</label>
@@ -54,11 +81,11 @@
     <recordLookups>
         <name>Get_Contract</name>
         <label>Get Contract</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Journal_Screen</targetReference>
+            <targetReference>Get_Messages</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -78,11 +105,32 @@
             <field>Thread__c</field>
         </outputAssignments>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Messages</name>
+        <label>Get Messages</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Are_there_Messages_on_Thread</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CRM_Thread__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>threadId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Message__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <screens>
         <name>Journal_Screen</name>
         <label>Arkivering</label>
-        <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -98,8 +146,25 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
+    <screens>
+        <name>No_Message_for_Journal</name>
+        <label>No Message for Journal</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>JournalNoMessages</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Det finnes ingen samtale i tråden som kan journalføres.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>OK</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Contract</targetReference>
@@ -109,8 +174,8 @@
     <subflows>
         <name>Create_Journal_Entry</name>
         <label>Create Journal Entry</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
         <connector>
             <targetReference>show_Toast_action</targetReference>
         </connector>
