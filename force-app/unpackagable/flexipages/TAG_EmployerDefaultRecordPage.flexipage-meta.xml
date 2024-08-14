@@ -188,7 +188,10 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>NAME</value>
+                            <value>TAG_Link_to_dialouge__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Status__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_StartDate__c</value>
@@ -197,7 +200,10 @@
                             <value>TAG_EndDate__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Status__c</value>
+                            <value>TAG_Last_Message__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Read_by_NAV__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
