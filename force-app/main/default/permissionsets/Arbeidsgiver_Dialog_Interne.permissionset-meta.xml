@@ -28,6 +28,10 @@
         <enabled>true</enabled>
         <name>POAG_Pilot</name>
     </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>TAG_Dialogueonaccount</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract__c.ExternalId__c</field>
