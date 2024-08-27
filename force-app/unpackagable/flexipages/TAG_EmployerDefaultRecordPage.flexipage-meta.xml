@@ -74,7 +74,9 @@
                     <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente tjenester&quot;]</value>
+                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk
+                                Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente
+                                tjenester&quot;]</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -158,10 +160,11 @@
                     <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Status__c|EQUALS|[&quot;GJENNOMFØRES&quot;,&quot;AVSLUTTET&quot;]</value>
+                            <value>RECORDTYPE|EQUALS|[&quot;MeasureAgreement&quot;]</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>RECORDTYPE|EQUALS|[&quot;MeasureAgreement&quot;]</value>
+                            <value>
+                                TAG_Status__c|EQUALS|[&quot;GJENNOMFØRES&quot;,&quot;AVSLUTTET&quot;]</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_EndDate__c|LESS_OR_EQUAL|NEXT 12 WEEKS</value>
@@ -178,7 +181,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListApiName</name>
-                    <value>Contracts__pr</value>
+                    <value>Contracts1__r</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListDisplayType</name>
@@ -188,7 +191,13 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>NAME</value>
+                            <value>TAG_Link_to_dialouge__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_MeasureParticipant__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_StartDate__c</value>
@@ -197,7 +206,7 @@
                             <value>TAG_EndDate__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Status__c</value>
+                            <value>TAG_Last_Message__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -211,7 +220,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortFieldAlias</name>
-                    <value>TAG_MeasureParticipant__c</value>
+                    <value>__DEFAULT__</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortFieldOrder</name>
@@ -1259,7 +1268,10 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/intranett-produktomrader-og-utvikling/SitePages/FIA-brukerveiledning.aspx#tilgjengelige-statuser-for-virksomheten&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer om statuser fra Fia - klikk her&lt;/a&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;a
+                        href=&quot;https://navno.sharepoint.com/sites/intranett-produktomrader-og-utvikling/SitePages/FIA-brukerveiledning.aspx#tilgjengelige-statuser-for-virksomheten&quot;
+                        rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer om
+                        statuser fra Fia - klikk her&lt;/a&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText4</identifier>
@@ -1370,7 +1382,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;a href=&quot;https://www.nav.no/no/nav-og-samfunn/statistikk/sykefravar-statistikk/relatert-informasjon/om-statistikken-sykefravaer&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Les mer om sykefraværsstatistikken - klikk her&lt;/a&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;a
+                        href=&quot;https://www.nav.no/no/nav-og-samfunn/statistikk/sykefravar-statistikk/relatert-informasjon/om-statistikken-sykefravaer&quot;
+                        rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;
+                        style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Les mer om
+                        sykefraværsstatistikken - klikk her&lt;/a&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText5</identifier>
