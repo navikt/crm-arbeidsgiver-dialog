@@ -74,9 +74,7 @@
                     <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk
-                                Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente
-                                tjenester&quot;]</value>
+                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente tjenester&quot;]</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -163,8 +161,7 @@
                             <value>RECORDTYPE|EQUALS|[&quot;MeasureAgreement&quot;]</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>
-                                TAG_Status__c|EQUALS|[&quot;GJENNOMFØRES&quot;,&quot;AVSLUTTET&quot;]</value>
+                            <value>TAG_Status__c|EQUALS|[&quot;GJENNOMFØRES&quot;,&quot;AVSLUTTET&quot;]</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_EndDate__c|LESS_OR_EQUAL|NEXT 12 WEEKS</value>
