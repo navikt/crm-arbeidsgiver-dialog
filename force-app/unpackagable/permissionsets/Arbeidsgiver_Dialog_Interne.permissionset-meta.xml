@@ -69,6 +69,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contract__c.TAG_EndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contract__c.TAG_EndDialogue__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -100,6 +105,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract__c.TAG_SourceURL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract__c.TAG_StartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
