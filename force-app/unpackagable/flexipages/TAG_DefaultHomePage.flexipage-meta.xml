@@ -5,7 +5,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>enableInlineEdit</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>entityName</name>
@@ -30,26 +30,10 @@
                 <componentName>flexipage:filterListCard</componentName>
                 <identifier>flexipage_filterListCard4</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
                     <criteria>
-                        <leftValue>{!$User.Department}</leftValue>
+                        <leftValue>{!$Permission.CustomPermission.TAG_Dialogueonaccount}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>0235</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Department}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>0236</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Department}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>0237</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Department}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>0238</rightValue>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

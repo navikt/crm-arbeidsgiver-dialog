@@ -24,5 +24,10 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
+    <filters>
+        <field>TAG_Category__c</field>
+        <operation>equals</operation>
+        <value>MIDLERTIDIG_LONNSTILSKUDD,ARBEIDSTRENING</value>
+    </filters>
     <label>Uleste meldinger</label>
 </ListView>
