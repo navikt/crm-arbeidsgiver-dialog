@@ -5,6 +5,6 @@
     <masterLabel>Restrict NAV as Employer</masterLabel>
     <recordFilter>TAG_IsAccountNAV__c=false</recordFilter>
     <targetEntity>Contract__c</targetEntity>
-    <userCriteria>$Permission.TAG_Dialogueonaccount=true</userCriteria>
+    <userCriteria>$User.IsActive=true</userCriteria>
     <version>1</version>
 </RestrictionRule>
