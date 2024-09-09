@@ -5,7 +5,7 @@
         <name>Set_Thread_values</name>
         <label>Set Thread values</label>
         <locationX>138</locationX>
-        <locationY>1055</locationY>
+        <locationY>1355</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.CRM_isActive__c</assignToReference>
             <operator>Assign</operator>
@@ -29,7 +29,7 @@
         <name>Contract_reopened</name>
         <label>Contract reopened?</label>
         <locationX>270</locationX>
-        <locationY>839</locationY>
+        <locationY>1139</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -62,10 +62,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Has_Nav_Unit_beed_changed</name>
+        <label>Has Nav Unit beed changed?</label>
+        <locationX>270</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Has_thread</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NavUnit not changed</defaultConnectorLabel>
+        <rules>
+            <name>NavUnit_is_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_NAVUnit__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_NAV_Unit_text_value_c</targetReference>
+            </connector>
+            <label>NavUnit is changed</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Has_thread</name>
         <label>Has thread?</label>
         <locationX>270</locationX>
-        <locationY>323</locationY>
+        <locationY>623</locationY>
         <defaultConnector>
             <targetReference>Has_Thread_NAVUnit</targetReference>
         </defaultConnector>
@@ -90,7 +115,7 @@
         <name>Has_Thread_NAVUnit</name>
         <label>Has Thread NAVUnit?</label>
         <locationX>490</locationX>
-        <locationY>431</locationY>
+        <locationY>731</locationY>
         <defaultConnector>
             <targetReference>Set_NAVUnit_Name_to_related_Thread</targetReference>
         </defaultConnector>
@@ -159,7 +184,7 @@
         <name>Create_Thread_record</name>
         <label>Create Thread record</label>
         <locationX>50</locationX>
-        <locationY>539</locationY>
+        <locationY>839</locationY>
         <assignRecordIdToReference>ThreadId</assignRecordIdToReference>
         <connector>
             <targetReference>Update_Records</targetReference>
@@ -212,7 +237,7 @@
         <name>Get_TAG_Thread_record_type_id</name>
         <label>Get TAG Thread record type id</label>
         <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationY>731</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Thread_record</targetReference>
@@ -235,7 +260,7 @@
         <name>Get_Thread</name>
         <label>Get Thread</label>
         <locationX>138</locationX>
-        <locationY>947</locationY>
+        <locationY>1247</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Thread_values</targetReference>
@@ -253,10 +278,26 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Set_NAV_Unit_text_value_c</name>
+        <label>Set NAV_Unit_text_value__c</label>
+        <locationX>138</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Has_thread</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>NAV_Unit_text_value__c</field>
+            <value>
+                <elementReference>$Record.TAG_NAVUnit__r.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Set_NAVUnit_Name_to_related_Thread</name>
         <label>Set NAVUnit Name to related Thread</label>
         <locationX>666</locationX>
-        <locationY>539</locationY>
+        <locationY>839</locationY>
         <connector>
             <targetReference>Contract_reopened</targetReference>
         </connector>
@@ -272,7 +313,7 @@
         <name>Update_Records</name>
         <label>Update Records</label>
         <locationX>50</locationX>
-        <locationY>647</locationY>
+        <locationY>947</locationY>
         <connector>
             <targetReference>Contract_reopened</targetReference>
         </connector>
@@ -294,14 +335,14 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>138</locationX>
-        <locationY>1163</locationY>
+        <locationY>1463</locationY>
         <inputReference>Get_Thread</inputReference>
     </recordUpdates>
     <start>
         <locationX>144</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Has_thread</targetReference>
+            <targetReference>Has_Nav_Unit_beed_changed</targetReference>
         </connector>
         <filterFormula>{!$Record.RecordType.DeveloperName}=&apos;MeasureAgreement&apos;</filterFormula>
         <object>Contract__c</object>
