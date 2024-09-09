@@ -30,6 +30,9 @@
         <label>Contract reopened?</label>
         <locationX>270</locationX>
         <locationY>839</locationY>
+        <defaultConnector>
+            <targetReference>Get_account</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -133,6 +136,28 @@
             <label>Has NAVUnit and NAVUnit Name</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Is_Account_NAV</name>
+        <label>Is Account NAV?</label>
+        <locationX>270</locationX>
+        <locationY>1463</locationY>
+        <defaultConnectorLabel>No Account is Not NAV</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Account_is_NAV</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ContractAccountName</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>NAV</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_contract_field</targetReference>
+            </connector>
+            <label>Yes Account is NAV</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Dialogue {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Dialogue Contract</label>
@@ -209,6 +234,29 @@
         <object>Thread__c</object>
     </recordCreates>
     <recordLookups>
+        <name>Get_account</name>
+        <label>Get account</label>
+        <locationX>270</locationX>
+        <locationY>1355</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Account_NAV</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.TAG_Account__r.Id</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <outputAssignments>
+            <assignToReference>ContractAccountName</assignToReference>
+            <field>Name</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
         <name>Get_TAG_Thread_record_type_id</name>
         <label>Get TAG Thread record type id</label>
         <locationX>50</locationX>
@@ -269,6 +317,19 @@
         <inputReference>$Record.Thread__r</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Update_contract_field</name>
+        <label>Update contract field</label>
+        <locationX>138</locationX>
+        <locationY>1571</locationY>
+        <inputAssignments>
+            <field>TAG_IsAccountNAV__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Records</name>
         <label>Update Records</label>
         <locationX>50</locationX>
@@ -295,6 +356,9 @@
         <label>Update Thread</label>
         <locationX>138</locationX>
         <locationY>1163</locationY>
+        <connector>
+            <targetReference>Get_account</targetReference>
+        </connector>
         <inputReference>Get_Thread</inputReference>
     </recordUpdates>
     <start>
@@ -309,6 +373,13 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>ContractAccountName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>TagThreadRecordTypeId</name>
         <dataType>String</dataType>
