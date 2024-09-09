@@ -166,6 +166,9 @@
                         <valueListItems>
                             <value>TAG_EndDate__c|LESS_OR_EQUAL|NEXT 12 WEEKS</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Category__c|EQUALS|[&quot;MIDLERTIDIG_LONNSTILSKUDD&quot;,&quot;ARBEIDSTRENING&quot;]</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -1533,6 +1536,10 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>logEvent</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
