@@ -5,6 +5,6 @@
     <masterLabel>Restrict NAV as Employer</masterLabel>
     <recordFilter>TAG_IsAccountNAV__c=false</recordFilter>
     <targetEntity>Contract__c</targetEntity>
-    <userCriteria>$User.IsActive=true</userCriteria>
+    <userCriteria>$User.ProfileId=&apos;00e2o000001R8S9&apos;</userCriteria>
     <version>1</version>
 </RestrictionRule>
