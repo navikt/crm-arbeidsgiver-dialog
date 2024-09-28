@@ -161,13 +161,10 @@
                             <value>RECORDTYPE|EQUALS|[&quot;MeasureAgreement&quot;]</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Status__c|EQUALS|[&quot;GJENNOMFØRES&quot;,&quot;AVSLUTTET&quot;]</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_EndDate__c|LESS_OR_EQUAL|NEXT 12 WEEKS</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>TAG_Category__c|EQUALS|[&quot;MIDLERTIDIG_LONNSTILSKUDD&quot;,&quot;ARBEIDSTRENING&quot;]</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_DialogueActive__c|EQUALS|true</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>

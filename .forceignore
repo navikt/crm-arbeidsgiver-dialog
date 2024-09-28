@@ -132,3 +132,6 @@
 
 # Autocomplete folder
 **/force-app/autocomplete/*
+**/tsconfig.json
+
+**/*.ts
