@@ -3,6 +3,10 @@
     <label>Arbeidsgiver Notifikasjon API</label>
     <protected>false</protected>
     <values>
+        <field>App_Name_Test__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>App_Name__c</field>
         <value xsi:type="xsd:string">notifikasjon-produsent-api</value>
     </values>
@@ -37,5 +41,9 @@
     <values>
         <field>Use_Gateway__c</field>
         <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Use_Saas_Proxy_Beta__c</field>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
 </CustomMetadata>
