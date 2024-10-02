@@ -188,7 +188,7 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Link_to_dialouge__c</value>
+                            <value>TAG_Link_to_dialogue__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_Status__c</value>

@@ -92,7 +92,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Account__c</fieldItem>
                 <identifier>RecordTAG_Account_cField</identifier>
@@ -218,7 +218,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Category__c</fieldItem>
                 <identifier>RecordTAG_Category_cField</identifier>

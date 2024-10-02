@@ -84,7 +84,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contract__c.TAG_Link_to_dialouge__c</field>
+        <field>Contract__c.TAG_Link_to_dialogue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
