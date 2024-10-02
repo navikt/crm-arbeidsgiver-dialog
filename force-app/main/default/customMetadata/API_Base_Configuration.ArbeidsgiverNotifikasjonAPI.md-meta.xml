@@ -38,4 +38,8 @@
         <field>Use_Gateway__c</field>
         <value xsi:type="xsd:boolean">false</value>
     </values>
+    <values>
+        <field>Use_Saas_Proxy_Beta__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
 </CustomMetadata>
