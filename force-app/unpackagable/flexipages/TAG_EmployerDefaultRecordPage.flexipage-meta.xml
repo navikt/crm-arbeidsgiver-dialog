@@ -74,7 +74,9 @@
                     <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente tjenester&quot;]</value>
+                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk
+                                Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente
+                                tjenester&quot;]</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -161,7 +163,8 @@
                             <value>RECORDTYPE|EQUALS|[&quot;MeasureAgreement&quot;]</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Category__c|EQUALS|[&quot;MIDLERTIDIG_LONNSTILSKUDD&quot;,&quot;ARBEIDSTRENING&quot;]</value>
+                            <value>
+                                TAG_Category__c|EQUALS|[&quot;MIDLERTIDIG_LONNSTILSKUDD&quot;,&quot;ARBEIDSTRENING&quot;]</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_DialogueActive__c|EQUALS|true</value>
@@ -188,7 +191,7 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Link_to_dialouge__c</value>
+                            <value>TAG_Link_to_dialogue__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_Status__c</value>
