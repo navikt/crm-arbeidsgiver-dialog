@@ -3,7 +3,7 @@
     <fullName>TAG_DialogueActive__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>IF(  Thread__r.CRM_isActive__c = true &amp;&amp; TAG_EndDate__c &gt; (TODAY() - 84) &amp;&amp; (ISPICKVAL(TAG_Status__c, &quot;GJENNOMFØRES&quot;) || ISPICKVAL(TAG_Status__c, &quot;AVSLUTTET&quot;)), true, false)</formula>
+    <formula>IF( Thread__r.CRM_Is_Closed__c = false &amp;&amp; TAG_EndDate__c &gt; (TODAY() - 84) &amp;&amp; (ISPICKVAL(TAG_Status__c, &quot;GJENNOMFØRES&quot;) || ISPICKVAL(TAG_Status__c, &quot;AVSLUTTET&quot;)), true, false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Dialogue active</label>
     <trackHistory>false</trackHistory>
