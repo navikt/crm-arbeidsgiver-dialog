@@ -1268,10 +1268,13 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>NAME</value>
+                            <value>IALink__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>CaseStatus__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>IsNewIACase__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>CaseOwner__c</value>
