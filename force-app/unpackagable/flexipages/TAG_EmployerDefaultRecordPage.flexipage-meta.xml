@@ -194,7 +194,7 @@
                             <value>TAG_Status__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_MeasureParticipant__c</value>
+                            <value>ExternalId__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_StartDate__c</value>
