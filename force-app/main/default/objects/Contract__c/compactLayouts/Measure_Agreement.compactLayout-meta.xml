@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Measure_Agreement</fullName>
-    <fields>TAG_Account__c</fields>
     <fields>TAG_MeasureParticipant__c</fields>
+    <fields>ExternalId__c</fields>
     <fields>TAG_Status__c</fields>
     <fields>TAG_StartDate__c</fields>
     <fields>TAG_EndDate__c</fields>
