@@ -3,17 +3,16 @@
     border-bottom-width: 4px;
     border-bottom-style: solid;
     text-align: center;
+    border-radius: 20px;
     width: 100%;
     z-index: 10;
-    margin-top: -11rem;
-    margin-top: var(--margintop);
-    position: var(--fixed);
-    top: var(--hovedbannerposition);
+
+    
 }
 
 .arbeidsgiver {
-    background-color: #dade99;
-    border-bottom: 4px solid rgb(181, 189, 51);
+    background-color: #ffeccc; 
+    border-bottom: 4px solid #ffd799;
 }
 
 .typo-systemtittel {
@@ -50,3 +49,15 @@
     color: #0067c5;
     fill: #0067c5;
 }
+/* Nye testing */
+
+.sticky {
+    top: 0;
+    left: -1px;
+    z-index: 100000;
+  }
+   
+  .sticky + .content {
+    /*OBS, Denne er laget i relasjon til nav sin header, som er 80 px stor. hvis designet eller størrelsen på nav-headeren endres, så bør denne endres*/
+    padding-top: 80px;
+  }

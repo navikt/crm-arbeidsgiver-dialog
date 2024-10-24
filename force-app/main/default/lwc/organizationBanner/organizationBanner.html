@@ -1,8 +1,8 @@
 <template>
-    <c-url-reader></c-url-reader>
-    <div class="hovedbanner arbeidsgiver">
+     <c-url-reader></c-url-reader>
+    <div class="hovedbanner arbeidsgiver myStickyHeader sticky" id="myHeader">
         <h1 class="typo-systemtittel">
-            {organizationName} - Org nr {organizationNumber} - Avtale nr {agreementNumber}
+            {organizationName} - Org.nr. {organizationNumber} - Avtalenr. {agreementNumber}
         </h1>
         <h1 class="typo-systemtittel">
             Tiltaksdeltaker: {participantContract}
@@ -12,4 +12,5 @@
             Tilbake til Avtalen</a
         >
     </div>
+   
 </template>
