@@ -1,3 +1,5 @@
+/*@description Helper class for priviliged operations. 
+*/
 public without sharing class EmployerThreadSharingService {
     private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
         'MIDLERTIDIG_LONNSTILSKUDD' => new EmployerAltinnRight('5516', '1'),
@@ -99,6 +101,7 @@ public without sharing class EmployerThreadSharingService {
     }
 
     private void deleteOutdatedThreadShares(User user) {
+        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
         delete [
             SELECT Id, ParentId, UserOrGroupId
             FROM Thread__Share
@@ -113,6 +116,7 @@ public without sharing class EmployerThreadSharingService {
     }
 
     private List<Thread__c> getThreadsToShare(List<String> threadTopics, String organizationNumber) {
+        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
         return [
             SELECT Id
             FROM Thread__c
@@ -123,6 +127,7 @@ public without sharing class EmployerThreadSharingService {
     }
 
     private User getUserFromPersonIdent(String personIdent) {
+        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
         return [
             SELECT Id, AG_LastSharingCalculation__c
             FROM User
