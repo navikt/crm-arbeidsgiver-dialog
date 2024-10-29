@@ -170,6 +170,22 @@
             <targetReference>Unread_messages</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Set_Contact_Values</name>
+        <label>Set Contact Values</label>
+        <locationX>50</locationX>
+        <locationY>1308</locationY>
+        <assignmentItems>
+            <assignToReference>Get_contract.TAG_TimeLastSentSMS__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>TimestampNow</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Contract</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Unread_messages</name>
         <label>Unread messages</label>
@@ -303,6 +319,9 @@
         <label>Create Report Data Record SMS</label>
         <locationX>50</locationX>
         <locationY>1200</locationY>
+        <connector>
+            <targetReference>Set_Contact_Values</targetReference>
+        </connector>
         <faultConnector>
             <targetReference>Create_Application_Log_Sms</targetReference>
         </faultConnector>
@@ -413,6 +432,13 @@
             <targetReference>Create_Application_Log_Sms_ExternalId</targetReference>
         </faultConnector>
         <inputReference>Get_message</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Contract</name>
+        <label>Update Contract</label>
+        <locationX>50</locationX>
+        <locationY>1416</locationY>
+        <inputReference>Get_contract</inputReference>
     </recordUpdates>
     <start>
         <locationX>320</locationX>

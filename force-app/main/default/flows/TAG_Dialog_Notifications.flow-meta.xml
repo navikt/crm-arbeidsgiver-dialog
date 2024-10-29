@@ -531,6 +531,22 @@
             <targetReference>Get_first_message</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Set_Contract_Values</name>
+        <label>Set Contract Values</label>
+        <locationX>314</locationX>
+        <locationY>1332</locationY>
+        <assignmentItems>
+            <assignToReference>Get_contract.TAG_TimeLastSentSMS__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>TimestampNow</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Contract</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>First_message</name>
         <label>First message?</label>
@@ -835,6 +851,9 @@
         <label>Create Report Data Record SMS</label>
         <locationX>314</locationX>
         <locationY>1224</locationY>
+        <connector>
+            <targetReference>Set_Contract_Values</targetReference>
+        </connector>
         <faultConnector>
             <targetReference>Create_Application_Log_Sms</targetReference>
         </faultConnector>
@@ -1015,6 +1034,13 @@
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Contract</name>
+        <label>Update Contract</label>
+        <locationX>314</locationX>
+        <locationY>1440</locationY>
+        <inputReference>Get_contract</inputReference>
     </recordUpdates>
     <start>
         <locationX>386</locationX>
