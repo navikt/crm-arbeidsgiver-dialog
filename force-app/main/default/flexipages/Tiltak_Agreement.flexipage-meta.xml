@@ -92,7 +92,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_InternalContact__c</fieldItem>
                 <identifier>RecordTAG_InternalContact_cField</identifier>
@@ -126,7 +126,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.NavIdent__c</fieldItem>
                 <identifier>RecordNavIdent_cField</identifier>
@@ -136,10 +136,20 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_NAVUnit__c</fieldItem>
                 <identifier>RecordTAG_NAVUnit_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_IsConsideredForRedaction__c</fieldItem>
+                <identifier>RecordTAG_IsConsideredForRedaction_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
