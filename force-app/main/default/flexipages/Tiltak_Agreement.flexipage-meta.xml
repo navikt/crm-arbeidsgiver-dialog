@@ -152,16 +152,6 @@
                 <identifier>RecordTAG_IsConsideredForRedaction_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Sent_Welcome_Message__c</fieldItem>
-                <identifier>RecordSent_Welcome_Message_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-e16e9cad-fdd4-47e5-a1f3-22f1f4fc405a</name>
         <type>Facet</type>
     </flexiPageRegions>
