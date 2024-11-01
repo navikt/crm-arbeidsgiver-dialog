@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_WrongStatusPastEndDate__c</fullName>
+    <description>This field checks if the end date of the contract has passed, when the status is still GJENNOMFØRES. It is used as condition in the flow TAG Dialogue Create Journal Entry Scheduled</description>
+    <externalId>false</externalId>
+    <formula>IF( TAG_EndDate__c &lt; TODAY() &amp;&amp;  ISPICKVAL(TAG_Status__c, &apos;GJENNOMFØRES&apos;), true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Wrong Status Past End Date</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
