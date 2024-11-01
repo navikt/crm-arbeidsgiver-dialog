@@ -81,12 +81,6 @@ export default class OrganizationBanner extends LightningElement {
         } catch (error) {
             console.log('error =>', error);
         }
-            setTimeout(() => {
-                    window.scrollTo({
-                        top: document.body.scrollHeight, 
-                        behavior: 'smooth'
-                    });
-            }, 500); 
                     
     } 
  
