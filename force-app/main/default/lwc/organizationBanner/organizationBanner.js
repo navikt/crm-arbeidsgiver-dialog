@@ -33,6 +33,7 @@ export default class OrganizationBanner extends LightningElement {
             this.organizationNumber = this.getUrlParameter('organisasjonsnummer');
             this.getOrg();
             this.getAgreement();
+      
         }
     }
 
@@ -43,10 +44,9 @@ export default class OrganizationBanner extends LightningElement {
                 this.organizationNumber = result.INT_OrganizationNumber__c; 
             })
             .catch((error) => {
-             
-                console.error('getOrg error', error);
-            // history.back(); 
-        
+             console.error('getOrg error', error);
+             history.back(); 
+
             });
 }
 
@@ -58,15 +58,15 @@ export default class OrganizationBanner extends LightningElement {
                 this.participantContract = result.TAG_MeasureParticipant__c;            
             })
             .catch((error) => {
-                // history.back(); 
                 console.error('getAgreement error', error);
+                history.back(); 
                 });    
 }
     getUrlParameter(paramName) {
         return this.currentPageReference.state[paramName];
     }
 
-    /*Funksjon som gjør hovedbanneret sticky når man scroller*/
+    //Funksjon som gjør hovedbanneret sticky når man scroller
     renderedCallback() {
         try {
             window.onscroll = () => {
@@ -81,6 +81,13 @@ export default class OrganizationBanner extends LightningElement {
         } catch (error) {
             console.log('error =>', error);
         }
-    }
-
+            setTimeout(() => {
+                    window.scrollTo({
+                        top: document.body.scrollHeight, 
+                        behavior: 'smooth'
+                    });
+            }, 500); 
+                    
+    } 
+ 
 }
