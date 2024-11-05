@@ -119,7 +119,7 @@
         <name>Edit_Thread_Status</name>
         <label>Edit Thread Status</label>
         <locationX>1634</locationX>
-        <locationY>576</locationY>
+        <locationY>876</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.CRM_Journal_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -142,7 +142,7 @@
         <name>Check_if_Thread_has_Messages</name>
         <label>Check if Thread has Messages</label>
         <locationX>1634</locationX>
-        <locationY>792</locationY>
+        <locationY>1092</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Has_Messages</name>
@@ -220,10 +220,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_Past_End_Date_and_Right_Status</name>
+        <label>Is Past End Date and Right Status?</label>
+        <locationX>1370</locationX>
+        <locationY>468</locationY>
+        <defaultConnector>
+            <targetReference>Update_Contract_Status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Wrong Status</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Right_Status</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_WrongStatusPastEndDate__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Thread_found_and_not_journaled</targetReference>
+            </connector>
+            <label>Yes Right Status</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Thread_found_and_not_journaled</name>
         <label>Thread found and not journaled?</label>
         <locationX>1370</locationX>
-        <locationY>468</locationY>
+        <locationY>768</locationY>
         <defaultConnector>
             <targetReference>Edit_Thread_Status</targetReference>
         </defaultConnector>
@@ -325,7 +350,7 @@
         <name>Create_journal_entry</name>
         <label>Create journal entry</label>
         <locationX>1370</locationX>
-        <locationY>1008</locationY>
+        <locationY>1308</locationY>
         <faultConnector>
             <targetReference>Create_Application_Log</targetReference>
         </faultConnector>
@@ -420,7 +445,7 @@
         <name>Get_recordtype_id</name>
         <label>Get recordtype id</label>
         <locationX>1370</locationX>
-        <locationY>900</locationY>
+        <locationY>1200</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_journal_entry</targetReference>
@@ -446,7 +471,7 @@
         <locationY>360</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Thread_found_and_not_journaled</targetReference>
+            <targetReference>Is_Past_End_Date_and_Right_Status</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -460,6 +485,22 @@
         <object>Thread__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Contract_Status</name>
+        <label>Update Contract Status</label>
+        <locationX>1458</locationX>
+        <locationY>576</locationY>
+        <connector>
+            <targetReference>Thread_found_and_not_journaled</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>AVSLUTTET</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <recordUpdates>
         <name>Update_partner_status</name>
         <label>Update partner status</label>
@@ -477,7 +518,7 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>1634</locationX>
-        <locationY>684</locationY>
+        <locationY>984</locationY>
         <connector>
             <targetReference>Check_if_Thread_has_Messages</targetReference>
         </connector>
@@ -504,6 +545,13 @@
                 <stringValue></stringValue>
             </value>
         </filters>
+        <filters>
+            <field>TAG_WrongStatusPastEndDate__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>Contract__c</object>
         <schedule>
             <frequency>Daily</frequency>
@@ -512,12 +560,12 @@
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
         <locationX>1634</locationX>
-        <locationY>1116</locationY>
+        <locationY>1416</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>

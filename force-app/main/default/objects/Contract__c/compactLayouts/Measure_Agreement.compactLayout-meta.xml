@@ -7,5 +7,6 @@
     <fields>TAG_StartDate__c</fields>
     <fields>TAG_EndDate__c</fields>
     <fields>TAG_Last_Message__c</fields>
+    <fields>TAG_TimeLastSentSMS__c</fields>
     <label>Measure Agreement</label>
 </CompactLayout>
