@@ -7,10 +7,12 @@ public without sharing class EmployerThreadSharingService {
     };
     private static final Integer SHARING_CALCULATION_CACHE_TIME = -2;
     private static final LoggerUtility logger = new LoggerUtility();
+    
 
-    public void calculateSharing(String organizationNumber, String personIdent) {
-        try {
-            User user = getUserFromPersonIdent(personIdent);
+    public void calculateSharing(String organizationNumber, String userId) {
+        try {            
+            User user = getUserFromId(userId);
+            String personIdent = user.Account.INT_PersonIdent__c;               
             //if (cacheExpired(DateTime.valueOf(user.AG_LastSharingCalculation__c))) {
             List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
             List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
@@ -32,6 +34,7 @@ public without sharing class EmployerThreadSharingService {
             throw new EmployerThreadSharingException('Failed to calculate employer thread share', e);
         }
     }
+
 
     private List<String> getUsersAccessibleTopics(String organizationNumber, String personIdent) {
         List<String> usersTopics = new List<String>();
@@ -101,7 +104,6 @@ public without sharing class EmployerThreadSharingService {
     }
 
     private void deleteOutdatedThreadShares(User user) {
-        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
         delete [
             SELECT Id, ParentId, UserOrGroupId
             FROM Thread__Share
@@ -116,7 +118,6 @@ public without sharing class EmployerThreadSharingService {
     }
 
     private List<Thread__c> getThreadsToShare(List<String> threadTopics, String organizationNumber) {
-        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
         return [
             SELECT Id
             FROM Thread__c
@@ -127,11 +128,20 @@ public without sharing class EmployerThreadSharingService {
     }
 
     private User getUserFromPersonIdent(String personIdent) {
-        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
         return [
-            SELECT Id, AG_LastSharingCalculation__c
+            SELECT Id, AG_LastSharingCalculation__c, Account.INT_PersonIdent__c
             FROM User
             WHERE AccountId IN (SELECT Id FROM Account WHERE INT_PersonIdent__c = :personIdent)
         ];
+    }
+
+    private User getUserFromId(String userId) {
+        List<User> users = [SELECT Id, Account.INT_PersonIdent__c, AG_LastSharingCalculation__c FROM User WHERE Id = :userId LIMIT 1];
+            SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, users);
+            if(!decision.getModifiedIndexes().isEmpty()){
+                //throw new AuraHandledException('Permission denied');
+            }
+               
+            return users[0];      
     }
 }

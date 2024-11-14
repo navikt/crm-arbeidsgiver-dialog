@@ -1,6 +1,7 @@
 import { LightningElement, wire, track, api } from 'lwc';
-import getOrganization from '@salesforce/apex/OrganizationBannerController.getOrganization';
-import getContract from '@salesforce/apex/OrganizationBannerController.getContract';
+//import getOrganization from '@salesforce/apex/OrganizationBannerController.getOrganization';
+//import getContract from '@salesforce/apex/OrganizationBannerController.getContract';
+import getBannerData from '@salesforce/apex/OrganizationBannerController.getBannerData';
 import icons from '@salesforce/resourceUrl/icons';
 import { CurrentPageReference } from 'lightning/navigation';
 
@@ -11,6 +12,7 @@ export default class OrganizationBanner extends LightningElement {
     @track participantContract;
     @track agreementNumber;
     @api showBanner;
+    @api recordId;
 
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
@@ -29,41 +31,70 @@ export default class OrganizationBanner extends LightningElement {
                     ' and banner should not show'
             );
         } else {
-            this.agreementNumber = this.getUrlParameter('avtalenummer');
-            this.organizationNumber = this.getUrlParameter('organisasjonsnummer');
-            this.getOrg();
-            this.getAgreement();
-      
+            console.log('##1');
+            if (this.isThreadRecordPage()) {
+                //this.agreementNumber = this.getUrlParameter('avtalenummer');
+                //this.organizationNumber = this.getUrlParameter('organisasjonsnummer');
+                //this.getOrg();
+                //this.getAgreement();
+                console.log('##2');
+                this.getBanner();
+            } else {
+                console.log('## Back??');
+                history.back();
+            }
         }
     }
 
-    getOrg() {
-        getOrganization({ orgNumber: this.organizationNumber })
+    getBanner() {
+        console.log('##3', this.recordId);
+        getBannerData({ threadId: this.recordId })
             .then((result) => {
-                this.organizationName = result.Name;
-                this.organizationNumber = result.INT_OrganizationNumber__c; 
+                this.organizationName = result.accountName;
+                this.organizationNumber = result.accountOrgNumber;
+                this.urlContract = result.contractUrl;
+                this.participantContract = result.contractMeasureParticipant;
+                this.agreementNumber = result.contractNumber;
             })
             .catch((error) => {
-             console.error('getOrg error', error);
-             history.back(); 
-
+                console.error('Could not get banner data');
+                console.log('##4', error);
+                this.navigateToErrorPage();
             });
-}
+    }
 
+    getOrg() {
+        getOrganization({ threadId: this.recordId })
+            .then((result) => {
+                this.organizationName = result.Name;
+                this.organizationNumber = result.INT_OrganizationNumber__c;
+            })
+            .catch((error) => {
+                console.error('getOrg error', error);
+                history.back();
+            });
+    }
 
     getAgreement() {
-        getContract({ contractNr: this.agreementNumber })
+        getContract({ threadId: this.recordId })
             .then((result) => {
                 this.urlContract = result.TAG_ExternalURL__c;
-                this.participantContract = result.TAG_MeasureParticipant__c;            
+                this.participantContract = result.TAG_MeasureParticipant__c;
             })
             .catch((error) => {
                 console.error('getAgreement error', error);
-                history.back(); 
-                });    
-}
+                history.back();
+            });
+    }
     getUrlParameter(paramName) {
         return this.currentPageReference.state[paramName];
+    }
+
+    isThreadRecordPage() {
+        if (this.currentPageReference.type == 'standard__recordPage') {
+            return true;
+        }
+        return false;
     }
 
     //Funksjon som gjør hovedbanneret sticky når man scroller
@@ -71,17 +102,15 @@ export default class OrganizationBanner extends LightningElement {
         try {
             window.onscroll = () => {
                 let stickysection = this.template.querySelector('.myStickyHeader');
-               let sticky2 = stickysection.offsetTop;
+                let sticky2 = stickysection.offsetTop;
                 if (window.scrollY > sticky2) {
-                    stickysection.classList.add("slds-is-fixed");
+                    stickysection.classList.add('slds-is-fixed');
                 } else {
-                    stickysection.classList.remove("slds-is-fixed");  
+                    stickysection.classList.remove('slds-is-fixed');
                 }
-            }
+            };
         } catch (error) {
             console.log('error =>', error);
         }
-                    
-    } 
- 
+    }
 }

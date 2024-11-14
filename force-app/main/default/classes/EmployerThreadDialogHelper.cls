@@ -1,11 +1,13 @@
-//Alle klasser med aura enabled methods skal ha with sharing. 
-public without sharing class EmployerThreadDialogHelper {
+//Alle klasser med aura enabled methods skal ha with sharing.
+public with sharing class EmployerThreadDialogHelper {
     private static final Integer CACHING_CALCULATION_TIME = -60;
     public static boolean isCacheExpired;
 
     @AuraEnabled(cacheable=true)
     public static boolean getCacheExpired(String agreementNumber, String userId) {
-        //ToDo: Valider format på agreementNumber og UserId
+        if (!InputSanitizer.isValidRecordId(userId) || !InputSanitizer.isValidContractExternalId(agreementNumber)) {
+            throw new AuraHandledException('Invalid input format.');
+        }
         try {
             Thread__c thread = getThread(agreementNumber);
             isCacheExpired = true;
@@ -20,9 +22,12 @@ public without sharing class EmployerThreadDialogHelper {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
     @AuraEnabled
     public static void saveTermsAccepted(String contractNumber, String user) {
-        //ToDo: Valider format på contractNumber og user
+        if (!InputSanitizer.isValidRecordId(user) || !InputSanitizer.isValidContractExternalId(contractNumber)) {
+            throw new AuraHandledException('Invalid input format.');
+        }
         try {
             Thread__c thread = getThread(contractNumber);
             thread.TAG_LastCachedTermsTime__c = DateTime.now();
@@ -34,14 +39,25 @@ public without sharing class EmployerThreadDialogHelper {
     }
 
     private static Thread__c getThread(String contractNr) {
-        //ToDo: Valider format på contractNr
-        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
-        return [
+        if (!InputSanitizer.isValidContractExternalId(contractNr)) {
+            throw new AuraHandledException('Invalid input format.');
+        }
+        // Enforce FLS for select
+        List<Thread__c> thread = [
             SELECT Id, TAG_LastCachedTermsUser__c, TAG_LastCachedTermsTime__c
             FROM Thread__c
             WHERE TAG_RelatedObjectExternalId__c = :contractNr
             LIMIT 1
         ];
+        SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, thread);
+        if (!decision.getModifiedIndexes().isEmpty()) {
+            throw new AuraHandledException('Permission denied');
+        }
+        if (thread.isEmpty()) {
+            return null;
+        } else {
+            return thread[0];
+        }
     }
 
     private static boolean cacheExpired(DateTime lastCacheCalculation) {

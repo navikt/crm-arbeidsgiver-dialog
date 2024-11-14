@@ -1,25 +1,30 @@
 public with sharing class RecordShareInitializerController {
-    //AuraEnabled metoder må sanitere input parameters før de brukes i query.
+
     @AuraEnabled
     public static void calculateSharingForUser(String userId, String orgNumber) {
-        //ToDo: Valider format på userId og orgNumber
+        if(!InputSanitizer.isValidRecordId(userId) || !InputSanitizer.isValidNorwegianOrgNumber(orgNumber)){
+            throw new AuraHandledException('Invalid input format.');
+        }
         try {
-            String personIdent = [SELECT Contact.Account.INT_PersonIdent__c FROM User WHERE Id = :userId]
-            ?.Contact.Account.INT_PersonIdent__c;
             EmployerThreadSharingService empThreadSharingService = new EmployerThreadSharingService();
-            empThreadSharingService.calculateSharing(orgNumber, personIdent);
+            empThreadSharingService.calculateSharing(orgNumber, userId);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
 
-    //AuraEnabled metoder må sanitere input parameters før de brukes i query.
     @AuraEnabled
     public static String getAgreementThreadId(String agreementNumber) {
-        //ToDo: Valider format på agreementNumber
+        if(!InputSanitizer.isValidContractExternalId(agreementNumber)){
+            throw new AuraHandledException('Invalid input format.');
+        }
         try {
-            //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
-            return [SELECT Id FROM Thread__c WHERE TAG_RelatedObjectExternalId__c = :agreementNumber].Id;
+            List<Thread__c> threads = [SELECT Id FROM Thread__c WHERE TAG_RelatedObjectExternalId__c = :agreementNumber LIMIT 1];
+            SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, threads);
+            if(!decision.getModifiedIndexes().isEmpty()){
+                throw new AuraHandledException('Permission denied');
+            }
+            return threads[0].Id;
         } catch (Exception e) {
             throw new AuraHandledException('Thread not found for agreement ' + agreementNumber);
         }

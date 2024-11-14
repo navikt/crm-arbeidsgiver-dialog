@@ -1,44 +1,72 @@
-//Alle klasser med aura enabled methods skal ha with sharing. 
-public without sharing class OrganizationBannerController {
-
-    //AuraEnabled metoder må sanitere input parameters før de brukes i query.
+//Should only have access if user have access to the thread
+//Hent tråd som bruker har tilgang til. Kall priviliged klasse med threadId
+public with sharing class OrganizationBannerController {
     @AuraEnabled(cacheable=true)
-    public static Account getRepresentedOrganization(String userId) {
-        //ToDo: Valider format på userId
-        try {
-            //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
-            String usersLastRepresentedOrganization = [
-                SELECT AG_LastRepresentedOrganization__c
-                FROM User
-                WHERE Id = :userId
-            ]
-            ?.AG_LastRepresentedOrganization__c;
-            //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
-            Account account = [
-                SELECT Name, INT_OrganizationNumber__c
-                FROM Account
-                WHERE INT_OrganizationNumber__c = :usersLastRepresentedOrganization
-            ];
-
-            return account;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+    public static BannerWrapper getBannerData(String threadId) {
+        System.debug(threadId);
+        if (String.isBlank(threadId)) {
+            return null;
+            //throw new AuraHandledException('No input');
         }
+        if (!InputSanitizer.isValidRecordId(threadId)) {
+            return null;
+            //throw new AuraHandledException('Invalid input format');
+        }
+        List<Thread__c> threads = [
+            SELECT Id
+            FROM Thread__c
+            WHERE Id = :threadId
+            LIMIT 1
+        ];
+        if (threads.isEmpty()) {
+            return null;
+            //throw new AuraHandledException('Entity not found');
+        }
+        Contract__c contract = OrganizationBannerPriviligedHelper.getContract(threadId);
+
+        BannerWrapper bannerWrapper = new BannerWrapper(contract);
+
+        return bannerWrapper;
     }
 
-    //AuraEnabled metoder må sanitere input parameters før de brukes i query.
-    @AuraEnabled(cacheable=true)
-    public static Contract__c getContract(String contractNr) {
-        //ToDo: Valider format på contractNr
-        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
-        return [SELECT id, TAG_ExternalURL__c, TAG_MeasureParticipant__c FROM Contract__c WHERE ExternalId__c = :contractNr];
-    }
+    public class BannerWrapper {
+        String accountName;
+        String accountOrgNumber;
+        String contractMeasureParticipant;
+        String contractNumber;
+        String contractUrl;
 
-    //AuraEnabled metoder må sanitere input parameters før de brukes i query.
-    @AuraEnabled(cacheable=true)
-    public static Account getOrganization(String orgNumber) {
-        //ToDo: Valider format på orgNumber
-        //Kode må spesifikt sjekke tilgang til objekter og felt før Queries og DML
-        return [SELECT id, INT_OrganizationNumber__c, Name FROM Account WHERE INT_OrganizationNumber__c = :orgNumber];
+        @AuraEnabled
+        public String getAccountName() {
+            return this.accountName;
+        }
+
+        @AuraEnabled
+        public String getAccountOrgNumber() {
+            return this.accountOrgNumber;
+        }
+
+        @AuraEnabled
+        public String getContractMeasureParticipant() {
+            return this.contractMeasureParticipant;
+        }
+
+        @AuraEnabled
+        public String getContractNumber() {
+            return this.contractNumber;
+        }
+
+        @AuraEnabled
+        public String getContractUrl() {
+            return this.contractUrl;
+        }
+
+        public BannerWrapper(Contract__c contract) {
+            this.accountName = contract.TAG_Account__r.Name;
+            this.accountOrgNumber = contract.TAG_Account__r.INT_OrganizationNumber__c;
+            this.contractMeasureParticipant = contract.TAG_MeasureParticipant__c;
+            this.contractNumber = contract.ExternalId__c;
+            this.contractUrl = contract.TAG_ExternalURL__c;
+        }
     }
 }
