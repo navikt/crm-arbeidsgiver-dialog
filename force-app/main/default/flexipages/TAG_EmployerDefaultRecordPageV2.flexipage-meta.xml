@@ -316,6 +316,12 @@
                 <identifier>lst_dynamicRelatedList12</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgAppAccountKontaktpersoner</componentName>
+                <identifier>c_amplitudeAgAppAccountKontaktpersoner</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-4850caa5-c227-433f-87ee-07c8c73d20f1</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -471,6 +477,12 @@
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgAppAccountDetaljer</componentName>
+                <identifier>c_amplitudeAgAppAccountDetaljer</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-30ba79a4-429f-4ca9-b271-f750c3fe0663</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -607,6 +619,12 @@
                 <identifier>lst_dynamicRelatedList8</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgAppAccountBedriftsavtaler</componentName>
+                <identifier>c_amplitudeAgAppAccountBedriftsavtaler</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-b88d5366-830b-4382-b5e4-282b026dfaaf</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -726,7 +744,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>logEvent</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>picklistFilter1Label</name>
@@ -1039,6 +1057,12 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList10</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgAppAccountAktiviteter</componentName>
+                <identifier>c_amplitudeAgAppAccountAktiviteter</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-d86206f7-db5c-4eac-9903-c28a4e38a363</name>
@@ -1364,6 +1388,12 @@
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgAppAccountRekruttering</componentName>
+                <identifier>c_amplitudeAgAppAccountRekruttering</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-b8be6846-cd30-4806-9b8e-d4dcbd31f050</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1642,6 +1672,12 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList5</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgAppAccountRedusereFravaer</componentName>
+                <identifier>c_amplitudeAgAppAccountRedusereFravaer</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-1klm1gljhya</name>
