@@ -1,4 +1,3 @@
-//Alle klasser med aura enabled methods skal ha with sharing.
 public with sharing class EmployerThreadDialogHelper {
     private static final Integer CACHING_CALCULATION_TIME = -60;
     public static boolean isCacheExpired;
@@ -42,7 +41,6 @@ public with sharing class EmployerThreadDialogHelper {
         if (!InputSanitizer.isValidContractExternalId(contractNr)) {
             throw new AuraHandledException('Invalid input format.');
         }
-        // Enforce FLS for select
         List<Thread__c> thread = [
             SELECT Id, TAG_LastCachedTermsUser__c, TAG_LastCachedTermsTime__c
             FROM Thread__c
