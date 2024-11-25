@@ -19,14 +19,14 @@ public with sharing class OrganizationBannerControllerTest {
 
             User communityUser = TestDataFactory_Community.getEmployerCommunityUser(
                 new Set<Id>{ personAccount.Id },
-                'Customer Community Plus User',
+                'Customer Community Plus Login User',
                 false
             )[0];
 
             Profile communityProfile = [
                 SELECT Name, Id
                 FROM Profile
-                WHERE Name = 'Customer Community Plus User'
+                WHERE Name = 'Customer Community Plus Login User'
                 LIMIT 1
             ];
             communityUser.FirstName = 'Community User';
@@ -81,18 +81,22 @@ public with sharing class OrganizationBannerControllerTest {
             LIMIT 1
         ];
 
-        OrganizationBannerController.BannerWrapper bannerWrapper;
+        Contract__c contract;
         System.runAs(user) {
             Test.startTest();
-            bannerWrapper = OrganizationBannerController.getBannerData(thread.id);
+            contract = OrganizationBannerController.getBannerData(thread.id);
             Test.stopTest();
         }
 
-        Assert.areEqual('910825585', bannerWrapper.getAccountOrgNumber(), 'Fetched correct organization number.');
-        Assert.areEqual('1234', bannerWrapper.getContractNumber(), 'Fetched correct contract number.');
-        Assert.areEqual('TEST ACCOUNT', bannerWrapper.getAccountName(), 'Fetched account name.');
-        Assert.areEqual('Measure Participant1', bannerWrapper.getContractMeasureParticipant(), 'Fetched participant.');
-        Assert.areEqual('www.something.com', bannerWrapper.getContractUrl(), 'Fetched url.');
+        Assert.areEqual(
+            '910825585',
+            contract.TAG_Account__r.INT_OrganizationNumber__c,
+            'Fetched correct organization number.'
+        );
+        Assert.areEqual('1234', contract.ExternalId__c, 'Fetched correct contract number.');
+        Assert.areEqual('TEST ACCOUNT', contract.TAG_Account__r.Name, 'Fetched account name.');
+        Assert.areEqual('Measure Participant1', contract.TAG_MeasureParticipant__c, 'Fetched participant.');
+        Assert.areEqual('www.something.com', contract.TAG_ExternalURL__c, 'Fetched url.');
     }
 
     @isTest
@@ -105,12 +109,12 @@ public with sharing class OrganizationBannerControllerTest {
             LIMIT 1
         ];
 
-        OrganizationBannerController.BannerWrapper bannerWrapper;
+        Contract__c contract;
         System.runAs(user) {
             Test.startTest();
-            bannerWrapper = OrganizationBannerController.getBannerData(thread.id);
+            contract = OrganizationBannerController.getBannerData(thread.id);
             Test.stopTest();
         }
-        Assert.isNull(bannerWrapper, 'Should be null when user have no access.');
+        Assert.isNull(contract, 'Should be null when user have no access.');
     }
 }

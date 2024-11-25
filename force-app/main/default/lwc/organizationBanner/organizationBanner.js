@@ -1,6 +1,4 @@
 import { LightningElement, wire, track, api } from 'lwc';
-//import getOrganization from '@salesforce/apex/OrganizationBannerController.getOrganization';
-//import getContract from '@salesforce/apex/OrganizationBannerController.getContract';
 import getBannerData from '@salesforce/apex/OrganizationBannerController.getBannerData';
 import icons from '@salesforce/resourceUrl/icons';
 import { CurrentPageReference } from 'lightning/navigation';
@@ -31,66 +29,29 @@ export default class OrganizationBanner extends LightningElement {
                     ' and banner should not show'
             );
         } else {
-            console.log('##1');
-            if (this.isThreadRecordPage()) {
-                //this.agreementNumber = this.getUrlParameter('avtalenummer');
-                //this.organizationNumber = this.getUrlParameter('organisasjonsnummer');
-                //this.getOrg();
-                //this.getAgreement();
-                console.log('##2');
+            if (this.isRecordPage()) {
                 this.getBanner();
             } else {
-                console.log('## Back??');
                 history.back();
             }
         }
     }
 
     getBanner() {
-        console.log('##3', this.recordId);
         getBannerData({ threadId: this.recordId })
             .then((result) => {
-                this.organizationName = result.accountName;
-                this.organizationNumber = result.accountOrgNumber;
-                this.urlContract = result.contractUrl;
-                this.participantContract = result.contractMeasureParticipant;
-                this.agreementNumber = result.contractNumber;
+                this.organizationName = result.TAG_Account__r.Name;
+                this.organizationNumber = result.TAG_Account__r.INT_OrganizationNumber__c;
+                this.urlContract = result.TAG_ExternalURL__c;
+                this.participantContract = result.TAG_MeasureParticipant__c;
+                this.agreementNumber = result.ExternalId__c;
             })
             .catch((error) => {
-                console.error('Could not get banner data');
-                console.log('##4', error);
                 this.navigateToErrorPage();
             });
     }
 
-    getOrg() {
-        getOrganization({ threadId: this.recordId })
-            .then((result) => {
-                this.organizationName = result.Name;
-                this.organizationNumber = result.INT_OrganizationNumber__c;
-            })
-            .catch((error) => {
-                console.error('getOrg error', error);
-                history.back();
-            });
-    }
-
-    getAgreement() {
-        getContract({ threadId: this.recordId })
-            .then((result) => {
-                this.urlContract = result.TAG_ExternalURL__c;
-                this.participantContract = result.TAG_MeasureParticipant__c;
-            })
-            .catch((error) => {
-                console.error('getAgreement error', error);
-                history.back();
-            });
-    }
-    getUrlParameter(paramName) {
-        return this.currentPageReference.state[paramName];
-    }
-
-    isThreadRecordPage() {
+    isRecordPage() {
         if (this.currentPageReference.type == 'standard__recordPage') {
             return true;
         }

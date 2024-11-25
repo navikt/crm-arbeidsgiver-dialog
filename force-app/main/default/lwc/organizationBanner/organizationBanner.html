@@ -1,10 +1,10 @@
 <template>
     <c-url-reader></c-url-reader>
     <div class="hovedbanner arbeidsgiver myStickyHeader sticky" id="myHeader">
-        <template if:false={isThreadRecordPage}>
+        <template if:false={isRecordPage}>
             <h1 class="typo-systemtittel">Henter data</h1>
         </template>
-        <template if:true={isThreadRecordPage}>
+        <template if:true={isRecordPage}>
             <h1 class="typo-systemtittel">
                 {organizationName} - Org.nr. {organizationNumber} - Avtalenr. {agreementNumber}
             </h1>
