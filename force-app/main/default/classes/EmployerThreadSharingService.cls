@@ -1,5 +1,5 @@
-/*@description Helper class for priviliged operations. 
-*/
+/*@description Helper class for priviliged operations.
+ */
 public without sharing class EmployerThreadSharingService {
     private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
         'MIDLERTIDIG_LONNSTILSKUDD' => new EmployerAltinnRight('5516', '1'),
@@ -7,12 +7,11 @@ public without sharing class EmployerThreadSharingService {
     };
     private static final Integer SHARING_CALCULATION_CACHE_TIME = -2;
     private static final LoggerUtility logger = new LoggerUtility();
-    
 
     public void calculateSharing(String organizationNumber, String userId) {
-        try {            
+        try {
             User user = getUserFromId(userId);
-            String personIdent = user.Account.INT_PersonIdent__c;               
+            String personIdent = user.Account.INT_PersonIdent__c;
             //if (cacheExpired(DateTime.valueOf(user.AG_LastSharingCalculation__c))) {
             List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
             List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
@@ -34,7 +33,6 @@ public without sharing class EmployerThreadSharingService {
             throw new EmployerThreadSharingException('Failed to calculate employer thread share', e);
         }
     }
-
 
     private List<String> getUsersAccessibleTopics(String organizationNumber, String personIdent) {
         List<String> usersTopics = new List<String>();
@@ -68,7 +66,6 @@ public without sharing class EmployerThreadSharingService {
                 }
             }
         }
-
         return false;
     }
 
@@ -136,12 +133,15 @@ public without sharing class EmployerThreadSharingService {
     }
 
     private User getUserFromId(String userId) {
-        List<User> users = [SELECT Id, Account.INT_PersonIdent__c, AG_LastSharingCalculation__c FROM User WHERE Id = :userId LIMIT 1];
-            SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, users);
-            if(!decision.getModifiedIndexes().isEmpty()){
-                //throw new AuraHandledException('Permission denied');
-            }
-               
-            return users[0];      
+        List<User> users = [
+            SELECT Id, Account.INT_PersonIdent__c, AG_LastSharingCalculation__c
+            FROM User
+            WHERE Id = :userId
+            LIMIT 1
+        ];
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users[0];
     }
 }
