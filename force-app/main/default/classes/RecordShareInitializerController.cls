@@ -5,10 +5,8 @@ public with sharing class RecordShareInitializerController {
             throw new AuraHandledException('Invalid input format.');
         }
         try {
-            String personIdent = [SELECT Contact.Account.INT_PersonIdent__c FROM User WHERE Id = :userId]
-            ?.Contact.Account.INT_PersonIdent__c;
             EmployerThreadSharingService empThreadSharingService = new EmployerThreadSharingService();
-            empThreadSharingService.calculateSharing(orgNumber, personIdent);
+            empThreadSharingService.calculateSharing(orgNumber, userId);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
