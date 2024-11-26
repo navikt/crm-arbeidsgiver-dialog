@@ -1,3 +1,11 @@
+/**
+ * Helper class for running privileged operations related to thread. Contains method that
+ * checks is provided user should have access to provided organizations threads.
+ * If access is permitted, sharing records are created.
+ *
+ * Note: The class is declared as "without sharing" to ensure it runs without respecting the user's sharing rules.
+ * Use caution and validate access appropriately when using this class.
+ */
 public without sharing class EmployerThreadSharingService {
     private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
         'MIDLERTIDIG_LONNSTILSKUDD' => new EmployerAltinnRight('5516', '1'),
@@ -6,9 +14,10 @@ public without sharing class EmployerThreadSharingService {
     private static final Integer SHARING_CALCULATION_CACHE_TIME = -2;
     private static final LoggerUtility logger = new LoggerUtility();
 
-    public void calculateSharing(String organizationNumber, String personIdent) {
+    public void calculateSharing(String organizationNumber, String userId) {
         try {
-            User user = getUserFromPersonIdent(personIdent);
+            User user = getUserFromId(userId);
+            String personIdent = user.Account.INT_PersonIdent__c;
             //if (cacheExpired(DateTime.valueOf(user.AG_LastSharingCalculation__c))) {
             List<String> usersTopics = getUsersAccessibleTopics(organizationNumber, personIdent);
             List<Thread__c> threadsToShare = getThreadsToShare(usersTopics, organizationNumber);
@@ -63,7 +72,6 @@ public without sharing class EmployerThreadSharingService {
                 }
             }
         }
-
         return false;
     }
 
@@ -124,9 +132,22 @@ public without sharing class EmployerThreadSharingService {
 
     private User getUserFromPersonIdent(String personIdent) {
         return [
-            SELECT Id, AG_LastSharingCalculation__c
+            SELECT Id, AG_LastSharingCalculation__c, Account.INT_PersonIdent__c
             FROM User
             WHERE AccountId IN (SELECT Id FROM Account WHERE INT_PersonIdent__c = :personIdent)
         ];
+    }
+
+    private User getUserFromId(String userId) {
+        List<User> users = [
+            SELECT Id, Account.INT_PersonIdent__c, AG_LastSharingCalculation__c
+            FROM User
+            WHERE Id = :userId
+            LIMIT 1
+        ];
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users[0];
     }
 }
