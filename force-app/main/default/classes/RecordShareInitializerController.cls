@@ -1,8 +1,7 @@
 public with sharing class RecordShareInitializerController {
-
     @AuraEnabled
     public static void calculateSharingForUser(String userId, String orgNumber) {
-        if(!InputSanitizer.isValidRecordId(userId) || !InputSanitizer.isValidNorwegianOrgNumber(orgNumber)){
+        if (!InputValidator.isValidRecordId(userId) || !InputValidator.isValidNorwegianOrgNumber(orgNumber)) {
             throw new AuraHandledException('Invalid input format.');
         }
         try {
@@ -15,13 +14,18 @@ public with sharing class RecordShareInitializerController {
 
     @AuraEnabled
     public static String getAgreementThreadId(String agreementNumber) {
-        if(!InputSanitizer.isValidContractExternalId(agreementNumber)){
+        if (!InputValidator.isValidContractExternalId(agreementNumber)) {
             throw new AuraHandledException('Invalid input format.');
         }
         try {
-            List<Thread__c> threads = [SELECT Id FROM Thread__c WHERE TAG_RelatedObjectExternalId__c = :agreementNumber LIMIT 1];
+            List<Thread__c> threads = [
+                SELECT Id
+                FROM Thread__c
+                WHERE TAG_RelatedObjectExternalId__c = :agreementNumber
+                LIMIT 1
+            ];
             SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, threads);
-            if(!decision.getModifiedIndexes().isEmpty()){
+            if (!decision.getModifiedIndexes().isEmpty()) {
                 throw new AuraHandledException('Permission denied');
             }
             return threads[0].Id;

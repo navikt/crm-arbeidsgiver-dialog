@@ -5,7 +5,7 @@ public with sharing class OrganizationBannerController {
         if (String.isBlank(threadId)) {
             return null;
         }
-        if (!InputSanitizer.isValidRecordId(threadId)) {
+        if (!InputValidator.isValidRecordId(threadId)) {
             return null;
         }
         List<Thread__c> threads = [

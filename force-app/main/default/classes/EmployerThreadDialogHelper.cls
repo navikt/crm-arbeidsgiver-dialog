@@ -4,7 +4,7 @@ public with sharing class EmployerThreadDialogHelper {
 
     @AuraEnabled(cacheable=true)
     public static boolean getCacheExpired(String agreementNumber, String userId) {
-        if (!InputSanitizer.isValidRecordId(userId) || !InputSanitizer.isValidContractExternalId(agreementNumber)) {
+        if (!InputValidator.isValidRecordId(userId) || !InputValidator.isValidContractExternalId(agreementNumber)) {
             throw new AuraHandledException('Invalid input format.');
         }
         try {
@@ -24,7 +24,7 @@ public with sharing class EmployerThreadDialogHelper {
 
     @AuraEnabled
     public static void saveTermsAccepted(String contractNumber, String user) {
-        if (!InputSanitizer.isValidRecordId(user) || !InputSanitizer.isValidContractExternalId(contractNumber)) {
+        if (!InputValidator.isValidRecordId(user) || !InputValidator.isValidContractExternalId(contractNumber)) {
             throw new AuraHandledException('Invalid input format.');
         }
         try {
@@ -38,7 +38,7 @@ public with sharing class EmployerThreadDialogHelper {
     }
 
     private static Thread__c getThread(String contractNr) {
-        if (!InputSanitizer.isValidContractExternalId(contractNr)) {
+        if (!InputValidator.isValidContractExternalId(contractNr)) {
             throw new AuraHandledException('Invalid input format.');
         }
         List<Thread__c> thread = [
