@@ -9,7 +9,7 @@ export default class OrganizationBanner extends LightningElement {
     @track urlContract;
     @track participantContract;
     @track agreementNumber;
-    @api showBanner;
+    //@api showBanner;
     @api recordId;
 
     chevrondown = icons + '/chevrondown.svg';
@@ -22,18 +22,8 @@ export default class OrganizationBanner extends LightningElement {
         }
     }
     connectedCallback() {
-        if (this.currentPageReference.attributes.name == 'Error') {
-            console.log(
-                ' attributes should be error ' +
-                    this.currentPageReference.attributes.name +
-                    ' and banner should not show'
-            );
-        } else {
-            if (this.isRecordPage()) {
-                this.getBanner();
-            } else {
-                history.back();
-            }
+        if (this.isRecordPage()) {
+            this.getBanner();
         }
     }
 
@@ -52,7 +42,7 @@ export default class OrganizationBanner extends LightningElement {
     }
 
     isRecordPage() {
-        if (this.currentPageReference.type == 'standard__recordPage') {
+        if (this.recordId != null) {
             return true;
         }
         return false;
