@@ -9,7 +9,7 @@ export default class OrganizationBanner extends LightningElement {
     @track urlContract;
     @track participantContract;
     @track agreementNumber;
-    //@api showBanner;
+    @api showBanner;
     @api recordId;
 
     chevrondown = icons + '/chevrondown.svg';
