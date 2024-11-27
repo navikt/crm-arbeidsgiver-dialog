@@ -65,7 +65,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         System.runAs(user) {
             Test.startTest();
             EmployerThreadSharingService service = new EmployerThreadSharingService();
-            service.calculateSharing('910825585', '16120102137');
+            service.calculateSharing('910825585', user.id);
             Test.stopTest();
 
             List<Thread__Share> recordAccessAfter = [
@@ -101,7 +101,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         System.runAs(user) {
             Test.startTest();
             EmployerThreadSharingService service = new EmployerThreadSharingService();
-            service.calculateSharing('910825585', '16120102137');
+            service.calculateSharing('910825585', user.id);
             Test.stopTest();
 
             List<Thread__Share> recordAccessAfter = [
@@ -144,7 +144,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         System.runAs(user) {
             Test.startTest();
             EmployerThreadSharingService service = new EmployerThreadSharingService();
-            service.calculateSharing('910825585', '16120102137');
+            service.calculateSharing('910825585', user.id);
             Test.stopTest();
 
             List<Thread__Share> recordAccessAfter = [
@@ -210,7 +210,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         System.runAs(user) {
             Test.startTest();
             EmployerThreadSharingService service = new EmployerThreadSharingService();
-            service.calculateSharing('910825585', '16120102137');
+            service.calculateSharing('910825585', user.id);
             Test.stopTest();
 
             List<Thread__Share> recordAccessAfter = [
@@ -279,7 +279,7 @@ public with sharing class EmployerThreadSharingServiceTest {
         System.runAs(user) {
             Test.startTest();
             EmployerThreadSharingService service = new EmployerThreadSharingService();
-            service.calculateSharing('910825585', '16120102137');
+            service.calculateSharing('910825585', user.id);
             Test.stopTest();
 
             List<Thread__Share> recordAccessAfter = [
