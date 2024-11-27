@@ -37,7 +37,7 @@ export default class OrganizationBanner extends LightningElement {
                 this.agreementNumber = result.ExternalId__c;
             })
             .catch((error) => {
-                this.navigateToErrorPage();
+                console.log('Error retrieving banner data: ', error);
             });
     }
 
