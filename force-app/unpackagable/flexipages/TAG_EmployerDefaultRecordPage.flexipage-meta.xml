@@ -91,89 +91,33 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Accommodations_related_to_org_hir__c</fieldItem>
+                <identifier>RecordTAG_Accommodations_related_to_org_hir_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-f1a16c87-fbca-4f7b-aad0-ca9431a6a674</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>actionNames</name>
+                    <name>body</name>
+                    <value>Facet-f1a16c87-fbca-4f7b-aad0-ca9431a6a674</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>adminFilters</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente tjenester&quot;]</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>maxRecordsToDisplay</name>
-                    <value>3</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>parentFieldApiName</name>
-                    <value>Account.Id</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListApiName</name>
-                    <value>Contracts1__r</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListDisplayType</name>
-                    <value>ADVGRID</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListFieldAliases</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_Type_Partner__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_Status__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_InternalContact__c</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListLabel</name>
-                    <value>Partnerstatus</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldAlias</name>
-                    <value>__DEFAULT__</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldOrder</name>
-                    <value>Default</value>
-                </componentInstanceProperties>
-                <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList13</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Strategisk Partner</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Samarbeidspartner</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Selvbetjente tjenester</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column2</identifier>
             </componentInstance>
         </itemInstances>
+        <name>Facet-d792a788-87c9-49c4-86ab-cd39fb977395</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -331,113 +275,6 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>actionNames</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>CustomCampaignMember__c.FollowUp</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomCampaignMember__c.Update_Status</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>MassChangeOwner</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>New</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>maxRecordsToDisplay</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>parentFieldApiName</name>
-                    <value>Account.Id</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListApiName</name>
-                    <value>Custom_Campaign_Members__r</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListDisplayType</name>
-                    <value>ADVGRID</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListFieldAliases</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomCampaign__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Status__c</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListLabel</name>
-                    <value>Kampanjemedlemmer</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldAlias</name>
-                    <value>__DEFAULT__</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldOrder</name>
-                    <value>Default</value>
-                </componentInstanceProperties>
-                <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList10</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>accountTeamMember</componentName>
-                <identifier>accountTeamMember</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-8a12c5ef-b1b3-4d1c-a97b-a71ab4438a53</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Accommodations_related_to_org_hir__c</fieldItem>
-                <identifier>RecordTAG_Accommodations_related_to_org_hir_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-f1a16c87-fbca-4f7b-aad0-ca9431a6a674</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-f1a16c87-fbca-4f7b-aad0-ca9431a6a674</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-d792a788-87c9-49c4-86ab-cd39fb977395</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
                     <name>parentFieldApiName</name>
                     <value>Account.Id</value>
                 </componentInstanceProperties>
@@ -542,18 +379,87 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>RECORDTYPE|EQUALS|[&quot;EmployerAgreement&quot;]</value>
+                            <value>CustomCampaignMember__c.FollowUp</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomCampaignMember__c.Update_Status</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>MassChangeOwner</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>New</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>maxRecordsToDisplay</name>
                     <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Account.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Custom_Campaign_Members__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomCampaign__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Status__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Kampanjemedlemmer</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList10</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente tjenester&quot;]</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
@@ -574,23 +480,23 @@
                             <value>NAME</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>TAG_Type_Partner__c</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>TAG_Status__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_StartDate__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_EndDate__c</value>
+                            <value>TAG_InternalContact__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListLabel</name>
-                    <value>Bedriftsavtaler</value>
+                    <value>Partnerstatus</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortFieldAlias</name>
@@ -601,233 +507,31 @@
                     <value>Default</value>
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList6</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>actionNames</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>adminFilters</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>RECORDTYPE|EQUALS|[&quot;EmployerAgreement&quot;]</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>maxRecordsToDisplay</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>parentFieldApiName</name>
-                    <value>Account.ParentId</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListApiName</name>
-                    <value>Contracts1__r</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListDisplayType</name>
-                    <value>ADVGRID</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListFieldAliases</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_Status__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_StartDate__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_EndDate__c</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListLabel</name>
-                    <value>Bedriftsavtaler for overordnet konto</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldAlias</name>
-                    <value>TAG_StartDate__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldOrder</name>
-                    <value>Default</value>
-                </componentInstanceProperties>
-                <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList8</identifier>
+                <identifier>lst_dynamicRelatedList13</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Strategisk Partner</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Samarbeidspartner</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Selvbetjente tjenester</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>Facet-0ed7db69-f9c9-45df-ab57-9d5ded462959</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>actionNames</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>NewContact</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>adminFilters</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>Contact.TAG_Former_Employee__c|NOT_EQUAL|true</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>maxRecordsToDisplay</name>
-                    <value>5</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>parentFieldApiName</name>
-                    <value>Account.Id</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListApiName</name>
-                    <value>AccountContactRelations</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListDisplayType</name>
-                    <value>ADVGRID</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListFieldAliases</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>CONTACT.FULL_NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.ACCOUNT_NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.TITLE</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.EMAIL</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.PHONE1</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ACCCONRELATION.ROLES</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListLabel</name>
-                    <value>Kontaktpersoner</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldAlias</name>
-                    <value>__DEFAULT__</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldOrder</name>
-                    <value>Default</value>
-                </componentInstanceProperties>
-                <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList11</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>actionNames</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>NewContact</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>adminFilters</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>Contact.TAG_Former_Employee__c|NOT_EQUAL|true</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>maxRecordsToDisplay</name>
-                    <value>5</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>parentFieldApiName</name>
-                    <value>Account.ParentId</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListApiName</name>
-                    <value>AccountContactRelations</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListDisplayType</name>
-                    <value>ADVGRID</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListFieldAliases</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>CONTACT.FULL_NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.ACCOUNT_NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.TITLE</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.EMAIL</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.PHONE1</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ACCCONRELATION.ROLES</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListLabel</name>
-                    <value>Kontaktpersoner for overordnet konto</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldAlias</name>
-                    <value>__DEFAULT__</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldOrder</name>
-                    <value>Default</value>
-                </componentInstanceProperties>
-                <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList15</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>force:detailPanel</componentName>
@@ -845,72 +549,6 @@
                         <rightValue>NAV Kontaktsenter (Sanitized)</rightValue>
                     </criteria>
                 </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>actionNames</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>adminFilters</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>TAG_Former_Employee__c|EQUALS|true</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>maxRecordsToDisplay</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>parentFieldApiName</name>
-                    <value>Account.Id</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListApiName</name>
-                    <value>Contacts</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListDisplayType</name>
-                    <value>ADVGRID</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListFieldAliases</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>TAG_Former_Employee__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FULL_NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CONTACT.TITLE</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>TAG_Theme__c</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListLabel</name>
-                    <value>Tidligere kontaktpersoner (sluttet)</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldAlias</name>
-                    <value>__DEFAULT__</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldOrder</name>
-                    <value>Default</value>
-                </componentInstanceProperties>
-                <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList12</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-30ba79a4-429f-4ca9-b271-f750c3fe0663</name>
@@ -1522,22 +1160,367 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>accountTeamMember</componentName>
+                <identifier>accountTeamMember</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
-                    <name>active</name>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NewContact</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Contact.TAG_Former_Employee__c|NOT_EQUAL|true</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Account.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>AccountContactRelations</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>CONTACT.FULL_NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.ACCOUNT_NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.TITLE</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.EMAIL</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.PHONE1</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ACCCONRELATION.ROLES</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Kontaktpersoner</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
                     <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-8a12c5ef-b1b3-4d1c-a97b-a71ab4438a53</value>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Oversikt</value>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>customTab</identifier>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList11</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NewContact</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Contact.TAG_Former_Employee__c|NOT_EQUAL|true</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Account.ParentId</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>AccountContactRelations</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>CONTACT.FULL_NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.ACCOUNT_NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.TITLE</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.EMAIL</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.PHONE1</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ACCCONRELATION.ROLES</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Kontaktpersoner for overordnet konto</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList15</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>TAG_Former_Employee__c|EQUALS|true</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Account.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Contacts</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>FULL_NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.TITLE</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Theme__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Tidligere kontaktpersoner (sluttet)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList12</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-9ad7c3d8-e05e-4145-930c-c2aa3a5733bc</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>RECORDTYPE|EQUALS|[&quot;EmployerAgreement&quot;]</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Account.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Contracts1__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_StartDate__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_EndDate__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Bedriftsavtaler</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>RECORDTYPE|EQUALS|[&quot;EmployerAgreement&quot;]</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Account.ParentId</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Contracts1__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_StartDate__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_EndDate__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Bedriftsavtaler for overordnet konto</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>TAG_StartDate__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList8</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-rb8stqk0il</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -1546,7 +1529,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>Hendelser</value>
+                    <value>Aktiviteter</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>customTab2</identifier>
@@ -1592,6 +1575,34 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-9ad7c3d8-e05e-4145-930c-c2aa3a5733bc</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Kontaktspersoner</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-rb8stqk0il</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Bedriftsavtaler</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab3</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-265064ea-d7fe-4e81-be5f-cdb8371f2658</name>
