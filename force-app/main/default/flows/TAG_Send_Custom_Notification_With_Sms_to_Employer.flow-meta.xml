@@ -4,7 +4,7 @@
         <name>Send_notification_with_SMS</name>
         <label>Send notification with SMS</label>
         <locationX>704</locationX>
-        <locationY>984</locationY>
+        <locationY>1092</locationY>
         <actionName>TAG_ExtNotificationFlowController</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -98,7 +98,7 @@
         <name>Add_notified_AccountId</name>
         <label>Add notified AccountId</label>
         <locationX>704</locationX>
-        <locationY>1092</locationY>
+        <locationY>1200</locationY>
         <assignmentItems>
             <assignToReference>AccountNotified</assignToReference>
             <operator>Add</operator>
@@ -114,7 +114,7 @@
         <name>Variables_for_Arbeidstrening</name>
         <label>Variables for Arbeidstrening</label>
         <locationX>704</locationX>
-        <locationY>792</locationY>
+        <locationY>900</locationY>
         <assignmentItems>
             <assignToReference>processingThemeCode</assignToReference>
             <operator>Assign</operator>
@@ -151,7 +151,7 @@
         <name>Variables_for_Midlertidig_L_nnstilskudd</name>
         <label>Variables for Midlertidig Lønnstilskudd</label>
         <locationX>440</locationX>
-        <locationY>792</locationY>
+        <locationY>900</locationY>
         <assignmentItems>
             <assignToReference>processingThemeCode</assignToReference>
             <operator>Assign</operator>
@@ -188,7 +188,7 @@
         <name>Check_if_Employer_was_notified_already</name>
         <label>Check if Employer was notified already</label>
         <locationX>484</locationX>
-        <locationY>576</locationY>
+        <locationY>684</locationY>
         <defaultConnector>
             <targetReference>What_category_of_MeasureAgreement</targetReference>
         </defaultConnector>
@@ -210,10 +210,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_thread_active</name>
+        <label>Is thread active?</label>
+        <locationX>814</locationX>
+        <locationY>576</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_contracts_and_send_notification_with_sms</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Thread_is_active</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_contracts_and_send_notification_with_sms.Thread__r.CRM_isActive__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_if_Employer_was_notified_already</targetReference>
+            </connector>
+            <label>Thread is active</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>What_category_of_MeasureAgreement</name>
         <label>What category of MeasureAgreement?</label>
         <locationX>704</locationX>
-        <locationY>684</locationY>
+        <locationY>792</locationY>
         <defaultConnector>
             <targetReference>Send_notification_with_SMS</targetReference>
         </defaultConnector>
@@ -270,7 +295,7 @@
         <collectionReference>Get_contracts_with_possible_Dialogue</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Check_if_Employer_was_notified_already</targetReference>
+            <targetReference>Is_thread_active</targetReference>
         </nextValueConnector>
     </loops>
     <processMetadataValues>
