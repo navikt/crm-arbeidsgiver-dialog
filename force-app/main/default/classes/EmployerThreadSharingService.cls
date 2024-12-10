@@ -115,7 +115,7 @@ public without sharing class EmployerThreadSharingService {
                 AND ParentId IN (
                     SELECT Id
                     FROM Thread__c
-                    WHERE CRM_isActive__c = TRUE AND AAREG_Thread_Subject__c IN :THREAD_TOPIC_SERVICE_CODE.keySet()
+                    WHERE AAREG_Thread_Subject__c IN :THREAD_TOPIC_SERVICE_CODE.keySet()
                 )
         ];
     }
