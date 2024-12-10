@@ -1,104 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Send_notification_with_SMS</name>
-        <label>Send notification with SMS</label>
-        <locationX>704</locationX>
-        <locationY>1092</locationY>
-        <actionName>TAG_ExtNotificationFlowController</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Add_notified_AccountId</targetReference>
-        </connector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>dispatchWindow</name>
-            <value>
-                <stringValue>CONTINUOUSLY</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>enterpriseNumber</name>
-            <value>
-                <elementReference>Loop_through_contracts_and_send_notification_with_sms.TAG_Account__r.INT_OrganizationNumber__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>externalId</name>
-            <value>
-                <elementReference>ExternalId</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>groupingId</name>
-            <value>
-                <elementReference>Loop_through_contracts_and_send_notification_with_sms.KafkaId__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>label</name>
-            <value>
-                <elementReference>labelNotification</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>notificationText</name>
-            <value>
-                <elementReference>Notification</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>phoneNumber</name>
-            <value>
-                <elementReference>Loop_through_contracts_and_send_notification_with_sms.TAG_EmployerContactPhone__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendAsync</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendSms</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>serviceCode</name>
-            <value>
-                <elementReference>serviceCodeAltinn</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>serviceEdition</name>
-            <value>
-                <elementReference>serviceEditionAltinn</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>smsText</name>
-            <value>
-                <elementReference>smsNotification</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>url</name>
-            <value>
-                <stringValue>https://forms.office.com/e/51VEtMrDU1</stringValue>
-            </value>
-        </inputParameters>
-        <nameSegment>TAG_ExtNotificationFlowController</nameSegment>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <versionSegment>1</versionSegment>
-    </actionCalls>
     <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Add_Contract_to_be_Updated</name>
+        <label>Add Contract to be Updated</label>
+        <locationX>440</locationX>
+        <locationY>1008</locationY>
+        <assignmentItems>
+            <assignToReference>updateContracts</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_contracts_and_send_notification_with_sms</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_contracts_and_send_notification_with_sms</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Add_notified_AccountId</name>
         <label>Add notified AccountId</label>
-        <locationX>704</locationX>
-        <locationY>1200</locationY>
+        <locationX>440</locationX>
+        <locationY>900</locationY>
         <assignmentItems>
             <assignToReference>AccountNotified</assignToReference>
             <operator>Add</operator>
@@ -107,90 +30,32 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Loop_through_contracts_and_send_notification_with_sms</targetReference>
+            <targetReference>Add_Contract_to_be_Updated</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Variables_for_Arbeidstrening</name>
-        <label>Variables for Arbeidstrening</label>
-        <locationX>704</locationX>
-        <locationY>900</locationY>
-        <assignmentItems>
-            <assignToReference>processingThemeCode</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>ab0422</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>labelNotification</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Arbeidstrening</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>serviceCodeAltinn</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>5332</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>serviceEditionAltinn</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>2</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Send_notification_with_SMS</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Variables_for_Midlertidig_L_nnstilskudd</name>
-        <label>Variables for Midlertidig Lønnstilskudd</label>
+        <name>Set_Employer_To_Be_Notified</name>
+        <label>Set Employer To Be Notified</label>
         <locationX>440</locationX>
-        <locationY>900</locationY>
+        <locationY>792</locationY>
         <assignmentItems>
-            <assignToReference>processingThemeCode</assignToReference>
+            <assignToReference>Loop_through_contracts_and_send_notification_with_sms.TAG_Discussed__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>ab0336</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>labelNotification</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Lønnstilskudd</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>serviceCodeAltinn</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>5516</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>serviceEditionAltinn</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>1</stringValue>
+                <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Send_notification_with_SMS</targetReference>
+            <targetReference>Add_notified_AccountId</targetReference>
         </connector>
     </assignments>
     <decisions>
         <name>Check_if_Employer_was_notified_already</name>
         <label>Check if Employer was notified already</label>
-        <locationX>484</locationX>
+        <locationX>352</locationX>
         <locationY>684</locationY>
         <defaultConnector>
-            <targetReference>What_category_of_MeasureAgreement</targetReference>
+            <targetReference>Set_Employer_To_Be_Notified</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Has not been notified</defaultConnectorLabel>
         <rules>
@@ -212,7 +77,7 @@
     <decisions>
         <name>Is_thread_active</name>
         <label>Is thread active?</label>
-        <locationX>814</locationX>
+        <locationX>528</locationX>
         <locationY>576</locationY>
         <defaultConnector>
             <targetReference>Loop_through_contracts_and_send_notification_with_sms</targetReference>
@@ -234,57 +99,7 @@
             <label>Thread is active</label>
         </rules>
     </decisions>
-    <decisions>
-        <name>What_category_of_MeasureAgreement</name>
-        <label>What category of MeasureAgreement?</label>
-        <locationX>704</locationX>
-        <locationY>792</locationY>
-        <defaultConnector>
-            <targetReference>Send_notification_with_SMS</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Others</defaultConnectorLabel>
-        <rules>
-            <name>Midlertidig_l_nnstilskudd</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_through_contracts_and_send_notification_with_sms.TAG_Category__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>MIDLERTIDIG_LONNSTILSKUDD</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Variables_for_Midlertidig_L_nnstilskudd</targetReference>
-            </connector>
-            <label>Midlertidig lønnstilskudd</label>
-        </rules>
-        <rules>
-            <name>Arbeidstrening</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_through_contracts_and_send_notification_with_sms.TAG_Category__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>ARBEIDSTRENING</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Variables_for_Arbeidstrening</targetReference>
-            </connector>
-            <label>Arbeidstrening</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
-    <formulas>
-        <name>ExternalId</name>
-        <dataType>String</dataType>
-        <expression>{!Loop_through_contracts_and_send_notification_with_sms.ExternalId__c} + &apos;-&apos; + {!TimeStamp}</expression>
-    </formulas>
-    <formulas>
-        <name>TimeStamp</name>
-        <dataType>String</dataType>
-        <expression>TEXT((DATETIMEVALUE(NOW()) - DATETIMEVALUE( &quot;1970-01-01 00:00:00&quot; )) * 86400)</expression>
-    </formulas>
     <interviewLabel>TAG Send Custom Notification With Sms to Employer {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Send Custom Notification With Sms to Employer</label>
     <loops>
@@ -297,6 +112,9 @@
         <nextValueConnector>
             <targetReference>Is_thread_active</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Contracts</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -430,6 +248,13 @@
         <object>Contract__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Contracts</name>
+        <label>Update Contracts</label>
+        <locationX>176</locationX>
+        <locationY>1368</locationY>
+        <inputReference>updateContracts</inputReference>
+    </recordUpdates>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
@@ -438,22 +263,12 @@
         </connector>
         <schedule>
             <frequency>Once</frequency>
-            <startDate>2024-12-09</startDate>
+            <startDate>2024-12-10</startDate>
             <startTime>09:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
-    <textTemplates>
-        <name>Notification</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Du har mottatt en spørreundersøkelse om dialogløsningen mellom din virksomhet og Nav. Hjelp oss å gjøre det lettere for deg. Klikk her for å komme til undersøkelsen (tar ca. 3-5 min å fullføre). Frist: fredag 13. desember</text>
-    </textTemplates>
-    <textTemplates>
-        <name>smsNotification</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Hei! Har du forsøkt vår nye meldingstjeneste for arbeidstrening og lønnstilskudd på Min side arbeidsgiver? Uansett om du har brukt tjenesten eller ikke, ønsker vi din tilbakemelding for å videreutvikle tjenesten og styrke dialogen mellom Nav og arbeidsgivere. Logg inn på Min side arbeidsgiver for å gi din tilbakemelding. Hilsen Nav</text>
-    </textTemplates>
     <variables>
         <name>AccountNotified</name>
         <dataType>String</dataType>
@@ -462,31 +277,11 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>labelNotification</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
+        <name>updateContracts</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>processingThemeCode</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>serviceCodeAltinn</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>serviceEditionAltinn</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
+        <objectType>Contract__c</objectType>
     </variables>
 </Flow>
