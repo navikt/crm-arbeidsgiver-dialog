@@ -53,17 +53,15 @@ export default class OrganizationBanner extends LightningElement {
         try {
             window.onscroll = () => {
                 let stickysection = this.template.querySelector('.myStickyHeader');
-               let sticky2 = stickysection.offsetTop;
+                let sticky2 = stickysection.offsetTop;
                 if (window.scrollY > sticky2) {
-                    stickysection.classList.add("slds-is-fixed");
+                    stickysection.classList.add('slds-is-fixed');
                 } else {
-                    stickysection.classList.remove("slds-is-fixed");  
+                    stickysection.classList.remove('slds-is-fixed');
                 }
-            }
+            };
         } catch (error) {
             console.log('error =>', error);
         }
-                    
-    } 
- 
+    }
 }
