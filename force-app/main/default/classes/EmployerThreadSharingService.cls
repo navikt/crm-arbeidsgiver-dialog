@@ -112,6 +112,7 @@ public without sharing class EmployerThreadSharingService {
             FROM Thread__Share
             WHERE
                 UserOrGroupId = :user.Id
+                AND RowCause = 'Manual'
                 AND ParentId IN (
                     SELECT Id
                     FROM Thread__c
