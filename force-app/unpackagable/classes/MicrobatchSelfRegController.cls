@@ -1,13 +1,8 @@
 public class MicrobatchSelfRegController {
-    public String firstName { get; set; }
-    public String lastName { get; set; }
-    public String email { get; set; }
-    public String communityNickname {
-        get;
-        set {
-            communityNickname = value == null ? value : value.trim();
-        }
-    }
+    public String firstName {get; set;}
+    public String lastName {get; set;}
+    public String email {get; set;}
+    public String communityNickname {get; set { communityNickname = value == null ? value : value.trim(); } }
 
     public MicrobatchSelfRegController() {
         String expid = ApexPages.currentPage().getParameters().get('expid');
@@ -41,10 +36,10 @@ public class MicrobatchSelfRegController {
         c.lastName = lastName;
 
         try {
-            UUID = Network.createExternalUserAsync(u, c, acc);
-        } catch (Site.ExternalUserCreateException ex) {
+            UUID =  Network.createExternalUserAsync(u, c,acc);
+        } catch(Site.ExternalUserCreateException ex) {
             List<String> errors = ex.getDisplayMessages();
-            for (String error : errors) {
+            for (String error : errors)  {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, error));
             }
 
@@ -53,9 +48,9 @@ public class MicrobatchSelfRegController {
             System.debug(ex.getMessage());
         }
         if (UUID != null) {
-            PageReference page = System.Page.CommunitiesSelfRegConfirm;
-            page.setRedirect(true);
-            return page;
+           PageReference page = System.Page.CommunitiesSelfRegConfirm;
+           page.setRedirect(true);
+           return page;
         }
         return null;
     }

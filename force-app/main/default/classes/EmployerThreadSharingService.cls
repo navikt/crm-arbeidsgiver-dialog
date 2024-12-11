@@ -29,9 +29,9 @@ public without sharing class EmployerThreadSharingService {
             logger.logMessage(
                 LoggerUtility.LogLevel.Error,
                 '',
-                organizationNumber,
+                null,
                 e.getMessage(),
-                e.getStackTraceString(),
+                null,
                 null,
                 CRM_ApplicationDomain.Domain.POAB
             );
