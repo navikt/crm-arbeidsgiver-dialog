@@ -10,10 +10,24 @@ export default class OrganizationBanner extends LightningElement {
     @track participantContract;
     @track agreementNumber;
     @api showBanner;
-    @api recordId;
 
     chevrondown = icons + '/chevrondown.svg';
     currentPageReference = null;
+
+    _recordId;
+
+    @api
+    get recordId() {
+        return this._recordId;
+    }
+    set recordId(value) {
+        if (value !== this._recordId) {
+            this._recordId = value;
+            if (value) {
+                this.getBanner(); // Fetch data when recordId is set
+            }
+        }
+    }
 
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
@@ -22,12 +36,14 @@ export default class OrganizationBanner extends LightningElement {
         }
     }
     connectedCallback() {
-        if (this.isRecordPage()) {
-            this.getBanner();
-        }
+        console.log('Component connected. Waiting for recordId to be set...');
     }
 
     getBanner() {
+        if (!this.recordId) {
+            console.error('Cannot fetch banner data without recordId');
+            return;
+        }
         getBannerData({ threadId: this.recordId })
             .then((result) => {
                 this.organizationName = result.TAG_Account__r.Name;
@@ -39,13 +55,6 @@ export default class OrganizationBanner extends LightningElement {
             .catch((error) => {
                 console.log('Error retrieving banner data: ', error);
             });
-    }
-
-    isRecordPage() {
-        if (this.recordId != null) {
-            return true;
-        }
-        return false;
     }
 
     //Funksjon som gjør hovedbanneret sticky når man scroller
