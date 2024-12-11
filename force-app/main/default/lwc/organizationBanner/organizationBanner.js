@@ -4,8 +4,8 @@ import icons from '@salesforce/resourceUrl/icons';
 import { CurrentPageReference } from 'lightning/navigation';
 
 export default class OrganizationBanner extends LightningElement {
-    @track organizationName;
-    @track organizationNumber;
+    @api organizationName;
+    @api organizationNumber;
     @track urlContract;
     @track participantContract;
     @track agreementNumber;
