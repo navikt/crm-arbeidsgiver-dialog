@@ -6,5 +6,12 @@
     <masterLabel>Arbeidsgiver Hovedbanner</masterLabel>
     <targets>
         <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="recordId" type="String" label="Record ID"
+                description="Current record" />
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

@@ -6,12 +6,10 @@
     border-radius: 20px;
     width: 100%;
     z-index: 10;
-
-    
 }
 
 .arbeidsgiver {
-    background-color: #ffeccc; 
+    background-color: #ffeccc;
     border-bottom: 4px solid #ffd799;
 }
 
@@ -55,9 +53,9 @@
     top: 0;
     left: -1px;
     z-index: 100000;
-  }
-   
-  .sticky + .content {
+}
+
+.sticky + .content {
     /*OBS, Denne er laget i relasjon til nav sin header, som er 80 px stor. hvis designet eller størrelsen på nav-headeren endres, så bør denne endres*/
     padding-top: 80px;
-  }
+}
