@@ -194,13 +194,14 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList14</identifier>
-                <visibilityRule>
-                    <!-- <criteria>
+                <!-- <criteria>
+                      <visibilityRule>
                         <leftValue>{!$Permission.CustomPermission.TAG_Dialogueonaccount}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
-                    </criteria> -->
-                </visibilityRule>
+                    </criteria> 
+                     </visibilityRule>-->
+
             </componentInstance>
         </itemInstances>
         <itemInstances>
