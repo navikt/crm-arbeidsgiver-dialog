@@ -103,7 +103,7 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>Account.AMS_IPS_oppgave</value>
+                            <value>Account.TAG_CreateTaskListview</value>
                             <visibilityRule>
                                 <criteria>
                                     <leftValue>{!$Client.formFactor}</leftValue>
@@ -338,7 +338,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>rowsToDisplay</name>
-                    <value>10</value>
+                    <value>6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
@@ -446,7 +446,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>maxRecordsToDisplay</name>
-                    <value>10</value>
+                    <value>6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
