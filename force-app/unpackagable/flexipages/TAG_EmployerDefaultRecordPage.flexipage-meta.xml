@@ -7,9 +7,6 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>AccountHierarchy</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Account.TAG_CreateTask</value>
                             <visibilityRule>
                                 <criteria>
