@@ -4,8 +4,8 @@
     <assignments>
         <name>Set_Thread_values</name>
         <label>Set Thread values</label>
-        <locationX>138</locationX>
-        <locationY>1355</locationY>
+        <locationX>358</locationX>
+        <locationY>1247</locationY>
         <assignmentItems>
             <assignToReference>Get_Thread.CRM_isActive__c</assignToReference>
             <operator>Assign</operator>
@@ -28,8 +28,8 @@
         <description>if a contract has changed status from &quot;Avsluttet&quot; to &quot;Gjennomføres&quot;, means that it has been reopened. In that case we need to reopen the dialogue</description>
         <name>Contract_reopened</name>
         <label>Contract reopened?</label>
-        <locationX>270</locationX>
-        <locationY>1139</locationY>
+        <locationX>490</locationX>
+        <locationY>1031</locationY>
         <defaultConnector>
             <targetReference>Get_account</targetReference>
         </defaultConnector>
@@ -67,10 +67,10 @@
     <decisions>
         <name>Has_Nav_Unit_beed_changed</name>
         <label>Has Nav Unit beed changed?</label>
-        <locationX>270</locationX>
+        <locationX>490</locationX>
         <locationY>323</locationY>
         <defaultConnector>
-            <targetReference>Has_thread</targetReference>
+            <targetReference>Should_create_or_update_thread</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>NavUnit not changed</defaultConnectorLabel>
         <rules>
@@ -87,31 +87,6 @@
                 <targetReference>Set_NAV_Unit_text_value_c</targetReference>
             </connector>
             <label>NavUnit is changed</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Has_thread</name>
-        <label>Has thread?</label>
-        <locationX>270</locationX>
-        <locationY>623</locationY>
-        <defaultConnector>
-            <targetReference>Has_Thread_NAVUnit</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Has thread</defaultConnectorLabel>
-        <rules>
-            <name>No_thread</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Thread__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_TAG_Thread_record_type_id</targetReference>
-            </connector>
-            <label>No thread</label>
         </rules>
     </decisions>
     <decisions>
@@ -164,8 +139,8 @@
     <decisions>
         <name>Is_Account_NAV</name>
         <label>Is Account NAV?</label>
-        <locationX>270</locationX>
-        <locationY>1763</locationY>
+        <locationX>490</locationX>
+        <locationY>1739</locationY>
         <defaultConnectorLabel>No Account is Not NAV</defaultConnectorLabel>
         <rules>
             <name>Yes_Account_is_NAV</name>
@@ -181,6 +156,53 @@
                 <targetReference>Update_contract_field</targetReference>
             </connector>
             <label>Yes Account is NAV</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Should_create_or_update_thread</name>
+        <label>Should create or update thread?</label>
+        <locationX>490</locationX>
+        <locationY>623</locationY>
+        <defaultConnector>
+            <targetReference>Get_account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_create_thread</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Thread__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ExternalId__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_TAG_Thread_record_type_id</targetReference>
+            </connector>
+            <label>Yes, create thread</label>
+        </rules>
+        <rules>
+            <name>Has_thread_to_update</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Thread__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Has_Thread_NAVUnit</targetReference>
+            </connector>
+            <label>Has thread to update</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -261,8 +283,8 @@
     <recordLookups>
         <name>Get_account</name>
         <label>Get account</label>
-        <locationX>270</locationX>
-        <locationY>1655</locationY>
+        <locationX>490</locationX>
+        <locationY>1631</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Account_NAV</targetReference>
@@ -307,8 +329,8 @@
     <recordLookups>
         <name>Get_Thread</name>
         <label>Get Thread</label>
-        <locationX>138</locationX>
-        <locationY>1247</locationY>
+        <locationX>358</locationX>
+        <locationY>1139</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Thread_values</targetReference>
@@ -328,10 +350,10 @@
     <recordUpdates>
         <name>Set_NAV_Unit_text_value_c</name>
         <label>Set NAV_Unit_text_value__c</label>
-        <locationX>138</locationX>
+        <locationX>358</locationX>
         <locationY>431</locationY>
         <connector>
-            <targetReference>Has_thread</targetReference>
+            <targetReference>Should_create_or_update_thread</targetReference>
         </connector>
         <inputAssignments>
             <field>NAV_Unit_text_value__c</field>
@@ -360,8 +382,8 @@
     <recordUpdates>
         <name>Update_contract_field</name>
         <label>Update contract field</label>
-        <locationX>138</locationX>
-        <locationY>1871</locationY>
+        <locationX>358</locationX>
+        <locationY>1847</locationY>
         <inputAssignments>
             <field>TAG_IsAccountNAV__c</field>
             <value>
@@ -376,7 +398,7 @@
         <locationX>50</locationX>
         <locationY>947</locationY>
         <connector>
-            <targetReference>Contract_reopened</targetReference>
+            <targetReference>Get_account</targetReference>
         </connector>
         <inputAssignments>
             <field>NAV_Unit_text_value__c</field>
@@ -395,15 +417,15 @@
     <recordUpdates>
         <name>Update_Thread</name>
         <label>Update Thread</label>
-        <locationX>138</locationX>
-        <locationY>1463</locationY>
+        <locationX>358</locationX>
+        <locationY>1355</locationY>
         <connector>
             <targetReference>Get_account</targetReference>
         </connector>
         <inputReference>Get_Thread</inputReference>
     </recordUpdates>
     <start>
-        <locationX>144</locationX>
+        <locationX>364</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Has_Nav_Unit_beed_changed</targetReference>
