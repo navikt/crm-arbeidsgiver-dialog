@@ -1588,6 +1588,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>accountBadges</componentName>
+                <identifier>c_accountBadges</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-265064ea-d7fe-4e81-be5f-cdb8371f2658</value>
