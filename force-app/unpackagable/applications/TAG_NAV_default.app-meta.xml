@@ -173,4 +173,5 @@
     <tabs>CustomCampaign__c</tabs>
     <tabs>CustomCampaignMember__c</tabs>
     <uiType>Lightning</uiType>
+    <utilityBar>Arbeidsgiver_UtilityBar</utilityBar>
 </CustomApplication>

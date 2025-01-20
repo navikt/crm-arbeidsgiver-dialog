@@ -73,8 +73,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.NumberOfEmployees</fieldItem>
-                <identifier>RecordNumberOfEmployeesField</identifier>
+                <fieldItem>Record.CRM_NumberOfEmployeesFormula__c</fieldItem>
+                <identifier>RecordCRM_NumberOfEmployeesFormula__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
