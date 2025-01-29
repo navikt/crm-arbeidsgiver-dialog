@@ -4,7 +4,7 @@
         <name>Generate_Document</name>
         <label>Generate Document</label>
         <locationX>314</locationX>
-        <locationY>398</locationY>
+        <locationY>350</locationY>
         <actionName>CRM_JournalUtilities</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -23,17 +23,20 @@
                 <stringValue>GENERATE_DOCUMENT</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>CRM_JournalUtilities</nameSegment>
+        <offset>0</offset>
         <outputParameters>
             <assignToReference>PDF_Document</assignToReference>
             <name>documentString</name>
         </outputParameters>
+        <versionSegment>1</versionSegment>
     </actionCalls>
     <actionCalls>
         <description>Calls journal utils to perform the API post action</description>
         <name>Post_Journal_Request</name>
         <label>Post Journal Request</label>
         <locationX>314</locationX>
-        <locationY>1118</locationY>
+        <locationY>998</locationY>
         <actionName>CRM_JournalUtilities</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -64,14 +67,17 @@
                 <stringValue>POST_JOURNAL</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>CRM_JournalUtilities</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
     <assignments>
         <name>Assign_Journal_Documents</name>
         <label>Assign Journal Documents</label>
         <locationX>314</locationX>
-        <locationY>638</locationY>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>Journal_Documents.dokumentvarianter</assignToReference>
             <operator>Add</operator>
@@ -101,7 +107,7 @@
         <name>Assign_Journal_Entry_Default_Data</name>
         <label>Assign Journal Entry Default Data</label>
         <locationX>314</locationX>
-        <locationY>1694</locationY>
+        <locationY>1514</locationY>
         <assignmentItems>
             <assignToReference>Journal_Entry_Record.CRM_Journal_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -117,7 +123,7 @@
         <name>Assign_Journal_Request</name>
         <label>Assign Journal Request</label>
         <locationX>314</locationX>
-        <locationY>998</locationY>
+        <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>Journal_Request_Wrapper.tittel</assignToReference>
             <operator>Assign</operator>
@@ -209,6 +215,13 @@
                 <elementReference>Journal_Tilleggsopplysninger</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Journal_Request_Wrapper.eksternReferanseId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Journal_Entry_Record.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Post_Journal_Request</targetReference>
         </connector>
@@ -217,7 +230,7 @@
         <name>Assign_Journal_Sak</name>
         <label>Assign Journal Sak</label>
         <locationX>314</locationX>
-        <locationY>758</locationY>
+        <locationY>674</locationY>
         <assignmentItems>
             <assignToReference>Journal_Sak.sakstype</assignToReference>
             <operator>Assign</operator>
@@ -233,7 +246,7 @@
         <name>Assign_Tilleggsopplysninger</name>
         <label>Assign Tilleggsopplysninger</label>
         <locationX>314</locationX>
-        <locationY>878</locationY>
+        <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>Journal_Tilleggsopplysninger.nokkel</assignToReference>
             <operator>Assign</operator>
@@ -256,7 +269,7 @@
         <name>Document_Variant_Assignment</name>
         <label>Document Variant Assignment</label>
         <locationX>314</locationX>
-        <locationY>518</locationY>
+        <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>Document_Variant_PDF.filtype</assignToReference>
             <operator>Assign</operator>
@@ -286,7 +299,7 @@
         <name>Set_Post_Completed</name>
         <label>Set Post Completed</label>
         <locationX>50</locationX>
-        <locationY>1358</locationY>
+        <locationY>1214</locationY>
         <assignmentItems>
             <assignToReference>Journal_Entry_Record.Journal_Entry_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -316,7 +329,7 @@
         <name>Set_Post_Completed_Active_Thread</name>
         <label>Set Post Completed Active Thread</label>
         <locationX>314</locationX>
-        <locationY>1358</locationY>
+        <locationY>1214</locationY>
         <assignmentItems>
             <assignToReference>Journal_Entry_Record.Journal_Entry_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -346,7 +359,7 @@
         <name>Set_Post_Failed</name>
         <label>Set Post Failed</label>
         <locationX>578</locationX>
-        <locationY>1358</locationY>
+        <locationY>1214</locationY>
         <assignmentItems>
             <assignToReference>Journal_Entry_Record.Journal_Entry_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -369,7 +382,7 @@
         <name>Check_Post_State</name>
         <label>Check Post State</label>
         <locationX>314</locationX>
-        <locationY>1238</locationY>
+        <locationY>1106</locationY>
         <defaultConnector>
             <targetReference>Set_Post_Failed</targetReference>
         </defaultConnector>
@@ -423,7 +436,7 @@
         <name>DML_Check</name>
         <label>DML Check</label>
         <locationX>314</locationX>
-        <locationY>1814</locationY>
+        <locationY>1622</locationY>
         <defaultConnectorLabel>No DML</defaultConnectorLabel>
         <rules>
             <name>Do_DML</name>
@@ -485,7 +498,7 @@
         <name>Insert_Info_About_Journal_Into_Thread_FInal_Retry</name>
         <label>Insert Info About Journal Into Thread FInal Retry</label>
         <locationX>50</locationX>
-        <locationY>1478</locationY>
+        <locationY>1322</locationY>
         <connector>
             <targetReference>Assign_Journal_Entry_Default_Data</targetReference>
         </connector>
@@ -520,7 +533,7 @@
         <name>Insert_Info_About_Journal_Into_Thread_Retry</name>
         <label>Insert Info About Journal Into Thread Retry</label>
         <locationX>314</locationX>
-        <locationY>1478</locationY>
+        <locationY>1322</locationY>
         <connector>
             <targetReference>Assign_Journal_Entry_Default_Data</targetReference>
         </connector>
@@ -555,7 +568,7 @@
         <name>Get_Account_Record</name>
         <label>Get Account Record</label>
         <locationX>314</locationX>
-        <locationY>278</locationY>
+        <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Generate_Document</targetReference>
@@ -578,7 +591,7 @@
         <name>Get_Thread_Record</name>
         <label>Get Thread Record</label>
         <locationX>314</locationX>
-        <locationY>158</locationY>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Account_Record</targetReference>
@@ -606,7 +619,7 @@
         <name>Update_Journal_Entry</name>
         <label>Update Journal Entry</label>
         <locationX>182</locationX>
-        <locationY>1934</locationY>
+        <locationY>1730</locationY>
         <connector>
             <targetReference>Update_Thread</targetReference>
         </connector>
@@ -616,7 +629,7 @@
         <name>Update_Thread</name>
         <label>Update Thread</label>
         <locationX>182</locationX>
-        <locationY>2054</locationY>
+        <locationY>1838</locationY>
         <inputReference>Thread_Record_JOURNALED</inputReference>
     </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>

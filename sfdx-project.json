@@ -65,14 +65,14 @@
                 },
                 {
                     "package": "crm-arbeidsgiver-base",
-                    "versionNumber": "1.490.0.LATEST"
+                    "versionNumber": "1.493.0.LATEST"
                 }
             ]
         }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "58.0",
+    "sourceApiVersion": "62.0",
     "packageAliases": {
         "crm-arbeidsgiver-dialog": "0Ho7U000000000VSAQ",
         "crm-platform-base": "0Ho2o0000008ORmCAM",
