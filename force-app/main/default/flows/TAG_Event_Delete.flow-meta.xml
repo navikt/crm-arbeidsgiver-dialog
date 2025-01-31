@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Convert_Task_to_JSON</name>
-        <label>Convert Task to JSON</label>
+        <name>Convert_Event_to_JSON</name>
+        <label>Convert Event to JSON</label>
         <locationX>176</locationX>
         <locationY>395</locationY>
         <actionName>ArchiveHelper</actionName>
@@ -12,13 +12,13 @@
         </connector>
         <dataTypeMappings>
             <typeName>T__recordsList</typeName>
-            <typeValue>Task</typeValue>
+            <typeValue>Event</typeValue>
         </dataTypeMappings>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recordsList</name>
             <value>
-                <elementReference>TasksList</elementReference>
+                <elementReference>EventsList</elementReference>
             </value>
         </inputParameters>
         <nameSegment>ArchiveHelper</nameSegment>
@@ -31,24 +31,24 @@
     </actionCalls>
     <apiVersion>62.0</apiVersion>
     <assignments>
-        <name>Add_Task_to_TasksList</name>
-        <label>Add Task to TasksList</label>
+        <name>Add_Event_to_EventsList</name>
+        <label>Add Event to EventsList</label>
         <locationX>176</locationX>
         <locationY>287</locationY>
         <assignmentItems>
-            <assignToReference>TasksList</assignToReference>
+            <assignToReference>EventsList</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>$Record</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Convert_Task_to_JSON</targetReference>
+            <targetReference>Convert_Event_to_JSON</targetReference>
         </connector>
     </assignments>
     <environments>Default</environments>
-    <interviewLabel>TAG Task Delete {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Task Delete</label>
+    <interviewLabel>TAG Event Delete {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Event Delete</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -72,24 +72,24 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Add_Task_to_TasksList</targetReference>
+            <targetReference>Add_Event_to_EventsList</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
             <field>RecordTypeName__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>AG Oppgave</stringValue>
+                <stringValue>AG Møte</stringValue>
             </value>
         </filters>
         <filters>
             <field>RecordTypeName__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>IA task</stringValue>
+                <stringValue>IA event</stringValue>
             </value>
         </filters>
-        <object>Task</object>
+        <object>Event</object>
         <recordTriggerType>Delete</recordTriggerType>
         <triggerType>RecordBeforeDelete</triggerType>
     </start>
@@ -133,13 +133,13 @@
         <inputAssignments>
             <name>ReferenceObject</name>
             <value>
-                <stringValue>Task</stringValue>
+                <stringValue>Event</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>SourceFlow</name>
             <value>
-                <stringValue>TAG Task Delete</stringValue>
+                <stringValue>TAG Event Delete</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -157,11 +157,11 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>TasksList</name>
+        <name>EventsList</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-        <objectType>Task</objectType>
+        <objectType>Event</objectType>
     </variables>
 </Flow>
