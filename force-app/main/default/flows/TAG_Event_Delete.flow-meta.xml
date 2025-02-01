@@ -8,7 +8,7 @@
         <actionName>ArchiveHelper</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Subflow_Archive_Records</targetReference>
+            <targetReference>Create_Archive_Entry</targetReference>
         </connector>
         <dataTypeMappings>
             <typeName>T__recordsList</typeName>
@@ -68,6 +68,56 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Archive_Entry</name>
+        <label>Create Archive Entry</label>
+        <locationX>176</locationX>
+        <locationY>503</locationY>
+        <inputAssignments>
+            <field>Archive_Data__c</field>
+            <value>
+                <elementReference>ArchiveJson</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Confidential__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Domain__c</field>
+            <value>
+                <stringValue>POAG</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Orgnr__c</field>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.INT_OrganizationNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Reference_Id__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Reference_Object__c</field>
+            <value>
+                <stringValue>Event</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Theme__c</field>
+            <value>
+                <elementReference>$Record.TAG_ActivityType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Archive_Entry__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
@@ -94,61 +144,6 @@
         <triggerType>RecordBeforeDelete</triggerType>
     </start>
     <status>Draft</status>
-    <subflows>
-        <name>Subflow_Archive_Records</name>
-        <label>Subflow Archive Records</label>
-        <locationX>176</locationX>
-        <locationY>503</locationY>
-        <flowName>TAG_Subflow_Archive_Records</flowName>
-        <inputAssignments>
-            <name>ArchiveData</name>
-            <value>
-                <elementReference>ArchiveJson</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Confidential</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Domain</name>
-            <value>
-                <stringValue>POAG</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Orgnr</name>
-            <value>
-                <elementReference>$Record.RelatedToAccount__r.INT_OrganizationNumber__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceId</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceObject</name>
-            <value>
-                <stringValue>Event</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>SourceFlow</name>
-            <value>
-                <stringValue>TAG Event Delete</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Theme</name>
-            <value>
-                <elementReference>$Record.TAG_ActivityType__c</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
     <variables>
         <name>ArchiveJson</name>
         <dataType>String</dataType>
