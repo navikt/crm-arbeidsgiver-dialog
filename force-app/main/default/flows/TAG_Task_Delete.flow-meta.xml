@@ -143,7 +143,7 @@
         <recordTriggerType>Delete</recordTriggerType>
         <triggerType>RecordBeforeDelete</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <variables>
         <name>ArchiveJson</name>
         <dataType>String</dataType>

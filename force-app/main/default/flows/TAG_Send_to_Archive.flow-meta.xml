@@ -277,7 +277,7 @@
         </scheduledPaths>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>ArchiveResponse</name>
         <dataType>String</dataType>
