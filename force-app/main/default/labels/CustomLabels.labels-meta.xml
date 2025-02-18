@@ -13,7 +13,7 @@ Meldingen er tilknyttet avtalenummer:</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Dialog SMS Notifikasjon</shortDescription>
-        <value>Hei, du har mottatt en ny melding fra NAV. Du kan logge inn på Min side arbeidsgiver
+        <value>Hei, du har mottatt en ny melding fra Nav. Du kan logge inn på Min side arbeidsgiver
             for å se meldingen. Meldingen ligger under tiltaksavtaler, på avtalenummer:</value>
     </labels>
 </CustomLabels>
