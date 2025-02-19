@@ -36,7 +36,7 @@ public with sharing class TAG_ExtNotificationFlowController {
      */
     @InvocableMethod(
         label='Send External Notification (with/without SMS)'
-        description='Sending notification to employer on the NAV Employer Portal (employer my page on nav.no). Also possible to include an notification by sms to provided phone number.'
+        description='Sending notification to employer on the Nav Employer Portal (employer my page on nav.no). Also possible to include an notification by sms to provided phone number.'
         category='Notifications'
         iconName='slds:custom:custom53'
     )

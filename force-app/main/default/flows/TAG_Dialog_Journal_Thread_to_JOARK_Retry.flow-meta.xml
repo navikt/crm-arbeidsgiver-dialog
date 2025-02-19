@@ -459,8 +459,8 @@
         <name>Document_Journal_Title</name>
         <dataType>String</dataType>
         <expression>IF({!Thread_Record_JOURNALED.CRM_isActive__c} == true,
-&apos;Pågående samtale med NAV - Avtalenr &apos; + {!Thread_Record_JOURNALED.TAG_RelatedObjectExternalId__c} + &apos; - &apos; + {!THREAD_START_DATE},
-&apos;Komplett samtale med NAV - Avtalenr &apos; + {!Thread_Record_JOURNALED.TAG_RelatedObjectExternalId__c} + &apos; - &apos; + {!THREAD_CLOSE_DATE}
+&apos;Pågående samtale med Nav - Avtalenr &apos; + {!Thread_Record_JOURNALED.TAG_RelatedObjectExternalId__c} + &apos; - &apos; + {!THREAD_START_DATE},
+&apos;Komplett samtale med Nav - Avtalenr &apos; + {!Thread_Record_JOURNALED.TAG_RelatedObjectExternalId__c} + &apos; - &apos; + {!THREAD_CLOSE_DATE}
 )</expression>
     </formulas>
     <formulas>
