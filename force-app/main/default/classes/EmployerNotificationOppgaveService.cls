@@ -25,14 +25,25 @@ public without sharing class EmployerNotificationOppgaveService {
 
     // @description: Adds the required X-Correlation header to the API request
     private void addXCorrelation(ApiController apiCtrl) {
-        String requestId = logger.apiTransaction(
-            apiCtrl.getrequestEndpoint(),
-            apiCtrl.getRequest(),
-            CRM_ApplicationDomain.Domain.POAB
-        );
-        apiCtrl.addHeader('X-Correlation-ID', requestId); //Adds the unique transaction ID to the request
-        this.transactionId = requestId;
-        logger.publish();
+        String uuid = getUUID();
+        apiCtrl.addHeader('X-Correlation-ID', uuid); //Adds the unique transaction ID to the request
+        this.transactionId = uuid;
+    }
+
+    private static String getUUID() {
+        Blob b = Crypto.GenerateAESKey(128);
+        String h = EncodingUtil.ConvertTohex(b);
+        String guid =
+            h.SubString(0, 8) +
+            '-' +
+            h.SubString(8, 12) +
+            '-' +
+            h.SubString(12, 16) +
+            '-' +
+            h.SubString(16, 20) +
+            '-' +
+            h.substring(20);
+        return guid;
     }
 
     // Returns UUID of the last API transaction initiated.
