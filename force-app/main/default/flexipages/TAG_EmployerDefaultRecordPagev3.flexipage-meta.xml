@@ -163,95 +163,11 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Phone</fieldItem>
-                <identifier>RecordPhoneField</identifier>
+                <fieldItem>Record.Alias__c</fieldItem>
+                <identifier>RecordAlias_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.BillingAddress</fieldItem>
-                <identifier>RecordBillingAddressField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.INT_MunicipalityNumber__c</fieldItem>
-                <identifier>RecordINT_MunicipalityNumber_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.INT_OrganizationalStructure__c</fieldItem>
-                <identifier>RecordINT_OrganizationalStructure_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_NavUnit__c</fieldItem>
-                <identifier>RecordTAG_NavUnit_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-213fc14b-01a0-4bd3-85fc-9a3fbfd15b07</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.INT_EmployerEmail__c</fieldItem>
-                <identifier>RecordINT_EmployerEmail_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.ShippingAddress</fieldItem>
-                <identifier>RecordShippingAddressField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.CRM_Region__pc</fieldItem>
-                <identifier>RecordCRM_Region_pcField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Industry</fieldItem>
-                <identifier>RecordIndustryField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-770224ed-8d67-4070-af73-fc7e9c43f3e0</name>
+        <name>Facet-f8fcc943-5988-41ef-b024-d9525aaaad5e</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -259,81 +175,97 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-213fc14b-01a0-4bd3-85fc-9a3fbfd15b07</value>
+                    <value>Facet-f8fcc943-5988-41ef-b024-d9525aaaad5e</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-770224ed-8d67-4070-af73-fc7e9c43f3e0</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column3</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-971b6925-1435-4f58-affe-86d431643a18</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Alias__c</fieldItem>
-                <identifier>RecordAlias_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EditablePhone__c</fieldItem>
-                <identifier>RecordEditablePhone_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EditableEmail__c</fieldItem>
-                <identifier>RecordEditableEmail_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EditableWebsite__c</fieldItem>
-                <identifier>RecordEditableWebsite_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-2e8413f0-4d35-415d-95ff-f63f690fa006</name>
+        <name>Facet-bc55ed07-11be-4bd2-a3e4-03652e831d18</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-2e8413f0-4d35-415d-95ff-f63f690fa006</value>
+                    <name>fields</name>
+                    <value>Phone, INT_EmployerMobilePhone__c, INT_EmployerEmail__c,ShippingAddress</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column2</identifier>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Informasjon (Enhetsregisteret)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>readOnly</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>twoColumns</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>tagRecordForm</componentName>
+                <identifier>c_tagRecordForm</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-737c629a-81c4-460f-b662-0166d5bcd770</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>fields</name>
+                    <value>Shipping_State__c, INT_MunicipalityNumber__c, TAG_Employer_Region__c, INT_OrganizationalStructure__c, TAG_NavUnit__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Bedriftsinformasjon - detaljer</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>readOnly</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>twoColumns</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>tagRecordForm</componentName>
+                <identifier>c_tagRecordForm2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-bc55ed07-11be-4bd2-a3e4-03652e831d18</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tilleggsinformasjon (Lagt til av Nav-ansatte)</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-fe3d3403-5fe1-4163-a250-f3ce9a18c480</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-fe3d3403-5fe1-4163-a250-f3ce9a18c480</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Standard.Tab.candidateDetails</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-d08a7aa9-09f1-48e6-b5b0-11dbfe778a14</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -423,37 +355,11 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-971b6925-1435-4f58-affe-86d431643a18</value>
+                    <name>tabs</name>
+                    <value>Facet-d08a7aa9-09f1-48e6-b5b0-11dbfe778a14</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Bedriftsinformasjon (Enhetsregisteret)</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-737c629a-81c4-460f-b662-0166d5bcd770</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Tilleggsinformasjon (Lagt til av Nav-ansatte)</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection2</identifier>
+                <componentName>flexipage:tabset</componentName>
+                <identifier>flexipage_tabset</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
