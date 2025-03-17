@@ -247,7 +247,7 @@
                 <identifier>flexipage_fieldSection</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-23e18097-60f1-41eb-bd0f-5f1aa2e37a9c</name>
+        <name>Facet-fe3d3403-5fe1-4163-a250-f3ce9a18c480</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -255,21 +255,17 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-23e18097-60f1-41eb-bd0f-5f1aa2e37a9c</value>
+                    <value>Facet-fe3d3403-5fe1-4163-a250-f3ce9a18c480</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Standard.Tab.detail</value>
+                    <name>title</name>
+                    <value>Standard.Tab.candidateDetails</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>name</name>
-                    <value>accordionSection2</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordionSection</componentName>
-                <identifier>flexipage_accordionSection2</identifier>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-80e30912-7126-4b0a-a1c1-1ee82d696249</name>
+        <name>Facet-d08a7aa9-09f1-48e6-b5b0-11dbfe778a14</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -359,15 +355,11 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>accordionSections</name>
-                    <value>Facet-80e30912-7126-4b0a-a1c1-1ee82d696249</value>
+                    <name>tabs</name>
+                    <value>Facet-d08a7aa9-09f1-48e6-b5b0-11dbfe778a14</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>defaultSectionName</name>
-                    <value>accordionSection2</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordion</componentName>
-                <identifier>flexipage_accordion</identifier>
+                <componentName>flexipage:tabset</componentName>
+                <identifier>flexipage_tabset</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
