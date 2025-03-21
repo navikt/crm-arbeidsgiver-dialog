@@ -137,6 +137,12 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>accountBadges</componentName>
+                <identifier>c_accountBadges</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>amplitudeDeviceReader</componentName>
                 <identifier>c_amplitudeDeviceReader</identifier>
             </componentInstance>
@@ -280,6 +286,10 @@
                     <value>INT_MunicipalityNumber__c, TAG_Employer_Region__c, INT_OrganizationalStructure__c,INT_OrganizationalStructureDesc__c, TAG_NavUnit__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>isDefaultOpen</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Bedriftsinformasjon - detaljer</value>
                 </componentInstanceProperties>
@@ -345,12 +355,6 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>accountBadges</componentName>
-                <identifier>c_accountBadges</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
