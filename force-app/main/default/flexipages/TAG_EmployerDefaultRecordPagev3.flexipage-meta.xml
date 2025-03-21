@@ -137,6 +137,12 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>accountBadges</componentName>
+                <identifier>c_accountBadges</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>amplitudeDeviceReader</componentName>
                 <identifier>c_amplitudeDeviceReader</identifier>
             </componentInstance>
@@ -280,6 +286,10 @@
                     <value>INT_MunicipalityNumber__c, TAG_Employer_Region__c, INT_OrganizationalStructure__c,INT_OrganizationalStructureDesc__c, TAG_NavUnit__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>isDefaultOpen</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Bedriftsinformasjon - detaljer</value>
                 </componentInstanceProperties>
@@ -347,15 +357,23 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>accountBadges</componentName>
-                <identifier>c_accountBadges</identifier>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;h2&gt;Alle aktiviteter på virksomheten&lt;/h2&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>hideHeader</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentName>force:relatedListQuickLinksContainer</componentName>
                 <identifier>force_relatedListQuickLinksContainer</identifier>
