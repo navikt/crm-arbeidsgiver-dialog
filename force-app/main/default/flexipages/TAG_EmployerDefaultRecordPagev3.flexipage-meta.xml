@@ -264,6 +264,143 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>clickableRows</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>columnLabels</name>
+                    <value>Navn, Rolle, E-Post, Telefon</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>displayedFields</name>
+                    <value>Name, Title, Email, MobilePhone</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>dynamicUpdate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filterConditions</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>headerColor</name>
+                    <value>whitesmoke</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>standard:queue</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inactiveRecordFilter</name>
+                    <value>TAG_Former_Employee__c = true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listTitle</name>
+                    <value>Kontaktpersoner</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxHeight</name>
+                    <value>20</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButtonLabel</name>
+                    <value>Ny</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentRelationField</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>popoverFields</name>
+                    <value>Phone, TAG_Theme__c, Source__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedObjectApiName</name>
+                    <value>Contact</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relationField</name>
+                    <value>AccountId</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showNewRecordButton</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>tagRelatedList</componentName>
+                <identifier>c_tagRelatedList</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>clickableRows</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>columnLabels</name>
+                    <value>Navn, Rolle, Nav-kontor, Telefon</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>displayedFields</name>
+                    <value>User.Name, TeamMemberRole, User.CompanyName, User.MobilePhone</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>dynamicUpdate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filterConditions</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>headerColor</name>
+                    <value>whitesmoke</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom15</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inactiveRecordFilter</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listTitle</name>
+                    <value>Kontaktpersoner i Nav</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxHeight</name>
+                    <value>20</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButtonLabel</name>
+                    <value>Ny</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentRelationField</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>popoverFields</name>
+                    <value>User.Phone, Departments__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedObjectApiName</name>
+                    <value>AccountTeamMember</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relationField</name>
+                    <value>AccountId</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showNewRecordButton</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>tagRelatedList</componentName>
+                <identifier>c_tagRelatedList2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-8f12fad0-6fd1-425a-8372-d455222151d8</value>
                 </componentInstanceProperties>
