@@ -269,7 +269,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>columnLabels</name>
-                    <value>Navn, Rolle, E-Post, Telefon</value>
+                    <value>Navn, Rolle, E-post, Telefon</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>displayedFields</name>
@@ -285,10 +285,6 @@
                 <componentInstanceProperties>
                     <name>headerColor</name>
                     <value>whitesmoke</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>standard:queue</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>inactiveRecordFilter</name>
@@ -357,7 +353,6 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
-                    <value>custom:custom15</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>inactiveRecordFilter</name>
