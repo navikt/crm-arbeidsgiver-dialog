@@ -165,12 +165,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Phone</fieldItem>
                 <identifier>RecordPhoneField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Phone}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -181,12 +175,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.INT_EmployerMobilePhone__c</fieldItem>
                 <identifier>RecordINT_EmployerMobilePhone_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.INT_EmployerMobilePhone__c}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -197,12 +185,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.INT_EmployerEmail__c</fieldItem>
                 <identifier>RecordINT_EmployerEmail_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.INT_EmployerEmail__c}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
