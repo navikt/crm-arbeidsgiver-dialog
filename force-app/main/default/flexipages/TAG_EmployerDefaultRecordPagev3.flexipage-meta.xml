@@ -165,12 +165,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Phone</fieldItem>
                 <identifier>RecordPhoneField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Phone}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -181,12 +175,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.INT_EmployerMobilePhone__c</fieldItem>
                 <identifier>RecordINT_EmployerMobilePhone_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.INT_EmployerMobilePhone__c}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -197,12 +185,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.INT_EmployerEmail__c</fieldItem>
                 <identifier>RecordINT_EmployerEmail_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.INT_EmployerEmail__c}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -230,34 +212,6 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-8f12fad0-6fd1-425a-8372-d455222151d8</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Alias__c</fieldItem>
-                <identifier>RecordAlias_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-f8fcc943-5988-41ef-b024-d9525aaaad5e</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-f8fcc943-5988-41ef-b024-d9525aaaad5e</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-bc55ed07-11be-4bd2-a3e4-03652e831d18</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -426,6 +380,10 @@
                     <value>Bedriftsinformasjon - detaljer</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>readOnly</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>twoColumns</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -436,19 +394,27 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-bc55ed07-11be-4bd2-a3e4-03652e831d18</value>
+                    <name>fields</name>
+                    <value>Alias__c, EditableWebsite__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
+                    <name>isDefaultOpen</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Tilleggsinformasjon (Lagt til av Nav-ansatte)</value>
+                    <value>Tilleggsinformasjon (redigerbar)</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection</identifier>
+                <componentInstanceProperties>
+                    <name>readOnly</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>twoColumns</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentName>tagRecordForm</componentName>
+                <identifier>c_tagRecordForm</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-fe3d3403-5fe1-4163-a250-f3ce9a18c480</name>
