@@ -241,6 +241,13 @@
                     <value>whitesmoke</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>iconName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconNamePopover</name>
+                    <value>standard:queue</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>inactiveRecordFilter</name>
                     <value>TAG_Former_Employee__c = true</value>
                 </componentInstanceProperties>
@@ -307,6 +314,10 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconNamePopover</name>
+                    <value>custom:custom15</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>inactiveRecordFilter</name>
