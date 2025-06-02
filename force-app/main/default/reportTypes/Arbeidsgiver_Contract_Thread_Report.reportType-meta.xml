@@ -123,16 +123,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>JSONPayload__c</field>
-            <table>Contract__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>KafkaHash__c</field>
-            <table>Contract__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>KafkaId__c</field>
             <table>Contract__c</table>
         </columns>
