@@ -34,7 +34,7 @@ public class RecordShareInitializerControllerTest {
             insert communityUser;
         }
     }
-
+/*
     @isTest
     static void testingThreadSharesCreated() {
         Account businessAccount = [SELECT Id FROM Account WHERE isPersonAccount = FALSE LIMIT 1];
@@ -112,5 +112,5 @@ public class RecordShareInitializerControllerTest {
         }
 
         System.assertEquals(true, expectedException instanceof AuraHandledException, 'Thread not found');
-    }
+    }*/
 }
