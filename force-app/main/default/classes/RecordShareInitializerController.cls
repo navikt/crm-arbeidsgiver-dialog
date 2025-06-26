@@ -1,5 +1,5 @@
 public with sharing class RecordShareInitializerController {
-    private static final LoggerUtility logger = new LoggerUtility();
+    /*private static final LoggerUtility logger = new LoggerUtility();
 
     @AuraEnabled
     public static void calculateSharingForUser(String userId, String orgNumber) {
@@ -52,5 +52,5 @@ public with sharing class RecordShareInitializerController {
             logger.publish();
             throw new AuraHandledException('Thread not found for agreement ' + agreementNumber);
         }
-    }
+    }*/
 }

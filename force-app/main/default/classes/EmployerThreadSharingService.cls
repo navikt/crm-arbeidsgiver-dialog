@@ -7,7 +7,7 @@
  * Use caution and validate access appropriately when using this class.
  */
 public without sharing class EmployerThreadSharingService {
-    private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
+    /*private static final Map<String, EmployerAltinnRight> THREAD_TOPIC_SERVICE_CODE = new Map<String, EmployerAltinnRight>{
         'MIDLERTIDIG_LONNSTILSKUDD' => new EmployerAltinnRight('5516', '1'),
         'ARBEIDSTRENING' => new EmployerAltinnRight('5332', '2')
     };
@@ -72,7 +72,7 @@ public without sharing class EmployerThreadSharingService {
                 }
             }
         }
-        return false;
+        return true;
     }
 
     private List<Thread__Share> createThreadShares(List<Thread__c> threads, User user) {
@@ -150,5 +150,5 @@ public without sharing class EmployerThreadSharingService {
             return null;
         }
         return users[0];
-    }
+    }*/
 }

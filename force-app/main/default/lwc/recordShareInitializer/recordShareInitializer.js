@@ -1,8 +1,8 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import USER_ID from '@salesforce/user/Id';
-import calculateSharingForUser from '@salesforce/apex/RecordShareInitializerController.calculateSharingForUser';
-import getAgreementThreadId from '@salesforce/apex/RecordShareInitializerController.getAgreementThreadId';
+//import calculateSharingForUser from '@salesforce/apex/RecordShareInitializerController.calculateSharingForUser';
+//import getAgreementThreadId from '@salesforce/apex/RecordShareInitializerController.getAgreementThreadId';
 export default class RecordSharingInitializer extends NavigationMixin(LightningElement) {
     organizationNumber = null;
     agreementNumber = null;
@@ -44,7 +44,7 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
     }
 
     calculateSharing() {
-        calculateSharingForUser({ userId: this.currentUserId, orgNumber: this.organizationNumber })
+        /*calculateSharingForUser({ userId: this.currentUserId, orgNumber: this.organizationNumber })
             .then(() => {
                 if (!this.isThreadDetailPage()) {
                     this.redirectToAgreementThread(this.agreementNumber);
@@ -53,18 +53,18 @@ export default class RecordSharingInitializer extends NavigationMixin(LightningE
             .catch((error) => {
                 console.error('Sharing calculation error', error);
                 this.navigateToErrorPage();
-            });
+            });*/
     }
 
     redirectToAgreementThread(agreementNumber) {
-        getAgreementThreadId({ agreementNumber: agreementNumber })
+        /*getAgreementThreadId({ agreementNumber: agreementNumber })
             .then((result) => {
                 this.navigateToThreadDetailPage(result);
             })
             .catch((error) => {
                 console.error('Thread navigation error', error);
                 this.navigateToErrorPage();
-            });
+            });*/
     }
 
     navigateToThreadDetailPage(threadId) {

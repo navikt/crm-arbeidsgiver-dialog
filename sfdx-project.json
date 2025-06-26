@@ -61,11 +61,11 @@
                 },
                 {
                     "package": "crm-shared-timeline",
-                    "versionNumber": "1.29.0.LATEST"
+                    "versionNumber": "1.33.0.LATEST"
                 },
                 {
                     "package": "crm-arbeidsgiver-base",
-                    "versionNumber": "1.534.0.LATEST"
+                    "versionNumber": "1.571.0.LATEST"
                 }
             ]
         }
