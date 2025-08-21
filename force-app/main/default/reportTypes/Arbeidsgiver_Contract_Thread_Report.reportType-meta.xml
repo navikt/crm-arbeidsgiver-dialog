@@ -336,11 +336,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Thread__c.CRM_Last_Edited_By__c</field>
-            <table>Contract__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Thread__c.CRM_Latest_Message_Datetime__c</field>
             <table>Contract__c</table>
         </columns>
