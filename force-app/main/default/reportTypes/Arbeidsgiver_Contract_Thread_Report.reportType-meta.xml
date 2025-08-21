@@ -576,11 +576,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Thread__c.CRM_Recipient__c</field>
-            <table>Contract__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Thread__c.RecordType</field>
             <table>Contract__c</table>
         </columns>
